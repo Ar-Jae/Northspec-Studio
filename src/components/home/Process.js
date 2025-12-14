@@ -3,20 +3,53 @@ import SectionHeading from "../SectionHeading";
 
 const steps = [
   {
-    title: "Define the spec",
-    body: "We agree on scope, requirements, and success criteria. Estimates are based on what’s written down.",
+    title: "Discovery & System Analysis",
+    description:
+      "We start by understanding your business model, goals, and operational bottlenecks. This phase defines what needs to be built, what can be automated, and what should be avoided.",
+    points: [
+      "Core business objectives",
+      "Current pain points and manual processes",
+      "Technical constraints and opportunities",
+      "Scope clarity to prevent surprises later",
+    ],
+    footer: "This ensures we’re solving the right problem before writing any code.",
   },
   {
-    title: "Make the decisions",
-    body: "We document tradeoffs and choose an approach your team can maintain. No mystery architecture.",
+    title: "Design & Prototyping",
+    description: "We translate strategy into a clear, intuitive user experience. Our designers create:",
+    points: [
+      "Clean, functional interfaces",
+      "User flows aligned with real use cases",
+      "Interactive prototypes for early feedback",
+    ],
+    footer:
+      "You’ll be able to see and validate the product before development begins, reducing risk and rework.",
   },
   {
-    title: "Build and review",
-    body: "Work ships in weekly checkpoints with clear updates. You work directly with the engineers writing the code.",
+    title: "Development & Testing",
+    description:
+      "Our engineers build the system using modern, scalable technologies and proven best practices. This includes:",
+    points: [
+      "Frontend and backend development",
+      "Secure APIs and integrations",
+      "Automation-ready architecture",
+      "Continuous testing throughout development",
+    ],
+    footer:
+      "Every feature is tested for performance, reliability, and edge cases — not just “happy paths.”",
   },
   {
-    title: "Maintain",
-    body: "Launch is not the end. We support, fix, and improve systems so they stay stable over time.",
+    title: "Deployment & Ongoing Support",
+    description:
+      "We deploy your system into a production-ready environment with stability and security in mind. This phase includes:",
+    points: [
+      "Deployment and environment configuration",
+      "Monitoring and error handling setup",
+      "Documentation and handoff",
+      "Optional ongoing support and maintenance",
+    ],
+    footer:
+      "You’re not left guessing after launch — we ensure a smooth transition and long-term reliability.",
   },
 ];
 
@@ -26,21 +59,30 @@ export default function Process() {
       <Container className="py-16 sm:py-20">
         <SectionHeading
           eyebrow="Process"
-          title="Clear scope. Predictable delivery."
-          description="Work is defined up front, decisions are documented, and you always know what comes next."
+          title="How we work"
+          description="A proven methodology to deliver high-quality software that solves real business problems."
         />
 
-        <ol className="mt-10 grid gap-6 lg:grid-cols-4">
+        <div className="mt-10 grid gap-6 lg:grid-cols-2">
           {steps.map((step, idx) => (
-            <li key={step.title} className="rounded-2xl border border-slate-200 bg-white p-6">
-              <p className="text-sm font-medium text-slate-600">Step {idx + 1}</p>
-              <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
+            <div
+              key={step.title}
+              className="flex flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm"
+            >
+              <p className="text-sm font-medium text-blue-600">Step {idx + 1}</p>
+              <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-900">
                 {step.title}
               </h3>
-              <p className="mt-2 text-sm text-slate-600">{step.body}</p>
-            </li>
+              <p className="mt-4 text-base text-slate-600">{step.description}</p>
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-600">
+                {step.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+              <p className="mt-6 flex-1 text-sm italic text-slate-500">{step.footer}</p>
+            </div>
           ))}
-        </ol>
+        </div>
       </Container>
     </section>
   );

@@ -17,8 +17,6 @@ export async function POST(request) {
 
   const name = String(payload?.name || "").trim();
   const email = String(payload?.email || "").trim();
-  const company = String(payload?.company || "").trim();
-  const message = String(payload?.message || "").trim();
   const website = String(payload?.website || "").trim();
 
   // Honeypot: normal users never see or fill this.
@@ -41,19 +39,8 @@ export async function POST(request) {
     );
   }
 
-  if (!message || message.length < 20) {
-    return NextResponse.json(
-      { ok: false, error: "Message must be at least 20 characters." },
-      { status: 400 }
-    );
-  }
-
-  // Placeholder: wire this to your provider.
-  // Examples:
-  // - Resend / SendGrid email send
-  // - HubSpot form submit / Salesforce lead
-  // - Slack webhook (internal notifications)
-  console.log("[contact] new message", { name, email, company, messageLength: message.length });
+  // In a real app, you would send an email here using Resend, SendGrid, etc.
+  // For now, we just return success.
 
   return NextResponse.json({ ok: true });
 }

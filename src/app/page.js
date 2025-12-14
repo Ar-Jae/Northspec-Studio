@@ -1,7 +1,6 @@
 import Hero from "../components/home/Hero";
 import LogoCloud from "../components/home/LogoCloud";
 import ServicesOverview from "../components/home/ServicesOverview";
-import Process from "../components/home/Process";
 import FeaturedWork from "../components/home/FeaturedWork";
 import Testimonials from "../components/home/Testimonials";
 import FAQ from "../components/home/FAQ";
@@ -26,7 +25,6 @@ export default function HomePage() {
       <Hero />
       <LogoCloud />
       <ServicesOverview />
-      <Process />
       <FeaturedWork />
       <Testimonials />
       <FAQ />

@@ -1,6 +1,7 @@
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
+import Process from "../../components/home/Process";
 
 export const metadata = {
   title: "About",
@@ -16,6 +17,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
+    <>
     <div className="bg-white">
       <Container className="py-16 sm:py-20">
         <SectionHeading
@@ -37,20 +39,6 @@ export default function AboutPage() {
               <p>
                 We’re a good fit for teams that want senior execution and predictable delivery.
                 We are not a fit for vague projects with no ownership or clients shopping for the cheapest bid.
-              </p>
-            </div>
-
-            <h2 className="mt-10 text-xl font-semibold tracking-tight text-slate-900">
-              How we work
-            </h2>
-            <div className="mt-4 space-y-4 text-sm text-slate-600">
-              <p>
-                You get clear scopes, real estimates, and steady communication. Tradeoffs are explained.
-                Decisions are written down.
-              </p>
-              <p>
-                Whether it’s a new build, a broken integration, or ongoing product support, we work in
-                a calm cadence so you always know what’s happening.
               </p>
             </div>
           </div>
@@ -88,5 +76,7 @@ export default function AboutPage() {
         </div>
       </Container>
     </div>
+    <Process />
+    </>
   );
 }

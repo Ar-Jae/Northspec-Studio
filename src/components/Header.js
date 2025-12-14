@@ -22,32 +22,33 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
-      <Container className="flex h-16 items-center justify-between">
-        <div className="flex items-center gap-4">
+      <Container className="relative flex h-16 items-center justify-between">
+        <div className="flex items-center">
           <Logo />
-          <nav className="hidden md:block" aria-label="Primary">
-            <ul className="flex items-center gap-1">
-              {navLinks.map((item) => {
-                const isActive =
-                  item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
-
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-                        isActive && "bg-slate-100 text-slate-900"
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
         </div>
+
+        <nav className="hidden md:block absolute left-1/2 -translate-x-1/2" aria-label="Primary">
+          <ul className="flex items-center gap-6">
+            {navLinks.map((item) => {
+              const isActive =
+                item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "text-sm font-medium text-slate-700 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+                      isActive && "text-slate-900"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
         <div className="hidden items-center gap-2 md:flex">
           <Button as="link" href="/work" variant="secondary">
