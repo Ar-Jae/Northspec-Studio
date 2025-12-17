@@ -20,6 +20,11 @@ const site = {
     { label: "LinkedIn", href: "https://www.linkedin.com" },
     { label: "GitHub", href: "https://github.com" },
   ],
+  // Calendar booking URL - supports Calendly, Cal.com, or any embeddable calendar
+  // Examples:
+  //   Calendly: "https://calendly.com/your-username/discovery-call"
+  //   Cal.com: "https://cal.com/your-username/discovery-call"
+  calendarUrl: "https://calendly.com/northspec",
 };
 
 export default site;

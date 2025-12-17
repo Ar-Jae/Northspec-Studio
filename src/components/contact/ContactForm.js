@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Button from "../Button";
 import { cn } from "../../lib/utils";
+import site from "../../content/site";
 
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
@@ -125,29 +126,27 @@ export default function ContactForm() {
       return;
     }
 
-    // Auto-reject logic
+    // Auto-reject logic - still submit to backend for logging
     const isRejected =
       values.projectType === "Just a basic website" ||
       values.budget === "Under $2,500" ||
       values.timeline === "Just exploring" ||
       values.decisionMaker === "No";
 
-    if (isRejected) {
-      // Fake a delay then show rejection
-      setStatus("loading");
-      setTimeout(() => {
-        setStatus("rejected");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 800);
-      return;
-    }
-
     try {
       setStatus("loading");
-      const res = await submitContactRequest(values);
+      // Always submit to backend (n8n webhook) for logging
+      const res = await submitContactRequest({ ...values, _rejected: isRejected });
+      
       if (!res?.ok) throw new Error(res?.error || "Request failed");
 
-      setStatus("success");
+      // Show appropriate UI based on qualification
+      if (isRejected) {
+        setStatus("rejected");
+      } else {
+        setStatus("success");
+      }
+      
       window.scrollTo({ top: 0, behavior: "smooth" });
       setValues({
         name: "",
@@ -190,18 +189,57 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-green-200 bg-green-50 p-8 text-center">
-        <h3 className="text-xl font-semibold text-green-900">Thanks for the details.</h3>
-        <p className="mt-2 text-green-800">
-          If your project is a good fit, you’ll receive a booking link within 24 hours.
+      <div className="space-y-6">
+        <div className="rounded-2xl border border-green-200 bg-green-50 p-6 text-center">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-semibold text-green-900">You're a great fit!</h3>
+          <p className="mt-2 text-green-800">
+            Let's schedule a quick discovery call to discuss your project.
+          </p>
+        </div>
+        
+        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
+          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+            <div>
+              <h4 className="font-semibold text-slate-900 flex items-center gap-2">
+                <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                </svg>
+                Pick a time that works for you
+              </h4>
+              <p className="text-sm text-slate-600 mt-1">30-minute discovery call</p>
+            </div>
+            <a 
+              href={site.calendarUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+            >
+              Open in new tab &rarr;
+            </a>
+          </div>
+          <div className="calendar-embed" style={{ minHeight: '650px' }}>
+            <iframe
+              src={`${site.calendarUrl}?hide_gdpr_banner=1&background_color=ffffff&text_color=1e293b&primary_color=2563eb`}
+              width="100%"
+              height="650"
+              frameBorder="0"
+              title="Schedule a discovery call"
+              className="w-full"
+            />
+          </div>
+        </div>
+        
+        <p className="text-center text-sm text-slate-500">
+          Can't find a time that works?{" "}
+          <a href="mailto:hello@northspecstudio.com" className="text-blue-600 hover:underline">
+            Email us directly
+          </a>
         </p>
-        <Button
-          variant="secondary"
-          className="mt-6"
-          onClick={() => setStatus("idle")}
-        >
-          Send another
-        </Button>
       </div>
     );
   }
