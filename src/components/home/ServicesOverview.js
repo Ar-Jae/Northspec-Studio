@@ -5,7 +5,7 @@ import services from "../../content/services";
 
 export default function ServicesOverview() {
   return (
-    <section className="bg-white">
+    <section className="bg-brand-dark">
       <Container className="py-16 sm:py-20">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -17,7 +17,7 @@ export default function ServicesOverview() {
             <Button as="link" href="/services" variant="secondary">
               Explore services
             </Button>
-            <Button as="link" href="/contact" variant="primary">
+            <Button as="link" href="/contact" variant="brand">
               Book a Call
             </Button>
           </div>
@@ -27,16 +27,16 @@ export default function ServicesOverview() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6"
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors"
             >
-              <h3 className="text-xl font-semibold tracking-tight text-slate-900">
+              <h3 className="text-xl font-semibold tracking-tight text-white">
                 {service.title}
               </h3>
-              <p className="mt-2 text-sm text-slate-600">{service.short}</p>
-              <ul className="mt-5 space-y-2 text-sm text-slate-700">
+              <p className="mt-2 text-sm text-slate-400">{service.short}</p>
+              <ul className="mt-5 space-y-2 text-sm text-slate-300">
                 {service.bullets.slice(0, 3).map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span aria-hidden="true" className="mt-1 text-slate-400">•</span>
+                    <span aria-hidden="true" className="mt-1 text-brand-orange">•</span>
                     <span>{item}</span>
                   </li>
                 ))}

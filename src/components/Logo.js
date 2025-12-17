@@ -14,16 +14,16 @@ function initialsFromName(name) {
 
 export default function Logo({ className, withMark = true }) {
   return (
-    <Link href="/" className={cn("inline-flex items-center gap-2", className)}>
+    <Link href="/" className={cn("inline-flex items-center gap-2 group", className)}>
       {withMark ? (
         <span
           aria-hidden="true"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-orange text-white font-bold shadow-lg shadow-brand-orange/20 group-hover:scale-105 transition-transform"
         >
           {initialsFromName(site.name)}
         </span>
       ) : null}
-      <span className="text-base font-semibold tracking-tight text-slate-900">
+      <span className="text-base font-semibold tracking-tight text-white group-hover:text-brand-orange transition-colors">
         {site.name}
       </span>
     </Link>

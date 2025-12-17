@@ -73,7 +73,6 @@ export default function ContactForm() {
     },
     timeline: "",
     decisionMaker: "",
-    whyUs: "",
     // Honeypot
     website: "",
   });
@@ -104,7 +103,6 @@ export default function ContactForm() {
 
     if (!values.timeline) next.timeline = "Required";
     if (!values.decisionMaker) next.decisionMaker = "Required";
-    if (!values.whyUs.trim()) next.whyUs = "Required";
 
     return next;
   }, [values]);
@@ -190,41 +188,41 @@ export default function ContactForm() {
   if (status === "success") {
     return (
       <div className="space-y-6">
-        <div className="rounded-2xl border border-green-200 bg-green-50 p-6 text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
-            <svg className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+        <div className="rounded-2xl border border-green-500/20 bg-green-500/10 p-6 text-center">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-green-500/20">
+            <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-green-900">You're a great fit!</h3>
-          <p className="mt-2 text-green-800">
+          <h3 className="text-xl font-semibold text-white">You're a great fit!</h3>
+          <p className="mt-2 text-green-200">
             Let's schedule a quick discovery call to discuss your project.
           </p>
         </div>
         
-        <div className="rounded-2xl border border-slate-200 bg-white overflow-hidden">
-          <div className="bg-slate-50 px-6 py-4 border-b border-slate-200 flex justify-between items-center">
+        <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex justify-between items-center">
             <div>
-              <h4 className="font-semibold text-slate-900 flex items-center gap-2">
-                <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+              <h4 className="font-semibold text-white flex items-center gap-2">
+                <svg className="h-5 w-5 text-brand-orange" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                 </svg>
                 Pick a time that works for you
               </h4>
-              <p className="text-sm text-slate-600 mt-1">30-minute discovery call</p>
+              <p className="text-sm text-slate-400 mt-1">30-minute discovery call</p>
             </div>
             <a 
               href={site.calendarUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline"
+              className="text-sm font-medium text-brand-orange hover:text-orange-400 hover:underline"
             >
               Open in new tab &rarr;
             </a>
           </div>
           <div className="calendar-embed" style={{ minHeight: '650px' }}>
             <iframe
-              src={`${site.calendarUrl}?hide_gdpr_banner=1&background_color=ffffff&text_color=1e293b&primary_color=2563eb`}
+              src={`${site.calendarUrl}?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff5500`}
               width="100%"
               height="650"
               frameBorder="0"
@@ -236,7 +234,7 @@ export default function ContactForm() {
         
         <p className="text-center text-sm text-slate-500">
           Can't find a time that works?{" "}
-          <a href="mailto:hello@northspecstudio.com" className="text-blue-600 hover:underline">
+          <a href="mailto:hello@northspecstudio.com" className="text-brand-orange hover:underline">
             Email us directly
           </a>
         </p>
@@ -246,12 +244,12 @@ export default function ContactForm() {
 
   if (status === "rejected") {
     return (
-      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center">
-        <h3 className="text-xl font-semibold text-slate-900">Thanks for your interest.</h3>
-        <p className="mt-2 text-slate-600">
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+        <h3 className="text-xl font-semibold text-white">Thanks for your interest.</h3>
+        <p className="mt-2 text-slate-400">
           Based on your responses, this project isn’t a fit at the moment.
         </p>
-        <p className="mt-1 text-slate-600">We wish you the best with your build.</p>
+        <p className="mt-1 text-slate-400">We wish you the best with your build.</p>
       </div>
     );
   }
@@ -273,10 +271,10 @@ export default function ContactForm() {
 
       {/* Section 1: Basics */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 1: Basics</h3>
+        <h3 className="text-lg font-semibold text-white">Section 1: Basics</h3>
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="space-y-2">
-            <label htmlFor="name" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="name" className="block text-sm font-medium text-slate-300">
               Full Name
             </label>
             <input
@@ -286,18 +284,18 @@ export default function ContactForm() {
               onChange={(e) => onChange("name", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, name: true }))}
               className={cn(
-                "block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm",
-                touched.name && errors.name && "border-red-300 focus:border-red-500 focus:ring-red-500"
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                touched.name && errors.name && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.name && !!errors.name}
             />
             {touched.name && errors.name && (
-              <p className="text-xs text-red-600">{errors.name}</p>
+              <p className="text-xs text-red-400">{errors.name}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="email" className="block text-sm font-medium text-slate-300">
               Work Email
             </label>
             <input
@@ -307,18 +305,18 @@ export default function ContactForm() {
               onChange={(e) => onChange("email", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, email: true }))}
               className={cn(
-                "block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm",
-                touched.email && errors.email && "border-red-300 focus:border-red-500 focus:ring-red-500"
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                touched.email && errors.email && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.email && !!errors.email}
             />
             {touched.email && errors.email && (
-              <p className="text-xs text-red-600">{errors.email}</p>
+              <p className="text-xs text-red-400">{errors.email}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="company" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="company" className="block text-sm font-medium text-slate-300">
               Company / Project Name
             </label>
             <input
@@ -328,18 +326,18 @@ export default function ContactForm() {
               onChange={(e) => onChange("company", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, company: true }))}
               className={cn(
-                "block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm",
-                touched.company && errors.company && "border-red-300 focus:border-red-500 focus:ring-red-500"
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                touched.company && errors.company && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.company && !!errors.company}
             />
             {touched.company && errors.company && (
-              <p className="text-xs text-red-600">{errors.company}</p>
+              <p className="text-xs text-red-400">{errors.company}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="projectUrl" className="block text-sm font-medium text-slate-700">
+            <label htmlFor="projectUrl" className="block text-sm font-medium text-slate-300">
               Website (if any)
             </label>
             <input
@@ -347,7 +345,7 @@ export default function ContactForm() {
               type="text"
               value={values.projectUrl}
               onChange={(e) => onChange("projectUrl", e.target.value)}
-              className="block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500"
             />
           </div>
         </div>
@@ -355,10 +353,10 @@ export default function ContactForm() {
 
       {/* Section 2: Project Fit */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 2: Project Fit</h3>
+        <h3 className="text-lg font-semibold text-white">Section 2: Project Fit</h3>
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             What best describes your project?
           </label>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -368,8 +366,8 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.projectType === type
-                    ? "border-blue-600 bg-blue-50 text-blue-900"
-                    : "border-slate-200 hover:bg-slate-50"
+                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
                 <input
@@ -378,22 +376,22 @@ export default function ContactForm() {
                   value={type}
                   checked={values.projectType === type}
                   onChange={(e) => onChange("projectType", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {type}
               </label>
             ))}
           </div>
           {touched.projectType && errors.projectType && (
-            <p className="text-xs text-red-600">{errors.projectType}</p>
+            <p className="text-xs text-red-400">{errors.projectType}</p>
           )}
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="projectDescription" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="projectDescription" className="block text-sm font-medium text-slate-300">
             What are you looking to build?
           </label>
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-slate-400">
             Describe the problem you’re solving and what success looks like.
           </p>
           <textarea
@@ -403,23 +401,23 @@ export default function ContactForm() {
             onChange={(e) => onChange("projectDescription", e.target.value)}
             onBlur={() => setTouched((t) => ({ ...t, projectDescription: true }))}
             className={cn(
-              "block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm",
-              touched.projectDescription && errors.projectDescription && "border-red-300 focus:border-red-500 focus:ring-red-500"
+              "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+              touched.projectDescription && errors.projectDescription && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
             )}
             aria-invalid={touched.projectDescription && !!errors.projectDescription}
           />
           {touched.projectDescription && errors.projectDescription && (
-            <p className="text-xs text-red-600">{errors.projectDescription}</p>
+            <p className="text-xs text-red-400">{errors.projectDescription}</p>
           )}
         </div>
       </div>
 
       {/* Section 3: Budget Reality Check */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 3: Budget Reality Check</h3>
+        <h3 className="text-lg font-semibold text-white">Section 3: Budget Reality Check</h3>
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             What budget range are you prepared to invest?
           </label>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -429,8 +427,8 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.budget === range
-                    ? "border-blue-600 bg-blue-50 text-blue-900"
-                    : "border-slate-200 hover:bg-slate-50"
+                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
                 <input
@@ -439,115 +437,115 @@ export default function ContactForm() {
                   value={range}
                   checked={values.budget === range}
                   onChange={(e) => onChange("budget", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {range}
               </label>
             ))}
           </div>
           {touched.budget && errors.budget && (
-            <p className="text-xs text-red-600">{errors.budget}</p>
+            <p className="text-xs text-red-400">{errors.budget}</p>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             Is this budget already approved?
           </label>
           <div className="flex flex-wrap gap-4">
             {BUDGET_STATUSES.map((status) => (
-              <label key={status} className="flex cursor-pointer items-center gap-2 text-sm">
+              <label key={status} className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
                 <input
                   type="radio"
                   name="budgetApproved"
                   value={status}
                   checked={values.budgetApproved === status}
                   onChange={(e) => onChange("budgetApproved", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {status}
               </label>
             ))}
           </div>
           {touched.budgetApproved && errors.budgetApproved && (
-            <p className="text-xs text-red-600">{errors.budgetApproved}</p>
+            <p className="text-xs text-red-400">{errors.budgetApproved}</p>
           )}
         </div>
       </div>
 
       {/* Section 4: Automation Awareness */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 4: Automation Awareness</h3>
+        <h3 className="text-lg font-semibold text-white">Section 4: Automation Awareness</h3>
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             Are you interested in automation (n8n)?
           </label>
           <div className="space-y-2">
             {AUTOMATION_INTERESTS.map((interest) => (
-              <label key={interest} className="flex cursor-pointer items-center gap-2 text-sm">
+              <label key={interest} className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
                 <input
                   type="radio"
                   name="automationInterest"
                   value={interest}
                   checked={values.automationInterest === interest}
                   onChange={(e) => onChange("automationInterest", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {interest}
               </label>
             ))}
           </div>
           {touched.automationInterest && errors.automationInterest && (
-            <p className="text-xs text-red-600">{errors.automationInterest}</p>
+            <p className="text-xs text-red-400">{errors.automationInterest}</p>
           )}
         </div>
 
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             Please confirm you understand the following:
           </label>
-          <div className="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-4">
-            <label className="flex cursor-pointer items-start gap-3 text-sm">
+          <div className="space-y-3 rounded-lg border border-white/10 bg-white/5 p-4">
+            <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-300">
               <input
                 type="checkbox"
                 checked={values.automationUnderstanding.scoped}
                 onChange={() => onCheckboxChange("scoped")}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
               />
               <span>Automation is scoped and priced separately</span>
             </label>
-            <label className="flex cursor-pointer items-start gap-3 text-sm">
+            <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-300">
               <input
                 type="checkbox"
                 checked={values.automationUnderstanding.setup}
                 onChange={() => onCheckboxChange("setup")}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
               />
               <span>n8n setup starts at $1,500</span>
             </label>
-            <label className="flex cursor-pointer items-start gap-3 text-sm">
+            <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-300">
               <input
                 type="checkbox"
                 checked={values.automationUnderstanding.quoted}
                 onChange={() => onCheckboxChange("quoted")}
-                className="mt-1 h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
               />
               <span>Each workflow is quoted individually</span>
             </label>
           </div>
           {touched.automationUnderstanding && errors.automationUnderstanding && (
-            <p className="text-xs text-red-600">{errors.automationUnderstanding}</p>
+            <p className="text-xs text-red-400">{errors.automationUnderstanding}</p>
           )}
         </div>
       </div>
 
       {/* Section 5: Timeline & Urgency */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 5: Timeline & Urgency</h3>
+        <h3 className="text-lg font-semibold text-white">Section 5: Timeline & Urgency</h3>
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             When are you looking to start?
           </label>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -557,8 +555,8 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.timeline === time
-                    ? "border-blue-600 bg-blue-50 text-blue-900"
-                    : "border-slate-200 hover:bg-slate-50"
+                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
                 <input
@@ -567,78 +565,49 @@ export default function ContactForm() {
                   value={time}
                   checked={values.timeline === time}
                   onChange={(e) => onChange("timeline", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {time}
               </label>
             ))}
           </div>
           {touched.timeline && errors.timeline && (
-            <p className="text-xs text-red-600">{errors.timeline}</p>
+            <p className="text-xs text-red-400">{errors.timeline}</p>
           )}
         </div>
       </div>
 
       {/* Section 6: Authority Check */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 6: Authority Check</h3>
+        <h3 className="text-lg font-semibold text-white">Section 6: Authority Check</h3>
         
         <div className="space-y-2">
-          <label className="block text-sm font-medium text-slate-700">
+          <label className="block text-sm font-medium text-slate-300">
             Are you the decision-maker for this project?
           </label>
           <div className="space-y-2">
             {DECISION_MAKERS.map((option) => (
-              <label key={option} className="flex cursor-pointer items-center gap-2 text-sm">
+              <label key={option} className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
                 <input
                   type="radio"
                   name="decisionMaker"
                   value={option}
                   checked={values.decisionMaker === option}
                   onChange={(e) => onChange("decisionMaker", e.target.value)}
-                  className="h-4 w-4 border-slate-300 text-blue-600 focus:ring-blue-500"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
                 />
                 {option}
               </label>
             ))}
           </div>
           {touched.decisionMaker && errors.decisionMaker && (
-            <p className="text-xs text-red-600">{errors.decisionMaker}</p>
-          )}
-        </div>
-      </div>
-
-      {/* Section 7: Final Qualification */}
-      <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-slate-900">Section 7: Final Qualification</h3>
-        
-        <div className="space-y-2">
-          <label htmlFor="whyUs" className="block text-sm font-medium text-slate-700">
-            Why do you want to work with us specifically?
-          </label>
-          <p className="text-xs text-slate-500">
-            What stood out to you about our approach or pricing?
-          </p>
-          <textarea
-            id="whyUs"
-            rows={3}
-            value={values.whyUs}
-            onChange={(e) => onChange("whyUs", e.target.value)}
-            onBlur={() => setTouched((t) => ({ ...t, whyUs: true }))}
-            className={cn(
-              "block w-full rounded-lg border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm",
-              touched.whyUs && errors.whyUs && "border-red-300 focus:border-red-500 focus:ring-red-500"
-            )}
-            aria-invalid={touched.whyUs && !!errors.whyUs}
-          />
-          {touched.whyUs && errors.whyUs && (
-            <p className="text-xs text-red-600">{errors.whyUs}</p>
+            <p className="text-xs text-red-400">{errors.decisionMaker}</p>
           )}
         </div>
       </div>
 
       {serverError && (
-        <div className="rounded-lg bg-red-50 p-4 text-sm text-red-600">
+        <div className="rounded-lg bg-red-500/10 p-4 text-sm text-red-400 border border-red-500/20">
           {serverError}
         </div>
       )}

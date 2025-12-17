@@ -18,8 +18,8 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-    <div className="bg-white">
-      <Container className="py-16 sm:py-20">
+    <div className="bg-brand-dark">
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <SectionHeading
           eyebrow="About"
           title="Engineering first"
@@ -28,10 +28,10 @@ export default function AboutPage() {
 
         <div className="mt-10 grid gap-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <h2 className="text-xl font-semibold tracking-tight text-slate-900">
+            <h2 className="text-xl font-semibold tracking-tight text-white">
               What we believe
             </h2>
-            <div className="mt-4 space-y-4 text-sm text-slate-600">
+            <div className="mt-4 space-y-4 text-sm text-slate-400">
               <p>
                 We take an engineering-first approach: clear requirements, thoughtful architecture,
                 and documented decisions. The goal is a system your team can maintain.
@@ -44,21 +44,21 @@ export default function AboutPage() {
           </div>
 
           <aside className="lg:col-span-5">
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-slate-900">
+            <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+              <h2 className="text-lg font-semibold tracking-tight text-white">
                 Typical engagements
               </h2>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700">
+              <ul className="mt-4 space-y-3 text-sm text-slate-300">
                 <li className="flex gap-2">
-                  <span aria-hidden="true" className="text-slate-400">•</span>
+                  <span aria-hidden="true" className="text-brand-orange">•</span>
                   <span>Website builds with a clear spec and clean handoff</span>
                 </li>
                 <li className="flex gap-2">
-                  <span aria-hidden="true" className="text-slate-400">•</span>
+                  <span aria-hidden="true" className="text-brand-orange">•</span>
                   <span>APIs, integrations, and internal tools delivered in milestones</span>
                 </li>
                 <li className="flex gap-2">
-                  <span aria-hidden="true" className="text-slate-400">•</span>
+                  <span aria-hidden="true" className="text-brand-orange">•</span>
                   <span>Ongoing support for stability, debugging, and performance</span>
                 </li>
               </ul>
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 <Button as="link" href="/work" variant="secondary">
                   View Work
                 </Button>
-                <Button as="link" href="/contact" variant="primary">
+                <Button as="link" href="/contact" variant="brand">
                   Book a Call
                 </Button>
               </div>

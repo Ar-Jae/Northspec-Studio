@@ -12,13 +12,13 @@ export default function SectionHeading({
   return (
     <div className={cn(alignClass, className)}>
       {eyebrow ? (
-        <p className="text-sm font-medium tracking-wide text-slate-600">{eyebrow}</p>
+        <p className="text-sm font-medium tracking-wide text-brand-orange uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+      <h2 className="mt-2 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="mt-3 max-w-2xl text-pretty text-base text-slate-600 sm:text-lg">
+        <p className="mt-3 max-w-2xl text-pretty text-base text-slate-400 sm:text-lg">
           {description}
         </p>
       ) : null}

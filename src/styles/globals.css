@@ -11,9 +11,9 @@ html {
 }
 
 body {
-  @apply bg-white text-slate-900 antialiased;
+  @apply bg-brand-dark text-white antialiased;
 }
 
 ::selection {
-  @apply bg-slate-900 text-white;
+  @apply bg-brand-orange text-white;
 }

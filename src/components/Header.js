@@ -21,14 +21,14 @@ export default function Header() {
   const navLinks = useMemo(() => site.nav, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur">
+    <header className="fixed top-0 z-50 w-full pt-6">
       <Container className="relative flex h-16 items-center justify-between">
         <div className="flex items-center">
-          <Logo />
+          <Logo className="text-white" />
         </div>
 
         <nav className="hidden md:block absolute left-1/2 -translate-x-1/2" aria-label="Primary">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-1 rounded-full bg-white/5 p-1 backdrop-blur-md border border-white/10">
             {navLinks.map((item) => {
               const isActive =
                 item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
@@ -38,8 +38,10 @@ export default function Header() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium text-slate-700 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-                      isActive && "text-slate-900"
+                      "px-5 py-2 text-sm font-medium rounded-full transition-all",
+                      isActive 
+                        ? "bg-white text-brand-dark" 
+                        : "text-slate-300 hover:text-white hover:bg-white/10"
                     )}
                   >
                     {item.label}
@@ -51,17 +53,14 @@ export default function Header() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button as="link" href="/work" variant="secondary">
-            View Work
-          </Button>
-          <Button as="link" href="/contact" variant="primary">
-            Book a Call
+          <Button as="link" href="/contact" variant="brand">
+            Contact Us
           </Button>
         </div>
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange md:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls={panelId}
@@ -76,7 +75,7 @@ export default function Header() {
       <div
         id={panelId}
         className={cn(
-          "md:hidden",
+          "md:hidden fixed inset-0 top-24 z-40 bg-brand-dark/95 backdrop-blur-xl",
           mobileOpen ? "block" : "hidden"
         )}
       >
@@ -91,8 +90,8 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={cn(
-                        "block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
-                        isActive && "bg-slate-100 text-slate-900"
+                        "block rounded-lg px-3 py-2 text-sm font-medium",
+                        isActive ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"
                       )}
                     >
                       {item.label}
@@ -102,15 +101,6 @@ export default function Header() {
               })}
             </ul>
           </nav>
-
-          <div className="mt-4 flex gap-2">
-            <Button as="link" href="/work" variant="secondary" className="flex-1">
-              View Work
-            </Button>
-            <Button as="link" href="/contact" variant="primary" className="flex-1">
-              Book a Call
-            </Button>
-          </div>
         </Container>
       </div>
     </header>

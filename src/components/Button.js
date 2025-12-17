@@ -5,10 +5,11 @@ const base =
   "inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
-  primary: "bg-slate-900 text-white hover:bg-slate-800",
-  secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
+  primary: "bg-white text-brand-dark hover:bg-slate-200",
+  secondary: "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm",
   outline:
-    "border border-slate-300 bg-white text-slate-900 hover:bg-slate-50",
+    "border border-white/20 bg-transparent text-white hover:bg-white/10",
+  brand: "bg-gradient-to-r from-brand-orange to-orange-600 text-white hover:opacity-90 shadow-[0_0_20px_rgba(255,85,0,0.5)]",
 };
 
 export default function Button({

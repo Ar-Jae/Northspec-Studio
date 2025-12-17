@@ -8,7 +8,7 @@ export default function FeaturedWork() {
   const featured = caseStudies.filter((s) => s.featured).slice(0, 2);
 
   return (
-    <section className="bg-white">
+    <section className="bg-brand-dark">
       <Container className="py-16 sm:py-20">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading
@@ -20,7 +20,7 @@ export default function FeaturedWork() {
             <Button as="link" href="/work" variant="secondary">
               View Work
             </Button>
-            <Button as="link" href="/contact" variant="primary">
+            <Button as="link" href="/contact" variant="brand">
               Book a Call
             </Button>
           </div>

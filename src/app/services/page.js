@@ -17,8 +17,8 @@ export const metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white">
-      <Container className="py-16 sm:py-20">
+    <div className="bg-brand-dark">
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <SectionHeading
           eyebrow="Services"
           title="Built to spec"
@@ -29,20 +29,20 @@ export default function ServicesPage() {
           {services.map((service) => (
             <section
               key={service.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6"
+              className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
               aria-labelledby={`${service.title}-title`}
             >
               <h2
                 id={`${service.title}-title`}
-                className="text-xl font-semibold tracking-tight text-slate-900"
+                className="text-xl font-semibold tracking-tight text-white"
               >
                 {service.title}
               </h2>
-              <p className="mt-2 text-sm text-slate-600">{service.description}</p>
-              <ul className="mt-5 space-y-2 text-sm text-slate-700">
+              <p className="mt-2 text-sm text-slate-400">{service.description}</p>
+              <ul className="mt-5 space-y-2 text-sm text-slate-300">
                 {service.bullets.map((item) => (
                   <li key={item} className="flex gap-2">
-                    <span aria-hidden="true" className="mt-1 text-slate-400">•</span>
+                    <span aria-hidden="true" className="mt-1 text-brand-orange">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -51,13 +51,13 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-8">
+        <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-slate-900">
+              <h2 className="text-xl font-semibold tracking-tight text-white">
                 Ready to scope your project?
               </h2>
-              <p className="mt-2 text-sm text-slate-600">
+              <p className="mt-2 text-sm text-slate-400">
                 Book a call and we’ll define scope, timeline, and next steps.
               </p>
             </div>

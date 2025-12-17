@@ -17,8 +17,8 @@ export const metadata = {
 
 export default function WorkPage() {
   return (
-    <div className="bg-white">
-      <Container className="py-16 sm:py-20">
+    <div className="bg-brand-dark">
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <SectionHeading
           eyebrow="Work"
           title="Case studies"

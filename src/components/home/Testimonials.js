@@ -4,7 +4,7 @@ import testimonials from "../../content/testimonials";
 
 export default function Testimonials() {
   return (
-    <section className="bg-slate-50">
+    <section className="bg-brand-dark border-t border-white/10">
       <Container className="py-16 sm:py-20">
         <SectionHeading
           eyebrow="Testimonials"
@@ -16,12 +16,12 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <figure
               key={`${t.name}-${t.company}`}
-              className="rounded-2xl border border-slate-200 bg-white p-6"
+              className="rounded-2xl border border-white/10 bg-white/5 p-6"
             >
-              <blockquote className="text-sm text-slate-700">“{t.quote}”</blockquote>
+              <blockquote className="text-sm text-slate-300">“{t.quote}”</blockquote>
               <figcaption className="mt-5 text-sm">
-                <p className="font-semibold text-slate-900">{t.name}</p>
-                <p className="text-slate-600">
+                <p className="font-semibold text-white">{t.name}</p>
+                <p className="text-slate-500">
                   {t.title} • {t.company}
                 </p>
               </figcaption>

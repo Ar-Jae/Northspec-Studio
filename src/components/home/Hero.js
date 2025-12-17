@@ -4,88 +4,57 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "../Container";
 import Button from "../Button";
-import site from "../../content/site";
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white to-slate-50">
-      <Container className="py-16 sm:py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-12">
-          <motion.div
-            className="lg:col-span-6"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-          >
-            <p className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700">
-              Web development • Software engineering • Product support
-            </p>
-            <h1 className="mt-4 text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Build and maintain software to spec.
-            </h1>
-            <p className="mt-4 max-w-xl text-pretty text-base text-slate-600 sm:text-lg">
-              We help teams ship production-ready software without surprises or shortcuts.
-              Clean code. Clear scope. Reliable delivery.
-            </p>
+    <section className="relative min-h-screen w-full overflow-hidden bg-brand-dark pt-20 flex flex-col justify-center">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-hero-gradient opacity-20 pointer-events-none" />
+      
+      {/* Large Background Text */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center">
+          Northspec Studio
+        </h1>
+        <span className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest">
+          Agency
+        </span>
+      </div>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <Button as="link" href="/contact" variant="primary">
-                Book a Call
+      <Container className="relative z-10 h-full flex-1 flex flex-col">
+        <div className="flex-1 grid grid-cols-12 gap-4 items-center">
+          
+          {/* Left Sidebar - Socials */}
+          <div className="hidden lg:flex col-span-1 flex-col gap-6 items-center justify-center h-full">
+            {['IG', 'TW', 'FB', 'LI'].map((social) => (
+              <a key={social} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs text-white hover:bg-white hover:text-brand-dark transition-colors">
+                {social}
+              </a>
+            ))}
+          </div>
+
+          {/* Main Content Area */}
+          <div className="col-span-12 lg:col-span-11 relative h-[600px] flex items-center justify-center">
+            
+
+
+
+
+            {/* Description & CTA - Bottom Right */}
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="absolute bottom-0 right-0 md:right-10 z-20 max-w-xs text-right flex flex-col items-end gap-6"
+            >
+              <p className="text-sm text-slate-400 leading-relaxed">
+                In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
+              </p>
+              <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-6 text-lg">
+                contact us
               </Button>
-              <Button as="link" href="/work" variant="secondary">
-                View Work
-              </Button>
-            </div>
+            </motion.div>
 
-            <dl className="mt-10 grid max-w-xl grid-cols-3 gap-3">
-              <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                <dt className="text-xs text-slate-600">Built to spec</dt>
-                <dd className="mt-1 text-sm font-semibold text-slate-900">
-                  Clear requirements
-                </dd>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                <dt className="text-xs text-slate-600">Senior execution</dt>
-                <dd className="mt-1 text-sm font-semibold text-slate-900">Direct work</dd>
-              </div>
-              <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                <dt className="text-xs text-slate-600">Reliable delivery</dt>
-                <dd className="mt-1 text-sm font-semibold text-slate-900">Weekly updates</dd>
-              </div>
-            </dl>
-          </motion.div>
-
-          <div className="lg:col-span-6">
-            <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white">
-              <div className="relative aspect-[16/11] bg-slate-100">
-                <Image
-                  src="/images/placeholder-1.jpg"
-                  alt="Project screenshot placeholder"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-              </div>
-              <div className="grid gap-4 p-6 sm:grid-cols-2">
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <p className="text-xs font-medium text-slate-600">What you get</p>
-                  <p className="mt-1 text-sm font-semibold text-slate-900">
-                    A maintainable system
-                  </p>
-                  <p className="mt-2 text-sm text-slate-600">
-                    Documented decisions, clean interfaces, and a clear handoff.
-                  </p>
-                </div>
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <p className="text-xs font-medium text-slate-600">How we work</p>
-                  <p className="mt-1 text-sm font-semibold text-slate-900">No guesswork</p>
-                  <p className="mt-2 text-sm text-slate-600">
-                    Clear scopes, real estimates, and steady communication.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </Container>
