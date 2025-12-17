@@ -204,7 +204,7 @@ export default function ContactForm() {
           <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex justify-between items-center">
             <div>
               <h4 className="font-semibold text-white flex items-center gap-2">
-                <svg className="h-5 w-5 text-brand-orange" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                <svg className="h-5 w-5 text-brand-gold" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                 </svg>
                 Pick a time that works for you
@@ -215,14 +215,14 @@ export default function ContactForm() {
               href={site.calendarUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-sm font-medium text-brand-orange hover:text-orange-400 hover:underline"
+              className="text-sm font-medium text-brand-gold hover:text-white hover:underline"
             >
               Open in new tab &rarr;
             </a>
           </div>
           <div className="calendar-embed" style={{ minHeight: '650px' }}>
             <iframe
-              src={`${site.calendarUrl}?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=ff5500`}
+              src={`${site.calendarUrl}?hide_gdpr_banner=1&background_color=1a1a1a&text_color=ffffff&primary_color=c6a668`}
               width="100%"
               height="650"
               frameBorder="0"
@@ -234,7 +234,7 @@ export default function ContactForm() {
         
         <p className="text-center text-sm text-slate-500">
           Can't find a time that works?{" "}
-          <a href="mailto:hello@northspecstudio.com" className="text-brand-orange hover:underline">
+          <a href="mailto:hello@northspecstudio.com" className="text-brand-gold hover:underline">
             Email us directly
           </a>
         </p>
@@ -284,7 +284,7 @@ export default function ContactForm() {
               onChange={(e) => onChange("name", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, name: true }))}
               className={cn(
-                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500",
                 touched.name && errors.name && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.name && !!errors.name}
@@ -305,7 +305,7 @@ export default function ContactForm() {
               onChange={(e) => onChange("email", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, email: true }))}
               className={cn(
-                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500",
                 touched.email && errors.email && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.email && !!errors.email}
@@ -326,7 +326,7 @@ export default function ContactForm() {
               onChange={(e) => onChange("company", e.target.value)}
               onBlur={() => setTouched((t) => ({ ...t, company: true }))}
               className={cn(
-                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+                "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500",
                 touched.company && errors.company && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
               )}
               aria-invalid={touched.company && !!errors.company}
@@ -345,7 +345,7 @@ export default function ContactForm() {
               type="text"
               value={values.projectUrl}
               onChange={(e) => onChange("projectUrl", e.target.value)}
-              className="block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500"
+              className="block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500"
             />
           </div>
         </div>
@@ -366,7 +366,7 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.projectType === type
-                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    ? "border-brand-gold bg-brand-gold/10 text-brand-gold"
                     : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
@@ -376,7 +376,7 @@ export default function ContactForm() {
                   value={type}
                   checked={values.projectType === type}
                   onChange={(e) => onChange("projectType", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {type}
               </label>
@@ -401,7 +401,7 @@ export default function ContactForm() {
             onChange={(e) => onChange("projectDescription", e.target.value)}
             onBlur={() => setTouched((t) => ({ ...t, projectDescription: true }))}
             className={cn(
-              "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-orange focus:ring-brand-orange sm:text-sm placeholder:text-slate-500",
+              "block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500",
               touched.projectDescription && errors.projectDescription && "border-red-500/50 focus:border-red-500 focus:ring-red-500"
             )}
             aria-invalid={touched.projectDescription && !!errors.projectDescription}
@@ -427,7 +427,7 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.budget === range
-                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    ? "border-brand-gold bg-brand-gold/10 text-brand-gold"
                     : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
@@ -437,7 +437,7 @@ export default function ContactForm() {
                   value={range}
                   checked={values.budget === range}
                   onChange={(e) => onChange("budget", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {range}
               </label>
@@ -461,7 +461,7 @@ export default function ContactForm() {
                   value={status}
                   checked={values.budgetApproved === status}
                   onChange={(e) => onChange("budgetApproved", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {status}
               </label>
@@ -490,7 +490,7 @@ export default function ContactForm() {
                   value={interest}
                   checked={values.automationInterest === interest}
                   onChange={(e) => onChange("automationInterest", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {interest}
               </label>
@@ -511,7 +511,7 @@ export default function ContactForm() {
                 type="checkbox"
                 checked={values.automationUnderstanding.scoped}
                 onChange={() => onCheckboxChange("scoped")}
-                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
               />
               <span>Automation is scoped and priced separately</span>
             </label>
@@ -520,7 +520,7 @@ export default function ContactForm() {
                 type="checkbox"
                 checked={values.automationUnderstanding.setup}
                 onChange={() => onCheckboxChange("setup")}
-                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
               />
               <span>n8n setup starts at $1,500</span>
             </label>
@@ -529,7 +529,7 @@ export default function ContactForm() {
                 type="checkbox"
                 checked={values.automationUnderstanding.quoted}
                 onChange={() => onCheckboxChange("quoted")}
-                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
               />
               <span>Each workflow is quoted individually</span>
             </label>
@@ -555,7 +555,7 @@ export default function ContactForm() {
                 className={cn(
                   "flex cursor-pointer items-center gap-3 rounded-lg border p-3 text-sm transition-colors",
                   values.timeline === time
-                    ? "border-brand-orange bg-brand-orange/10 text-brand-orange"
+                    ? "border-brand-gold bg-brand-gold/10 text-brand-gold"
                     : "border-white/10 hover:bg-white/5 text-slate-300"
                 )}
               >
@@ -565,7 +565,7 @@ export default function ContactForm() {
                   value={time}
                   checked={values.timeline === time}
                   onChange={(e) => onChange("timeline", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {time}
               </label>
@@ -594,7 +594,7 @@ export default function ContactForm() {
                   value={option}
                   checked={values.decisionMaker === option}
                   onChange={(e) => onChange("decisionMaker", e.target.value)}
-                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-orange focus:ring-brand-orange"
+                  className="h-4 w-4 border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
                 />
                 {option}
               </label>

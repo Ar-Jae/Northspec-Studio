@@ -2,6 +2,7 @@ import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import CaseStudyCard from "../../components/work/CaseStudyCard";
 import caseStudies from "../../content/caseStudies";
+import FadeIn from "../../components/animations/FadeIn";
 
 export const metadata = {
   title: "Work",
@@ -19,17 +20,19 @@ export default function WorkPage() {
   return (
     <div className="bg-brand-dark">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <SectionHeading
-          eyebrow="Work"
-          title="Case studies"
-          description="Realistic examples of how we improve conversion, reliability, and velocity for teams." 
-        />
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Work"
+            title="Case studies"
+            description="Realistic examples of how we improve conversion, reliability, and velocity for teams." 
+          />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {caseStudies.map((study) => (
-            <CaseStudyCard key={study.id} study={study} compact />
-          ))}
-        </div>
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            {caseStudies.map((study) => (
+              <CaseStudyCard key={study.id} study={study} compact />
+            ))}
+          </div>
+        </FadeIn>
       </Container>
     </div>
   );

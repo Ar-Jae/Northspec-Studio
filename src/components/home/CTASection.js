@@ -7,7 +7,7 @@ export default function CTASection() {
       <Container className="py-14 sm:py-16">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl font-serif">
               Ready to start with a clear spec?
             </h2>
             <p className="mt-2 max-w-2xl text-pretty text-base text-slate-400">

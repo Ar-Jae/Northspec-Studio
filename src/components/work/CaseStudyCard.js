@@ -1,12 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export default function CaseStudyCard({ study, compact = false }) {
   return (
-    <article
+    <motion.article
+      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+      transition={{ duration: 0.2 }}
       className={cn(
         "group overflow-hidden rounded-2xl border border-white/10 bg-white/5",
-        "transition hover:border-white/20 hover:bg-white/10"
+        "transition-colors"
       )}
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-800">
@@ -14,17 +19,17 @@ export default function CaseStudyCard({ study, compact = false }) {
           src={study.image}
           alt={`${study.client} project placeholder`}
           fill
-          className="object-cover transition duration-300 group-hover:scale-[1.02]"
+          className="object-cover transition duration-300 group-hover:scale-[1.05]"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority={Boolean(study.featured)}
         />
       </div>
       <div className={cn("p-6", compact && "p-5")}
       >
-        <p className="text-sm font-medium text-brand-orange">
+        <p className="text-sm font-medium text-brand-gold">
           {study.client} • {study.industry}
         </p>
-        <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">
+        <h3 className="mt-2 text-xl font-semibold tracking-tight text-white font-serif">
           {study.client}
         </h3>
         <p className="mt-3 text-sm text-slate-400">
@@ -53,6 +58,6 @@ export default function CaseStudyCard({ study, compact = false }) {
           ))}
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

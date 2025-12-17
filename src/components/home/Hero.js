@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Container from "../Container";
 import Button from "../Button";
+import StarField from "../animations/StarField";
 
 export default function Hero() {
   return (
@@ -11,12 +12,15 @@ export default function Hero() {
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-hero-gradient opacity-20 pointer-events-none" />
       
+      {/* Starfield Animation */}
+      <StarField speed={0.2} density={800} />
+      
       {/* Large Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center">
+        <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center font-serif">
           Northspec Studio
         </h1>
-        <span className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest">
+        <span className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest font-serif">
           Agency
         </span>
       </div>

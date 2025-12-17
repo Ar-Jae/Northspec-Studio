@@ -15,5 +15,5 @@ body {
 }
 
 ::selection {
-  @apply bg-brand-orange text-white;
+  @apply bg-brand-gold text-brand-dark;
 }

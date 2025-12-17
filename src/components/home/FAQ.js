@@ -18,12 +18,12 @@ export default function FAQ() {
               key={item.question}
               className="group rounded-2xl border border-white/10 bg-white/5 p-6 open:bg-white/10 transition-colors"
             >
-              <summary className="cursor-pointer list-none text-base font-semibold tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark">
+              <summary className="cursor-pointer list-none text-base font-semibold tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark font-serif">
                 <div className="flex items-start justify-between gap-4">
                   <span>{item.question}</span>
                   <span
                     aria-hidden="true"
-                    className="mt-0.5 text-slate-400 transition group-open:rotate-45 group-open:text-brand-orange"
+                    className="mt-0.5 text-slate-400 transition group-open:rotate-45 group-open:text-brand-gold"
                   >
                     +
                   </span>

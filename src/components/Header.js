@@ -40,7 +40,7 @@ export default function Header() {
                     className={cn(
                       "px-5 py-2 text-sm font-medium rounded-full transition-all",
                       isActive 
-                        ? "bg-white text-brand-dark" 
+                        ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20" 
                         : "text-slate-300 hover:text-white hover:bg-white/10"
                     )}
                   >
@@ -60,7 +60,7 @@ export default function Header() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold md:hidden"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls={panelId}

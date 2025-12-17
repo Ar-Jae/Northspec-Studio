@@ -18,12 +18,12 @@ export default function Logo({ className, withMark = true }) {
       {withMark ? (
         <span
           aria-hidden="true"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-orange text-white font-bold shadow-lg shadow-brand-orange/20 group-hover:scale-105 transition-transform"
+          className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-brand-gold text-brand-dark font-bold shadow-lg shadow-brand-gold/20 group-hover:scale-105 transition-transform font-serif"
         >
           {initialsFromName(site.name)}
         </span>
       ) : null}
-      <span className="text-base font-semibold tracking-tight text-white group-hover:text-brand-orange transition-colors">
+      <span className="text-base font-semibold tracking-tight text-white group-hover:text-brand-gold transition-colors font-serif">
         {site.name}
       </span>
     </Link>

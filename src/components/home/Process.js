@@ -69,12 +69,12 @@ export default function Process() {
               key={step.title}
               className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 shadow-sm hover:bg-white/10 transition-colors"
             >
-              <p className="text-sm font-medium text-brand-orange">Step {idx + 1}</p>
-              <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">
+              <p className="text-sm font-medium text-brand-gold">Step {idx + 1}</p>
+              <h3 className="mt-2 text-xl font-serif font-medium tracking-tight text-white">
                 {step.title}
               </h3>
               <p className="mt-4 text-base text-slate-400">{step.description}</p>
-              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-300 marker:text-brand-orange">
+              <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-slate-300 marker:text-brand-gold">
                 {step.points.map((point) => (
                   <li key={point}>{point}</li>
                 ))}

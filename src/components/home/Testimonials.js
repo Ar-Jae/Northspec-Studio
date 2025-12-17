@@ -18,7 +18,7 @@ export default function Testimonials() {
               key={`${t.name}-${t.company}`}
               className="rounded-2xl border border-white/10 bg-white/5 p-6"
             >
-              <blockquote className="text-sm text-slate-300">“{t.quote}”</blockquote>
+              <blockquote className="text-sm text-slate-300 font-serif italic">“{t.quote}”</blockquote>
               <figcaption className="mt-5 text-sm">
                 <p className="font-semibold text-white">{t.name}</p>
                 <p className="text-slate-500">

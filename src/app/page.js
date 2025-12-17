@@ -5,6 +5,7 @@ import Testimonials from "../components/home/Testimonials";
 import FAQ from "../components/home/FAQ";
 import CTASection from "../components/home/CTASection";
 import site from "../content/site";
+import FadeIn from "../components/animations/FadeIn";
 
 export const metadata = {
   title: site.name,
@@ -22,11 +23,11 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ServicesOverview />
-      <FeaturedWork />
-      <Testimonials />
-      <FAQ />
-      <CTASection />
+      <FadeIn><ServicesOverview /></FadeIn>
+      <FadeIn><FeaturedWork /></FadeIn>
+      <FadeIn><Testimonials /></FadeIn>
+      <FadeIn><FAQ /></FadeIn>
+      <FadeIn><CTASection /></FadeIn>
     </>
   );
 }
