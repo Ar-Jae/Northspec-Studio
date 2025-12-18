@@ -3,7 +3,6 @@ import ServicesOverview from "../components/home/ServicesOverview";
 import FeaturedWork from "../components/home/FeaturedWork";
 import Testimonials from "../components/home/Testimonials";
 import FAQ from "../components/home/FAQ";
-import CTASection from "../components/home/CTASection";
 import site from "../content/site";
 import FadeIn from "../components/animations/FadeIn";
 
@@ -27,7 +26,6 @@ export default function HomePage() {
       <FadeIn><FeaturedWork /></FadeIn>
       <FadeIn><Testimonials /></FadeIn>
       <FadeIn><FAQ /></FadeIn>
-      <FadeIn><CTASection /></FadeIn>
     </>
   );
 }

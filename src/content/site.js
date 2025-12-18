@@ -15,6 +15,12 @@ const site = {
     email: "hello@northspecstudio.com",
     phone: "+1 (555) 014-2266",
     location: "Remote / North America",
+    emails: {
+      main: "hello@northspecstudio.com",
+      projects: "projects@northspecstudio.com",
+      billing: "billing@northspecstudio.com",
+      press: "press@northspecstudio.com",
+    },
   },
   social: [
     { label: "LinkedIn", href: "https://www.linkedin.com" },

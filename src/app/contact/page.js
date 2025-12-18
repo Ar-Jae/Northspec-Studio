@@ -31,20 +31,46 @@ export default function ContactPage() {
 
               <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
                 <h2 className="text-sm font-semibold text-white font-serif">Direct</h2>
-                <dl className="mt-4 space-y-3 text-sm text-slate-300">
+                <div className="mt-4 grid gap-6 text-sm text-slate-300">
                   <div>
-                    <dt className="text-slate-500">Email</dt>
-                    <dd className="font-medium text-white">{site.contact.email}</dd>
+                    <h3 className="text-xs uppercase tracking-wide text-slate-500">Public / Front-facing</h3>
+                    <dl className="mt-2 space-y-2">
+                      <div>
+                        <dt className="text-slate-500">Main</dt>
+                        <dd className="font-medium text-white">{site.contact.emails?.main || site.contact.email}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-slate-500">Projects</dt>
+                        <dd className="font-medium text-white">{site.contact.emails?.projects}</dd>
+                      </div>
+                    </dl>
                   </div>
+
                   <div>
-                    <dt className="text-slate-500">Phone</dt>
-                    <dd className="font-medium text-white">{site.contact.phone}</dd>
+                    <h3 className="text-xs uppercase tracking-wide text-slate-500">Business</h3>
+                    <dl className="mt-2 space-y-2">
+                      <div>
+                        <dt className="text-slate-500">Billing</dt>
+                        <dd className="font-medium text-white">{site.contact.emails?.billing}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-slate-500">Press</dt>
+                        <dd className="font-medium text-white">{site.contact.emails?.press}</dd>
+                      </div>
+                    </dl>
                   </div>
-                  <div>
-                    <dt className="text-slate-500">Location</dt>
-                    <dd className="font-medium text-white">{site.contact.location}</dd>
+
+                  <div className="grid gap-1">
+                    <div>
+                      <dt className="text-slate-500">Phone</dt>
+                      <dd className="font-medium text-white">{site.contact.phone}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-slate-500">Location</dt>
+                      <dd className="font-medium text-white">{site.contact.location}</dd>
+                    </div>
                   </div>
-                </dl>
+                </div>
               </div>
             </div>
 

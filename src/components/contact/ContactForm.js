@@ -255,7 +255,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-10" noValidate>
+    <form onSubmit={onSubmit} className="rounded-2xl bg-gradient-to-r from-brand-gold/10 to-brand-gold/5 border border-brand-gold/30 p-6 sm:p-8" noValidate>
       {/* Honeypot */}
       <div aria-hidden="true" className="sr-only">
         <label htmlFor="website">Website</label>
@@ -271,7 +271,7 @@ export default function ContactForm() {
 
       {/* Section 1: Basics */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-white">Section 1: Basics</h3>
+        <h3 className="text-lg font-semibold text-white font-serif">Section 1: Basics</h3>
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm font-medium text-slate-300">
@@ -353,7 +353,7 @@ export default function ContactForm() {
 
       {/* Section 2: Project Fit */}
       <div className="space-y-6">
-        <h3 className="text-lg font-semibold text-white">Section 2: Project Fit</h3>
+        <h3 className="text-lg font-semibold text-white font-serif">Section 2: Project Fit</h3>
         
         <div className="space-y-2">
           <label className="block text-sm font-medium text-slate-300">
