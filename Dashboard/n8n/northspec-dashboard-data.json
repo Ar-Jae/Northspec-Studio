@@ -1,0 +1,81 @@
+{
+  "name": "Northspec Dashboard Data",
+  "nodes": [
+    {
+      "id": "Webhook_In",
+      "name": "Webhook In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "parameters": {
+        "httpMethod": "GET",
+        "path": "northspec-dashboard",
+        "responseMode": "onReceived",
+        "responseContentType": "application/json"
+      }
+    },
+    {
+      "id": "Fetch_CRM",
+      "name": "Fetch CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [440, 190],
+      "parameters": {
+        "url": "={{$env.CRM_API_URL || 'https://example-crm.local/api/leads'}}",
+        "responseFormat": "json"
+      },
+      "notes": "Replace CRM_API_URL with your leads/revenue source (DB/API/Airtable/etc)."
+    },
+    {
+      "id": "Fetch_News",
+      "name": "Fetch News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [440, 410],
+      "parameters": {
+        "url": "={{$env.NEWS_API_URL || 'https://example-news.local/api/updates'}}",
+        "responseFormat": "json"
+      },
+      "notes": "Replace NEWS_API_URL with your announcements source."
+    },
+    {
+      "id": "Assemble_Payload",
+      "name": "Assemble Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [700, 300],
+      "parameters": {
+        "language": "JavaScript",
+        "code": "// Input: Fetch_CRM (main[0]), Fetch_News (main[1])\\nconst crmItems = $items('Fetch_CRM', 0, 0) || [{ json: {} }];\\nconst newsItems = $items('Fetch_News', 0, 0) || [{ json: {} }];\\n\\nconst crm = crmItems[0].json || {};\\nconst news = newsItems[0].json || {};\\n\\n// Leads array expectation; adjust paths as needed\\nconst leads = Array.isArray(crm.leads) ? crm.leads : (Array.isArray(crm.data) ? crm.data : []);\\n\\n// Derive metrics with safe fallbacks\\nconst closedDeals = leads.filter(l => (l.stage || '').toLowerCase() === 'closed').length;\\nconst negotiation = leads.filter(l => (l.stage || '').toLowerCase().includes('negotiation')).length;\\nconst contacted = leads.filter(l => (l.stage || '').toLowerCase().includes('contact')).length;\\nconst newLeads = leads.filter(l => (l.stage || '').toLowerCase() === 'new').length;\\nconst totalRevenueNumber = leads.reduce((sum, l) => sum + Number(l.value || 0), 0);\\n\\n// Chart by month using createdAt\\nconst monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\\nconst chartPoints = monthNames.map((m, idx) => {\\n  const value = leads\\n    .filter(l => {\\n      const d = new Date(l.createdAt || l.date || Date.now());\\n      return d.getMonth() === idx;\\n    })\\n    .reduce((sum, l) => sum + Number(l.value || 0), 0);\\n  return { month: m, value: Number.isFinite(value) ? value : 0 };\\n});\\n\\n// Important news items\\nconst newsList = Array.isArray(news.items) ? news.items : Array.isArray(news.data) ? news.data : [];\\nconst importantNews = newsList.slice(0, 3).map((n) => ({\\n  title: n.title || 'Update',\\n  detail: n.subtitle || n.summary || '',\\n  author: n.author || 'System',\\n  time: n.time || n.createdAt || ''\\n}));\\n\\n// Recent leads table (limit 5)\\nconst recentLeads = leads.slice(0, 5).map((l) => ({\\n  name: l.name || l.leadName || 'Lead',\\n  property: l.property || l.account || 'N/A',\\n  stage: l.stage || 'New',\\n  stageTone: l.stageTone || 'amber',\\n  value: l.value ? `$${Number(l.value).toLocaleString()}` : '$0',\\n  activity: l.lastActivity || l.updatedAt || l.createdAt || ''\\n}));\\n\\nreturn [{ json: {\\n  stats: [\\n    { label: 'Total Revenue', value: `$${totalRevenueNumber.toLocaleString()}`, change: 12 },\\n    { label: 'New Leads', value: newLeads, change: 12 },\\n    { label: 'Contacted', value: contacted, change: 12 },\\n    { label: 'Negotiation', value: negotiation, change: -9 },\\n    { label: 'Closed Deals', value: closedDeals, change: 12 }\\n  ],\\n  chartPoints,\\n  news: importantNews,\\n  leads: recentLeads\\n}}];"
+      }
+    },
+    {
+      "id": "Respond",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [940, 300],
+      "parameters": {
+        "responseBody": "={{ $json }}",
+        "responseCode": 200,
+        "responseMode": "lastNode"
+      }
+    }
+  ],
+  "connections": {
+    "Webhook In": {
+      "main": [
+        [
+          { "node": "Fetch_CRM", "type": "main", "index": 0 },
+          { "node": "Fetch_News", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Fetch CRM": { "main": [[{ "node": "Assemble_Payload", "type": "main", "index": 0 }]] },
+    "Fetch News": { "main": [[{ "node": "Assemble_Payload", "type": "main", "index": 1 }]] },
+    "Assemble Payload": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionTimeout": -1
+  }
+}
