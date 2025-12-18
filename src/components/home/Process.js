@@ -1,5 +1,6 @@
 import Container from "../Container";
 import SectionHeading from "../SectionHeading";
+import { StaggerContainer, StaggerItem } from "../animations/Stagger";
 
 const steps = [
   {
@@ -63,9 +64,9 @@ export default function Process() {
           description="A proven methodology to deliver high-quality software that solves real business problems."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-2">
           {steps.map((step, idx) => (
-            <div
+            <StaggerItem
               key={step.title}
               className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-8 shadow-sm hover:bg-white/10 transition-colors"
             >
@@ -80,9 +81,9 @@ export default function Process() {
                 ))}
               </ul>
               <p className="mt-6 flex-1 text-sm italic text-slate-500">{step.footer}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );

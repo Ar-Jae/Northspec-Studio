@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Container from "../Container";
 import Button from "../Button";
 import StarField from "../animations/StarField";
+import TextReveal from "../animations/TextReveal";
+import FadeIn from "../animations/FadeIn";
 
 export default function Hero() {
   return (
@@ -17,12 +19,19 @@ export default function Hero() {
       
       {/* Large Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center font-serif">
-          Northspec Studio
-        </h1>
-        <span className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest font-serif">
+        <TextReveal>
+          <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center font-serif">
+            Northspec Studio
+          </h1>
+        </TextReveal>
+        <motion.span 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest font-serif"
+        >
           Agency
-        </span>
+        </motion.span>
       </div>
 
       <Container className="relative z-10 h-full flex-1 flex flex-col">
@@ -30,20 +39,18 @@ export default function Hero() {
           
           {/* Left Sidebar - Socials */}
           <div className="hidden lg:flex col-span-1 flex-col gap-6 items-center justify-center h-full">
-            {['IG', 'TW', 'FB', 'LI'].map((social) => (
-              <a key={social} href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs text-white hover:bg-white hover:text-brand-dark transition-colors">
-                {social}
-              </a>
+            {['IG', 'TW', 'FB', 'LI'].map((social, i) => (
+              <FadeIn key={social} delay={0.8 + (i * 0.1)} direction="right">
+                <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs text-white hover:bg-white hover:text-brand-dark transition-colors">
+                  {social}
+                </a>
+              </FadeIn>
             ))}
           </div>
 
           {/* Main Content Area */}
           <div className="col-span-12 lg:col-span-11 relative h-[600px] flex items-center justify-center">
             
-
-
-
-
             {/* Description & CTA - Bottom Right */}
             <motion.div 
               initial={{ opacity: 0, x: 50 }}

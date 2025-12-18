@@ -1,6 +1,7 @@
 import Container from "../Container";
 import SectionHeading from "../SectionHeading";
 import testimonials from "../../content/testimonials";
+import { StaggerContainer, StaggerItem } from "../animations/Stagger";
 
 export default function Testimonials() {
   return (
@@ -12,9 +13,9 @@ export default function Testimonials() {
           description="We focus on calm delivery: clear communication, solid engineering, and measurable outcomes."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
+        <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-3">
           {testimonials.map((t) => (
-            <figure
+            <StaggerItem
               key={`${t.name}-${t.company}`}
               className="rounded-2xl border border-white/10 bg-white/5 p-6"
             >
@@ -25,9 +26,9 @@ export default function Testimonials() {
                   {t.title} • {t.company}
                 </p>
               </figcaption>
-            </figure>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );

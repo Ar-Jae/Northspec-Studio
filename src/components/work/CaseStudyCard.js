@@ -7,8 +7,8 @@ import { cn } from "../../lib/utils";
 export default function CaseStudyCard({ study, compact = false }) {
   return (
     <motion.article
-      whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
         "group overflow-hidden rounded-2xl border border-white/10 bg-white/5",
         "transition-colors"
@@ -19,10 +19,11 @@ export default function CaseStudyCard({ study, compact = false }) {
           src={study.image}
           alt={`${study.client} project placeholder`}
           fill
-          className="object-cover transition duration-300 group-hover:scale-[1.05]"
+          className="object-cover transition duration-500 group-hover:scale-110"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority={Boolean(study.featured)}
         />
+        <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
       <div className={cn("p-6", compact && "p-5")}
       >

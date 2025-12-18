@@ -3,6 +3,7 @@ import SectionHeading from "../SectionHeading";
 import Button from "../Button";
 import CaseStudyCard from "../work/CaseStudyCard";
 import caseStudies from "../../content/caseStudies";
+import { StaggerContainer, StaggerItem } from "../animations/Stagger";
 
 export default function FeaturedWork() {
   const featured = caseStudies.filter((s) => s.featured).slice(0, 2);
@@ -26,11 +27,13 @@ export default function FeaturedWork() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2">
+        <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-2">
           {featured.map((study) => (
-            <CaseStudyCard key={study.id} study={study} />
+            <StaggerItem key={study.id}>
+              <CaseStudyCard study={study} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );
