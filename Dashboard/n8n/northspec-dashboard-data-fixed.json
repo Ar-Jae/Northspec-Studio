@@ -1,0 +1,149 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "path": "northspec-dashboard",
+        "options": {}
+      },
+      "id": "afaf6ba1-aad2-4949-b5eb-5ca0fd4bc0cf",
+      "name": "Webhook In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        192,
+        752
+      ],
+      "webhookId": "4710c7b7-de7f-4ed2-bf01-b434df73e3f0"
+    },
+    {
+      "parameters": {
+        "url": "https://cute-news-stay.loca.lt/api/leads",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Bypass-Tunnel-Reminder",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "id": "f29113c0-1aa9-489d-934c-a2e6e817e0ac",
+      "name": "Fetch CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        432,
+        640
+      ],
+      "notes": "Replace CRM_API_URL with your leads/revenue source (DB/API/Airtable/etc)."
+    },
+    {
+      "parameters": {
+        "url": "https://cute-news-stay.loca.lt/api/news",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Bypass-Tunnel-Reminder",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "id": "180d542e-2511-4f98-9bf7-a35ea35f3890",
+      "name": "Fetch News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        432,
+        864
+      ],
+      "notes": "Replace NEWS_API_URL with your announcements source."
+    },
+    {
+      "parameters": {
+        "language": "JavaScript",
+        "code": "// Input: Fetch_CRM (main[0]), Fetch_News (main[1])\n// Note: In your current connection setup, both inputs are merging into index 0. \n// We need to handle the merged input or fix connections. \n// Assuming standard N8N behavior where parallel executions merge:\n\n// Let's try to find the items based on their source node if possible, or just inspect the structure.\n// However, the previous code block expected specific input indices.\n\n// REVISED CODE to handle the data structure returned by your backend:\n\nconst allItems = $input.all();\nlet crmData = {};\nlet newsData = {};\n\n// Iterate to find which item is which based on structure\nfor (const item of allItems) {\n  if (item.json.leads) {\n    crmData = item.json;\n  }\n  if (item.json.items) {\n    newsData = item.json;\n  }\n}\n\n// Fallback if direct assignment failed (e.g. if they came in separate items)\nconst leads = crmData.leads || [];\nconst newsItems = newsData.items || [];\n\n// Derive metrics\nconst closedDeals = leads.filter(l => (l.stage || '').toLowerCase() === 'closed').length;\nconst negotiation = leads.filter(l => (l.stage || '').toLowerCase().includes('negotiation')).length;\nconst contacted = leads.filter(l => (l.stage || '').toLowerCase().includes('contact')).length;\nconst newLeads = leads.filter(l => (l.stage || '').toLowerCase() === 'new').length;\nconst totalRevenueNumber = leads.reduce((sum, l) => sum + Number(l.value || 0), 0);\n\n// Chart by month using createdAt\nconst monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];\nconst chartPoints = monthNames.map((m, idx) => {\n  const value = leads\n    .filter(l => {\n      const d = new Date(l.createdAt || l.date || Date.now());\n      return d.getMonth() === idx;\n    })\n    .reduce((sum, l) => sum + Number(l.value || 0), 0);\n  return { month: m, value: Number.isFinite(value) ? value : 0 };\n});\n\n// Important news items\nconst importantNews = newsItems.slice(0, 3).map((n) => ({\n  title: n.title || 'Update',\n  detail: n.subtitle || n.summary || '',\n  author: n.author || 'System',\n  time: n.time || n.createdAt || ''\n}));\n\n// Recent leads table (limit 5)\nconst recentLeads = leads.slice(0, 5).map((l) => ({\n  name: l.name || l.leadName || 'Lead',\n  property: l.property || l.account || 'N/A',\n  stage: l.stage || 'New',\n  stageTone: l.stageTone || 'amber',\n  value: l.value ? `$${Number(l.value).toLocaleString()}` : '$0',\n  activity: l.lastActivity || l.updatedAt || l.createdAt || ''\n}));\n\nreturn [{ json: {\n  stats: [\n    { label: 'Total Revenue', value: `$${totalRevenueNumber.toLocaleString()}`, change: 12 },\n    { label: 'New Leads', value: newLeads, change: 12 },\n    { label: 'Contacted', value: contacted, change: 12 },\n    { label: 'Negotiation', value: negotiation, change: -9 },\n    { label: 'Closed Deals', value: closedDeals, change: 12 }\n  ],\n  chartPoints,\n  news: importantNews,\n  leads: recentLeads\n}}];"
+      },
+      "id": "16e2ef65-3d2b-4cd8-9b21-41df3579adfc",
+      "name": "Assemble Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        704,
+        752
+      ]
+    },
+    {
+      "parameters": {
+        "responseBody": "={{ $json }}",
+        "responseCode": 200,
+        "options": {}
+      },
+      "id": "d01fc64b-3a64-4c1a-970c-0adcce69acf8",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        944,
+        752
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook In": {
+      "main": [
+        [
+          {
+            "node": "Fetch News",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch CRM": {
+      "main": [
+        [
+          {
+            "node": "Assemble Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch News": {
+      "main": [
+        [
+          {
+            "node": "Assemble Payload",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assemble Payload": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "ab703fd4ce688ef8190dfe82bc0b8d151bb0e46c9dbf2b013ae9a905384ddad4"
+  }
+}
