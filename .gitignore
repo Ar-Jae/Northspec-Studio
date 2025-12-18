@@ -33,5 +33,13 @@ ts-debug.log*
 *.tsbuildinfo
 next-env.d.ts
 .env.example
-.gitignore
-.gitignore
+
+# monorepo subfolders
+**/node_modules/
+**/.next/
+FrontEnd/node_modules/
+FrontEnd/.next/
+BackEnd/node_modules/
+Dashboard/node_modules/
+.turbo/
+.cache/
