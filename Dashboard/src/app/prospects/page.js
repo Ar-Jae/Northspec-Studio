@@ -7,6 +7,7 @@ export default function ProspectsPage() {
   const [loading, setLoading] = useState(false);
   const [selectedProspect, setSelectedProspect] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [activeFilter, setActiveFilter] = useState("All Businesses");
 
   // Scan for prospects via Backend API
   const scanProspects = async (query, lat = null, lng = null) => {
@@ -61,6 +62,39 @@ export default function ProspectsPage() {
     }
   }, []);
 
+  // Filter Logic
+  const getFilteredProspects = () => {
+    switch (activeFilter) {
+      case "All Businesses": return prospects;
+      case "No Website": return prospects.filter(p => p.equity === "Unknown Site");
+      case "Low Rating (< 3.5)": return prospects.filter(p => p.rating < 3.5);
+      case "New in Area": return prospects.filter(p => p.user_ratings_total === 0 || (p.tags && p.tags.includes("New")));
+      case "Restaurants": return prospects.filter(p => p.types && (p.types.includes("restaurant") || p.types.includes("food")));
+      case "Contractors": return prospects.filter(p => p.types && p.types.some(t => ["contractor", "plumber", "electrician", "roofing_contractor", "painter", "general_contractor"].includes(t)));
+      case "Retail Stores": return prospects.filter(p => p.types && (p.types.includes("store") || p.types.includes("clothing_store") || p.types.includes("shopping_mall")));
+      case "Google Maps": return prospects.filter(p => p.submissionSource === "Google Places");
+      case "Yelp": return prospects.filter(p => p.submissionSource === "Yelp");
+      case "Facebook": return prospects.filter(p => p.submissionSource === "Facebook");
+      default: return prospects;
+    }
+  };
+
+  const filteredProspects = getFilteredProspects();
+
+  // Counts
+  const counts = {
+    "All Businesses": prospects.length,
+    "No Website": prospects.filter(p => p.equity === "Unknown Site").length,
+    "Low Rating (< 3.5)": prospects.filter(p => p.rating < 3.5).length,
+    "New in Area": prospects.filter(p => p.user_ratings_total === 0 || (p.tags && p.tags.includes("New"))).length,
+    "Restaurants": prospects.filter(p => p.types && (p.types.includes("restaurant") || p.types.includes("food"))).length,
+    "Contractors": prospects.filter(p => p.types && p.types.some(t => ["contractor", "plumber", "electrician", "roofing_contractor", "painter", "general_contractor"].includes(t))).length,
+    "Retail Stores": prospects.filter(p => p.types && (p.types.includes("store") || p.types.includes("clothing_store") || p.types.includes("shopping_mall"))).length,
+    "Google Maps": prospects.filter(p => p.submissionSource === "Google Places").length,
+    "Yelp": prospects.filter(p => p.submissionSource === "Yelp").length,
+    "Facebook": prospects.filter(p => p.submissionSource === "Facebook").length,
+  };
+
   return (
     <div className="flex h-[calc(100vh-8rem)] gap-4 overflow-hidden text-sm">
       {/* Left Sidebar - Segments */}
@@ -70,10 +104,10 @@ export default function ProspectsPage() {
             <h3 className="text-xs font-bold uppercase text-gray-500">Segments</h3>
           </div>
           <div className="space-y-1">
-            <SidebarItem label="All Businesses" count={0} active />
-            <SidebarItem label="No Website" count={0} />
-            <SidebarItem label="Low Rating (< 3.5)" count={0} />
-            <SidebarItem label="New in Area" count={0} />
+            <SidebarItem label="All Businesses" count={counts["All Businesses"]} active={activeFilter === "All Businesses"} onClick={() => setActiveFilter("All Businesses")} />
+            <SidebarItem label="No Website" count={counts["No Website"]} active={activeFilter === "No Website"} onClick={() => setActiveFilter("No Website")} />
+            <SidebarItem label="Low Rating (< 3.5)" count={counts["Low Rating (< 3.5)"]} active={activeFilter === "Low Rating (< 3.5)"} onClick={() => setActiveFilter("Low Rating (< 3.5)")} />
+            <SidebarItem label="New in Area" count={counts["New in Area"]} active={activeFilter === "New in Area"} onClick={() => setActiveFilter("New in Area")} />
           </div>
         </div>
 
@@ -83,9 +117,9 @@ export default function ProspectsPage() {
             <span className="text-xs text-gray-500">0</span>
           </div>
           <div className="space-y-1">
-            <SidebarItem label="Restaurants" count={0} />
-            <SidebarItem label="Contractors" count={0} />
-            <SidebarItem label="Retail Stores" count={0} />
+            <SidebarItem label="Restaurants" count={counts["Restaurants"]} active={activeFilter === "Restaurants"} onClick={() => setActiveFilter("Restaurants")} />
+            <SidebarItem label="Contractors" count={counts["Contractors"]} active={activeFilter === "Contractors"} onClick={() => setActiveFilter("Contractors")} />
+            <SidebarItem label="Retail Stores" count={counts["Retail Stores"]} active={activeFilter === "Retail Stores"} onClick={() => setActiveFilter("Retail Stores")} />
           </div>
         </div>
 
@@ -95,9 +129,9 @@ export default function ProspectsPage() {
             <span className="text-xs text-gray-500">0</span>
           </div>
           <div className="space-y-1">
-            <SidebarItem label="Google Maps" count={0} />
-            <SidebarItem label="Yelp" count={0} />
-            <SidebarItem label="Facebook" count={0} />
+            <SidebarItem label="Google Maps" count={counts["Google Maps"]} active={activeFilter === "Google Maps"} onClick={() => setActiveFilter("Google Maps")} />
+            <SidebarItem label="Yelp" count={counts["Yelp"]} active={activeFilter === "Yelp"} onClick={() => setActiveFilter("Yelp")} />
+            <SidebarItem label="Facebook" count={counts["Facebook"]} active={activeFilter === "Facebook"} onClick={() => setActiveFilter("Facebook")} />
           </div>
         </div>
       </div>
@@ -153,7 +187,7 @@ export default function ProspectsPage() {
             <div className="flex h-full items-center justify-center text-gray-500">Scanning Area...</div>
           ) : (
             <div className="space-y-4">
-              {prospects.map((prospect) => (
+              {filteredProspects.map((prospect) => (
                 <div
                   key={prospect.id}
                   onClick={() => setSelectedProspect(prospect)}

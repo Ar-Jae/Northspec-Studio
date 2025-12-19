@@ -65,6 +65,9 @@ function transformPlaceToProspect(place, apiKey) {
   return {
     id: place.place_id,
     name: place.name,
+    rating: rating, // Added for filtering
+    user_ratings_total: reviewCount, // Added for filtering
+    types: place.types, // Added for filtering
     verified: !!place.plus_code, // Mock proxy for verification
     address: place.formatted_address,
     phone: "N/A", // Requires Place Details API
