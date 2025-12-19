@@ -1,316 +1,280 @@
-const fallbackData = {
-  stats: [
-    { label: "Total Revenue", value: "$4.2M", change: 12 },
-    { label: "New Leads", value: 24, change: 12 },
-    { label: "Contacted", value: 18, change: 12 },
-    { label: "Negotiation", value: 7, change: -9 },
-    { label: "Closed Deals", value: 12, change: 12 },
-  ],
-  news: [
-    {
-      title: "Follow up with Mr. Johnson",
-      detail: "Interested 3BHK Flat at Banani",
-      author: "Lisa Wong",
-      time: "12:30 pm",
-    },
-    {
-      title: "New lead added",
-      detail: "Lisa Wong",
-      author: "System",
-      time: "12:32 pm",
-    },
-    {
-      title: "New lead added",
-      detail: "Lisa Wong",
-      author: "System",
-      time: "12:35 pm",
-    },
-  ],
-  leads: [
-    {
-      name: "Mr. Johnson",
-      property: "Downtown Apartment",
-      stage: "Negotiation",
-      stageTone: "amber",
-      value: "$320,000",
-      activity: "Aug 22 - Sent Brochure",
-    },
-    {
-      name: "Jonathan Weak",
-      property: "Lakeside Villa",
-      stage: "Contacted",
-      stageTone: "green",
-      value: "$560,000",
-      activity: "Aug 20 - Call",
-    },
-    {
-      name: "Mr. Johnson",
-      property: "Suburban House",
-      stage: "New",
-      stageTone: "sky",
-      value: "$250,000",
-      activity: "Aug 19 - Added Lead",
-    },
-  ],
-  chartPoints: [
-    { month: "Jan", value: 25 },
-    { month: "Feb", value: 32 },
-    { month: "Mar", value: 42 },
-    { month: "Apr", value: 38 },
-    { month: "May", value: 50 },
-    { month: "Jun", value: 62 },
-    { month: "Jul", value: 58 },
-    { month: "Aug", value: 72 },
-    { month: "Sep", value: 65 },
-    { month: "Oct", value: 78 },
-    { month: "Nov", value: 70 },
-    { month: "Dec", value: 74 },
-  ],
-};
-
-function stageClasses(tone) {
-  const tones = {
-    amber: "bg-amber-100 text-amber-800",
-    green: "bg-emerald-100 text-emerald-800",
-    sky: "bg-sky-100 text-sky-800",
-  };
-  return tones[tone] || "bg-slate-100 text-slate-700";
-}
-
-async function loadDashboardData() {
-  const url = process.env.N8N_DASHBOARD_URL;
-  if (!url) return fallbackData;
-
-  try {
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) throw new Error(`Failed to load dashboard data: ${res.status}`);
-    const json = await res.json();
-
-    return {
-      stats: json.stats || fallbackData.stats,
-      news: json.news || fallbackData.news,
-      leads: json.leads || fallbackData.leads,
-      chartPoints: json.chartPoints || fallbackData.chartPoints,
-    };
-  } catch (error) {
-    console.error("Dashboard data fetch error", error);
-    return fallbackData;
-  }
-}
-
-function Badge({ change }) {
-  const isPositive = change >= 0;
-  const color = isPositive ? "text-emerald-600" : "text-rose-600";
-  const bg = isPositive ? "bg-emerald-50" : "bg-rose-50";
-  const arrow = isPositive ? "▲" : "▼";
+export default function Dashboard() {
   return (
-    <span className={`flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold ${bg} ${color}`}>
-      {arrow}
-      {Math.abs(change)}%
-    </span>
-  );
-}
-
-function Chart({ points }) {
-  const maxVal = Math.max(...points.map((p) => p.value));
-  const minVal = Math.min(...points.map((p) => p.value));
-  const spread = maxVal - minVal || 1;
-  const pointList = points
-    .map((point, idx) => {
-      const x = (idx / (points.length - 1)) * 100;
-      const y = 100 - ((point.value - minVal) / spread) * 100;
-      return `${x},${y}`;
-    })
-    .join(" ");
-
-  const lastPoint = points[points.length - 1];
-  const lastX = 100;
-  const lastY = 100 - ((lastPoint.value - minVal) / spread) * 100;
-
-  return (
-    <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-slate-500">Performance Analytics</p>
-          <div className="mt-2 flex items-center gap-3 text-xs text-slate-500">
-            <span className="flex items-center gap-1">
-              <span className="h-2 w-2 rounded-full bg-amber-500" /> Revenue
-            </span>
-            <span className="flex items-center gap-1">
-              <span className="h-2 w-2 rounded-full bg-emerald-500" /> Leads
-            </span>
+    <>
+      <header className="flex items-center justify-between">
+        <h1 className="text-2xl font-bold text-white">CRM Dashboard</h1>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 text-sm text-gray-400">
+            <span>Profile Settings</span>
+            <span>View Profile</span>
+          </div>
+          <button className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+            </svg>
+          </button>
+          <button className="rounded-full bg-white/10 p-2 text-white hover:bg-white/20">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+          </button>
+          <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-600 ring-2 ring-white/20">
+            <img src="https://i.pravatar.cc/150?u=a042581f4e29026704d" alt="Profile" className="h-full w-full object-cover" />
           </div>
         </div>
-        <div className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700">
-          This Month
+      </header>
+
+      {/* Revenue Chart */}
+      <section className="rounded-3xl bg-[#2b2b2b] p-6 shadow-lg ring-1 ring-white/5">
+        <div className="mb-6 flex items-center gap-6">
+          <h2 className="text-lg font-semibold text-white">Revenue</h2>
+          <div className="flex items-center gap-4 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#3b82f6]"></span>
+              <span className="text-gray-400">Gross Revenue</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#0ea5e9]"></span>
+              <span className="text-gray-400">Nett Revenue</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-[#f97316]"></span>
+              <span className="text-gray-400">Expenses</span>
+            </div>
+          </div>
         </div>
-      </div>
-      <div className="mt-6 h-56 w-full">
-        <svg viewBox="0 0 100 100" className="h-full w-full" preserveAspectRatio="none">
-          <polyline
-            fill="none"
-            strokeWidth="2.5"
-            stroke="#fbbf24"
-            points={pointList}
-            strokeLinejoin="round"
-          />
-          <circle cx={lastX} cy={lastY} r={2} fill="#f59e0b" />
-        </svg>
-      </div>
-      <div className="mt-2 grid grid-cols-12 text-xs text-slate-500">
-        {points.map((point) => (
-          <span key={point.month} className="text-center">
-            {point.month}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+        <div className="relative h-64 w-full">
+          {/* Simple SVG Line Chart Mockup */}
+          <svg viewBox="0 0 800 300" className="h-full w-full overflow-visible">
+            {/* Grid Lines */}
+            <line x1="0" y1="250" x2="800" y2="250" stroke="#404040" strokeWidth="1" />
+            <line x1="0" y1="200" x2="800" y2="200" stroke="#404040" strokeWidth="1" />
+            <line x1="0" y1="150" x2="800" y2="150" stroke="#404040" strokeWidth="1" />
+            <line x1="0" y1="100" x2="800" y2="100" stroke="#404040" strokeWidth="1" />
+            <line x1="0" y1="50" x2="800" y2="50" stroke="#404040" strokeWidth="1" />
 
-export default async function Home() {
-  const data = await loadDashboardData();
+            {/* Y Axis Labels */}
+            <text x="-10" y="255" fill="#6b7280" fontSize="10" textAnchor="end">0K</text>
+            <text x="-10" y="205" fill="#6b7280" fontSize="10" textAnchor="end">50K</text>
+            <text x="-10" y="155" fill="#6b7280" fontSize="10" textAnchor="end">100K</text>
+            <text x="-10" y="105" fill="#6b7280" fontSize="10" textAnchor="end">150K</text>
+            <text x="-10" y="55" fill="#6b7280" fontSize="10" textAnchor="end">200K</text>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#f7f1e6] via-[#fbf7ef] to-[#f1ebe1] text-slate-900">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <div className="overflow-hidden rounded-3xl bg-white/80 shadow-2xl ring-1 ring-black/5 backdrop-blur">
-          <div className="grid grid-cols-[240px_1fr]">
-            <aside className="flex min-h-full flex-col gap-8 bg-white/60 p-8 ring-1 ring-black/5">
-              <div className="flex items-center gap-3 text-lg font-semibold text-slate-800">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-400 text-white shadow-sm">
-                  ◆
+            {/* X Axis Labels */}
+            <text x="20" y="270" fill="#6b7280" fontSize="10">Jan</text>
+            <text x="120" y="270" fill="#6b7280" fontSize="10">Feb</text>
+            <text x="220" y="270" fill="#6b7280" fontSize="10">March</text>
+            <text x="320" y="270" fill="#6b7280" fontSize="10">April</text>
+            <text x="420" y="270" fill="#6b7280" fontSize="10">May</text>
+            <text x="520" y="270" fill="#6b7280" fontSize="10">June</text>
+            <text x="620" y="270" fill="#6b7280" fontSize="10">July</text>
+            <text x="720" y="270" fill="#6b7280" fontSize="10">Aug</text>
+
+            {/* Lines */}
+            <path
+              d="M20,200 C100,180 200,120 300,130 S500,110 620,100 S750,80 780,70"
+              fill="none"
+              stroke="#3b82f6"
+              strokeWidth="2"
+            />
+            <path
+              d="M20,220 C100,200 200,150 300,160 S500,140 620,130 S750,110 780,100"
+              fill="none"
+              stroke="#0ea5e9"
+              strokeWidth="2"
+            />
+            <path
+              d="M20,230 C100,220 200,180 300,190 S500,210 620,200 S750,180 780,170"
+              fill="none"
+              stroke="#f97316"
+              strokeWidth="2"
+            />
+
+            {/* Tooltip Mockup */}
+            <circle cx="620" cy="100" r="4" fill="#3b82f6" stroke="white" strokeWidth="2" />
+            <circle cx="620" cy="130" r="4" fill="#0ea5e9" stroke="white" strokeWidth="2" />
+            <circle cx="620" cy="200" r="4" fill="#f97316" stroke="white" strokeWidth="2" />
+            <line x1="620" y1="50" x2="620" y2="250" stroke="#ffffff" strokeWidth="1" strokeDasharray="4 4" opacity="0.5" />
+          </svg>
+
+          {/* Floating Tooltip Card */}
+          <div className="absolute right-20 top-10 rounded-xl bg-white/10 p-4 text-sm backdrop-blur-md ring-1 ring-white/20">
+            <div className="mb-2 flex items-center justify-between border-b border-white/10 pb-2">
+              <span className="font-semibold text-white">March 2025</span>
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#3b82f6]"></span>
+                  <span className="text-gray-300">Gross Revenue</span>
                 </div>
-                <span>Northspec Studio</span>
+                <span className="font-mono text-white">₹146,000</span>
               </div>
-              <nav className="space-y-2 text-sm font-medium text-slate-600">
-                <div className="rounded-2xl bg-amber-100 px-4 py-3 text-amber-800 shadow-sm">Dashboard</div>
-                {[
-                  "Pipeline",
-                  "Leads",
-                  "Properties",
-                  "Calendar",
-                  "Reports",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl px-4 py-3 transition hover:bg-slate-100"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </nav>
-              <div className="mt-auto space-y-2 text-sm font-medium text-slate-600">
-                <div className="rounded-2xl px-4 py-3 transition hover:bg-slate-100">Settings</div>
-                <div className="rounded-2xl px-4 py-3 text-rose-600 transition hover:bg-rose-50">
-                  Log Out
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#0ea5e9]"></span>
+                  <span className="text-gray-300">Nett Revenue</span>
                 </div>
+                <span className="font-mono text-white">₹115,893</span>
               </div>
-            </aside>
+              <div className="flex items-center justify-between gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-[#f97316]"></span>
+                  <span className="text-gray-300">Expenses</span>
+                </div>
+                <span className="font-mono text-white">₹40,198</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <main className="flex flex-col gap-8 bg-white/30 p-8">
-              <header className="flex items-center justify-between gap-4">
-                <div className="text-xl font-semibold text-slate-800">Dashboard Overview</div>
+      <div className="grid grid-cols-3 gap-6">
+        {/* Recent Leads */}
+        <section className="rounded-3xl bg-[#2b2b2b] p-6 shadow-lg ring-1 ring-white/5">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-semibold text-white">Recent Leads</h3>
+            <button className="rounded-lg bg-white/10 px-3 py-1 text-xs text-white hover:bg-white/20">Add +</button>
+          </div>
+          <div className="mb-4 flex items-center gap-2 rounded-xl bg-[#1e1e1e] px-3 py-2 ring-1 ring-white/5">
+            <svg className="h-4 w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" placeholder="Search" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-600" />
+          </div>
+          <div className="space-y-3">
+            {[
+              { name: "Raul Saldana", role: "Senior Operations Manager, Microsoft", time: "2h ago", img: "https://i.pravatar.cc/150?u=1" },
+              { name: "Lyn Monita", role: "Regional Operations Head, Google", time: "3h ago", img: "https://i.pravatar.cc/150?u=2" },
+            ].map((lead, i) => (
+              <div key={i} className="rounded-xl bg-[#1e1e1e] p-3 ring-1 ring-white/5">
+                <div className="mb-2 flex items-center justify-between text-xs text-gray-500">
+                  <span>{lead.time}</span>
+                  <button className="text-gray-400 hover:text-white">•••</button>
+                </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-slate-500 shadow-sm ring-1 ring-black/5">
-                    <span>🔍</span>
-                    <input
-                      type="text"
-                      placeholder="Search"
-                      className="w-44 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-                    />
-                  </div>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-lg shadow-sm ring-1 ring-black/5">
-                    🛎️
-                  </div>
-                  <div className="flex items-center gap-3 rounded-full bg-white px-3 py-2 shadow-sm ring-1 ring-black/5">
-                    <div className="h-8 w-8 rounded-full bg-amber-500" />
-                    <span className="text-sm font-semibold text-slate-800">Martin Furry</span>
-                  </div>
-                  <button className="rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-md transition hover:bg-amber-600">
-                    Add New Lead
-                  </button>
-                </div>
-              </header>
-
-              <section className="grid grid-cols-5 gap-4">
-                {data.stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="flex flex-col gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5"
-                  >
-                    <div className="flex items-center justify-between text-xs font-semibold text-slate-500">
-                      <span>{stat.label}</span>
-                      <Badge change={stat.change} />
-                    </div>
-                    <div className="text-2xl font-semibold text-slate-900">{stat.value}</div>
-                  </div>
-                ))}
-              </section>
-
-              <section className="grid grid-cols-3 gap-6">
-                <div className="col-span-2">
-                  <Chart points={data.chartPoints} />
-                </div>
-                <div className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-                  <div className="flex items-center justify-between">
-                    <p className="text-sm font-semibold text-slate-700">Important News</p>
-                    <div className="text-xs text-slate-400">•••</div>
-                  </div>
-                  <div className="mt-4 space-y-4">
-                    {data.news.map((item, idx) => (
-                      <div
-                        key={`${item.title}-${idx}`}
-                        className="flex items-start gap-3 rounded-xl bg-slate-50 p-3"
-                      >
-                        <div className="h-10 w-10 rounded-full bg-slate-200" />
-                        <div className="flex-1">
-                          <p className="text-sm font-semibold text-slate-800">{item.title}</p>
-                          <p className="text-xs text-slate-500">{item.detail}</p>
-                        </div>
-                        <div className="text-[11px] text-slate-400">{item.time}</div>
-                      </div>
-                    ))}
+                  <img src={lead.img} alt={lead.name} className="h-10 w-10 rounded-full object-cover" />
+                  <div>
+                    <p className="font-semibold text-white">{lead.name}</p>
+                    <p className="text-xs text-gray-500">{lead.role}</p>
                   </div>
                 </div>
-              </section>
-
-              <section className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-black/5">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-slate-800">Recent Leads</p>
-                  <button className="text-xs font-semibold text-amber-700">View all</button>
-                </div>
-                <div className="mt-4 overflow-hidden rounded-xl ring-1 ring-slate-200">
-                  <div className="grid grid-cols-5 bg-amber-50 px-4 py-3 text-xs font-semibold text-amber-900">
-                    <span>Lead Name</span>
-                    <span>Property</span>
-                    <span>Stage</span>
-                    <span>Value</span>
-                    <span>Last Activity</span>
-                  </div>
-                  {data.leads.map((lead, idx) => (
-                    <div
-                      key={lead.name + lead.property + idx}
-                      className="grid grid-cols-5 items-center px-4 py-3 text-sm text-slate-700 odd:bg-white even:bg-slate-50"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full bg-slate-200" />
-                        <span className="font-semibold text-slate-900">{lead.name}</span>
-                      </div>
-                      <span>{lead.property}</span>
-                      <span className={`w-fit rounded-full px-3 py-1 text-xs font-semibold capitalize ${stageClasses(lead.stageTone)}`}>
-                        {lead.stage}
-                      </span>
-                      <span className="font-semibold text-slate-900">{lead.value}</span>
-                      <span className="text-xs text-slate-500">{lead.activity}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            </main>
+              </div>
+            ))}
+            <button className="w-full text-center text-xs text-gray-500 hover:text-white">View All</button>
           </div>
-        </div>
+        </section>
+
+        {/* Lead Source */}
+        <section className="rounded-3xl bg-[#2b2b2b] p-6 shadow-lg ring-1 ring-white/5">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-semibold text-white">Lead Source</h3>
+            <button className="text-gray-400 hover:text-white">•••</button>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="space-y-3 text-sm">
+              <div>
+                <p className="text-xl font-bold text-white">60%</p>
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <span className="h-2 w-2 rounded-full bg-[#3b82f6]"></span> Linkedin
+                </div>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-white">24%</p>
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <span className="h-2 w-2 rounded-full bg-[#f97316]"></span> Campaigns
+                </div>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-white">10%</p>
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <span className="h-2 w-2 rounded-full bg-[#0ea5e9]"></span> Websites
+                </div>
+              </div>
+              <div>
+                <p className="text-xl font-bold text-white">6%</p>
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <span className="h-2 w-2 rounded-full bg-gray-500"></span> Miscellaneous
+                </div>
+              </div>
+            </div>
+            <div className="relative h-32 w-32 flex-1">
+              <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#3b82f6" strokeWidth="20" strokeDasharray="150 251" />
+                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f97316" strokeWidth="20" strokeDasharray="60 251" strokeDashoffset="-150" />
+                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#0ea5e9" strokeWidth="20" strokeDasharray="25 251" strokeDashoffset="-210" />
+                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#6b7280" strokeWidth="20" strokeDasharray="16 251" strokeDashoffset="-235" />
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        {/* Schedule */}
+        <section className="rounded-3xl bg-[#2b2b2b] p-6 shadow-lg ring-1 ring-white/5">
+          <div className="mb-4 flex items-center justify-between">
+            <h3 className="font-semibold text-white">Schedule</h3>
+            <button className="rounded-lg bg-white/10 px-3 py-1 text-xs text-white hover:bg-white/20">Add +</button>
+          </div>
+          <div className="mb-4 flex items-center justify-between text-sm text-white">
+            <button className="text-gray-400 hover:text-white">‹</button>
+            <span className="font-medium">March 2025</span>
+            <button className="text-gray-400 hover:text-white">›</button>
+          </div>
+          <div className="mb-4 grid grid-cols-7 text-center text-xs text-gray-500">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            <span className="py-2 text-white">10</span>
+            <span className="py-2 text-white">11</span>
+            <span className="py-2 text-white">12</span>
+            <span className="rounded-lg bg-[#3b82f6] py-2 text-white">13</span>
+            <span className="py-2 text-white">14</span>
+            <span className="py-2 text-white">15</span>
+            <span className="py-2 text-white">16</span>
+          </div>
+          <div className="rounded-xl bg-[#1e1e1e] p-3 ring-1 ring-white/5">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="text-xs font-semibold text-[#3b82f6]">Meeting with Rahul Saldana</span>
+              <span className="text-gray-400">🔔</span>
+            </div>
+            <p className="text-xs text-gray-400">Product Demo</p>
+            <p className="text-xs text-gray-400">4:00 PM - 5:00 PM (IST)</p>
+            <div className="mt-2 flex items-center gap-1 text-xs text-[#3b82f6] underline">
+              <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+              Join with Google Meet
+            </div>
+          </div>
+          <button className="mt-2 w-full text-center text-xs text-gray-500 hover:text-white">View All</button>
+        </section>
       </div>
-    </div>
+
+      {/* To Do */}
+      <section className="rounded-3xl bg-[#2b2b2b] p-6 shadow-lg ring-1 ring-white/5">
+        <div className="mb-4 flex items-center justify-between">
+          <h3 className="font-semibold text-white">To Do</h3>
+          <button className="rounded-lg bg-white/10 px-3 py-1 text-xs text-white hover:bg-white/20">Add +</button>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
+          {[
+            { title: "Internal Sales Meeting with team", time: "4:00 PM - 5:00 PM (IST)" },
+            { title: "Follow up with Frederick Kunath", time: "4:00 PM - 5:00 PM (IST)" },
+            { title: "Meeting with Rahul Saldana", time: "4:00 PM - 5:00 PM (IST)" },
+          ].map((todo, i) => (
+            <div key={i} className="flex items-center justify-between rounded-xl bg-[#1e1e1e] p-4 ring-1 ring-white/5">
+              <div>
+                <p className="text-sm font-semibold text-white">{todo.title}</p>
+                <p className="text-xs text-gray-500">{todo.time}</p>
+              </div>
+              <span className="text-gray-400">🔔</span>
+            </div>
+          ))}
+          <button className="flex items-center justify-center rounded-xl bg-[#1e1e1e] p-4 text-gray-400 ring-1 ring-white/5 hover:bg-white/5 hover:text-white">
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </section>
+    </>
   );
 }
