@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { connectDB } = require('./config/db');
 const Contact = require('./models/Contact');
+const prospectsController = require('./controller/Prospects');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -120,6 +121,9 @@ app.get('/api/leads', (req, res) => {
 app.get('/api/news', (req, res) => {
   res.json({ items: news });
 });
+
+// Prospects Routes
+app.post('/api/prospects/scan', prospectsController.scanProspects);
 
 // Contact Routes
 app.post('/api/contacts', async (req, res) => {

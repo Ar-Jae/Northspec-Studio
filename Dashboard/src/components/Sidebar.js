@@ -51,15 +51,26 @@ export default function Sidebar() {
 
         <Link
           href="/leads"
-          className="flex items-center justify-between rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white"
+          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
+            pathname === "/leads" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
+          }`}
         >
-          <div className="flex items-center gap-3">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Leads
-          </div>
-          <span className="flex h-5 w-5 items-center justify-center rounded bg-[#8b5cf6] text-[10px] font-bold text-white">4</span>
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+          Contact Leads
+        </Link>
+
+        <Link
+          href="/prospects"
+          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
+            pathname === "/prospects" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
+          }`}
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+          </svg>
+          Find Prospects
         </Link>
 
         <Link
@@ -78,17 +89,7 @@ export default function Sidebar() {
           </div>
         </Link>
 
-        <Link
-          href="/project-request"
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-            pathname === "/project-request" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
-          }`}
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 011.414.586l2.828 2.828a1 1 0 01.586 1.414V19a2 2 0 01-2 2z" />
-          </svg>
-          Project Request
-        </Link>
+
 
         <div>
           <button

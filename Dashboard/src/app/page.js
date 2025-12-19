@@ -1,4 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
 export default function Dashboard() {
+  const [leads, setLeads] = useState([]);
+
+  useEffect(() => {
+    async function fetchLeads() {
+      try {
+        const res = await fetch("http://localhost:4000/api/contacts");
+        if (res.ok) {
+          const data = await res.json();
+          setLeads(data.slice(0, 5)); // Get top 5 recent leads
+        }
+      } catch (error) {
+        console.error("Failed to fetch leads:", error);
+      }
+    }
+
+    fetchLeads();
+  }, []);
+
   return (
     <>
       <header className="flex items-center justify-between">
@@ -143,25 +166,32 @@ export default function Dashboard() {
             <input type="text" placeholder="Search" className="w-full bg-transparent text-sm text-white outline-none placeholder:text-gray-600" />
           </div>
           <div className="space-y-3">
-            {[
-              { name: "Raul Saldana", role: "Senior Operations Manager, Microsoft", time: "2h ago", img: "https://i.pravatar.cc/150?u=1" },
-              { name: "Lyn Monita", role: "Regional Operations Head, Google", time: "3h ago", img: "https://i.pravatar.cc/150?u=2" },
-            ].map((lead, i) => (
-              <div key={i} className="rounded-xl bg-[#1e1e1e] p-3 ring-1 ring-white/5">
-                <div className="mb-2 flex items-center justify-between text-xs text-gray-500">
-                  <span>{lead.time}</span>
-                  <button className="text-gray-400 hover:text-white">•••</button>
-                </div>
-                <div className="flex items-center gap-3">
-                  <img src={lead.img} alt={lead.name} className="h-10 w-10 rounded-full object-cover" />
-                  <div>
-                    <p className="font-semibold text-white">{lead.name}</p>
-                    <p className="text-xs text-gray-500">{lead.role}</p>
+            {leads.length === 0 ? (
+              <div className="text-center text-sm text-gray-500 py-4">No recent leads found</div>
+            ) : (
+              leads.map((lead, i) => (
+                <div key={lead._id || i} className="rounded-xl bg-[#1e1e1e] p-3 ring-1 ring-white/5">
+                  <div className="mb-2 flex items-center justify-between text-xs text-gray-500">
+                    <span>{new Date(lead.createdAt).toLocaleDateString()}</span>
+                    <button className="text-gray-400 hover:text-white">•••</button>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="h-10 w-10 overflow-hidden rounded-full bg-gray-700 ring-1 ring-white/10">
+                      <img 
+                        src={`https://ui-avatars.com/api/?name=${encodeURIComponent(lead.name)}&background=random`} 
+                        alt={lead.name} 
+                        className="h-full w-full object-cover" 
+                      />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-white">{lead.name}</p>
+                      <p className="text-xs text-gray-500">{lead.company || lead.projectType || "New Lead"}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-            <button className="w-full text-center text-xs text-gray-500 hover:text-white">View All</button>
+              ))
+            )}
+            <Link href="/leads" className="block w-full text-center text-xs text-gray-500 hover:text-white mt-2">View All</Link>
           </div>
         </section>
 
