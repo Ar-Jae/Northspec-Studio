@@ -6,163 +6,218 @@ import { useState } from "react";
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const [incomeExpanded, setIncomeExpanded] = useState(true);
+  const [dashboardsOpen, setDashboardsOpen] = useState(true);
+  const [pagesOpen, setPagesOpen] = useState(true);
 
   return (
-    <aside className="flex min-h-full flex-col gap-6 bg-[#2b2b2b] p-6 text-gray-400">
-      <div className="flex items-center gap-3 px-2 text-xl font-semibold text-white">
-        <span>CRM Logo</span>
+    <aside className="flex h-screen w-64 flex-col bg-[#1a2e1a] text-gray-300 rounded-3xl m-3">
+      {/* User Profile */}
+      <div className="flex items-center gap-3 p-5">
+        <div className="h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-amber-400 to-orange-500">
+          <img
+            src="https://i.pravatar.cc/150?u=arlene"
+            alt="Profile"
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <span className="font-medium text-white">Arlene McCoy</span>
       </div>
 
-      <nav className="flex flex-1 flex-col gap-2 text-sm font-medium">
+      {/* Tabs */}
+      <div className="flex gap-4 border-b border-white/10 px-5 text-sm">
+        <button className="border-b-2 border-green-500 pb-2 text-green-400">Favorites</button>
+        <button className="pb-2 text-gray-500 hover:text-gray-300">Recently</button>
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 overflow-y-auto p-3">
         <Link
           href="/"
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-            pathname === "/" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
+          className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition ${
+            pathname === "/" ? "text-white" : "hover:text-white"
           }`}
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          Dashboard
+          Overview
         </Link>
 
         <Link
-          href="/calendar"
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-            pathname === "/calendar" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
-          }`}
+          href="/projects"
+          className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:text-white"
         >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
           </svg>
-          Calendar
+          Projects
         </Link>
 
-        <Link
-          href="/reports"
-          className="flex items-center gap-3 rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white"
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 011.414.586l2.828 2.828a1 1 0 01.586 1.414V19a2 2 0 01-2 2z" />
-          </svg>
-          Reports
-        </Link>
-
-        <Link
-          href="/leads"
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-            pathname === "/leads" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
-          }`}
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-          </svg>
-          Contact Leads
-        </Link>
-
-        <Link
-          href="/prospects"
-          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
-            pathname === "/prospects" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
-          }`}
-        >
-          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-          </svg>
-          Find Prospects
-        </Link>
-
-        <Link
-          href="/campaigns"
-          className="flex items-center justify-between rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white"
-        >
-          <div className="flex items-center gap-3">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            Campaigns
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="flex h-5 w-5 items-center justify-center rounded-full border border-gray-600 text-[10px] hover:bg-white/10">+</span>
-            <span className="flex h-5 w-5 items-center justify-center rounded bg-[#3b82f6] text-[10px] font-bold text-white">8</span>
-          </div>
-        </Link>
-
-
-
-        <div>
+        {/* Dashboards Section */}
+        <div className="mt-4">
           <button
-            onClick={() => setIncomeExpanded(!incomeExpanded)}
-            className="flex w-full items-center justify-between rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white"
+            onClick={() => setDashboardsOpen(!dashboardsOpen)}
+            className="flex w-full items-center gap-2 px-3 py-2 text-xs font-medium uppercase tracking-wider text-gray-500"
           >
-            <div className="flex items-center gap-3">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Income
-            </div>
             <svg
-              className={`h-4 w-4 transition-transform ${incomeExpanded ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              className={`h-3 w-3 transition-transform ${dashboardsOpen ? "rotate-90" : ""}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
             </svg>
+            Dashboards
           </button>
-          {incomeExpanded && (
-            <div className="ml-4 mt-1 flex flex-col gap-1 border-l border-gray-700 pl-4">
-              <Link href="#" className="rounded-lg px-4 py-2 hover:text-white">Earning</Link>
-              <Link href="#" className="rounded-lg bg-white/10 px-4 py-2 text-white">Refunds</Link>
-              <Link href="#" className="rounded-lg px-4 py-2 hover:text-white">Declines</Link>
-              <Link href="#" className="rounded-lg px-4 py-2 hover:text-white">Payouts</Link>
+          {dashboardsOpen && (
+            <div className="ml-2 space-y-1">
+              <Link
+                href="/"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Overview
+              </Link>
+              <Link
+                href="/pipeline"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/pipeline" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Pipeline
+              </Link>
+              <Link
+                href="/calendar"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/calendar" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Calendar
+              </Link>
+              <Link
+                href="/project-request"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/project-request" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                </svg>
+                Project Requests
+              </Link>
+              <Link
+                href="/projects"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/projects" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                Projects
+              </Link>
             </div>
           )}
         </div>
 
-        <Link
-          href="/promote"
-          className="flex items-center justify-between rounded-xl px-4 py-3 transition hover:bg-white/5 hover:text-white"
-        >
-          <div className="flex items-center gap-3">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        {/* Pages Section */}
+        <div className="mt-4">
+          <button
+            onClick={() => setPagesOpen(!pagesOpen)}
+            className="flex w-full items-center gap-2 px-3 py-2 text-xs font-medium uppercase tracking-wider text-gray-500"
+          >
+            <svg
+              className={`h-3 w-3 transition-transform ${pagesOpen ? "rotate-90" : ""}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
             </svg>
-            Promote
-          </div>
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
-        </Link>
+            Pages
+          </button>
+          {pagesOpen && (
+            <div className="ml-2 space-y-1">
+              <Link 
+                href="/leads" 
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/leads" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Contact Leads
+              </Link>
+              <Link 
+                href="/prospects" 
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/prospects" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+                Find Prospects
+              </Link>
+              <Link href="/campaigns" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                </svg>
+                Campaigns
+              </Link>
+              <Link href="/documents" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Documents
+              </Link>
+              <Link href="/followers" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Followers
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Bottom Links */}
+        <div className="mt-6 space-y-1">
+          <Link href="/account" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:text-white">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Account
+          </Link>
+          <Link href="/corporate" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:text-white">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+            Corporate
+          </Link>
+          <Link href="/blog" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:text-white">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+            Blog
+          </Link>
+          <Link href="/social" className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition hover:text-white">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+            </svg>
+            Social
+          </Link>
+        </div>
       </nav>
-
-      <div className="mt-auto flex flex-col gap-4">
-        <div className="relative flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/10 to-transparent p-6 text-center ring-1 ring-white/10">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3b82f6] text-white shadow-lg shadow-blue-500/30">
-            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-            </svg>
-          </div>
-          <p className="font-semibold text-white">Upload new image</p>
-          <p className="text-xs text-gray-500">Drag and drop</p>
-        </div>
-
-        <div className="flex items-center justify-between rounded-xl bg-white p-1">
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-white px-3 py-2 text-xs font-semibold text-black shadow-sm">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Light
-          </button>
-          <button className="flex flex-1 items-center justify-center gap-2 rounded-lg px-3 py-2 text-xs font-medium text-gray-500 hover:text-gray-900">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-            Dark
-          </button>
-        </div>
-      </div>
     </aside>
   );
 }

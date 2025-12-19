@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function ProspectsPage() {
   const [prospects, setProspects] = useState([]);
@@ -8,6 +8,19 @@ export default function ProspectsPage() {
   const [selectedProspect, setSelectedProspect] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeFilter, setActiveFilter] = useState("All Businesses");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterRef = useRef(null);
+
+  // Close filter dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setFilterOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   // Scan for prospects via Backend API
   const scanProspects = async (query, lat = null, lng = null) => {
@@ -97,45 +110,6 @@ export default function ProspectsPage() {
 
   return (
     <div className="flex h-[calc(100vh-8rem)] gap-4 overflow-hidden text-sm">
-      {/* Left Sidebar - Segments */}
-      <div className="hidden w-60 flex-col gap-6 overflow-y-auto rounded-2xl bg-[#2b2b2b] p-4 shadow-lg ring-1 ring-white/5 xl:flex">
-        <div>
-          <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase text-gray-500">Segments</h3>
-          </div>
-          <div className="space-y-1">
-            <SidebarItem label="All Businesses" count={counts["All Businesses"]} active={activeFilter === "All Businesses"} onClick={() => setActiveFilter("All Businesses")} />
-            <SidebarItem label="No Website" count={counts["No Website"]} active={activeFilter === "No Website"} onClick={() => setActiveFilter("No Website")} />
-            <SidebarItem label="Low Rating (< 3.5)" count={counts["Low Rating (< 3.5)"]} active={activeFilter === "Low Rating (< 3.5)"} onClick={() => setActiveFilter("Low Rating (< 3.5)")} />
-            <SidebarItem label="New in Area" count={counts["New in Area"]} active={activeFilter === "New in Area"} onClick={() => setActiveFilter("New in Area")} />
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase text-gray-500">Saved Lists</h3>
-            <span className="text-xs text-gray-500">0</span>
-          </div>
-          <div className="space-y-1">
-            <SidebarItem label="Restaurants" count={counts["Restaurants"]} active={activeFilter === "Restaurants"} onClick={() => setActiveFilter("Restaurants")} />
-            <SidebarItem label="Contractors" count={counts["Contractors"]} active={activeFilter === "Contractors"} onClick={() => setActiveFilter("Contractors")} />
-            <SidebarItem label="Retail Stores" count={counts["Retail Stores"]} active={activeFilter === "Retail Stores"} onClick={() => setActiveFilter("Retail Stores")} />
-          </div>
-        </div>
-
-        <div>
-          <div className="mb-2 flex items-center justify-between">
-            <h3 className="text-xs font-bold uppercase text-gray-500">Scan Sources</h3>
-            <span className="text-xs text-gray-500">0</span>
-          </div>
-          <div className="space-y-1">
-            <SidebarItem label="Google Maps" count={counts["Google Maps"]} active={activeFilter === "Google Maps"} onClick={() => setActiveFilter("Google Maps")} />
-            <SidebarItem label="Yelp" count={counts["Yelp"]} active={activeFilter === "Yelp"} onClick={() => setActiveFilter("Yelp")} />
-            <SidebarItem label="Facebook" count={counts["Facebook"]} active={activeFilter === "Facebook"} onClick={() => setActiveFilter("Facebook")} />
-          </div>
-        </div>
-      </div>
-
       {/* Main Content - List */}
       <div className="flex flex-1 flex-col rounded-2xl bg-[#2b2b2b] shadow-lg ring-1 ring-white/5">
         {/* Header */}
@@ -174,11 +148,61 @@ export default function ProspectsPage() {
               className="w-full rounded-lg bg-[#1e1e1e] py-2 pl-10 pr-4 text-xs text-white placeholder-gray-600 outline-none ring-1 ring-white/5 focus:ring-brand-gold/50"
             />
           </div>
-          <button className="rounded-lg bg-white/5 p-2 text-gray-400 hover:bg-white/10">
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-            </svg>
-          </button>
+          
+          {/* Filter Dropdown */}
+          <div className="relative" ref={filterRef}>
+            <button 
+              onClick={() => setFilterOpen(!filterOpen)}
+              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition ${
+                activeFilter !== "All Businesses" 
+                  ? "bg-brand-gold/20 text-brand-gold ring-1 ring-brand-gold/30" 
+                  : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+              }`}
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              </svg>
+              {activeFilter}
+              <svg className={`h-3 w-3 transition-transform ${filterOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            {filterOpen && (
+              <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-xl bg-[#1e1e1e] p-3 shadow-2xl ring-1 ring-white/10">
+                {/* Segments */}
+                <div className="mb-3">
+                  <h4 className="mb-2 text-[10px] font-bold uppercase text-gray-500">Segments</h4>
+                  <div className="space-y-1">
+                    <FilterItem label="All Businesses" count={counts["All Businesses"]} active={activeFilter === "All Businesses"} onClick={() => { setActiveFilter("All Businesses"); setFilterOpen(false); }} />
+                    <FilterItem label="No Website" count={counts["No Website"]} active={activeFilter === "No Website"} onClick={() => { setActiveFilter("No Website"); setFilterOpen(false); }} />
+                    <FilterItem label="Low Rating (< 3.5)" count={counts["Low Rating (< 3.5)"]} active={activeFilter === "Low Rating (< 3.5)"} onClick={() => { setActiveFilter("Low Rating (< 3.5)"); setFilterOpen(false); }} />
+                    <FilterItem label="New in Area" count={counts["New in Area"]} active={activeFilter === "New in Area"} onClick={() => { setActiveFilter("New in Area"); setFilterOpen(false); }} />
+                  </div>
+                </div>
+
+                {/* Saved Lists */}
+                <div className="mb-3 border-t border-white/5 pt-3">
+                  <h4 className="mb-2 text-[10px] font-bold uppercase text-gray-500">Saved Lists</h4>
+                  <div className="space-y-1">
+                    <FilterItem label="Restaurants" count={counts["Restaurants"]} active={activeFilter === "Restaurants"} onClick={() => { setActiveFilter("Restaurants"); setFilterOpen(false); }} />
+                    <FilterItem label="Contractors" count={counts["Contractors"]} active={activeFilter === "Contractors"} onClick={() => { setActiveFilter("Contractors"); setFilterOpen(false); }} />
+                    <FilterItem label="Retail Stores" count={counts["Retail Stores"]} active={activeFilter === "Retail Stores"} onClick={() => { setActiveFilter("Retail Stores"); setFilterOpen(false); }} />
+                  </div>
+                </div>
+
+                {/* Scan Sources */}
+                <div className="border-t border-white/5 pt-3">
+                  <h4 className="mb-2 text-[10px] font-bold uppercase text-gray-500">Scan Sources</h4>
+                  <div className="space-y-1">
+                    <FilterItem label="Google Maps" count={counts["Google Maps"]} active={activeFilter === "Google Maps"} onClick={() => { setActiveFilter("Google Maps"); setFilterOpen(false); }} />
+                    <FilterItem label="Yelp" count={counts["Yelp"]} active={activeFilter === "Yelp"} onClick={() => { setActiveFilter("Yelp"); setFilterOpen(false); }} />
+                    <FilterItem label="Facebook" count={counts["Facebook"]} active={activeFilter === "Facebook"} onClick={() => { setActiveFilter("Facebook"); setFilterOpen(false); }} />
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* List Content */}
@@ -478,6 +502,22 @@ function SidebarItem({ label, count, active, isDropdown }) {
         )}
       </div>
       {count !== undefined && <span className="opacity-60">{count}</span>}
+    </button>
+  );
+}
+
+function FilterItem({ label, count, active, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className={`flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-xs font-medium transition ${
+        active ? "bg-brand-gold/20 text-brand-gold" : "text-gray-400 hover:bg-white/5 hover:text-white"
+      }`}
+    >
+      <span>{label}</span>
+      <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${active ? "bg-brand-gold/30" : "bg-white/10"}`}>
+        {count}
+      </span>
     </button>
   );
 }
