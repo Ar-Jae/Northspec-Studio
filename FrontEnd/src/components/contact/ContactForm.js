@@ -60,7 +60,6 @@ export default function ContactForm() {
     name: "",
     email: "",
     company: "",
-    projectUrl: "",
     projectType: "",
     projectDescription: "",
     budget: "",
@@ -133,7 +132,7 @@ export default function ContactForm() {
 
     try {
       setStatus("loading");
-      // Always submit to backend (n8n webhook) for logging
+      // Always submit to backend for logging
       const res = await submitContactRequest({ ...values, _rejected: isRejected });
       
       if (!res?.ok) throw new Error(res?.error || "Request failed");
@@ -149,8 +148,8 @@ export default function ContactForm() {
       setValues({
         name: "",
         email: "",
+        phone: "",
         company: "",
-        projectUrl: "",
         projectType: "",
         projectDescription: "",
         budget: "",
@@ -316,6 +315,19 @@ export default function ContactForm() {
           </div>
 
           <div className="space-y-2">
+            <label htmlFor="phone" className="block text-sm font-medium text-slate-300">
+              Phone Number
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              value={values.phone}
+              onChange={(e) => onChange("phone", e.target.value)}
+              className="block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500"
+            />
+          </div>
+
+          <div className="space-y-2">
             <label htmlFor="company" className="block text-sm font-medium text-slate-300">
               Company / Project Name
             </label>
@@ -334,19 +346,6 @@ export default function ContactForm() {
             {touched.company && errors.company && (
               <p className="text-xs text-red-400">{errors.company}</p>
             )}
-          </div>
-
-          <div className="space-y-2">
-            <label htmlFor="projectUrl" className="block text-sm font-medium text-slate-300">
-              Website (if any)
-            </label>
-            <input
-              id="projectUrl"
-              type="text"
-              value={values.projectUrl}
-              onChange={(e) => onChange("projectUrl", e.target.value)}
-              className="block w-full rounded-lg border-white/10 bg-white/5 text-white shadow-sm focus:border-brand-gold focus:ring-brand-gold sm:text-sm placeholder:text-slate-500"
-            />
           </div>
         </div>
       </div>
@@ -479,7 +478,7 @@ export default function ContactForm() {
         
         <div className="space-y-2">
           <label className="block text-sm font-medium text-slate-300">
-            Are you interested in automation (n8n)?
+            Are you interested in automation?
           </label>
           <div className="space-y-2">
             {AUTOMATION_INTERESTS.map((interest) => (
@@ -522,7 +521,7 @@ export default function ContactForm() {
                 onChange={() => onCheckboxChange("setup")}
                 className="mt-1 h-4 w-4 rounded border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold"
               />
-              <span>n8n setup starts at $1,500</span>
+              <span>Automation setup starts at $1,500</span>
             </label>
             <label className="flex cursor-pointer items-start gap-3 text-sm text-slate-300">
               <input

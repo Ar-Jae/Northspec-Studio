@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 
-// n8n Webhook URL - Set this in your environment variables
-const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL;
-
 function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || "").trim());
 }
@@ -42,36 +39,18 @@ export async function POST(request) {
     );
   }
 
-  // Forward the form data to n8n webhook
-  if (N8N_WEBHOOK_URL) {
-    try {
-      const n8nResponse = await fetch(N8N_WEBHOOK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      const n8nData = await n8nResponse.json().catch(() => ({}));
-
-      if (!n8nResponse.ok) {
-        console.error("n8n webhook error:", n8nData);
-        return NextResponse.json(
-          { ok: false, error: "Failed to process submission." },
-          { status: 500 }
-        );
-      }
-
-      return NextResponse.json({ ok: true, ...n8nData });
-    } catch (error) {
-      console.error("n8n webhook failed:", error);
-      // Fallback: still return success to not block the user
-      // but log the error for debugging
-      return NextResponse.json({ ok: true });
-    }
+  // Save to Backend Database
+  try {
+    await fetch("http://localhost:4000/api/contacts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error("Failed to save to backend:", error);
   }
 
-  // Fallback if n8n is not configured
   return NextResponse.json({ ok: true });
 }

@@ -78,6 +78,18 @@ export default function Sidebar() {
           </div>
         </Link>
 
+        <Link
+          href="/project-request"
+          className={`flex items-center gap-3 rounded-xl px-4 py-3 transition ${
+            pathname === "/project-request" ? "bg-white/10 text-white" : "hover:bg-white/5 hover:text-white"
+          }`}
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 011.414.586l2.828 2.828a1 1 0 01.586 1.414V19a2 2 0 01-2 2z" />
+          </svg>
+          Project Request
+        </Link>
+
         <div>
           <button
             onClick={() => setIncomeExpanded(!incomeExpanded)}

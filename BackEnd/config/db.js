@@ -11,10 +11,10 @@ const connectDB = async () => {
         mongoose.set("strictQuery", true);
         
         await mongoose.connect(dbURI);
-        console.log(`React Chat Project: DB_Connected`);
+        console.log(`Northspec Studio DB_Connected`);
 
     } catch (error) {
-        console.log('Error connecting to React Chat Project:', error.message);
+        console.log('Error connecting to Northspec Studio:', error.message);
         process.exit(1);
     }
 }

@@ -1,9 +1,14 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
+const { connectDB } = require('./config/db');
+const Contact = require('./models/Contact');
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+// Connect to Database
+connectDB();
 
 app.use(cors());
 app.use(express.json());
@@ -114,6 +119,26 @@ app.get('/api/leads', (req, res) => {
 
 app.get('/api/news', (req, res) => {
   res.json({ items: news });
+});
+
+// Contact Routes
+app.post('/api/contacts', async (req, res) => {
+  try {
+    const newContact = new Contact(req.body);
+    const savedContact = await newContact.save();
+    res.status(201).json(savedContact);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
+
+app.get('/api/contacts', async (req, res) => {
+  try {
+    const contacts = await Contact.find().sort({ createdAt: -1 });
+    res.json(contacts);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 });
 
 app.listen(PORT, () => {
