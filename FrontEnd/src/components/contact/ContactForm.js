@@ -59,6 +59,7 @@ export default function ContactForm() {
   const [values, setValues] = useState({
     name: "",
     email: "",
+    phone: "",
     company: "",
     projectType: "",
     projectDescription: "",

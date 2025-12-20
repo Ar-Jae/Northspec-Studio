@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Sidebar() {
   const pathname = usePathname();
   const [dashboardsOpen, setDashboardsOpen] = useState(true);
+  const [financeOpen, setFinanceOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(true);
 
   return (
@@ -129,6 +130,71 @@ export default function Sidebar() {
           )}
         </div>
 
+        {/* Finance Section */}
+        <div className="mt-4">
+          <button
+            onClick={() => setFinanceOpen(!financeOpen)}
+            className="flex w-full items-center gap-2 px-3 py-2 text-xs font-medium uppercase tracking-wider text-gray-500"
+          >
+            <svg
+              className={`h-3 w-3 transition-transform ${financeOpen ? "rotate-90" : ""}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+            Finance
+          </button>
+          {financeOpen && (
+            <div className="ml-2 space-y-1">
+              <Link
+                href="/finance"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/finance" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                Overview
+              </Link>
+              <Link
+                href="/finance/invoices"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/finance/invoices" || pathname.startsWith("/finance/invoices/") ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Invoices
+              </Link>
+              <Link
+                href="/finance/payments"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/finance/payments" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                Payments
+              </Link>
+              <Link
+                href="/finance/accounts"
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/finance/accounts" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                Accounts
+              </Link>
+            </div>
+          )}
+        </div>
+
         {/* Pages Section */}
         <div className="mt-4">
           <button
@@ -168,11 +234,16 @@ export default function Sidebar() {
                 </svg>
                 Find Prospects
               </Link>
-              <Link href="/campaigns" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+              <Link 
+                href="/campaigns" 
+                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
+                  pathname === "/campaigns" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                }`}
+              >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                Campaigns
+                Email Campaigns
               </Link>
               <Link href="/documents" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
