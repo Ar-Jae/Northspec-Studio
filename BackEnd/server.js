@@ -8,6 +8,7 @@ const prospectsEnrichmentController = require('./controller/ProspectsEnrichment'
 const campaignsController = require('./controller/Campaigns');
 const nocoDBController = require('./controller/NocoDB');
 const financeController = require('./controller/Finance');
+const plaidController = require('./controller/Plaid');
 const campaignScheduler = require('./services/campaignScheduler');
 
 const app = express();
@@ -258,6 +259,18 @@ app.post('/api/payments', financeController.createPayment);
 app.post('/api/payments/:id/process', financeController.processPayment);
 app.post('/api/payments/:id/refund', financeController.refundPayment);
 app.delete('/api/payments/:id', financeController.deletePayment);
+
+// =====================
+// Plaid Bank Connection Routes
+// =====================
+app.post('/api/plaid/create-link-token', plaidController.createLinkToken);
+app.post('/api/plaid/exchange-token', plaidController.exchangeToken);
+app.get('/api/plaid/accounts', plaidController.getAccounts);
+app.get('/api/plaid/transactions', plaidController.getTransactions);
+app.get('/api/plaid/items', plaidController.getItems);
+app.delete('/api/plaid/items/:id', plaidController.unlinkItem);
+app.post('/api/plaid/sync', plaidController.syncAccounts);
+app.get('/api/plaid/spending-insights', plaidController.getSpendingInsights);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

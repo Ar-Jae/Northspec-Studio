@@ -55,8 +55,10 @@ export default function PaymentsPage() {
       const res = await fetch("http://localhost:4000/api/invoices");
       if (res.ok) {
         const json = await res.json();
+        // API may return { invoices, total, ... } or an array directly.
+        const list = Array.isArray(json) ? json : (Array.isArray(json.invoices) ? json.invoices : []);
         // Only show unpaid invoices for payment selection
-        setInvoices(json.filter(inv => inv.status !== 'paid' && inv.status !== 'cancelled'));
+        setInvoices(list.filter(inv => inv.status !== 'paid' && inv.status !== 'cancelled'));
       }
     } catch (error) {
       console.error("Failed to fetch invoices:", error);

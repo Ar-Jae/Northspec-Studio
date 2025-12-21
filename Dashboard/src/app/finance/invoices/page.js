@@ -32,7 +32,9 @@ export default function InvoicesPage() {
       const res = await fetch("http://localhost:4000/api/invoices");
       if (res.ok) {
         const json = await res.json();
-        setInvoices(json);
+        // API returns { invoices, total, ... } — normalize to array
+        const list = Array.isArray(json) ? json : (Array.isArray(json.invoices) ? json.invoices : []);
+        setInvoices(list);
       }
     } catch (error) {
       console.error("Failed to fetch invoices:", error);
