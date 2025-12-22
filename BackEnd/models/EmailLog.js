@@ -47,7 +47,6 @@ const EmailLogSchema = new mongoose.Schema({
 
 // Indexes for efficient queries
 EmailLogSchema.index({ campaignId: 1, recipientEmail: 1 });
-EmailLogSchema.index({ trackingId: 1 });
 EmailLogSchema.index({ status: 1 });
 EmailLogSchema.index({ sentAt: 1 });
 
