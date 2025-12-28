@@ -16,7 +16,7 @@ export default function Footer() {
 
       {/* Main footer content */}
       <Container className="py-12">
-        <div className="grid grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-5 mb-12">
           {/* Contact Direct */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wide text-white">Contact</h3>

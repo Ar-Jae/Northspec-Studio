@@ -17,7 +17,7 @@ export default function FeaturedWork() {
             title="Featured case studies"
             description="A snapshot of outcomes: conversion lift, reliability improvements, and faster delivery."
           />
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button as="link" href="/work" variant="secondary">
               View Work
             </Button>

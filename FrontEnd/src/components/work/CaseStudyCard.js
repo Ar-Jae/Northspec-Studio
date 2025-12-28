@@ -37,7 +37,7 @@ export default function CaseStudyCard({ study, compact = false }) {
           {study.problem}
         </p>
 
-        <dl className="mt-5 grid grid-cols-3 gap-3">
+        <dl className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
           {study.impact.map((item) => (
             <div key={item.label} className="rounded-xl bg-white/5 p-3">
               <dt className="text-xs text-slate-400">{item.label}</dt>

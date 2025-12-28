@@ -20,7 +20,7 @@ export default function Hero() {
       {/* Large Background Text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         <TextReveal>
-          <h1 className="text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center font-serif">
+          <h1 className="text-5xl sm:text-[8vw] font-bold tracking-tighter text-white leading-none opacity-100 z-0 text-center font-serif">
             Northspec Studio
           </h1>
         </TextReveal>
@@ -28,7 +28,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="absolute right-[10%] top-[50%] text-4xl font-light text-white/80 tracking-widest font-serif"
+          className="absolute right-[5%] sm:right-[10%] top-[55%] sm:top-[50%] text-2xl sm:text-4xl font-light text-white/80 tracking-widest font-serif"
         >
           Agency
         </motion.span>
@@ -49,19 +49,19 @@ export default function Hero() {
           </div>
 
           {/* Main Content Area */}
-          <div className="col-span-12 lg:col-span-11 relative h-[600px] flex items-center justify-center">
+          <div className="col-span-12 lg:col-span-11 relative min-h-[400px] sm:h-[600px] flex items-center justify-center">
             
             {/* Description & CTA - Bottom Right */}
             <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="absolute bottom-0 right-0 md:right-10 z-20 max-w-xs text-right flex flex-col items-end gap-6"
+              className="absolute bottom-10 sm:bottom-0 right-0 sm:right-10 z-20 max-w-xs text-center sm:text-right flex flex-col items-center sm:items-end gap-6"
             >
               <p className="text-sm text-slate-400 leading-relaxed">
                 In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
               </p>
-              <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-6 text-lg">
+              <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 sm:py-6 text-base sm:text-lg">
                 contact us
               </Button>
             </motion.div>

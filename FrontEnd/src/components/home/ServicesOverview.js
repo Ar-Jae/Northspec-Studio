@@ -17,7 +17,7 @@ export default function ServicesOverview() {
             title="Build, integrate, and support"
             description="Three ways we help teams ship and maintain high-quality web products."
           />
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button as="link" href="/services" variant="secondary">
               Explore services
             </Button>
