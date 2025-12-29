@@ -1,14 +1,11 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
-import faqs from "../../content/faqs";
-
-export const metadata = {
-  title: "Pricing",
-  description: "Clear, scalable pricing aligned to the size of your business.",
-};
 
 const pricingPlans = [
   {
@@ -85,6 +82,25 @@ const pricingPlans = [
 ];
 
 export default function PricingPage() {
+  const [faqs, setFaqs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchFaqs() {
+      try {
+        const res = await fetch("http://localhost:4000/api/content/faqs");
+        if (res.ok) {
+          const data = await res.json();
+          setFaqs(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch FAQs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchFaqs();
+  }, []);
   return (
     <div className="bg-brand-dark min-h-screen">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -203,11 +219,14 @@ export default function PricingPage() {
             </FadeIn>
             <StaggerContainer className="mt-12 grid gap-8 lg:grid-cols-2">
               {faqs.map((faq) => (
-                <StaggerItem key={faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <StaggerItem key={faq._id || faq.question} className="rounded-2xl border border-white/10 bg-white/5 p-6">
                   <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
                   <p className="mt-3 text-sm text-slate-400 leading-relaxed">{faq.answer}</p>
                 </StaggerItem>
               ))}
+              {faqs.length === 0 && !loading && (
+                <p className="text-center text-gray-400 col-span-2">No FAQs found.</p>
+              )}
             </StaggerContainer>
           </div>
 

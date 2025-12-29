@@ -9,7 +9,12 @@ const campaignsController = require('./controller/Campaigns');
 const nocoDBController = require('./controller/NocoDB');
 const financeController = require('./controller/Finance');
 const plaidController = require('./controller/Plaid');
+const dashboardController = require('./controller/Dashboard');
+const contentController = require('./controller/Content');
+const documentsController = require('./controller/Documents');
 const campaignScheduler = require('./services/campaignScheduler');
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -23,113 +28,42 @@ campaignScheduler.start();
 app.use(cors());
 app.use(express.json());
 
-// Mock Data
-const leads = [
-  {
-    id: 1,
-    name: "Mr. Johnson",
-    property: "Downtown Apartment",
-    stage: "Negotiation",
-    stageTone: "amber",
-    value: 320000,
-    createdAt: new Date(new Date().setMonth(new Date().getMonth() - 1)).toISOString(), // 1 month ago
-    lastActivity: "Aug 22 - Sent Brochure"
-  },
-  {
-    id: 2,
-    name: "Jonathan Weak",
-    property: "Lakeside Villa",
-    stage: "Contacted",
-    stageTone: "green",
-    value: 560000,
-    createdAt: new Date().toISOString(),
-    lastActivity: "Aug 20 - Call"
-  },
-  {
-    id: 3,
-    name: "Sarah Connor",
-    property: "Suburban House",
-    stage: "New",
-    stageTone: "sky",
-    value: 250000,
-    createdAt: new Date().toISOString(),
-    lastActivity: "Aug 19 - Added Lead"
-  },
-  {
-    id: 4,
-    name: "Michael Smith",
-    property: "City Loft",
-    stage: "Closed",
-    stageTone: "emerald",
-    value: 450000,
-    createdAt: new Date(new Date().setMonth(new Date().getMonth() - 2)).toISOString(),
-    lastActivity: "Aug 15 - Signed"
-  },
-  {
-    id: 5,
-    name: "Emily Davis",
-    property: "Beach House",
-    stage: "Negotiation",
-    stageTone: "amber",
-    value: 750000,
-    createdAt: new Date().toISOString(),
-    lastActivity: "Aug 18 - Meeting"
-  },
-  {
-    id: 6,
-    name: "David Wilson",
-    property: "Mountain Cabin",
-    stage: "New",
-    stageTone: "sky",
-    value: 180000,
-    createdAt: new Date().toISOString(),
-    lastActivity: "Today - Inquiry"
-  }
-];
-
-const news = [
-  {
-    id: 1,
-    title: "Follow up with Mr. Johnson",
-    subtitle: "Interested 3BHK Flat at Banani",
-    author: "Lisa Wong",
-    time: "12:30 pm"
-  },
-  {
-    id: 2,
-    title: "New lead added",
-    subtitle: "Lisa Wong",
-    author: "System",
-    time: "12:32 pm"
-  },
-  {
-    id: 3,
-    title: "Quarterly Review",
-    subtitle: "Meeting with the sales team",
-    author: "Management",
-    time: "10:00 am"
-  },
-  {
-    id: 4,
-    title: "System Maintenance",
-    subtitle: "Scheduled for tonight",
-    author: "IT Dept",
-    time: "09:00 am"
-  }
-];
-
 // Routes
 app.get('/', (req, res) => {
   res.send('Northspec Studio Backend is running');
 });
 
-app.get('/api/leads', (req, res) => {
-  res.json({ leads });
-});
+// Dashboard Routes
+app.get('/api/dashboard/leads', dashboardController.getLeads);
+app.post('/api/dashboard/leads', dashboardController.createLead);
+app.get('/api/dashboard/activities', dashboardController.getActivities);
+app.post('/api/dashboard/activities', dashboardController.createActivity);
+app.get('/api/dashboard/files', dashboardController.getFiles);
+app.post('/api/dashboard/files', dashboardController.createFile);
+app.get('/api/dashboard/targets', dashboardController.getTargets);
+app.post('/api/dashboard/targets', dashboardController.createTarget);
+app.get('/api/dashboard/budgets', dashboardController.getBudgets);
+app.post('/api/dashboard/budgets', dashboardController.createBudget);
+app.get('/api/dashboard/users', dashboardController.getUsers);
 
-app.get('/api/news', (req, res) => {
-  res.json({ items: news });
-});
+// Document Routes (Google Drive)
+app.get('/api/documents', documentsController.getDocuments);
+app.post('/api/documents/upload', upload.single('file'), documentsController.uploadDocument);
+app.delete('/api/documents/:id', documentsController.deleteDocument);
+app.get('/api/documents/shared-drives', documentsController.getSharedDrives);
+app.post('/api/documents/shared-drives', documentsController.createSharedDrive);
+
+// Content Routes
+app.get('/api/content/news', contentController.getAllNews);
+app.post('/api/content/news', contentController.createNews);
+app.get('/api/content/services', contentController.getAllServices);
+app.post('/api/content/services', contentController.createService);
+app.get('/api/content/testimonials', contentController.getAllTestimonials);
+app.post('/api/content/testimonials', contentController.createTestimonial);
+app.get('/api/content/case-studies', contentController.getAllCaseStudies);
+app.post('/api/content/case-studies', contentController.createCaseStudy);
+app.get('/api/content/faqs', contentController.getAllFAQs);
+app.post('/api/content/faqs', contentController.createFAQ);
 
 // Prospects Routes
 app.post('/api/prospects/scan', prospectsController.scanProspects);

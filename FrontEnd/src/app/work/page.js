@@ -1,22 +1,32 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import CaseStudyCard from "../../components/work/CaseStudyCard";
-import caseStudies from "../../content/caseStudies";
 import FadeIn from "../../components/animations/FadeIn";
 
-export const metadata = {
-  title: "Work",
-  description:
-    "A selection of projects across e-commerce, B2B SaaS, and performance-focused support work.",
-  openGraph: {
-    title: "Work",
-    description:
-      "A selection of projects across e-commerce, B2B SaaS, and performance-focused support work.",
-    url: "/work",
-  },
-};
-
 export default function WorkPage() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("http://localhost:4000/api/content/case-studies");
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+        }
+      } catch (error) {
+        console.error("Failed to fetch case studies:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="bg-brand-dark">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -28,9 +38,12 @@ export default function WorkPage() {
           />
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {caseStudies.map((study) => (
-              <CaseStudyCard key={study.id} study={study} compact />
+            {data.map((study) => (
+              <CaseStudyCard key={study._id || study.id} study={study} compact />
             ))}
+            {data.length === 0 && !loading && (
+              <p className="text-gray-400">No case studies found.</p>
+            )}
           </div>
         </FadeIn>
       </Container>

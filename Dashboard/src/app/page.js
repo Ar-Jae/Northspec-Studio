@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("Overview");
+  const [activities, setActivities] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [leads, setLeads] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   const tabs = ["Overview", "Targets", "Budget", "Users", "Files", "Activity", "Settings"];
   
@@ -17,29 +21,38 @@ export default function Dashboard() {
     { day: "Sa", date: 28 },
   ];
 
-  const activities = [
-    { id: 1, icon: "🐛", text: "You have a bug that needs to be fixed.", time: "Just now" },
-    { id: 2, icon: "🚀", text: "Released a new version", time: "59 minutes ago" },
-    { id: 3, icon: "📝", text: "Submitted a bug", time: "12 hours ago" },
-    { id: 4, icon: "✏️", text: "Modified A data in Page X", time: "Today, 11:59 AM" },
-    { id: 5, icon: "🗑️", text: "Deleted a page in Project X", time: "Feb 2, 2024" },
-  ];
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [activitiesRes, filesRes, leadsRes] = await Promise.all([
+          fetch("http://localhost:4000/api/dashboard/activities"),
+          fetch("http://localhost:4000/api/dashboard/files"),
+          fetch("http://localhost:4000/api/dashboard/leads")
+        ]);
 
-  const files = [
-    { id: 1, name: "Project tech requirements.pdf", size: "5.6 MB", date: "Just now", author: "Karina Clark" },
-    { id: 2, name: "Dashboard-design.jpg", size: "2.3 MB", date: "59 minutes ago", author: "Marcus Blake" },
-    { id: 3, name: "Completed Project Stylings.pdf", size: "4.6 MB", date: "12 hours ago", author: "Terry Barry" },
-    { id: 4, name: "Create Project Wireframes.xls", size: "1.2 MB", date: "Today, 11:59 AM", author: "Roth Bloom" },
-    { id: 5, name: "Project tech requirements.pdf", size: "2.8 MB", date: "Yesterday", author: "Natali Craig" },
-  ];
+        if (activitiesRes.ok) {
+          const data = await activitiesRes.json();
+          setActivities(Array.isArray(data) ? data : (data.activities || []));
+        }
 
-  const spendings = [
-    { id: 1, manager: "Guy Hawkins", avatar: "https://i.pravatar.cc/150?u=guy", date: "Jun 24, 2024", amount: "$942.00", status: "In Progress", statusColor: "text-blue-500" },
-    { id: 2, manager: "Wade Warren", avatar: "https://i.pravatar.cc/150?u=wade", date: "Mar 10, 2024", amount: "$881.00", status: "Complete", statusColor: "text-green-500" },
-    { id: 3, manager: "Albert Flores", avatar: "https://i.pravatar.cc/150?u=albert", date: "Nov 10, 2024", amount: "$409.00", status: "Pending", statusColor: "text-yellow-500" },
-    { id: 4, manager: "Robert Fox", avatar: "https://i.pravatar.cc/150?u=robert", date: "Dec 20, 2024", amount: "$953.00", status: "Approved", statusColor: "text-green-500" },
-    { id: 5, manager: "Darlene Robertson", avatar: "https://i.pravatar.cc/150?u=darlene", date: "Jul 25, 2024", amount: "$907.00", status: "Rejected", statusColor: "text-gray-500" },
-  ];
+        if (filesRes.ok) {
+          const data = await filesRes.json();
+          setFiles(Array.isArray(data) ? data : (data.files || []));
+        }
+
+        if (leadsRes.ok) {
+          const data = await leadsRes.json();
+          setLeads(Array.isArray(data) ? data : (data.leads || []));
+        }
+      } catch (error) {
+        console.error("Failed to fetch dashboard data:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
 
   return (
     <div className="flex flex-col h-screen">
@@ -192,7 +205,7 @@ export default function Dashboard() {
             {/* Activity List */}
             <div className="space-y-4">
               {activities.map((activity) => (
-                <div key={activity.id} className="flex items-start gap-3">
+                <div key={activity._id} className="flex items-start gap-3">
                   <span className="text-xl">{activity.icon}</span>
                   <div>
                     <p className="text-sm text-gray-700">{activity.text}</p>
@@ -200,6 +213,9 @@ export default function Dashboard() {
                   </div>
                 </div>
               ))}
+              {activities.length === 0 && !loading && (
+                <p className="text-sm text-gray-400 text-center py-4">No recent activity</p>
+              )}
             </div>
           </div>
 
@@ -208,7 +224,7 @@ export default function Dashboard() {
             <h2 className="mb-4 text-lg font-semibold text-gray-900">Latest Files</h2>
             <div className="space-y-3">
               {files.map((file) => (
-                <div key={file.id} className="flex items-center justify-between rounded-lg p-2 hover:bg-gray-50">
+                <div key={file._id} className="flex items-center justify-between rounded-lg p-2 hover:bg-gray-50">
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50">
                       <svg className="h-5 w-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -217,7 +233,7 @@ export default function Dashboard() {
                     </div>
                     <div>
                       <p className="text-sm font-medium text-gray-900">{file.name}</p>
-                      <p className="text-xs text-gray-400">{file.size} / {file.date} / {file.author}</p>
+                      <p className="text-xs text-gray-400">{file.size} / {file.author}</p>
                     </div>
                   </div>
                   <button className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600">
@@ -227,6 +243,9 @@ export default function Dashboard() {
                   </button>
                 </div>
               ))}
+              {files.length === 0 && !loading && (
+                <p className="text-sm text-gray-400 text-center py-4">No files uploaded</p>
+              )}
             </div>
             <div className="mt-4 rounded-xl border-2 border-dashed border-gray-200 p-4 text-center">
               <p className="text-sm text-gray-400">Drop files here or upload files</p>
@@ -237,34 +256,41 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Project Spendings */}
+        {/* Recent Leads */}
         <div className="mt-6 rounded-2xl border border-gray-200 p-5">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">Project Spendings</h2>
+          <h2 className="mb-4 text-lg font-semibold text-gray-900">Recent Leads</h2>
           <table className="w-full">
             <thead>
               <tr className="text-left text-sm text-gray-500">
-                <th className="pb-3 font-medium">Manager</th>
-                <th className="pb-3 font-medium">Date</th>
-                <th className="pb-3 font-medium">Amount</th>
+                <th className="pb-3 font-medium">Lead Name</th>
+                <th className="pb-3 font-medium">Property/Project</th>
+                <th className="pb-3 font-medium">Value</th>
                 <th className="pb-3 font-medium">Status</th>
               </tr>
             </thead>
             <tbody className="text-sm">
-              {spendings.map((item) => (
-                <tr key={item.id} className="border-t border-gray-100">
+              {leads.map((item) => (
+                <tr key={item._id} className="border-t border-gray-100">
                   <td className="py-3">
                     <div className="flex items-center gap-3">
-                      <img src={item.avatar} className="h-8 w-8 rounded-full" alt={item.manager} />
-                      <span className="font-medium text-gray-900">{item.manager}</span>
+                      <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-500">
+                        {(item.name || "?").charAt(0)}
+                      </div>
+                      <span className="font-medium text-gray-900">{item.name || "Unknown"}</span>
                     </div>
                   </td>
-                  <td className="py-3 text-gray-600">{item.date}</td>
-                  <td className="py-3 font-medium text-gray-900">{item.amount}</td>
+                  <td className="py-3 text-gray-600">{item.property}</td>
+                  <td className="py-3 font-medium text-gray-900">${item.value.toLocaleString()}</td>
                   <td className="py-3">
-                    <span className={`font-medium ${item.statusColor}`}>• {item.status}</span>
+                    <span className={`font-medium text-${item.stageTone}-500`}>• {item.stage}</span>
                   </td>
                 </tr>
               ))}
+              {leads.length === 0 && !loading && (
+                <tr>
+                  <td colSpan="4" className="py-8 text-center text-gray-400">No leads found</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

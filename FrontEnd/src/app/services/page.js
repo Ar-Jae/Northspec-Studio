@@ -1,22 +1,32 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
-import services from "../../content/services";
 import FadeIn from "../../components/animations/FadeIn";
 
-export const metadata = {
-  title: "Services",
-  description:
-    "Web development, software engineering, and product support, defined clearly and delivered to spec.",
-  openGraph: {
-    title: "Services",
-    description:
-      "Web development, software engineering, and product support, defined clearly and delivered to spec.",
-    url: "/services",
-  },
-};
-
 export default function ServicesPage() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("http://localhost:4000/api/content/services");
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+        }
+      } catch (error) {
+        console.error("Failed to fetch services:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="bg-brand-dark">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -28,9 +38,9 @@ export default function ServicesPage() {
           />
 
           <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {services.map((service) => (
+            {data.map((service) => (
               <section
-                key={service.title}
+                key={service._id || service.title}
                 className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
                 aria-labelledby={`${service.title}-title`}
               >
@@ -51,6 +61,9 @@ export default function ServicesPage() {
                 </ul>
               </section>
             ))}
+            {data.length === 0 && !loading && (
+              <p className="text-gray-400">No services found.</p>
+            )}
           </div>
 
           <div className="mt-12 rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">

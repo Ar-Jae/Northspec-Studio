@@ -1,13 +1,33 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Container from "../Container";
 import SectionHeading from "../SectionHeading";
 import Button from "../Button";
-import services from "../../content/services";
 import { StaggerContainer, StaggerItem } from "../animations/Stagger";
 
 export default function ServicesOverview() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("http://localhost:4000/api/content/services");
+        if (res.ok) {
+          const json = await res.json();
+          setData(json);
+        }
+      } catch (error) {
+        console.error("Failed to fetch services:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <section className="bg-brand-dark">
       <Container className="py-16 sm:py-20">
@@ -28,8 +48,8 @@ export default function ServicesOverview() {
         </div>
 
         <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-3">
-          {services.map((service) => (
-            <StaggerItem key={service.title}>
+          {data.map((service) => (
+            <StaggerItem key={service._id || service.title}>
               <motion.div
                 whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
                 transition={{ duration: 0.2 }}
@@ -50,6 +70,9 @@ export default function ServicesOverview() {
               </motion.div>
             </StaggerItem>
           ))}
+          {data.length === 0 && !loading && (
+            <p className="text-gray-400">No services found.</p>
+          )}
         </StaggerContainer>
       </Container>
     </section>
