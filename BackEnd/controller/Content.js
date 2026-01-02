@@ -14,6 +14,16 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
+exports.getServiceBySlug = async (req, res) => {
+  try {
+    const service = await Service.findOne({ slug: req.params.slug });
+    if (!service) return res.status(404).json({ message: 'Service not found' });
+    res.json(service);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.createService = async (req, res) => {
   try {
     const service = new Service(req.body);
@@ -49,6 +59,16 @@ exports.getAllCaseStudies = async (req, res) => {
   try {
     const caseStudies = await CaseStudy.find().sort({ createdAt: -1 });
     res.json(caseStudies);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCaseStudyBySlug = async (req, res) => {
+  try {
+    const caseStudy = await CaseStudy.findOne({ slug: req.params.slug });
+    if (!caseStudy) return res.status(404).json({ message: 'Case study not found' });
+    res.json(caseStudy);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

@@ -43,7 +43,7 @@ export default function ProcessPage() {
           />
 
           {/* How Timelines Work */}
-          <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
+          <div id="how-it-works" className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm scroll-mt-32">
             <h2 className="text-2xl font-semibold text-white font-serif">How Timelines Work</h2>
             <p className="mt-4 text-slate-300 max-w-3xl">
               Our delivery timelines are designed to prioritize reliability over rush. We leave space for real testing, account for feedback cycles, and avoid burnout that leads to compromised quality.
@@ -100,19 +100,25 @@ export default function ProcessPage() {
           <div className="mt-24">
             <h2 className="text-3xl font-semibold text-white font-serif text-center">The Lifecycle of a Build</h2>
             <div className="mt-16 space-y-12">
-              {steps.map((step, index) => (
-                <div key={step.title} className="relative pl-12 md:pl-0">
-                  <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
-                    <div className="md:col-span-1 md:text-right">
-                      <span className="text-5xl font-bold text-white/10 font-serif">0{index + 1}</span>
-                    </div>
-                    <div className="md:col-span-4 pt-2">
-                      <h3 className="text-xl font-semibold text-white font-serif">{step.title}</h3>
-                      <p className="mt-3 text-slate-400 max-w-3xl leading-relaxed">{step.description}</p>
+              {steps.map((step, index) => {
+                const slug = step.title.toLowerCase().split(' ')[0];
+                const id = slug === 'discovery' ? 'discovery' : 
+                           slug === 'iterative' ? 'development' : 
+                           slug === 'deployment' ? 'delivery' : slug;
+                return (
+                  <div key={step.title} id={id} className="relative pl-12 md:pl-0 scroll-mt-32">
+                    <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
+                      <div className="md:col-span-1 md:text-right">
+                        <span className="text-5xl font-bold text-white/10 font-serif">0{index + 1}</span>
+                      </div>
+                      <div className="md:col-span-4 pt-2">
+                        <h3 className="text-xl font-semibold text-white font-serif">{step.title}</h3>
+                        <p className="mt-3 text-slate-400 max-w-3xl leading-relaxed">{step.description}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 

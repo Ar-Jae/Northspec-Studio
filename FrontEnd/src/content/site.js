@@ -6,12 +6,60 @@ const site = {
   url: "https://northspecstudio.com",
   nav: [
     { label: "Home", href: "/" },
-    { label: "Services", href: "/services" },
-    { label: "Pricing", href: "/pricing" },
-    { label: "Process", href: "/process" },
-    { label: "Work", href: "/work" },
-    { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+    { 
+      label: "Services", 
+      href: "/services",
+      children: [
+        { label: "Software Development", href: "/services/software-development" },
+        { label: "Workflow Automation", href: "/services/workflow-automation" },
+        { label: "Integrations", href: "/services/integrations" },
+        { label: "Maintenance & Support", href: "/services/maintenance-support" },
+      ]
+    },
+    { 
+      label: "Pricing", 
+      href: "/pricing",
+      children: [
+        { label: "All Pricing", href: "/pricing" },
+        { label: "Retainers", href: "/retainers" },
+        { label: "Custom Plans", href: "/services/custom-plans" },
+      ]
+    },
+    { 
+      label: "Process", 
+      href: "/process",
+      children: [
+        { label: "How It Works", href: "/process/how-it-works" },
+        { label: "Discovery", href: "/process/discovery" },
+        { label: "Development", href: "/process/development" },
+        { label: "Delivery", href: "/process/delivery" },
+      ]
+    },
+    { 
+      label: "Work", 
+      href: "/work",
+      children: [
+        { label: "Case Studies", href: "/work/case-studies" },
+        { label: "Testimonials", href: "/work/testimonials" },
+      ]
+    },
+    { 
+      label: "About", 
+      href: "/about",
+      children: [
+        { label: "About Us", href: "/about" },
+        { label: "Why Northspec", href: "/about/why-northspec" },
+      ]
+    },
+    { 
+      label: "Contact", 
+      href: "/contact",
+      children: [
+        { label: "Contact Form", href: "/contact" },
+        { label: "Careers", href: "/about/careers" },
+        { label: "Support", href: "/contact/support" },
+      ]
+    },
   ],
   contact: {
     email: "hello@northspecstudio.com",

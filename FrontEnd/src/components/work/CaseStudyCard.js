@@ -1,13 +1,15 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export default function CaseStudyCard({ study, compact = false }) {
   return (
-    <motion.article
-      whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+    <Link href={`/work/${study.slug}`}>
+      <motion.article
+        whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
       className={cn(
         "group overflow-hidden rounded-2xl border border-white/10 bg-white/5",
@@ -60,5 +62,6 @@ export default function CaseStudyCard({ study, compact = false }) {
         </div>
       </div>
     </motion.article>
+    </Link>
   );
 }

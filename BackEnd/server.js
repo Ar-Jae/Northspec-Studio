@@ -12,6 +12,7 @@ const plaidController = require('./controller/Plaid');
 const dashboardController = require('./controller/Dashboard');
 const contentController = require('./controller/Content');
 const documentsController = require('./controller/Documents');
+const jobApplicationsController = require('./controller/JobApplications');
 const campaignScheduler = require('./services/campaignScheduler');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
@@ -57,10 +58,12 @@ app.post('/api/documents/shared-drives', documentsController.createSharedDrive);
 app.get('/api/content/news', contentController.getAllNews);
 app.post('/api/content/news', contentController.createNews);
 app.get('/api/content/services', contentController.getAllServices);
+app.get('/api/content/services/:slug', contentController.getServiceBySlug);
 app.post('/api/content/services', contentController.createService);
 app.get('/api/content/testimonials', contentController.getAllTestimonials);
 app.post('/api/content/testimonials', contentController.createTestimonial);
 app.get('/api/content/case-studies', contentController.getAllCaseStudies);
+app.get('/api/content/case-studies/:slug', contentController.getCaseStudyBySlug);
 app.post('/api/content/case-studies', contentController.createCaseStudy);
 app.get('/api/content/faqs', contentController.getAllFAQs);
 app.post('/api/content/faqs', contentController.createFAQ);
@@ -103,6 +106,10 @@ app.get('/api/contacts', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// Job Application Routes
+app.post('/api/job-applications', jobApplicationsController.createApplication);
+app.get('/api/job-applications', jobApplicationsController.getApplications);
 
 // =====================
 // Campaign Routes

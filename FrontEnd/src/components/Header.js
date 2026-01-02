@@ -3,19 +3,84 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Container from "./Container";
 import Logo from "./Logo";
 import Button from "./Button";
 import { cn } from "../lib/utils";
 import site from "../content/site";
 
+function NavLink({ item, pathname }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+
+  return (
+    <li 
+      className="relative group"
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
+      <Link
+        href={item.href}
+        className={cn(
+          "px-5 py-2 text-sm font-medium rounded-full transition-all flex items-center gap-1",
+          isActive 
+            ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20" 
+            : "text-slate-300 hover:text-white hover:bg-white/10"
+        )}
+      >
+        {item.label}
+        {item.children && (
+          <svg 
+            className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        )}
+      </Link>
+
+      {item.children && (
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.2 }}
+              className="absolute left-0 mt-2 w-56 rounded-2xl bg-brand-dark/90 backdrop-blur-xl border border-white/10 p-2 shadow-2xl"
+            >
+              <ul className="flex flex-col gap-1">
+                {item.children.map((child) => (
+                  <li key={child.href}>
+                    <Link
+                      href={child.href}
+                      className="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                    >
+                      {child.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
+    </li>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [expandedMobileItem, setExpandedMobileItem] = useState(null);
   const panelId = useId();
 
   useEffect(() => {
     setMobileOpen(false);
+    setExpandedMobileItem(null);
   }, [pathname]);
 
   const navLinks = useMemo(() => site.nav, []);
@@ -29,26 +94,9 @@ export default function Header() {
 
         <nav className="hidden md:block absolute left-1/2 -translate-x-1/2" aria-label="Primary">
           <ul className="flex items-center gap-1 rounded-full bg-white/5 p-1 backdrop-blur-md border border-white/10">
-            {navLinks.map((item) => {
-              const isActive =
-                item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
-
-              return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className={cn(
-                      "px-5 py-2 text-sm font-medium rounded-full transition-all",
-                      isActive 
-                        ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20" 
-                        : "text-slate-300 hover:text-white hover:bg-white/10"
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              );
-            })}
+            {navLinks.map((item) => (
+              <NavLink key={item.href} item={item} pathname={pathname} />
+            ))}
           </ul>
         </nav>
 
@@ -75,7 +123,7 @@ export default function Header() {
       <div
         id={panelId}
         className={cn(
-          "md:hidden fixed inset-0 top-24 z-40 bg-brand-dark/95 backdrop-blur-xl",
+          "md:hidden fixed inset-0 top-24 z-40 bg-brand-dark/95 backdrop-blur-xl overflow-y-auto",
           mobileOpen ? "block" : "hidden"
         )}
       >
@@ -85,17 +133,52 @@ export default function Header() {
               {navLinks.map((item) => {
                 const isActive =
                   item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+                const hasChildren = item.children && item.children.length > 0;
+                const isExpanded = expandedMobileItem === item.label;
+
                 return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "block rounded-lg px-3 py-2 text-sm font-medium",
-                        isActive ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"
+                  <li key={item.href} className="flex flex-col">
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        className={cn(
+                          "flex-grow rounded-lg px-3 py-2 text-sm font-medium",
+                          isActive ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                      {hasChildren && (
+                        <button
+                          onClick={() => setExpandedMobileItem(isExpanded ? null : item.label)}
+                          className="p-2 text-slate-400 hover:text-white"
+                        >
+                          <svg 
+                            className={cn("w-5 h-5 transition-transform", isExpanded && "rotate-180")} 
+                            fill="none" 
+                            viewBox="0 0 24 24" 
+                            stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </button>
                       )}
-                    >
-                      {item.label}
-                    </Link>
+                    </div>
+                    
+                    {hasChildren && isExpanded && (
+                      <ul className="ml-4 mt-1 flex flex-col gap-1 border-l border-white/10 pl-4">
+                        {item.children.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              className="block rounded-lg px-3 py-2 text-sm text-slate-400 hover:text-white hover:bg-white/5"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 );
               })}
