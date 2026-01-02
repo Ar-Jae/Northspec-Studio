@@ -1,87 +1,78 @@
 # Northspec Studio
 
-This repository contains the source code for the Northspec Studio project, organized into three main components: a backend API, a public frontend website, and an internal dashboard.
+Northspec Studio is a high-end engineering partner specializing in durable software, workflow automation, and senior-level execution. This repository contains the complete ecosystem: a public-facing website, an internal administration dashboard, and a robust backend API.
 
 ## Project Structure
 
-The project is divided into the following directories:
+The project is organized into three primary components:
 
-- **BackEnd/**: A Node.js and Express-based REST API that powers the application's data management.
-- **FrontEnd/**: A Next.js (v15) application serving as the public-facing website.
-- **Dashboard/**: A Next.js (v16) application serving as the internal administration dashboard.
+- **[FrontEnd/](FrontEnd/)**: Public website built with **Next.js 15**, **React 19**, and **Framer Motion**. Features a premium, animated UI and a functional recruitment portal.
+- **[BackEnd/](BackEnd/)**: **Node.js** & **Express** REST API. Manages data for contacts, job applications, prospects, and integrations (Plaid, Google Drive, n8n).
+- **[Dashboard/](Dashboard/)**: Internal administration tool built with **Next.js 16**. Used for managing leads, finances, and project workflows.
+
+## Tech Stack
+
+### Frontend & Dashboard
+- **Framework**: Next.js (15/16) with App Router
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **State Management**: React Context API
+- **Integrations**: Plaid Link, Google Drive API
+
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB Atlas (via Mongoose)
+- **Automation**: n8n (Workflow integration)
+- **File Handling**: Multer
+
+## Key Features
+
+- **Premium UI/UX**: Staggered animations and glassmorphism design language.
+- **Recruitment Pipeline**: Functional careers page with automated job application storage.
+- **Workflow Automation**: Deep integration with n8n for business process automation.
+- **Financial Integration**: Plaid-powered account and invoice management.
+- **Lead Management**: Automated prospect enrichment and contact routing.
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (Latest LTS version recommended)
-- [MongoDB](https://www.mongodb.com/) (Ensure you have a running instance or connection string)
+- **Node.js**: v20+ recommended
+- **MongoDB**: Connection string for MongoDB Atlas or local instance
+- **Environment Variables**: Each directory requires its own `.env` file.
 
 ### Installation
 
-Navigate to each directory and install the dependencies:
+```bash
+# Install all dependencies
+cd BackEnd && npm install
+cd ../FrontEnd && npm install
+cd ../Dashboard && npm install
+```
 
-#### Backend
+### Running the Applications
+
+You will need three terminal sessions to run the full stack:
+
+#### 1. Backend API (Port 4000)
 ```bash
 cd BackEnd
-npm install
-```
-
-#### Frontend
-```bash
-cd FrontEnd
-npm install
-```
-
-#### Dashboard
-```bash
-cd Dashboard
-npm install
-```
-
-## Running the Applications
-
-You will need to run each component in a separate terminal window.
-
-### Backend API
-
-To start the backend server:
-
-```bash
-cd BackEnd
-# Run in development mode (with watch)
 npm run dev
-
-# Or run in production mode
-npm start
 ```
 
-The server typically runs on port `4000` (check `server.js` or `.env` configuration).
-
-### Frontend Website
-
-To start the public website:
-
+#### 2. Public Website (Port 3000)
 ```bash
 cd FrontEnd
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`.
-
-### Dashboard
-
-To start the dashboard application:
-
+#### 3. Admin Dashboard (Port 3001)
 ```bash
 cd Dashboard
 npm run dev
 ```
 
-The dashboard will be available at `http://localhost:3000` (Note: If running simultaneously with the Frontend, Next.js will usually prompt to use a different port, e.g., `3001`).
+## License
 
-## Configuration
-
-Ensure you have the necessary environment variables set up for each component.
-- **BackEnd**: Check for a `.env` file or create one based on requirements (DB connection, etc.).
-- **FrontEnd/Dashboard**: Check `next.config.js` or `.env.local` files for configuration.
+© 2026 Northspec Studio. All rights reserved.
