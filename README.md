@@ -1,4 +1,4 @@
-# Northspec Studio
+# <img src="FrontEnd/public/images/logo.png" width="48" height="48" align="center" /> Northspec Studio
 
 Northspec Studio is a high-end engineering partner specializing in durable software, workflow automation, and senior-level execution. This repository contains the complete ecosystem: a public-facing website, an internal administration dashboard, and a robust backend API.
 

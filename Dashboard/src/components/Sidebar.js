@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -13,6 +14,19 @@ export default function Sidebar() {
 
   return (
     <aside className="flex h-screen w-64 flex-col bg-[#1a2e1a] text-gray-300 rounded-3xl m-3">
+      {/* Logo */}
+      <div className="flex items-center gap-3 p-5 border-b border-white/10">
+        <div className="h-10 w-10 overflow-hidden rounded-lg relative">
+          <Image
+            src="/images/logo.png"
+            alt="Northspec Studio Logo"
+            fill
+            className="object-contain"
+          />
+        </div>
+        <span className="text-lg font-bold text-white tracking-tight">Northspec</span>
+      </div>
+
       {/* User Profile */}
       <div className="flex items-center gap-3 p-5">
         <div className="h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-amber-400 to-orange-500">

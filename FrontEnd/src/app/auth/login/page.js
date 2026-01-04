@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Container from "../../../components/Container";
 import Button from "../../../components/Button";
+import LogoIcon from "../../../components/LogoIcon";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -34,6 +36,9 @@ export default function LoginPage() {
       <Container className="w-full max-w-md">
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-8">
+            <Link href="/" className="inline-block mb-6">
+              <LogoIcon className="h-16 w-16 mx-auto" />
+            </Link>
             <h1 className="text-3xl font-serif font-bold text-white mb-2">Admin Login</h1>
             <p className="text-slate-400 text-sm">Access your dashboard</p>
           </div>
