@@ -232,8 +232,8 @@ export default function AboutPage() {
             While we are not currently hiring for full-time roles, we frequently partner with specialized contractors.
           </p>
           <div className="mt-8">
-            <Button as="link" href="/contact" variant="secondary">
-              Get in Touch
+            <Button as="link" href="/contact/careers" variant="secondary">
+              View Openings
             </Button>
           </div>
         </div>

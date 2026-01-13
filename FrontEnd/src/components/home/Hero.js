@@ -7,6 +7,7 @@ import Button from "../Button";
 import StarField from "../animations/StarField";
 import TextReveal from "../animations/TextReveal";
 import FadeIn from "../animations/FadeIn";
+import site from "../../content/site";
 
 export default function Hero() {
   return (
@@ -24,14 +25,6 @@ export default function Hero() {
             Northspec Studio
           </h1>
         </TextReveal>
-        <motion.span 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="absolute right-[5%] sm:right-[10%] top-[55%] sm:top-[50%] text-2xl sm:text-4xl font-light text-white/80 tracking-widest font-serif"
-        >
-          Agency
-        </motion.span>
       </div>
 
       <Container className="relative z-10 h-full flex-1 flex flex-col">
@@ -39,10 +32,16 @@ export default function Hero() {
           
           {/* Left Sidebar - Socials */}
           <div className="hidden lg:flex col-span-1 flex-col gap-6 items-center justify-center h-full">
-            {['IG', 'TW', 'FB', 'LI'].map((social, i) => (
-              <FadeIn key={social} delay={0.8 + (i * 0.1)} direction="right">
-                <a href="#" className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-xs text-white hover:bg-white hover:text-brand-dark transition-colors">
-                  {social}
+            {site.social.map((social, i) => (
+              <FadeIn key={social.label} delay={0.8 + (i * 0.1)} direction="right">
+                <a 
+                  href={social.href} 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-[10px] font-bold text-white hover:bg-white hover:text-brand-dark transition-colors"
+                  title={social.label}
+                >
+                  {social.shortLabel || social.label}
                 </a>
               </FadeIn>
             ))}
@@ -61,8 +60,8 @@ export default function Hero() {
               <p className="text-sm text-slate-400 leading-relaxed">
                 In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
               </p>
-              <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 sm:py-6 text-base sm:text-lg">
-                contact us
+              <Button as="link" href="/services" variant="brand" className="rounded-full px-8 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider">
+                START YOUR JOURNEY
               </Button>
             </motion.div>
 

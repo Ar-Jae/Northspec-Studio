@@ -56,7 +56,7 @@ const site = {
       href: "/contact",
       children: [
         { label: "Contact Form", href: "/contact" },
-        { label: "Careers", href: "/about/careers" },
+        { label: "Careers", href: "/contact/careers" },
         { label: "Support", href: "/contact/support" },
       ]
     },
@@ -73,8 +73,9 @@ const site = {
     },
   },
   social: [
-    { label: "LinkedIn", href: "https://www.linkedin.com" },
-    { label: "GitHub", href: "https://github.com" },
+    { label: "X", shortLabel: "X", href: "https://x.com/NorthspecStudio" },
+    { label: "Instagram", shortLabel: "IG", href: "https://www.instagram.com/northspec_studio/" },
+    { label: "LinkedIn", shortLabel: "LI", href: "https://www.linkedin.com/in/northspec-studio/" },
   ],
   // Calendar booking URL - supports Calendly, Cal.com, or any embeddable calendar
   // Examples:

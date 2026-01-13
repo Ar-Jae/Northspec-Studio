@@ -1,3 +1,6 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import Container from "./Container";
 import Logo from "./Logo";
 import Button from "./Button";
@@ -5,6 +8,12 @@ import site from "../content/site";
 import NewsletterSignup from "./NewsletterSignup";
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === "/") {
+    return null;
+  }
+
   return (
     <footer className="bg-brand-dark">
       {/* CTA Section */}

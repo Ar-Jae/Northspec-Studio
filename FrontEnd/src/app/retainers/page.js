@@ -22,8 +22,9 @@ const retainerPlans = [
       "72-hour response SLA",
     ],
     bestFor: "MVPs • Early teams",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-slate-800/50 bg-slate-900/20",
+    accent: "group-hover:border-slate-400/30",
+    iconColor: "text-slate-400",
   },
   {
     name: "SMB Retainer",
@@ -39,8 +40,9 @@ const retainerPlans = [
       "Priority support (48-hour SLA)",
     ],
     bestFor: "Internal tools • Portals",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-blue-900/20 bg-blue-900/5",
+    accent: "group-hover:border-blue-400/30",
+    iconColor: "text-blue-400",
   },
   {
     name: "Mid-Market",
@@ -58,6 +60,7 @@ const retainerPlans = [
     bestFor: "Scaling SaaS • Ops platforms",
     color: "border-brand-gold/20 bg-brand-gold/5",
     accent: "border-brand-gold/40",
+    iconColor: "text-brand-gold",
     popular: true,
   },
   {
@@ -74,8 +77,9 @@ const retainerPlans = [
       "12–24 hour SLA",
     ],
     bestFor: "Finance • Healthcare • Enterprise",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-purple-900/20 bg-purple-900/5",
+    accent: "group-hover:border-purple-400/30",
+    iconColor: "text-purple-400",
   },
 ];
 
@@ -109,7 +113,7 @@ export default function RetainersPage() {
                   <div className="mb-8">
                     <h3 className="text-xl font-bold text-white font-serif">{plan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-2xl font-bold text-brand-gold">{plan.price}</span>
+                      <span className={`text-2xl font-bold ${plan.iconColor}`}>{plan.price}</span>
                     </div>
                   </div>
                   
@@ -120,7 +124,7 @@ export default function RetainersPage() {
                   <ul className="mb-8 space-y-4">
                     {plan.includes.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-slate-300">
-                        <span className="mt-1 text-brand-gold">
+                        <span className={`mt-1 ${plan.iconColor}`}>
                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>

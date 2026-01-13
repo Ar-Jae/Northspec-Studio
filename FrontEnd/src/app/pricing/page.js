@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
 import { motion } from "framer-motion";
+import localFaqs from "../../content/faqs";
 
 const pricingPlans = [
   {
@@ -23,8 +24,9 @@ const pricingPlans = [
       "Documentation & handoff",
     ],
     bestFor: "MVPs • First launch products",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-slate-800/50 bg-slate-900/20",
+    accent: "group-hover:border-slate-400/30",
+    iconColor: "text-slate-400",
   },
   {
     name: "SMB Plan",
@@ -40,8 +42,9 @@ const pricingPlans = [
       "Documentation & training",
     ],
     bestFor: "Customer portals • Internal tools",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-blue-900/20 bg-blue-900/5",
+    accent: "group-hover:border-blue-400/30",
+    iconColor: "text-blue-400",
   },
   {
     name: "Mid-Market",
@@ -60,6 +63,7 @@ const pricingPlans = [
     bestFor: "Growing SaaS • Ops-heavy businesses",
     color: "border-brand-gold/20 bg-brand-gold/5",
     accent: "border-brand-gold/40",
+    iconColor: "text-brand-gold",
     popular: true,
   },
   {
@@ -78,8 +82,9 @@ const pricingPlans = [
       "Full documentation",
     ],
     bestFor: "Finance • Healthcare • Corporations",
-    color: "border-white/10 bg-white/5",
-    accent: "group-hover:border-brand-gold/30",
+    color: "border-purple-900/20 bg-purple-900/5",
+    accent: "group-hover:border-purple-400/30",
+    iconColor: "text-purple-400",
   },
 ];
 
@@ -88,6 +93,11 @@ const retainerPlans = [
     name: "Maintenance & Support",
     price: "From $1,500/mo",
     description: "Ongoing engineering support to keep your systems secure and fast.",
+    color: "border-cyan-900/20 bg-cyan-900/5",
+    accent: "hover:border-cyan-400/30",
+    iconColor: "text-cyan-400",
+    iconBg: "bg-cyan-400/10",
+    dotColor: "bg-cyan-400",
     bullets: [
       "Security Patches & Updates",
       "Performance Audits",
@@ -99,6 +109,11 @@ const retainerPlans = [
     name: "Custom Plans",
     price: "Custom Quote",
     description: "Tailored engineering partnerships for unique business requirements.",
+    color: "border-rose-900/20 bg-rose-900/5",
+    accent: "hover:border-rose-400/30",
+    iconColor: "text-rose-400",
+    iconBg: "bg-rose-400/10",
+    dotColor: "bg-rose-400",
     bullets: [
       "Dedicated Engineering Teams",
       "Technical Consulting & Strategy",
@@ -118,10 +133,13 @@ export default function PricingPage() {
         const res = await fetch("http://localhost:4000/api/content/faqs");
         if (res.ok) {
           const data = await res.json();
-          setFaqs(data);
+          setFaqs(data.length > 0 ? data : localFaqs);
+        } else {
+          setFaqs(localFaqs);
         }
       } catch (error) {
-        console.error("Failed to fetch FAQs:", error);
+        console.error("Failed to fetch FAQs, using local fallback:", error);
+        setFaqs(localFaqs);
       } finally {
         setLoading(false);
       }
@@ -158,7 +176,7 @@ export default function PricingPage() {
                   <div className="mb-8">
                     <h3 className="text-xl font-bold text-white font-serif">{plan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-2xl font-bold text-brand-gold">{plan.price}</span>
+                      <span className={`text-2xl font-bold ${plan.iconColor}`}>{plan.price}</span>
                     </div>
                     <p className="mt-2 text-xs text-slate-400 font-medium uppercase tracking-wider">{plan.delivery} delivery</p>
                   </div>
@@ -170,7 +188,7 @@ export default function PricingPage() {
                   <ul className="mb-8 space-y-4">
                     {plan.includes.map((item) => (
                       <li key={item} className="flex items-start gap-3 text-sm text-slate-300">
-                        <span className="mt-1 text-brand-gold">
+                        <span className={`mt-1 ${plan.iconColor}`}>
                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
@@ -197,18 +215,18 @@ export default function PricingPage() {
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { title: "n8n Setup", price: "$1,500", desc: "Deployment & Security" },
-                { title: "Simple Workflows", price: "$500 each", desc: "Basic data sync" },
-                { title: "Advanced Workflows", price: "$900 – $1,200", desc: "Complex logic & APIs" },
-                { title: "AI Workflows", price: "$1,500 – $2,500", desc: "LLM integrations" }
+                { title: "n8n Setup", price: "$1,500", desc: "Deployment & Security", color: "hover:border-blue-400/30", iconColor: "text-blue-400" },
+                { title: "Simple Workflows", price: "$500 each", desc: "Basic data sync", color: "hover:border-cyan-400/30", iconColor: "text-cyan-400" },
+                { title: "Advanced Workflows", price: "$900 – $1,200", desc: "Complex logic & APIs", color: "hover:border-brand-gold/30", iconColor: "text-brand-gold" },
+                { title: "AI Workflows", price: "$1,500 – $2,500", desc: "LLM integrations", color: "hover:border-purple-400/30", iconColor: "text-purple-400" }
               ].map((item, i) => (
                 <motion.div 
                   key={i}
                   whileHover={{ y: -5 }}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-gold/30 transition-colors"
+                  className={`rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors ${item.color}`}
                 >
                   <h4 className="font-semibold text-white">{item.title}</h4>
-                  <p className="text-brand-gold font-bold mt-1">{item.price}</p>
+                  <p className={`font-bold mt-1 ${item.iconColor}`}>{item.price}</p>
                   <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
                 </motion.div>
               ))}
@@ -227,14 +245,14 @@ export default function PricingPage() {
                 <motion.div 
                   key={plan.name}
                   whileHover={{ y: -5 }}
-                  className="rounded-3xl border border-white/10 bg-white/5 p-10 hover:border-brand-gold/30 transition-all"
+                  className={`rounded-3xl border p-10 transition-all ${plan.color} ${plan.accent}`}
                 >
                   <div className="flex justify-between items-start mb-6">
                     <div>
                       <h3 className="text-2xl font-bold text-white font-serif">{plan.name}</h3>
-                      <p className="text-brand-gold font-semibold mt-1">{plan.price}</p>
+                      <p className={`font-semibold mt-1 ${plan.iconColor}`}>{plan.price}</p>
                     </div>
-                    <div className="p-3 rounded-2xl bg-brand-gold/10 text-brand-gold">
+                    <div className={`p-3 rounded-2xl ${plan.iconBg} ${plan.iconColor}`}>
                       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                       </svg>
@@ -244,7 +262,7 @@ export default function PricingPage() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     {plan.bullets.map((bullet) => (
                       <div key={bullet} className="flex items-center gap-2 text-sm text-slate-300">
-                        <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
+                        <div className={`w-1.5 h-1.5 rounded-full ${plan.dotColor}`} />
                         {bullet}
                       </div>
                     ))}
