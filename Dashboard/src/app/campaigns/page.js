@@ -84,7 +84,7 @@ export default function CampaignsPage() {
   const getStatusColor = (status) => {
     switch (status) {
       case "active":
-        return "bg-green-500/20 text-green-400";
+        return "bg-brand-gold/20 text-brand-gold";
       case "paused":
         return "bg-yellow-500/20 text-yellow-400";
       case "draft":
@@ -302,7 +302,7 @@ export default function CampaignsPage() {
                   className={`cursor-pointer rounded-xl p-4 transition ${
                     selectedCampaign?._id === campaign._id
                       ? "bg-brand-gold/10 ring-1 ring-brand-gold/50"
-                      : "hover:bg-white/5"
+                      : "hover:bg-brand-gray/5"
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -332,7 +332,7 @@ export default function CampaignsPage() {
                       <div className="text-xs text-gray-500">Sent</div>
                     </div>
                     <div>
-                      <div className="text-sm font-medium text-green-400">{campaign.stats?.totalOpened || 0}</div>
+                      <div className="text-sm font-medium text-brand-gold">{campaign.stats?.totalOpened || 0}</div>
                       <div className="text-xs text-gray-500">Opened</div>
                     </div>
                     <div>
@@ -367,12 +367,12 @@ export default function CampaignsPage() {
                   className={`rounded-lg px-4 py-2 text-sm font-medium transition disabled:opacity-50 ${
                     selectedCampaign.status === "active"
                       ? "bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30"
-                      : "bg-green-500/20 text-green-400 hover:bg-green-500/30"
+                      : "bg-brand-gold/20 text-brand-gold hover:bg-brand-gold/30"
                   }`}
                 >
                   {selectedCampaign.status === "active" ? "Pause" : "Activate"}
                 </button>
-                <button className="rounded-lg bg-white/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-white/10">
+                <button className="rounded-lg bg-brand-gray/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-brand-gray/10">
                   Settings
                 </button>
               </div>
@@ -441,7 +441,7 @@ export default function CampaignsPage() {
                     <div key={sequence._id} className="relative">
                       {/* Timeline connector */}
                       {index < selectedCampaign.sequences.length - 1 && (
-                        <div className="absolute left-6 top-16 h-[calc(100%-2rem)] w-0.5 bg-white/10" />
+                        <div className="absolute left-6 top-16 h-[calc(100%-2rem)] w-0.5 bg-brand-gray/10" />
                       )}
 
                       <div className="flex gap-4">
@@ -462,7 +462,7 @@ export default function CampaignsPage() {
                                   Email {index + 1}
                                 </span>
                                 {index === 0 && (
-                                  <span className="rounded bg-green-500/20 px-2 py-0.5 text-xs text-green-400">
+                                  <span className="rounded bg-brand-gold/20 px-2 py-0.5 text-xs text-brand-gold">
                                     Initial
                                   </span>
                                 )}
@@ -477,7 +477,7 @@ export default function CampaignsPage() {
                             <div className="flex gap-2">
                               <button
                                 onClick={() => openEditSequence(sequence)}
-                                className="rounded-lg p-2 text-gray-400 transition hover:bg-white/5 hover:text-white"
+                                className="rounded-lg p-2 text-gray-400 transition hover:bg-brand-gray/5 hover:text-white"
                               >
                                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -530,7 +530,7 @@ export default function CampaignsPage() {
                       {placeholders.map((p) => (
                         <div
                           key={p.key}
-                          className="group relative rounded-lg bg-white/5 px-3 py-1.5 text-sm text-brand-gold"
+                          className="group relative rounded-lg bg-brand-gray/5 px-3 py-1.5 text-sm text-brand-gold"
                         >
                           {p.key}
                           <div className="absolute bottom-full left-1/2 mb-2 hidden -translate-x-1/2 rounded-lg bg-black px-3 py-1.5 text-xs text-white shadow-lg group-hover:block">
@@ -561,7 +561,7 @@ export default function CampaignsPage() {
                   {(selectedCampaign.recipients?.length || 0) > 0 ? (
                     <div className="rounded-xl bg-[#1e1e1e] ring-1 ring-white/5 overflow-hidden">
                       <table className="w-full">
-                        <thead className="bg-white/5">
+                        <thead className="bg-brand-gray/5">
                           <tr className="text-left text-xs text-gray-400">
                             <th className="px-4 py-3">Name</th>
                             <th className="px-4 py-3">Email</th>
@@ -578,7 +578,7 @@ export default function CampaignsPage() {
                               <td className="px-4 py-3 text-gray-400">{recipient.company || '-'}</td>
                               <td className="px-4 py-3">
                                 <span className={`rounded-full px-2 py-0.5 text-xs capitalize ${
-                                  recipient.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                                  recipient.status === 'completed' ? 'bg-brand-gold/20 text-brand-gold' :
                                   recipient.status === 'active' ? 'bg-blue-500/20 text-blue-400' :
                                   recipient.status === 'replied' ? 'bg-brand-gold/20 text-brand-gold' :
                                   'bg-gray-500/20 text-gray-400'
@@ -642,7 +642,7 @@ export default function CampaignsPage() {
                       </div>
                     </div>
                     <div className="rounded-xl bg-[#1e1e1e] p-4 ring-1 ring-white/5">
-                      <div className="text-2xl font-bold text-green-400">{selectedCampaign.stats?.totalOpened || 0}</div>
+                      <div className="text-2xl font-bold text-brand-gold">{selectedCampaign.stats?.totalOpened || 0}</div>
                       <div className="mt-1 text-sm text-gray-400">Opened</div>
                       <div className="mt-2 text-xs text-gray-500">
                         {(selectedCampaign.stats?.totalSent || 0) > 0
@@ -672,8 +672,8 @@ export default function CampaignsPage() {
                           <span className="text-gray-400">Recipients</span>
                           <span className="text-white">{selectedCampaign.stats?.totalRecipients || 0}</span>
                         </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-white/5">
-                          <div className="h-full w-full bg-white/20" />
+                        <div className="h-2 overflow-hidden rounded-full bg-brand-gray/5">
+                          <div className="h-full w-full bg-brand-gray/20" />
                         </div>
                       </div>
                       <div>
@@ -681,7 +681,7 @@ export default function CampaignsPage() {
                           <span className="text-gray-400">Sent</span>
                           <span className="text-blue-400">{selectedCampaign.stats?.totalSent || 0}</span>
                         </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-white/5">
+                        <div className="h-2 overflow-hidden rounded-full bg-brand-gray/5">
                           <div
                             className="h-full bg-blue-500"
                             style={{
@@ -697,11 +697,11 @@ export default function CampaignsPage() {
                       <div>
                         <div className="mb-1 flex justify-between text-sm">
                           <span className="text-gray-400">Opened</span>
-                          <span className="text-green-400">{selectedCampaign.stats?.totalOpened || 0}</span>
+                          <span className="text-brand-gold">{selectedCampaign.stats?.totalOpened || 0}</span>
                         </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-white/5">
+                        <div className="h-2 overflow-hidden rounded-full bg-brand-gray/5">
                           <div
-                            className="h-full bg-green-500"
+                            className="h-full bg-brand-gold"
                             style={{
                               width: `${
                                 (selectedCampaign.stats?.totalRecipients || 0) > 0
@@ -717,7 +717,7 @@ export default function CampaignsPage() {
                           <span className="text-gray-400">Replied</span>
                           <span className="text-brand-gold">{selectedCampaign.stats?.totalReplied || 0}</span>
                         </div>
-                        <div className="h-2 overflow-hidden rounded-full bg-white/5">
+                        <div className="h-2 overflow-hidden rounded-full bg-brand-gray/5">
                           <div
                             className="h-full bg-brand-gold"
                             style={{
@@ -739,7 +739,7 @@ export default function CampaignsPage() {
                     <div className="space-y-3">
                       {(selectedCampaign.sequences || []).length > 0 ? (
                         selectedCampaign.sequences.map((seq, index) => (
-                          <div key={seq._id} className="flex items-center justify-between rounded-lg bg-white/5 p-3">
+                          <div key={seq._id} className="flex items-center justify-between rounded-lg bg-brand-gray/5 p-3">
                             <div className="flex items-center gap-3">
                               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-gold/20 text-sm font-medium text-brand-gold">
                                 {index + 1}
@@ -753,7 +753,7 @@ export default function CampaignsPage() {
                               <span className="text-blue-400">
                                 {seq.stats?.sent || Math.floor((selectedCampaign.stats?.totalSent || 0) / (index + 1))} sent
                               </span>
-                              <span className="text-green-400">
+                              <span className="text-brand-gold">
                                 {seq.stats?.opened || Math.floor((selectedCampaign.stats?.totalOpened || 0) / (index + 1))} opened
                               </span>
                             </div>
@@ -807,7 +807,7 @@ export default function CampaignsPage() {
               <h2 className="text-lg font-bold text-white">Create New Campaign</h2>
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="rounded-lg p-2 text-gray-400 transition hover:bg-white/5 hover:text-white"
+                className="rounded-lg p-2 text-gray-400 transition hover:bg-brand-gray/5 hover:text-white"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -849,7 +849,7 @@ export default function CampaignsPage() {
             <div className="mt-6 flex justify-end gap-3">
               <button
                 onClick={() => setShowCreateModal(false)}
-                className="rounded-lg bg-white/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-white/10"
+                className="rounded-lg bg-brand-gray/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-brand-gray/10"
               >
                 Cancel
               </button>
@@ -878,7 +878,7 @@ export default function CampaignsPage() {
                   setShowSequenceModal(false);
                   setEditingSequence(null);
                 }}
-                className="rounded-lg p-2 text-gray-400 transition hover:bg-white/5 hover:text-white"
+                className="rounded-lg p-2 text-gray-400 transition hover:bg-brand-gray/5 hover:text-white"
               >
                 <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -926,7 +926,7 @@ export default function CampaignsPage() {
                     onClick={() =>
                       setSequenceForm({ ...sequenceForm, message: sequenceForm.message + p.key })
                     }
-                    className="rounded-lg bg-white/5 px-2 py-1 text-xs text-brand-gold transition hover:bg-white/10"
+                    className="rounded-lg bg-brand-gray/5 px-2 py-1 text-xs text-brand-gold transition hover:bg-brand-gray/10"
                   >
                     {p.key}
                   </button>
@@ -939,7 +939,7 @@ export default function CampaignsPage() {
                   setShowSequenceModal(false);
                   setEditingSequence(null);
                 }}
-                className="rounded-lg bg-white/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-white/10"
+                className="rounded-lg bg-brand-gray/5 px-4 py-2 text-sm font-medium text-white ring-1 ring-white/10 transition hover:bg-brand-gray/10"
               >
                 Cancel
               </button>

@@ -88,7 +88,7 @@ export default function PipelinePage() {
               className="w-64 rounded-lg bg-[#1e1e1e] py-2 pl-10 pr-4 text-sm text-white placeholder-gray-600 outline-none ring-1 ring-white/5 focus:ring-brand-gold/50"
             />
           </div>
-          <button className="rounded-lg bg-white/5 p-2 text-gray-400 hover:bg-white/10 hover:text-white">
+          <button className="rounded-lg bg-brand-gray/5 p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-white">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>
@@ -108,12 +108,12 @@ export default function PipelinePage() {
                 <div className="flex items-center gap-2">
                   <span className={`h-2 w-2 rounded-full ${
                     stage.tone === 'blue' ? 'bg-blue-500' : 
-                    stage.tone === 'green' ? 'bg-green-500' : 
+                    stage.tone === 'green' ? 'bg-brand-gold' : 
                     stage.tone === 'orange' ? 'bg-orange-500' : 
                     'bg-purple-500'
                   }`} />
                   <span className="font-semibold text-white">{stage.name}</span>
-                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-gray-400">
+                  <span className="rounded-full bg-brand-gray/10 px-2 py-0.5 text-xs font-medium text-gray-400">
                     {leads.filter((l) => l.stage === stage.name).length}
                   </span>
                 </div>
@@ -129,7 +129,7 @@ export default function PipelinePage() {
                       className="flex cursor-pointer flex-col gap-3 rounded-xl bg-[#2b2b2b] p-4 shadow-lg ring-1 ring-white/5 transition hover:ring-white/10"
                     >
                       <div className="flex items-start justify-between">
-                        <span className="rounded bg-white/10 px-2 py-1 text-[10px] font-medium text-gray-300">
+                        <span className="rounded bg-brand-gray/10 px-2 py-1 text-[10px] font-medium text-gray-300">
                           {lead.property}
                         </span>
                         <button className="text-gray-500 hover:text-white">•••</button>

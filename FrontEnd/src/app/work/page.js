@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
+import Button from "../../components/Button";
 import CaseStudyCard from "../../components/work/CaseStudyCard";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";

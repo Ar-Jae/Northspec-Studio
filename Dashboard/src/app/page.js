@@ -79,7 +79,7 @@ export default function Dashboard() {
             <input
               type="text"
               placeholder="Search..."
-              className="w-64 rounded-lg bg-white/10 px-4 py-2 pl-10 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+              className="w-64 rounded-lg bg-brand-gray/10 px-4 py-2 pl-10 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
             />
             <svg className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -109,9 +109,9 @@ export default function Dashboard() {
       </header>
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
+      <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
         {/* Secondary Nav */}
-        <div className="mb-6 flex items-center justify-between border-b border-gray-200 pb-4">
+        <div className="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
           <div className="flex gap-6">
             {tabs.map((tab) => (
               <button
@@ -119,8 +119,8 @@ export default function Dashboard() {
                 onClick={() => setActiveTab(tab)}
                 className={`pb-2 text-sm font-medium transition ${
                   activeTab === tab
-                    ? "border-b-2 border-gray-900 text-gray-900"
-                    : "text-gray-500 hover:text-gray-700"
+                    ? "border-b-2 border-gray-900 text-white"
+                    : "text-gray-500 hover:text-gray-300"
                 }`}
               >
                 {tab}
@@ -128,13 +128,13 @@ export default function Dashboard() {
             ))}
           </div>
           <div className="flex items-center gap-3">
-            <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+            <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-white">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
               Add User
             </button>
-            <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900">
+            <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-white">
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
@@ -150,26 +150,26 @@ export default function Dashboard() {
 
         {/* Project Header */}
         <div className="mb-6">
-          <h1 className="mb-4 text-2xl font-semibold text-gray-900">UI Redesign</h1>
+          <h1 className="mb-4 text-2xl font-semibold text-white">UI Redesign</h1>
           <div className="flex items-center gap-8">
             <div>
               <p className="text-xs text-gray-500 mb-1">Status</p>
-              <span className="inline-flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-                <span className="h-2 w-2 rounded-full bg-green-500"></span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-brand-gold/20 px-3 py-1 text-sm font-medium text-brand-gold">
+                <span className="h-2 w-2 rounded-full bg-brand-gold"></span>
                 In Progress 51%
               </span>
             </div>
             <div>
               <p className="text-xs text-gray-500 mb-1">Total Tasks</p>
-              <p className="text-lg font-semibold text-gray-900">15 / 48</p>
+              <p className="text-lg font-semibold text-white">15 / 48</p>
             </div>
             <div>
               <p className="text-xs text-gray-500 mb-1">Due Date</p>
-              <p className="text-lg font-semibold text-gray-900">29 Jan, 2025</p>
+              <p className="text-lg font-semibold text-white">29 Jan, 2025</p>
             </div>
             <div>
               <p className="text-xs text-gray-500 mb-1">Budget Spent</p>
-              <p className="text-lg font-semibold text-gray-900">$15,000</p>
+              <p className="text-lg font-semibold text-white">$15,000</p>
             </div>
             <div className="ml-auto flex items-center">
               <div className="flex -space-x-2">
@@ -184,8 +184,8 @@ export default function Dashboard() {
         {/* Main Grid */}
         <div className="grid grid-cols-2 gap-6">
           {/* What's on the road */}
-          <div className="rounded-2xl border border-gray-200 p-5">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900">What&apos;s on the road?</h2>
+          <div className="rounded-2xl border border-white/5 p-5">
+            <h2 className="mb-4 text-lg font-semibold text-white">What&apos;s on the road?</h2>
             
             {/* Week Calendar */}
             <div className="mb-4 flex gap-2">
@@ -193,7 +193,7 @@ export default function Dashboard() {
                 <div
                   key={idx}
                   className={`flex flex-col items-center rounded-xl px-3 py-2 ${
-                    item.active ? "bg-green-500 text-white" : "text-gray-600"
+                    item.active ? "bg-brand-gold text-white" : "text-gray-600"
                   }`}
                 >
                   <span className="text-xs">{item.day}</span>
@@ -208,7 +208,7 @@ export default function Dashboard() {
                 <div key={activity._id} className="flex items-start gap-3">
                   <span className="text-xl">{activity.icon}</span>
                   <div>
-                    <p className="text-sm text-gray-700">{activity.text}</p>
+                    <p className="text-sm text-gray-300">{activity.text}</p>
                     <p className="text-xs text-gray-400">{activity.time}</p>
                   </div>
                 </div>
@@ -220,8 +220,8 @@ export default function Dashboard() {
           </div>
 
           {/* Latest Files */}
-          <div className="rounded-2xl border border-gray-200 p-5">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900">Latest Files</h2>
+          <div className="rounded-2xl border border-white/5 p-5">
+            <h2 className="mb-4 text-lg font-semibold text-white">Latest Files</h2>
             <div className="space-y-3">
               {files.map((file) => (
                 <div key={file._id} className="flex items-center justify-between rounded-lg p-2 hover:bg-gray-50">
@@ -232,7 +232,7 @@ export default function Dashboard() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{file.name}</p>
+                      <p className="text-sm font-medium text-white">{file.name}</p>
                       <p className="text-xs text-gray-400">{file.size} / {file.author}</p>
                     </div>
                   </div>
@@ -247,9 +247,9 @@ export default function Dashboard() {
                 <p className="text-sm text-gray-400 text-center py-4">No files uploaded</p>
               )}
             </div>
-            <div className="mt-4 rounded-xl border-2 border-dashed border-gray-200 p-4 text-center">
+            <div className="mt-4 rounded-xl border-2 border-dashed border-white/5 p-4 text-center">
               <p className="text-sm text-gray-400">Drop files here or upload files</p>
-              <button className="mt-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200">
+              <button className="mt-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-200">
                 Upload
               </button>
             </div>
@@ -257,8 +257,8 @@ export default function Dashboard() {
         </div>
 
         {/* Recent Leads */}
-        <div className="mt-6 rounded-2xl border border-gray-200 p-5">
-          <h2 className="mb-4 text-lg font-semibold text-gray-900">Recent Leads</h2>
+        <div className="mt-6 rounded-2xl border border-white/5 p-5">
+          <h2 className="mb-4 text-lg font-semibold text-white">Recent Leads</h2>
           <table className="w-full">
             <thead>
               <tr className="text-left text-sm text-gray-500">
@@ -276,11 +276,11 @@ export default function Dashboard() {
                       <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-xs font-bold text-gray-500">
                         {(item.name || "?").charAt(0)}
                       </div>
-                      <span className="font-medium text-gray-900">{item.name || "Unknown"}</span>
+                      <span className="font-medium text-white">{item.name || "Unknown"}</span>
                     </div>
                   </td>
                   <td className="py-3 text-gray-600">{item.property}</td>
-                  <td className="py-3 font-medium text-gray-900">${item.value.toLocaleString()}</td>
+                  <td className="py-3 font-medium text-white">${item.value.toLocaleString()}</td>
                   <td className="py-3">
                     <span className={`font-medium text-${item.stageTone}-500`}>• {item.stage}</span>
                   </td>

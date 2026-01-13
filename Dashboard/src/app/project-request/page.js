@@ -38,7 +38,7 @@ export default function ProjectRequestPage() {
       <div className="flex items-center justify-between rounded-2xl bg-[#2b2b2b] p-4 shadow-lg ring-1 ring-white/5">
         <div className="flex items-center gap-3">
           <h1 className="text-xl font-bold text-white">Project Requests</h1>
-          <span className="rounded-full bg-white/10 px-2 py-1 text-xs text-gray-400">
+          <span className="rounded-full bg-brand-gray/10 px-2 py-1 text-xs text-gray-400">
             {requests.length}
           </span>
         </div>
@@ -55,7 +55,7 @@ export default function ProjectRequestPage() {
               className="w-64 rounded-lg bg-[#1e1e1e] py-2 pl-10 pr-4 text-sm text-white placeholder-gray-600 outline-none ring-1 ring-white/5 focus:ring-brand-gold/50"
             />
           </div>
-          <button className="rounded-lg bg-white/5 p-2 text-gray-400 hover:bg-white/10 hover:text-white">
+          <button className="rounded-lg bg-brand-gray/5 p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-white">
             <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
             </svg>
@@ -69,7 +69,7 @@ export default function ProjectRequestPage() {
           <div className="w-full max-w-2xl rounded-2xl bg-[#2b2b2b] p-6 shadow-2xl ring-1 ring-white/10" onClick={e => e.stopPropagation()}>
             <div className="mb-6 flex items-center justify-between">
               <h2 className="text-xl font-bold text-white">Request Details</h2>
-              <button onClick={() => setSelectedRequest(null)} className="rounded-full p-1 text-gray-400 hover:bg-white/10 hover:text-white">
+              <button onClick={() => setSelectedRequest(null)} className="rounded-full p-1 text-gray-400 hover:bg-brand-gray/10 hover:text-white">
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -171,7 +171,7 @@ export default function ProjectRequestPage() {
               </thead>
               <tbody className="divide-y divide-white/5">
                 {filteredRequests.map((req) => (
-                  <tr key={req._id} className="cursor-pointer transition hover:bg-white/5" onClick={() => setSelectedRequest(req)}>
+                  <tr key={req._id} className="cursor-pointer transition hover:bg-brand-gray/5" onClick={() => setSelectedRequest(req)}>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="h-10 w-10 flex-shrink-0 overflow-hidden rounded-full bg-gray-700">

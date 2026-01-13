@@ -77,13 +77,13 @@ export default function DocumentsPage() {
   };
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
+    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">Documents</h1>
+          <h1 className="text-2xl font-semibold text-white">Documents</h1>
           <p className="text-sm text-gray-500">Manage your Google Drive files</p>
         </div>
-        <label className={`cursor-pointer rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700 ${uploading ? 'opacity-50 pointer-events-none' : ''}`}>
+        <label className={`cursor-pointer rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700 ${uploading ? 'opacity-50 pointer-events-none' : ''}`}>
           {uploading ? 'Uploading...' : 'Upload Document'}
           <input type="file" className="hidden" onChange={handleUpload} disabled={uploading} />
         </label>
@@ -101,7 +101,7 @@ export default function DocumentsPage() {
           <div className="col-span-full py-12 text-center text-gray-500">Loading documents...</div>
         ) : documents.length > 0 ? (
           documents.map((doc) => (
-            <div key={doc.id} className="group relative rounded-2xl border border-gray-200 p-4 transition hover:border-green-500/30 hover:bg-green-50/10">
+            <div key={doc.id} className="group relative rounded-2xl border border-white/5 p-4 transition hover:border-brand-gold/30 hover:bg-brand-gold/5">
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-500">
                 {doc.iconLink ? (
                   <img src={doc.iconLink} alt="" className="h-6 w-6" />
@@ -111,7 +111,7 @@ export default function DocumentsPage() {
                   </svg>
                 )}
               </div>
-              <h3 className="mb-1 truncate text-sm font-semibold text-gray-900" title={doc.name}>
+              <h3 className="mb-1 truncate text-sm font-semibold text-white" title={doc.name}>
                 {doc.name}
               </h3>
               <p className="text-xs text-gray-500">
@@ -122,7 +122,7 @@ export default function DocumentsPage() {
                   href={doc.webViewLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-medium text-green-600 hover:text-green-700"
+                  className="text-xs font-medium text-brand-gold hover:text-brand-gold"
                 >
                   View File
                 </a>

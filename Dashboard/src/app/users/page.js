@@ -24,15 +24,15 @@ export default function UsersPage() {
   }, []);
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
+    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Users</h1>
-        <button className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700">
+        <h1 className="text-2xl font-semibold text-white">Users</h1>
+        <button className="rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700">
           Add User
         </button>
       </div>
       
-      <div className="overflow-hidden rounded-2xl border border-gray-200">
+      <div className="overflow-hidden rounded-2xl border border-white/5">
         <table className="w-full text-left text-sm">
           <thead className="bg-gray-50 text-xs font-medium uppercase text-gray-500">
             <tr>
@@ -48,28 +48,28 @@ export default function UsersPage() {
               <tr key={user._id} className="hover:bg-gray-50">
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center text-green-700 font-bold">
+                    <div className="h-8 w-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold">
                       {(user.firstName || user.username || 'U').charAt(0).toUpperCase()}
                     </div>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-white">
                       {user.firstName ? `${user.firstName} ${user.lastName || ''}` : (user.username || 'Unknown User')}
                     </span>
                   </div>
                 </td>
                 <td className="px-6 py-4 text-gray-600">{user.email || 'N/A'}</td>
                 <td className="px-6 py-4">
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${user.isAdmin ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${user.isAdmin ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-300'}`}>
                     {user.isAdmin ? 'Admin' : 'User'}
                   </span>
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    user.status === 'approved' ? 'bg-green-100 text-green-700' : 
+                    user.status === 'approved' ? 'bg-brand-gold/20 text-brand-gold' : 
                     user.status === 'pending' ? 'bg-amber-100 text-amber-700' : 
                     'bg-red-100 text-red-700'
                   }`}>
                     <span className={`h-1.5 w-1.5 rounded-full ${
-                      user.status === 'approved' ? 'bg-green-500' : 
+                      user.status === 'approved' ? 'bg-brand-gold' : 
                       user.status === 'pending' ? 'bg-amber-500' : 
                       'bg-red-500'
                     }`}></span>

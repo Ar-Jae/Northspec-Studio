@@ -176,7 +176,7 @@ export default function InvoicesPage() {
       draft: "bg-gray-500/20 text-gray-400",
       sent: "bg-blue-500/20 text-blue-400",
       viewed: "bg-purple-500/20 text-purple-400",
-      paid: "bg-green-500/20 text-green-400",
+      paid: "bg-brand-gold/20 text-brand-gold",
       partial: "bg-amber-500/20 text-amber-400",
       overdue: "bg-red-500/20 text-red-400",
       cancelled: "bg-gray-500/20 text-gray-500",
@@ -206,7 +206,7 @@ export default function InvoicesPage() {
         </div>
         <button
           onClick={() => { resetForm(); setShowModal(true); }}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+          className="flex items-center gap-2 rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -224,7 +224,7 @@ export default function InvoicesPage() {
           </div>
           <div className="rounded-xl bg-[#2b2b2b] p-4 ring-1 ring-white/5">
             <p className="text-xs text-gray-500">Collected</p>
-            <p className="text-2xl font-bold text-green-400">{formatCurrency(stats.totalCollected)}</p>
+            <p className="text-2xl font-bold text-brand-gold">{formatCurrency(stats.totalCollected)}</p>
           </div>
           <div className="rounded-xl bg-[#2b2b2b] p-4 ring-1 ring-white/5">
             <p className="text-xs text-gray-500">Outstanding</p>
@@ -245,8 +245,8 @@ export default function InvoicesPage() {
             onClick={() => setFilter(status)}
             className={`whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition ${
               filter === status
-                ? "bg-green-600 text-white"
-                : "bg-[#2b2b2b] text-gray-400 hover:bg-white/10"
+                ? "bg-brand-gold text-white"
+                : "bg-[#2b2b2b] text-gray-400 hover:bg-brand-gray/10"
             }`}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -270,7 +270,7 @@ export default function InvoicesPage() {
           <tbody className="divide-y divide-white/5">
             {filteredInvoices.length > 0 ? (
               filteredInvoices.map((inv) => (
-                <tr key={inv._id} className="hover:bg-white/5">
+                <tr key={inv._id} className="hover:bg-brand-gray/5">
                   <td className="px-6 py-4">
                     <span className="font-medium text-white">{inv.invoiceNumber}</span>
                   </td>
@@ -283,7 +283,7 @@ export default function InvoicesPage() {
                   <td className="px-6 py-4">
                     <span className="text-white">{formatCurrency(inv.total)}</span>
                     {inv.amountPaid > 0 && inv.amountPaid < inv.total && (
-                      <p className="text-xs text-green-400">Paid: {formatCurrency(inv.amountPaid)}</p>
+                      <p className="text-xs text-brand-gold">Paid: {formatCurrency(inv.amountPaid)}</p>
                     )}
                   </td>
                   <td className="px-6 py-4">
@@ -309,7 +309,7 @@ export default function InvoicesPage() {
                       )}
                       <button
                         onClick={() => handleEdit(inv)}
-                        className="rounded p-1 text-gray-400 hover:bg-white/10"
+                        className="rounded p-1 text-gray-400 hover:bg-brand-gray/10"
                         title="Edit"
                       >
                         <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -366,7 +366,7 @@ export default function InvoicesPage() {
                     value={formData.clientName}
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
                 <div>
@@ -377,7 +377,7 @@ export default function InvoicesPage() {
                     value={formData.clientEmail}
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
               </div>
@@ -389,7 +389,7 @@ export default function InvoicesPage() {
                   name="clientAddress"
                   value={formData.clientAddress}
                   onChange={handleInputChange}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                 />
               </div>
 
@@ -400,7 +400,7 @@ export default function InvoicesPage() {
                   <button
                     type="button"
                     onClick={addItem}
-                    className="text-sm text-green-400 hover:text-green-300"
+                    className="text-sm text-brand-gold hover:text-brand-gold"
                   >
                     + Add Item
                   </button>
@@ -413,7 +413,7 @@ export default function InvoicesPage() {
                         placeholder="Description"
                         value={item.description}
                         onChange={(e) => handleItemChange(index, "description", e.target.value)}
-                        className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                        className="flex-1 rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                       />
                       <input
                         type="number"
@@ -421,7 +421,7 @@ export default function InvoicesPage() {
                         value={item.quantity}
                         min="1"
                         onChange={(e) => handleItemChange(index, "quantity", e.target.value)}
-                        className="w-20 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                        className="w-20 rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                       />
                       <input
                         type="number"
@@ -430,7 +430,7 @@ export default function InvoicesPage() {
                         min="0"
                         step="0.01"
                         onChange={(e) => handleItemChange(index, "unitPrice", e.target.value)}
-                        className="w-28 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                        className="w-28 rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                       />
                       {formData.items.length > 1 && (
                         <button
@@ -459,7 +459,7 @@ export default function InvoicesPage() {
                     min="0"
                     max="100"
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
                 <div>
@@ -470,7 +470,7 @@ export default function InvoicesPage() {
                     value={formData.discount}
                     min="0"
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
                 <div>
@@ -479,7 +479,7 @@ export default function InvoicesPage() {
                     name="discountType"
                     value={formData.discountType}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   >
                     <option value="fixed">Fixed ($)</option>
                     <option value="percentage">Percentage (%)</option>
@@ -495,7 +495,7 @@ export default function InvoicesPage() {
                   name="dueDate"
                   value={formData.dueDate}
                   onChange={handleInputChange}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                 />
               </div>
 
@@ -507,12 +507,12 @@ export default function InvoicesPage() {
                   value={formData.notes}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                 />
               </div>
 
               {/* Subtotal Preview */}
-              <div className="rounded-lg bg-white/5 p-4">
+              <div className="rounded-lg bg-brand-gray/5 p-4">
                 <div className="flex justify-between text-sm">
                   <span className="text-gray-400">Subtotal:</span>
                   <span className="text-white">{formatCurrency(calculateSubtotal())}</span>
@@ -530,7 +530,7 @@ export default function InvoicesPage() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-lg bg-green-600 px-6 py-2 font-medium text-white hover:bg-green-700"
+                  className="rounded-lg bg-brand-gold px-6 py-2 font-medium text-white hover:bg-green-700"
                 >
                   {editingInvoice ? "Update Invoice" : "Create Invoice"}
                 </button>

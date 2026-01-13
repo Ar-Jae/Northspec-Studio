@@ -118,7 +118,7 @@ export default function ProspectsPage() {
             <h2 className="text-lg font-bold text-white">Local Business Scanner</h2>
           </div>
           <div className="flex gap-3">
-            <button className="flex items-center gap-2 rounded-lg bg-white/5 px-4 py-2 text-xs font-medium text-white hover:bg-white/10">
+            <button className="flex items-center gap-2 rounded-lg bg-brand-gray/5 px-4 py-2 text-xs font-medium text-white hover:bg-brand-gray/10">
               Import List
             </button>
             <button 
@@ -156,7 +156,7 @@ export default function ProspectsPage() {
               className={`flex items-center gap-2 rounded-lg px-3 py-2 text-xs font-medium transition ${
                 activeFilter !== "All Businesses" 
                   ? "bg-brand-gold/20 text-brand-gold ring-1 ring-brand-gold/30" 
-                  : "bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white"
+                  : "bg-brand-gray/5 text-gray-400 hover:bg-brand-gray/10 hover:text-white"
               }`}
             >
               <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -257,7 +257,7 @@ export default function ProspectsPage() {
                         <p className="text-xs text-gray-400">{prospect.address}</p>
                         <div className="mt-2 flex gap-2">
                           {prospect.tags.map((tag, i) => (
-                            <span key={i} className="rounded bg-white/5 px-2 py-1 text-[10px] font-medium text-gray-300">
+                            <span key={i} className="rounded bg-brand-gray/5 px-2 py-1 text-[10px] font-medium text-gray-300">
                               {tag}
                             </span>
                           ))}
@@ -297,7 +297,7 @@ export default function ProspectsPage() {
                           </div>
                           <div className="mt-1 text-[10px] text-gray-400">{prospect.lastEngagement}</div>
                           <div className="mt-1 flex gap-2 text-[10px]">
-                            <span className="flex items-center gap-1 text-green-400">
+                            <span className="flex items-center gap-1 text-brand-gold">
                               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                               {prospect.lastAction}
                             </span>
@@ -312,11 +312,11 @@ export default function ProspectsPage() {
                         <div className="flex flex-col gap-1">
                           <span className="text-[10px] font-bold uppercase text-gray-500">Contact</span>
                           <div className="flex gap-2">
-                            <button className="flex items-center gap-1 rounded border border-white/10 px-2 py-1 text-xs text-white hover:bg-white/5">
+                            <button className="flex items-center gap-1 rounded border border-white/10 px-2 py-1 text-xs text-white hover:bg-brand-gray/5">
                               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                               Call
                             </button>
-                            <button className="flex items-center gap-1 rounded border border-white/10 px-2 py-1 text-xs text-white hover:bg-white/5">
+                            <button className="flex items-center gap-1 rounded border border-white/10 px-2 py-1 text-xs text-white hover:bg-brand-gray/5">
                               <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                               Email
                             </button>
@@ -326,7 +326,7 @@ export default function ProspectsPage() {
                         <div className="flex items-center gap-2">
                           <div className="relative h-10 w-10">
                             <svg className="h-full w-full -rotate-90" viewBox="0 0 36 36">
-                              <path className="text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                              <path className="text-gray-300" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
                               <path className="text-blue-500" strokeDasharray={`${prospect.salesLikelihood}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
                             </svg>
                             <div className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-blue-500">
@@ -351,7 +351,7 @@ export default function ProspectsPage() {
                       </div>
 
                       <div className="flex gap-2">
-                        <button className="rounded-full bg-white/5 p-2 text-gray-400 hover:bg-white/10 hover:text-white">
+                        <button className="rounded-full bg-brand-gray/5 p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-white">
                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" /></svg>
                         </button>
                       </div>
@@ -394,7 +394,7 @@ export default function ProspectsPage() {
                   <div className="flex items-center gap-2">
                     <div className="relative h-8 w-8">
                       <svg className="h-full w-full -rotate-90" viewBox="0 0 36 36">
-                        <path className="text-gray-700" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
+                        <path className="text-gray-300" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
                         <path className="text-blue-500" strokeDasharray={`${selectedProspect.salesLikelihood}, 100`} d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" strokeWidth="3" />
                       </svg>
                       <div className="absolute inset-0 flex items-center justify-center text-[8px] font-bold text-blue-500">
@@ -443,11 +443,11 @@ export default function ProspectsPage() {
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                 Call
               </button>
-              <button className="flex items-center justify-center gap-2 rounded-lg bg-white/5 py-2 text-sm font-medium text-white hover:bg-white/10">
+              <button className="flex items-center justify-center gap-2 rounded-lg bg-brand-gray/5 py-2 text-sm font-medium text-white hover:bg-brand-gray/10">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                 Email
               </button>
-              <button className="flex items-center justify-center gap-2 rounded-lg bg-white/5 py-2 text-sm font-medium text-white hover:bg-white/10">
+              <button className="flex items-center justify-center gap-2 rounded-lg bg-brand-gray/5 py-2 text-sm font-medium text-white hover:bg-brand-gray/10">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                 Audit
               </button>
@@ -472,7 +472,7 @@ export default function ProspectsPage() {
               <h4 className="mb-2 text-xs font-bold uppercase text-gray-500">Tags</h4>
               <div className="flex flex-wrap gap-2">
                 {selectedProspect.tags.map((tag, i) => (
-                  <span key={i} className="rounded bg-white/5 px-2 py-1 text-xs text-gray-300">{tag}</span>
+                  <span key={i} className="rounded bg-brand-gray/5 px-2 py-1 text-xs text-gray-300">{tag}</span>
                 ))}
                 <button className="flex items-center gap-1 rounded border border-dashed border-gray-600 px-2 py-1 text-xs text-gray-500 hover:border-gray-400 hover:text-gray-400">
                   + Add tag
@@ -490,7 +490,7 @@ function SidebarItem({ label, count, active, isDropdown }) {
   return (
     <button
       className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-xs font-medium transition ${
-        active ? "bg-brand-gold/10 text-brand-gold" : "text-gray-400 hover:bg-white/5 hover:text-white"
+        active ? "bg-brand-gold/10 text-brand-gold" : "text-gray-400 hover:bg-brand-gray/5 hover:text-white"
       }`}
     >
       <div className="flex items-center gap-2">
@@ -511,11 +511,11 @@ function FilterItem({ label, count, active, onClick }) {
     <button
       onClick={onClick}
       className={`flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-xs font-medium transition ${
-        active ? "bg-brand-gold/20 text-brand-gold" : "text-gray-400 hover:bg-white/5 hover:text-white"
+        active ? "bg-brand-gold/20 text-brand-gold" : "text-gray-400 hover:bg-brand-gray/5 hover:text-white"
       }`}
     >
       <span>{label}</span>
-      <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${active ? "bg-brand-gold/30" : "bg-white/10"}`}>
+      <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${active ? "bg-brand-gold/30" : "bg-brand-gray/10"}`}>
         {count}
       </span>
     </button>

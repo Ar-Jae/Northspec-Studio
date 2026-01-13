@@ -44,7 +44,7 @@ export default function CalendarPage() {
       start: "06:00",
       end: "07:10",
       day: 1, // Monday
-      color: "bg-green-200 text-green-800",
+      color: "bg-green-200 text-brand-gold",
       category: "work",
       calendarType: "personal",
       attendees: ["https://i.pravatar.cc/150?u=1", "https://i.pravatar.cc/150?u=2"]
@@ -360,7 +360,7 @@ export default function CalendarPage() {
               <p className="text-xs text-gray-400">Product Designer</p>
             </div>
           </div>
-          <button onClick={() => setShowNotifications(!showNotifications)} className="relative rounded-lg bg-white/5 p-2 hover:bg-white/10 ring-1 ring-white/5">
+          <button onClick={() => setShowNotifications(!showNotifications)} className="relative rounded-lg bg-brand-gray/5 p-2 hover:bg-brand-gray/10 ring-1 ring-white/5">
             {notifications.filter(n => !n.read).length > 0 && (
               <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-brand-gold"></span>
             )}
@@ -386,7 +386,7 @@ export default function CalendarPage() {
                     <div 
                       key={n.id} 
                       onClick={() => markNotificationRead(n.id)}
-                      className={`cursor-pointer rounded-lg p-3 transition ${n.read ? 'bg-white/5' : 'bg-brand-gold/20'} hover:bg-white/10`}
+                      className={`cursor-pointer rounded-lg p-3 transition ${n.read ? 'bg-brand-gray/5' : 'bg-brand-gold/20'} hover:bg-brand-gray/10`}
                     >
                       <p className="text-xs text-gray-300">{n.message}</p>
                       <p className="text-[10px] text-gray-500 mt-1">{n.time}</p>
@@ -403,8 +403,8 @@ export default function CalendarPage() {
           <div className="mb-4 flex items-center justify-between">
             <h4 className="font-bold">{monthName} {year}</h4>
             <div className="flex gap-1">
-              <button onClick={() => { const d = new Date(currentDate); d.setMonth(d.getMonth() - 1); setCurrentDate(d); }} className="rounded p-1 hover:bg-white/10"><svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg></button>
-              <button onClick={() => { const d = new Date(currentDate); d.setMonth(d.getMonth() + 1); setCurrentDate(d); }} className="rounded p-1 hover:bg-white/10"><svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></button>
+              <button onClick={() => { const d = new Date(currentDate); d.setMonth(d.getMonth() - 1); setCurrentDate(d); }} className="rounded p-1 hover:bg-brand-gray/10"><svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg></button>
+              <button onClick={() => { const d = new Date(currentDate); d.setMonth(d.getMonth() + 1); setCurrentDate(d); }} className="rounded p-1 hover:bg-brand-gray/10"><svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></button>
             </div>
           </div>
           <div className="grid grid-cols-7 gap-1 text-center text-xs">
@@ -421,7 +421,7 @@ export default function CalendarPage() {
                 <div 
                   key={i}
                   onClick={() => setCurrentDate(d)}
-                  className={`cursor-pointer rounded-full py-1 transition hover:bg-white/10 
+                  className={`cursor-pointer rounded-full py-1 transition hover:bg-brand-gray/10 
                     ${isToday ? 'bg-brand-gold text-black font-bold' : isCurrentMonth ? 'text-gray-300' : 'text-gray-600'}`}
                 >
                   {d.getDate()}
@@ -451,7 +451,7 @@ export default function CalendarPage() {
                   const updated = { ...nextEvent, day: (nextEvent.day + 1) % 7 };
                   setEvents(events.map(e => e.id === nextEvent.id ? updated : e));
                 }}
-                className="flex-1 rounded-lg bg-white/5 py-2 text-xs font-medium hover:bg-white/10 ring-1 ring-white/5"
+                className="flex-1 rounded-lg bg-brand-gray/5 py-2 text-xs font-medium hover:bg-brand-gray/10 ring-1 ring-white/5"
               >
                 Later
               </button>
@@ -542,7 +542,7 @@ export default function CalendarPage() {
                   Personal
                   <span className="ml-auto text-[10px] text-gray-500">{events.filter(e => e.category === 'personal').length} events</span>
                 </div>
-                <div className="h-1 w-full rounded-full bg-white/10">
+                <div className="h-1 w-full rounded-full bg-brand-gray/10">
                   <div className="h-1 rounded-full bg-yellow-500 transition-all" style={{ width: `${categoryStats.personal}%` }}></div>
                 </div>
               </div>
@@ -555,7 +555,7 @@ export default function CalendarPage() {
                   Work
                   <span className="ml-auto text-[10px] text-gray-500">{events.filter(e => e.category === 'work').length} events</span>
                 </div>
-                <div className="h-1 w-full rounded-full bg-white/10">
+                <div className="h-1 w-full rounded-full bg-brand-gray/10">
                   <div className="h-1 rounded-full bg-blue-500 transition-all" style={{ width: `${categoryStats.work}%` }}></div>
                 </div>
               </div>
@@ -568,7 +568,7 @@ export default function CalendarPage() {
                   Health
                   <span className="ml-auto text-[10px] text-gray-500">{events.filter(e => e.category === 'health').length} events</span>
                 </div>
-                <div className="h-1 w-full rounded-full bg-white/10">
+                <div className="h-1 w-full rounded-full bg-brand-gray/10">
                   <div className="h-1 rounded-full bg-pink-500 transition-all" style={{ width: `${categoryStats.health}%` }}></div>
                 </div>
               </div>
@@ -592,7 +592,7 @@ export default function CalendarPage() {
               Sync Google Calendar
             </button>
            ) : (
-             <div className="flex items-center gap-2 rounded-xl bg-green-500/20 p-3 text-sm font-medium text-green-400">
+             <div className="flex items-center gap-2 rounded-xl bg-brand-gold/20 p-3 text-sm font-medium text-brand-gold">
                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                Synced with Google
              </div>
@@ -609,9 +609,9 @@ export default function CalendarPage() {
           </div>
           
           <div className="flex items-center gap-1 rounded-xl bg-[#1e1e1e] p-1 ring-1 ring-white/5">
-            <button onClick={() => setView('month')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'month' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>Month</button>
-            <button onClick={() => setView('week')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'week' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>Week</button>
-            <button onClick={() => setView('day')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'day' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-white/5'}`}>Day</button>
+            <button onClick={() => setView('month')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'month' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-brand-gray/5'}`}>Month</button>
+            <button onClick={() => setView('week')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'week' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-brand-gray/5'}`}>Week</button>
+            <button onClick={() => setView('day')} className={`rounded-lg px-4 py-2 text-sm font-medium transition ${view === 'day' ? 'bg-brand-gold text-black font-bold' : 'text-gray-400 hover:text-white hover:bg-brand-gray/5'}`}>Day</button>
           </div>
 
           <div className="flex items-center gap-3">
@@ -622,11 +622,11 @@ export default function CalendarPage() {
               + Add Event
             </button>
             <div className="flex gap-2">
-              <button onClick={handlePrev} className="rounded-lg bg-white/5 p-2 text-gray-400 hover:bg-white/10 hover:text-white ring-1 ring-white/5">
+              <button onClick={handlePrev} className="rounded-lg bg-brand-gray/5 p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-white ring-1 ring-white/5">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
               </button>
-              <button onClick={handleToday} className="rounded-lg bg-white/5 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 ring-1 ring-white/5">Today</button>
-              <button onClick={handleNext} className="rounded-lg bg-white/5 p-2 text-gray-400 hover:bg-white/10 hover:text-white ring-1 ring-white/5">
+              <button onClick={handleToday} className="rounded-lg bg-brand-gray/5 px-4 py-2 text-sm font-medium text-white hover:bg-brand-gray/10 ring-1 ring-white/5">Today</button>
+              <button onClick={handleNext} className="rounded-lg bg-brand-gray/5 p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-white ring-1 ring-white/5">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
               </button>
             </div>
@@ -671,7 +671,7 @@ export default function CalendarPage() {
                         <div 
                           key={i} 
                           onClick={() => handleCellClick(dayIndex, 6 + i)}
-                          className="h-24 border-b border-white/5 cursor-pointer hover:bg-white/5 transition"
+                          className="h-24 border-b border-white/5 cursor-pointer hover:bg-brand-gray/5 transition"
                         ></div>
                       ))}
 
@@ -748,8 +748,8 @@ export default function CalendarPage() {
                             setView('day');
                           }
                         }}
-                        className={`min-h-[100px] rounded-xl border p-2 cursor-pointer transition hover:bg-white/5
-                          ${isCurrentMonth ? 'bg-[#2b2b2b] border-white/5' : 'bg-white/5 border-transparent'}
+                        className={`min-h-[100px] rounded-xl border p-2 cursor-pointer transition hover:bg-brand-gray/5
+                          ${isCurrentMonth ? 'bg-[#2b2b2b] border-white/5' : 'bg-brand-gray/5 border-transparent'}
                           ${isToday ? 'ring-2 ring-brand-gold' : ''}`}
                       >
                         <div className={`text-sm font-bold mb-1 ${isToday ? 'text-brand-gold' : isCurrentMonth ? 'text-white' : 'text-gray-600'}`}>
@@ -817,7 +817,7 @@ export default function CalendarPage() {
                           });
                           setShowAddEventModal(true);
                         }}
-                        className="h-20 border-b border-white/5 cursor-pointer hover:bg-white/5 transition"
+                        className="h-20 border-b border-white/5 cursor-pointer hover:bg-brand-gray/5 transition"
                       ></div>
                     ))}
 
@@ -908,7 +908,7 @@ export default function CalendarPage() {
                         setEditingEvent({...selectedEvent});
                         setSelectedEvent(null);
                       }}
-                      className="flex-1 rounded-lg bg-white/5 py-2.5 text-sm font-medium text-white hover:bg-white/10 ring-1 ring-white/10"
+                      className="flex-1 rounded-lg bg-brand-gray/5 py-2.5 text-sm font-medium text-white hover:bg-brand-gray/10 ring-1 ring-white/10"
                     >
                       Edit
                     </button>
@@ -998,7 +998,7 @@ export default function CalendarPage() {
                 <div className="flex gap-2 pt-2">
                   <button 
                     onClick={() => setShowAddEventModal(false)}
-                    className="flex-1 rounded-lg bg-white/5 py-2 text-sm font-medium text-white hover:bg-white/10 ring-1 ring-white/10"
+                    className="flex-1 rounded-lg bg-brand-gray/5 py-2 text-sm font-medium text-white hover:bg-brand-gray/10 ring-1 ring-white/10"
                   >
                     Cancel
                   </button>
@@ -1087,7 +1087,7 @@ export default function CalendarPage() {
                 <div className="flex gap-2 pt-2">
                   <button 
                     onClick={() => setEditingEvent(null)}
-                    className="flex-1 rounded-lg bg-white/5 py-2 text-sm font-medium text-white hover:bg-white/10 ring-1 ring-white/10"
+                    className="flex-1 rounded-lg bg-brand-gray/5 py-2 text-sm font-medium text-white hover:bg-brand-gray/10 ring-1 ring-white/10"
                   >
                     Cancel
                   </button>

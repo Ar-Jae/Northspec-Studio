@@ -24,23 +24,23 @@ export default function FilesPage() {
   }, []);
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
+    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
       <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-gray-900">Files</h1>
-        <button className="rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700">
+        <h1 className="text-2xl font-semibold text-white">Files</h1>
+        <button className="rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700">
           Upload File
         </button>
       </div>
       
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {files.map((file) => (
-          <div key={file._id} className="group relative rounded-2xl border border-gray-200 p-4 transition hover:border-green-500/30 hover:bg-green-50/10">
+          <div key={file._id} className="group relative rounded-2xl border border-white/5 p-4 transition hover:border-brand-gold/30 hover:bg-brand-gold/5">
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-500">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
               </svg>
             </div>
-            <h3 className="mb-1 truncate text-sm font-semibold text-gray-900" title={file.name || "Untitled File"}>
+            <h3 className="mb-1 truncate text-sm font-semibold text-white" title={file.name || "Untitled File"}>
               {file.name || "Untitled File"}
             </h3>
             <p className="text-xs text-gray-500">{file.size || "0 KB"} • {file.author || "Unknown"}</p>

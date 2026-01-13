@@ -13,9 +13,9 @@ export default function SocialPage(){
             href="https://x.com/NorthspecStudio"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-white/5 transition-colors"
+            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-brand-gray/5 transition-colors"
           >
-            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/10">
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-brand-gray/10">
               <span className="text-xl font-bold">X</span>
             </div>
             <div>
@@ -28,9 +28,9 @@ export default function SocialPage(){
             href="https://www.instagram.com/northspec_studio/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-white/5 transition-colors"
+            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-brand-gray/5 transition-colors"
           >
-            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/10">
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-brand-gray/10">
               <span className="text-xl font-bold">IG</span>
             </div>
             <div>
@@ -43,9 +43,9 @@ export default function SocialPage(){
             href="https://www.linkedin.com/in/northspec-studio/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-white/5 transition-colors"
+            className="flex items-center gap-3 rounded-lg border border-white/10 p-4 hover:bg-brand-gray/5 transition-colors"
           >
-            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-white/10">
+            <div className="h-10 w-10 flex items-center justify-center rounded-full bg-brand-gray/10">
               <span className="text-xl font-bold">in</span>
             </div>
             <div>

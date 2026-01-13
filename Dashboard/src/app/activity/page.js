@@ -24,9 +24,9 @@ export default function ActivityPage() {
   }, []);
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
+    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-gray-900">Activity Log</h1>
+        <h1 className="text-2xl font-semibold text-white">Activity Log</h1>
         <p className="text-sm text-gray-500">Track all system and user actions</p>
       </div>
       
@@ -35,16 +35,16 @@ export default function ActivityPage() {
         <div className="space-y-8">
           {activities.map((activity) => (
             <div key={activity._id} className="relative flex items-start gap-4 pl-10">
-              <div className="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-gray-200">
+              <div className="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full bg-brand-gray border border-white/5">
                 <div className={`h-2 w-2 rounded-full ${
                   activity.type === 'lead' ? 'bg-blue-500' : 
-                  activity.type === 'payment' ? 'bg-green-500' : 
+                  activity.type === 'payment' ? 'bg-brand-gold' : 
                   'bg-gray-400'
                 }`}></div>
               </div>
               <div className="flex-1">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold text-gray-900">{activity.title || "System Update"}</h3>
+                  <h3 className="text-sm font-semibold text-white">{activity.title || "System Update"}</h3>
                   <span className="text-xs text-gray-400">
                     {activity.createdAt ? new Date(activity.createdAt).toLocaleString() : "Recent"}
                   </span>

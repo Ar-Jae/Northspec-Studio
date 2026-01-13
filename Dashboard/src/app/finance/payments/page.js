@@ -148,7 +148,7 @@ export default function PaymentsPage() {
   const getStatusColor = (status) => {
     const colors = {
       pending: "bg-amber-500/20 text-amber-400",
-      completed: "bg-green-500/20 text-green-400",
+      completed: "bg-brand-gold/20 text-brand-gold",
       failed: "bg-red-500/20 text-red-400",
       refunded: "bg-purple-500/20 text-purple-400",
     };
@@ -209,7 +209,7 @@ export default function PaymentsPage() {
         </div>
         <button
           onClick={() => { resetForm(); setShowModal(true); }}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+          className="flex items-center gap-2 rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -223,7 +223,7 @@ export default function PaymentsPage() {
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
           <div className="rounded-xl bg-[#2b2b2b] p-4 ring-1 ring-white/5">
             <p className="text-xs text-gray-500">Total Collected</p>
-            <p className="text-2xl font-bold text-green-400">{formatCurrency(stats.totalCollected)}</p>
+            <p className="text-2xl font-bold text-brand-gold">{formatCurrency(stats.totalCollected)}</p>
           </div>
           <div className="rounded-xl bg-[#2b2b2b] p-4 ring-1 ring-white/5">
             <p className="text-xs text-gray-500">This Month</p>
@@ -250,7 +250,7 @@ export default function PaymentsPage() {
             >
               <div className="flex items-center gap-4">
                 <div className={`rounded-lg p-3 ${
-                  payment.status === 'completed' ? 'bg-green-500/20 text-green-400' :
+                  payment.status === 'completed' ? 'bg-brand-gold/20 text-brand-gold' :
                   payment.status === 'refunded' ? 'bg-purple-500/20 text-purple-400' :
                   'bg-gray-500/20 text-gray-400'
                 }`}>
@@ -276,7 +276,7 @@ export default function PaymentsPage() {
               
               <div className="flex items-center gap-4">
                 <div className="text-right">
-                  <p className={`text-lg font-bold ${payment.status === 'refunded' ? 'text-red-400 line-through' : 'text-green-400'}`}>
+                  <p className={`text-lg font-bold ${payment.status === 'refunded' ? 'text-red-400 line-through' : 'text-brand-gold'}`}>
                     {formatCurrency(payment.amount)}
                   </p>
                   <p className="text-xs text-gray-500">
@@ -287,7 +287,7 @@ export default function PaymentsPage() {
                 {payment.status === 'completed' && (
                   <button
                     onClick={() => handleRefund(payment._id)}
-                    className="rounded-lg p-2 text-gray-400 hover:bg-white/10 hover:text-red-400"
+                    className="rounded-lg p-2 text-gray-400 hover:bg-brand-gray/10 hover:text-red-400"
                     title="Refund"
                   >
                     <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -332,7 +332,7 @@ export default function PaymentsPage() {
                   name="invoice"
                   value={formData.invoice}
                   onChange={handleInputChange}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                 >
                   <option value="">No invoice (standalone payment)</option>
                   {invoices.map((inv) => (
@@ -353,7 +353,7 @@ export default function PaymentsPage() {
                     value={formData.payerName}
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
                 <div>
@@ -363,7 +363,7 @@ export default function PaymentsPage() {
                     name="payerEmail"
                     value={formData.payerEmail}
                     onChange={handleInputChange}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
               </div>
@@ -380,7 +380,7 @@ export default function PaymentsPage() {
                     step="0.01"
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   />
                 </div>
                 <div>
@@ -390,7 +390,7 @@ export default function PaymentsPage() {
                     value={formData.method}
                     onChange={handleInputChange}
                     required
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                    className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                   >
                     <option value="credit_card">Credit Card</option>
                     <option value="debit_card">Debit Card</option>
@@ -413,7 +413,7 @@ export default function PaymentsPage() {
                   value={formData.reference}
                   onChange={handleInputChange}
                   placeholder="e.g., Bank transaction ID or check number"
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white placeholder-gray-500 focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white placeholder-gray-500 focus:border-brand-gold focus:outline-none"
                 />
               </div>
 
@@ -425,7 +425,7 @@ export default function PaymentsPage() {
                   value={formData.notes}
                   onChange={handleInputChange}
                   rows={2}
-                  className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-white focus:border-green-500 focus:outline-none"
+                  className="w-full rounded-lg border border-white/10 bg-brand-gray/5 px-4 py-2 text-white focus:border-brand-gold focus:outline-none"
                 />
               </div>
 
@@ -440,7 +440,7 @@ export default function PaymentsPage() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-lg bg-green-600 px-6 py-2 font-medium text-white hover:bg-green-700"
+                  className="rounded-lg bg-brand-gold px-6 py-2 font-medium text-white hover:bg-green-700"
                 >
                   Record Payment
                 </button>

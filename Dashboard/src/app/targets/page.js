@@ -24,38 +24,38 @@ export default function TargetsPage() {
   }, []);
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-white p-6">
-      <h1 className="mb-6 text-2xl font-semibold text-gray-900">Targets</h1>
+    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
+      <h1 className="mb-6 text-2xl font-semibold text-white">Targets</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {targets.map((target) => (
-          <div key={target._id} className="rounded-2xl border border-gray-200 p-5">
+          <div key={target._id} className="rounded-2xl border border-white/5 p-5">
             <div className="mb-4 flex items-center justify-between">
-              <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+              <span className="rounded-full bg-brand-gold/20 px-3 py-1 text-xs font-medium text-brand-gold">
                 {target.category}
               </span>
               <span className="text-xs text-gray-500">
                 Due: {new Date(target.deadline).toLocaleDateString()}
               </span>
             </div>
-            <h3 className="mb-2 text-lg font-semibold text-gray-900">{target.title}</h3>
+            <h3 className="mb-2 text-lg font-semibold text-white">{target.title}</h3>
             <div className="mb-4">
               <div className="mb-1 flex justify-between text-sm">
                 <span className="text-gray-600">Progress</span>
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-white">
                   {Math.round((target.current / target.goal) * 100)}%
                 </span>
               </div>
               <div className="h-2 w-full rounded-full bg-gray-100">
                 <div
-                  className="h-full rounded-full bg-green-500"
+                  className="h-full rounded-full bg-brand-gold"
                   style={{ width: `${(target.current / target.goal) * 100}%` }}
                 ></div>
               </div>
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-gray-500">Current: ${target.current.toLocaleString()}</span>
-              <span className="font-medium text-gray-900">Goal: ${target.goal.toLocaleString()}</span>
+              <span className="font-medium text-white">Goal: ${target.goal.toLocaleString()}</span>
             </div>
           </div>
         ))}

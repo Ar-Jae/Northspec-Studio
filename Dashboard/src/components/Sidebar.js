@@ -13,9 +13,9 @@ export default function Sidebar() {
   const [pagesOpen, setPagesOpen] = useState(true);
 
   return (
-    <aside className="flex h-screen w-64 flex-col bg-[#1a2e1a] text-gray-300 rounded-3xl m-3">
+    <aside className="flex h-screen w-64 flex-col bg-brand-gray text-gray-400 rounded-3xl m-3 border border-white/5">
       {/* Logo */}
-      <div className="flex items-center gap-3 p-5 border-b border-white/10">
+      <div className="flex items-center gap-3 p-5 border-b border-white/5">
         <div className="h-10 w-10 overflow-hidden rounded-lg relative">
           <Image
             src="/images/logo.png"
@@ -24,12 +24,12 @@ export default function Sidebar() {
             className="object-contain"
           />
         </div>
-        <span className="text-lg font-bold text-white tracking-tight">Northspec</span>
+        <span className="text-lg font-bold text-white tracking-tight font-serif">Northspec</span>
       </div>
 
       {/* User Profile */}
       <div className="flex items-center gap-3 p-5">
-        <div className="h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-amber-400 to-orange-500">
+        <div className="h-10 w-10 overflow-hidden rounded-full border border-brand-gold/20">
           <img
             src="https://i.pravatar.cc/150?u=arlene"
             alt="Profile"
@@ -40,8 +40,8 @@ export default function Sidebar() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-4 border-b border-white/10 px-5 text-sm">
-        <button className="border-b-2 border-green-500 pb-2 text-green-400">Favorites</button>
+      <div className="flex gap-4 border-b border-white/5 px-5 text-sm">
+        <button className="border-b-2 border-brand-gold pb-2 text-brand-gold">Favorites</button>
         <button className="pb-2 text-gray-500 hover:text-gray-300">Recently</button>
       </div>
 
@@ -89,7 +89,7 @@ export default function Sidebar() {
               <Link
                 href="/"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -100,7 +100,7 @@ export default function Sidebar() {
               <Link
                 href="/pipeline"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/pipeline" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/pipeline" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,7 +111,7 @@ export default function Sidebar() {
               <Link
                 href="/calendar"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/calendar" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/calendar" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -122,7 +122,7 @@ export default function Sidebar() {
               <Link
                 href="/project-request"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/project-request" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/project-request" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -133,7 +133,7 @@ export default function Sidebar() {
               <Link
                 href="/projects"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/projects" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/projects" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -165,7 +165,7 @@ export default function Sidebar() {
               <Link
                 href="/targets"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/targets" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/targets" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -176,7 +176,7 @@ export default function Sidebar() {
               <Link
                 href="/budget"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/budget" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/budget" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -187,7 +187,7 @@ export default function Sidebar() {
               <Link
                 href="/users"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/users" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/users" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -219,7 +219,7 @@ export default function Sidebar() {
               <Link
                 href="/finance"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/finance" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/finance" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -230,7 +230,7 @@ export default function Sidebar() {
               <Link
                 href="/finance/invoices"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/finance/invoices" || pathname.startsWith("/finance/invoices/") ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/finance/invoices" || pathname.startsWith("/finance/invoices/") ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -241,7 +241,7 @@ export default function Sidebar() {
               <Link
                 href="/finance/payments"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/finance/payments" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/finance/payments" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,7 +252,7 @@ export default function Sidebar() {
               <Link
                 href="/finance/accounts"
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/finance/accounts" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/finance/accounts" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -284,7 +284,7 @@ export default function Sidebar() {
               <Link 
                 href="/leads" 
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/leads" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/leads" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -295,7 +295,7 @@ export default function Sidebar() {
               <Link 
                 href="/prospects" 
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/prospects" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/prospects" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,7 +306,7 @@ export default function Sidebar() {
               <Link 
                 href="/campaigns" 
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/campaigns" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/campaigns" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -317,7 +317,7 @@ export default function Sidebar() {
               <Link 
                 href="/files" 
                 className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition ${
-                  pathname === "/files" ? "bg-green-600/20 text-green-400" : "hover:bg-white/5 hover:text-white"
+                  pathname === "/files" ? "bg-brand-gold/20 text-brand-gold" : "hover:bg-brand-gray/5 hover:text-white"
                 }`}
               >
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -325,13 +325,13 @@ export default function Sidebar() {
                 </svg>
                 Files
               </Link>
-              <Link href="/documents" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+              <Link href="/documents" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-brand-gray/5 hover:text-white">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 Documents
               </Link>
-              <Link href="/followers" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-white/5 hover:text-white">
+              <Link href="/followers" className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition hover:bg-brand-gray/5 hover:text-white">
                 <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>

@@ -46,7 +46,7 @@ export default function FinancePage() {
         </div>
         <Link
           href="/finance/invoices/new"
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+          className="flex items-center gap-2 rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -59,8 +59,8 @@ export default function FinancePage() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5">
           <div className="flex items-center gap-3">
-            <div className="rounded-lg bg-green-500/20 p-2">
-              <svg className="h-5 w-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="rounded-lg bg-brand-gold/20 p-2">
+              <svg className="h-5 w-5 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -121,7 +121,7 @@ export default function FinancePage() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-gray-400">Payments Received</span>
-              <span className="text-xl font-bold text-green-400">{formatCurrency(data?.thisMonth?.total)}</span>
+              <span className="text-xl font-bold text-brand-gold">{formatCurrency(data?.thisMonth?.total)}</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-gray-400">Transactions</span>
@@ -140,12 +140,12 @@ export default function FinancePage() {
         <div className="rounded-2xl bg-[#2b2b2b] p-6 ring-1 ring-white/5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-sm font-semibold uppercase text-gray-500">Recent Invoices</h3>
-            <Link href="/finance/invoices" className="text-xs text-green-400 hover:text-green-300">View All</Link>
+            <Link href="/finance/invoices" className="text-xs text-brand-gold hover:text-brand-gold">View All</Link>
           </div>
           <div className="space-y-3">
             {data?.recentInvoices?.length > 0 ? (
               data.recentInvoices.map((inv) => (
-                <div key={inv._id} className="flex items-center justify-between rounded-lg bg-white/5 p-3">
+                <div key={inv._id} className="flex items-center justify-between rounded-lg bg-brand-gray/5 p-3">
                   <div>
                     <p className="text-sm font-medium text-white">{inv.invoiceNumber}</p>
                     <p className="text-xs text-gray-400">{inv.clientName}</p>
@@ -153,7 +153,7 @@ export default function FinancePage() {
                   <div className="text-right">
                     <p className="text-sm font-medium text-white">{formatCurrency(inv.total)}</p>
                     <span className={`text-xs ${
-                      inv.status === 'paid' ? 'text-green-400' :
+                      inv.status === 'paid' ? 'text-brand-gold' :
                       inv.status === 'overdue' ? 'text-red-400' :
                       inv.status === 'sent' ? 'text-blue-400' : 'text-gray-400'
                     }`}>{inv.status}</span>
@@ -170,18 +170,18 @@ export default function FinancePage() {
         <div className="rounded-2xl bg-[#2b2b2b] p-6 ring-1 ring-white/5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-sm font-semibold uppercase text-gray-500">Recent Payments</h3>
-            <Link href="/finance/payments" className="text-xs text-green-400 hover:text-green-300">View All</Link>
+            <Link href="/finance/payments" className="text-xs text-brand-gold hover:text-brand-gold">View All</Link>
           </div>
           <div className="space-y-3">
             {data?.recentPayments?.length > 0 ? (
               data.recentPayments.map((pay) => (
-                <div key={pay._id} className="flex items-center justify-between rounded-lg bg-white/5 p-3">
+                <div key={pay._id} className="flex items-center justify-between rounded-lg bg-brand-gray/5 p-3">
                   <div>
                     <p className="text-sm font-medium text-white">{pay.payerName}</p>
                     <p className="text-xs text-gray-400">{pay.method?.replace('_', ' ')}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-green-400">+{formatCurrency(pay.amount)}</p>
+                    <p className="text-sm font-medium text-brand-gold">+{formatCurrency(pay.amount)}</p>
                     <p className="text-xs text-gray-500">{new Date(pay.paymentDate).toLocaleDateString()}</p>
                   </div>
                 </div>
@@ -197,7 +197,7 @@ export default function FinancePage() {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <Link
           href="/finance/invoices"
-          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-white/5"
+          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-brand-gray/5"
         >
           <div className="rounded-lg bg-blue-500/20 p-3">
             <svg className="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -212,10 +212,10 @@ export default function FinancePage() {
 
         <Link
           href="/finance/payments"
-          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-white/5"
+          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-brand-gray/5"
         >
-          <div className="rounded-lg bg-green-500/20 p-3">
-            <svg className="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div className="rounded-lg bg-brand-gold/20 p-3">
+            <svg className="h-6 w-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
             </svg>
           </div>
@@ -227,7 +227,7 @@ export default function FinancePage() {
 
         <Link
           href="/finance/accounts"
-          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-white/5"
+          className="flex items-center gap-4 rounded-2xl bg-[#2b2b2b] p-5 ring-1 ring-white/5 transition hover:bg-brand-gray/5"
         >
           <div className="rounded-lg bg-purple-500/20 p-3">
             <svg className="h-6 w-6 text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
