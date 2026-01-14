@@ -41,7 +41,8 @@ export async function POST(request) {
 
   // Save to Backend Database
   try {
-    await fetch("http://localhost:4000/api/contacts", {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+    await fetch(`${baseUrl}/api/contacts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

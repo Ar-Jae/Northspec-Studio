@@ -1,54 +1,22 @@
-"use client";
-
-import { useState, useEffect, use } from "react";
 import Container from "../../../components/Container";
 import SectionHeading from "../../../components/SectionHeading";
 import Button from "../../../components/Button";
 import FadeIn from "../../../components/animations/FadeIn";
-import { useRouter } from "next/navigation";
+import { caseStudies } from "../../../lib/data";
+import { notFound } from "next/navigation";
 
-export default function CaseStudyDetailPage({ params }) {
-  const { slug } = use(params);
-  const [study, setStudy] = useState(null);
-  const [loading, setLoading] = useState(true);
+export function generateStaticParams() {
+  return caseStudies.map((study) => ({
+    slug: study.slug,
+  }));
+}
 
-  useEffect(() => {
-    async function fetchStudy() {
-      try {
-        const res = await fetch(`http://localhost:4000/api/content/case-studies/${slug}`);
-        if (res.ok) {
-          const data = await res.json();
-          setStudy(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch case study:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchStudy();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
-      </div>
-    );
-  }
+export default async function CaseStudyDetailPage({ params }) {
+  const { slug } = await params;
+  const study = caseStudies.find((s) => s.slug === slug);
 
   if (!study) {
-    return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
-        <Container className="text-center">
-          <h1 className="text-4xl font-bold text-white font-serif">Case Study Not Found</h1>
-          <p className="mt-4 text-slate-400">The case study you are looking for does not exist or has been moved.</p>
-          <div className="mt-8">
-            <Button as="link" href="/work" variant="brand">Back to Work</Button>
-          </div>
-        </Container>
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -99,7 +67,9 @@ export default function CaseStudyDetailPage({ params }) {
                   Let's build a system that delivers these kinds of results for your business.
                 </p>
                 <div className="mt-6">
-                  <Button as="link" href="/book" variant="brand" className="w-full">Book a Call</Button>
+                  <Button as="link" href="/book" variant="brand" className="w-full justify-center">
+                    Book a Call
+                  </Button>
                 </div>
               </div>
             </aside>

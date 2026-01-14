@@ -3,6 +3,25 @@ const site = {
   tagline: "Engineering websites and software that ship.",
   description:
     "Northspec Studio engineers websites and software that ship. Web development, software engineering, and product support.",
+  keywords: [
+    "Software Development",
+    "Custom Web Applications",
+    "Workflow Automation",
+    "n8n Automation",
+    "Next.js Development",
+    "API Integrations",
+    "Plaid Integration",
+    "SaaS MVP Development",
+    "Senior Software Engineers",
+    "Technical Infrastructure",
+    "Node.js Backend",
+    "Financial Technology Integrations",
+    "Custom CRM Development",
+    "Automated Inventory Systems",
+    "Enterprise Workflow Design",
+    "Bespoke Business Software"
+  ],
+  twitterHandle: "@NorthspecStudio",
   url: "https://northspecstudio.com",
   nav: [
     { label: "Home", href: "/" },
@@ -10,6 +29,7 @@ const site = {
       label: "Services", 
       href: "/services",
       children: [
+        { label: "Built to Spec. Built to Last.", href: "/built-to-spec" },
         { label: "Software Development", href: "/services/software-development" },
         { label: "Workflow Automation", href: "/services/workflow-automation" },
         { label: "Integrations", href: "/services/integrations" },
@@ -23,16 +43,6 @@ const site = {
         { label: "All Pricing", href: "/pricing" },
         { label: "Retainers", href: "/retainers" },
         { label: "Custom Plans", href: "/services/custom-plans" },
-      ]
-    },
-    { 
-      label: "Process", 
-      href: "/process",
-      children: [
-        { label: "How It Works", href: "/process/how-it-works" },
-        { label: "Discovery", href: "/process/discovery" },
-        { label: "Development", href: "/process/development" },
-        { label: "Delivery", href: "/process/delivery" },
       ]
     },
     { 

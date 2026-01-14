@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
@@ -8,28 +7,9 @@ import CaseStudyCard from "../../components/work/CaseStudyCard";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
 import { motion } from "framer-motion";
+import { caseStudies, testimonials } from "../../lib/data";
 
 export default function WorkPage() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("http://localhost:4000/api/content/case-studies");
-        if (res.ok) {
-          const json = await res.json();
-          setData(json);
-        }
-      } catch (error) {
-        console.error("Failed to fetch case studies:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
-
   return (
     <div className="bg-brand-dark min-h-screen">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -47,22 +27,13 @@ export default function WorkPage() {
             </div>
           </div>
 
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
-            </div>
-          ) : (
-            <StaggerContainer id="case-studies" className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 scroll-mt-32">
-              {data.map((study) => (
-                <StaggerItem key={study._id || study.id}>
-                  <CaseStudyCard study={study} compact />
-                </StaggerItem>
-              ))}
-              {data.length === 0 && !loading && (
-                <p className="text-gray-400 col-span-full text-center py-12">No case studies found.</p>
-              )}
-            </StaggerContainer>
-          )}
+          <StaggerContainer id="case-studies" className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 scroll-mt-32">
+            {caseStudies.map((study) => (
+              <StaggerItem key={study.id}>
+                <CaseStudyCard study={study} compact />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
 
           <div id="testimonials" className="mt-32 scroll-mt-32">
             <div className="flex items-center gap-4 mb-12">
@@ -71,18 +42,13 @@ export default function WorkPage() {
             </div>
             
             <div className="grid gap-8 md:grid-cols-2">
-              {[
-                {
-                  quote: "Northspec delivered our MVP ahead of schedule and with better architecture than we initially planned. Highly recommended.",
-                  author: "Founder, Fintech Startup"
-                },
-                {
-                  quote: "The level of communication and transparency is unmatched. We always knew exactly where the project stood.",
-                  author: "CTO, E-commerce Platform"
-                }
-              ].map((t, i) => (
+              {testimonials.map((t, i) => (
                 <motion.div 
                   key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
                   whileHover={{ y: -5 }}
                   className="rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-sm relative"
                 >
@@ -90,7 +56,7 @@ export default function WorkPage() {
                   <p className="text-slate-300 italic text-lg leading-relaxed relative z-10">
                     {t.quote}
                   </p>
-                  <p className="mt-8 text-sm font-bold text-white uppercase tracking-widest">— {t.author}</p>
+                  <p className="mt-8 text-sm font-bold text-white uppercase tracking-widest">— {t.name}, {t.title} at {t.company}</p>
                 </motion.div>
               ))}
             </div>

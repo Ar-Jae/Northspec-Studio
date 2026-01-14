@@ -2,21 +2,21 @@ import Hero from "../components/home/Hero";
 import site from "../content/site";
 
 export const metadata = {
-  title: site.name,
+  title: "Elite Engineering for Scalable Software & Automation",
   description:
-    "Northspec Studio builds and maintains web and software products to spec with clean code, clear scope, and reliable delivery.",
+    "Northspec Studio provides senior-only engineering talent for custom software development, high-performance web apps, and intelligent workflow automations. Built to spec, built to last.",
   openGraph: {
-    title: site.name,
+    title: "Northspec Studio | Elite Engineering for Scalable Software",
     description:
-      "Northspec Studio builds and maintains web and software products to spec with clean code, clear scope, and reliable delivery.",
+      "Modern engineering collective specializing in durable software, workflow automation, and scalable technical infrastructure.",
     url: "/",
   },
 };
 
 export default function HomePage() {
   return (
-    <>
+    <main>
       <Hero />
-    </>
+    </main>
   );
 }

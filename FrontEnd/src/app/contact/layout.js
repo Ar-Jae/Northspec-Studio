@@ -1,9 +1,9 @@
 export const metadata = {
-  title: "Contact | Northspec Studio",
-  description: "Send a message. We’ll respond within one business day.",
+  title: "Contact Us",
+  description: "Start your next engineering project with Northspec Studio. We offer discovery sessions, technical specs, and fixed-price quotes.",
   openGraph: {
-    title: "Contact | Northspec Studio",
-    description: "Send a message. We’ll respond within one business day.",
+    title: "Contact Northspec Studio | Let's Build Something Durable",
+    description: "Tell us what you’re building. We’ll follow up with a clear plan and timeline.",
     url: "/contact",
   },
 };

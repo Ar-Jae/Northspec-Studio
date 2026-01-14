@@ -1,33 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Container from "../Container";
 import SectionHeading from "../SectionHeading";
 import Button from "../Button";
 import { StaggerContainer, StaggerItem } from "../animations/Stagger";
+import { services } from "../../lib/data";
 
 export default function ServicesOverview() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await fetch("http://localhost:4000/api/content/services");
-        if (res.ok) {
-          const json = await res.json();
-          setData(json);
-        }
-      } catch (error) {
-        console.error("Failed to fetch services:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchData();
-  }, []);
+  const displayServices = services.slice(0, 3);
 
   return (
     <section className="bg-brand-dark">
@@ -36,7 +18,7 @@ export default function ServicesOverview() {
           <SectionHeading
             eyebrow="Services"
             title="Build, integrate, and support"
-            description="Three ways we help teams ship and maintain high-quality web products."
+            description="High-quality engineering solutions for teams that need to ship and maintain durable software."
           />
           <div className="flex flex-col sm:flex-row gap-2">
             <Button as="link" href="/services" variant="secondary">
@@ -49,9 +31,9 @@ export default function ServicesOverview() {
         </div>
 
         <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-3">
-          {data.map((service) => (
-            <StaggerItem key={service._id || service.title}>
-              <Link href={`/services/${service.slug || service.title.toLowerCase().replace(/\s+/g, '-')}`}>
+          {displayServices.map((service) => (
+            <StaggerItem key={service.slug || service.title}>
+              <Link href={`/services#${service.slug}`}>
                 <motion.div
                   whileHover={{ scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
                   transition={{ duration: 0.2 }}
@@ -73,9 +55,6 @@ export default function ServicesOverview() {
               </Link>
             </StaggerItem>
           ))}
-          {data.length === 0 && !loading && (
-            <p className="text-gray-400">No services found.</p>
-          )}
         </StaggerContainer>
       </Container>
     </section>

@@ -40,7 +40,8 @@ export async function POST(request) {
 
   // Save to Backend Database
   try {
-    const response = await fetch("http://localhost:4000/api/job-applications", {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+    const response = await fetch(`${baseUrl}/api/job-applications`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -2,9 +2,23 @@ import site from "../content/site";
 
 export default function sitemap() {
   const lastModified = new Date();
-  const routes = site.nav.map((item) => item.href);
+  
+  // Extract all routes including children
+  const routes = [];
+  
+  site.nav.forEach((item) => {
+    routes.push(item.href);
+    if (item.children) {
+      item.children.forEach((child) => {
+        routes.push(child.href);
+      });
+    }
+  });
 
-  return routes.map((path) => ({
+  // Remove duplicates and normalize
+  const uniqueRoutes = [...new Set(routes)];
+
+  return uniqueRoutes.map((path) => ({
     url: `${site.url}${path}`,
     lastModified,
     changeFrequency: path === "/" ? "weekly" : "monthly",

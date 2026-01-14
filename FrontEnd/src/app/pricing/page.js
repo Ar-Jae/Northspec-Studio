@@ -1,13 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
 import { motion } from "framer-motion";
-import localFaqs from "../../content/faqs";
+import { faqs } from "../../lib/data";
 
 const pricingPlans = [
   {
@@ -124,29 +123,6 @@ const retainerPlans = [
 ];
 
 export default function PricingPage() {
-  const [faqs, setFaqs] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchFaqs() {
-      try {
-        const res = await fetch("http://localhost:4000/api/content/faqs");
-        if (res.ok) {
-          const data = await res.json();
-          setFaqs(data.length > 0 ? data : localFaqs);
-        } else {
-          setFaqs(localFaqs);
-        }
-      } catch (error) {
-        console.error("Failed to fetch FAQs, using local fallback:", error);
-        setFaqs(localFaqs);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchFaqs();
-  }, []);
-
   return (
     <div className="bg-brand-dark min-h-screen">
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
@@ -321,29 +297,23 @@ export default function PricingPage() {
               <p className="mt-4 text-slate-400">Everything you need to know about our process and pricing.</p>
             </div>
 
-            {loading ? (
-              <div className="flex justify-center py-12">
-                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-brand-gold"></div>
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {faqs.map((faq, i) => (
-                  <details key={i} className="group rounded-2xl border border-white/10 bg-white/5 p-6 [&_summary::-webkit-details-marker]:hidden">
-                    <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-white">
-                      <h3 className="text-lg font-medium">{faq.question}</h3>
-                      <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </summary>
-                    <p className="mt-4 leading-relaxed text-slate-400">
-                      {faq.answer}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            )}
+            <div className="space-y-6">
+              {faqs.map((faq, i) => (
+                <details key={i} className="group rounded-2xl border border-white/10 bg-white/5 p-6 [&_summary::-webkit-details-marker]:hidden">
+                  <summary className="flex cursor-pointer items-center justify-between gap-1.5 text-white">
+                    <h3 className="text-lg font-medium">{faq.question}</h3>
+                    <span className="shrink-0 transition duration-300 group-open:-rotate-180">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p className="mt-4 leading-relaxed text-slate-400">
+                    {faq.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
           </div>
 
           <div className="mt-32 rounded-3xl bg-brand-gold p-12 text-center">
@@ -353,7 +323,7 @@ export default function PricingPage() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button as="link" href="/contact" variant="brand-dark">Start Your Project</Button>
-              <Button as="link" href="/process/how-it-works" variant="outline-dark">View Our Process</Button>
+              <Button as="link" href="/built-to-spec" variant="outline-dark">Built to Spec. Built to Last. Method</Button>
             </div>
           </div>
         </FadeIn>

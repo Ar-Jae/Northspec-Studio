@@ -1,58 +1,22 @@
-"use client";
-
-import { useState, useEffect, use } from "react";
 import Container from "../../../components/Container";
 import SectionHeading from "../../../components/SectionHeading";
 import Button from "../../../components/Button";
 import FadeIn from "../../../components/animations/FadeIn";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { services } from "../../../lib/data";
+import { notFound } from "next/navigation";
 
-export default function ServiceDetailPage({ params }) {
-  const { slug } = use(params);
-  const [service, setService] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
+export function generateStaticParams() {
+  return services.map((service) => ({
+    slug: service.slug,
+  }));
+}
 
-  useEffect(() => {
-    async function fetchService() {
-      try {
-        const res = await fetch(`http://localhost:4000/api/content/services/${slug}`);
-        if (res.ok) {
-          const data = await res.json();
-          setService(data);
-        } else {
-          console.error("Service not found");
-        }
-      } catch (error) {
-        console.error("Failed to fetch service:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchService();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
-      </div>
-    );
-  }
+export default async function ServiceDetailPage({ params }) {
+  const { slug } = await params;
+  const service = services.find((s) => s.slug === slug);
 
   if (!service) {
-    return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
-        <Container className="text-center">
-          <h1 className="text-4xl font-bold text-white font-serif">Service Not Found</h1>
-          <p className="mt-4 text-slate-400">The service you are looking for does not exist or has been moved.</p>
-          <div className="mt-8">
-            <Button as="link" href="/services" variant="brand">Back to Services</Button>
-          </div>
-        </Container>
-      </div>
-    );
+    notFound();
   }
 
   return (
@@ -88,16 +52,15 @@ export default function ServiceDetailPage({ params }) {
               
               <div className="grid gap-6 sm:grid-cols-2">
                 {service.bullets?.map((bullet, i) => (
-                  <motion.div 
+                  <div 
                     key={i}
-                    whileHover={{ y: -5 }}
                     className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-gold/30 transition-colors"
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
                       <h3 className="text-lg font-semibold text-white">{bullet}</h3>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -110,8 +73,8 @@ export default function ServiceDetailPage({ params }) {
                 </p>
                 
                 <div className="mt-10 space-y-4">
-                  <Button as="link" href="/contact" variant="brand" className="w-full">Book a Discovery Call</Button>
-                  <Button as="link" href="/pricing" variant="outline" className="w-full">View Pricing & Plans</Button>
+                  <Button as="link" href="/contact" variant="brand" className="w-full justify-center">Book a Discovery Call</Button>
+                  <Button as="link" href="/pricing" variant="outline" className="w-full justify-center">View Pricing & Plans</Button>
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-white/10">

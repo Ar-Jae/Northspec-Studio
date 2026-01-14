@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import Container from "./Container";
 import Logo from "./Logo";
 import Button from "./Button";
@@ -144,7 +145,7 @@ export default function Footer() {
             <div>
               <Logo className="text-white" />
               <p className="mt-3 max-w-xs text-sm text-slate-400">
-                Engineering websites and software that ship.
+                Engineering websites and software that ship. All projects follow our <Link href="/built-to-spec" className="text-brand-gold hover:underline">Built to Spec. Built to Last.</Link> method.
               </p>
             </div>
 

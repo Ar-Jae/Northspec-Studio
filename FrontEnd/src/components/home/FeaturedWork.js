@@ -1,32 +1,12 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import Container from "../Container";
 import SectionHeading from "../SectionHeading";
 import Button from "../Button";
 import CaseStudyCard from "../work/CaseStudyCard";
 import { StaggerContainer, StaggerItem } from "../animations/Stagger";
+import { caseStudies } from "../../lib/data";
 
 export default function FeaturedWork() {
-  const [featured, setFeatured] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchWork() {
-      try {
-        const res = await fetch("http://localhost:4000/api/content/case-studies");
-        if (res.ok) {
-          const data = await res.json();
-          setFeatured(data.filter((s) => s.featured).slice(0, 2));
-        }
-      } catch (error) {
-        console.error("Failed to fetch case studies:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchWork();
-  }, []);
+  const featured = caseStudies.filter((s) => s.featured).slice(0, 2);
 
   return (
     <section className="bg-brand-dark">
@@ -49,13 +29,10 @@ export default function FeaturedWork() {
 
         <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-2">
           {featured.map((study) => (
-            <StaggerItem key={study._id || study.id}>
+            <StaggerItem key={study.id}>
               <CaseStudyCard study={study} />
             </StaggerItem>
           ))}
-          {featured.length === 0 && !loading && (
-            <p className="text-gray-400">No featured work found.</p>
-          )}
         </StaggerContainer>
       </Container>
     </section>
