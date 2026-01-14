@@ -75,10 +75,10 @@ export default function AboutPage() {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3">
-                  <Button as="link" href="/work" variant="brand">
-                    View Our Work
+                  <Button as="link" href="/contact" variant="brand">
+                    Start a Project
                   </Button>
-                  <Button as="link" href="/contact" variant="secondary">
+                  <Button as="link" href="/book" variant="secondary">
                     Book a Discovery Call
                   </Button>
                 </div>

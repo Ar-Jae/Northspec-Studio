@@ -46,14 +46,6 @@ const site = {
       ]
     },
     { 
-      label: "Work", 
-      href: "/work",
-      children: [
-        { label: "Case Studies", href: "/work/case-studies" },
-        { label: "Testimonials", href: "/work/testimonials" },
-      ]
-    },
-    { 
       label: "About", 
       href: "/about",
       children: [

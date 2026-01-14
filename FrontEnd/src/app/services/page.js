@@ -68,7 +68,7 @@ export default function ServicesPage() {
             </p>
             <div className="mt-10 flex flex-wrap justify-center gap-4">
               <Button as="link" href="/book" variant="brand-dark">Book a Discovery Call</Button>
-              <Button as="link" href="/work" variant="outline-dark">View Case Studies</Button>
+              <Button as="link" href="/contact" variant="outline-dark">Start a Project</Button>
             </div>
           </div>
         </FadeIn>

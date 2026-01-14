@@ -256,8 +256,8 @@ export default function WhyNorthspecPage() {
                 <Button as="link" href="/book" variant="brand" className="px-8 py-4">
                   Book a Strategy Call
                 </Button>
-                <Button as="link" href="/work" variant="outline" className="px-8 py-4">
-                  View Our Work
+                <Button as="link" href="/contact" variant="outline" className="px-8 py-4">
+                  Start a Project
                 </Button>
               </div>
             </FadeIn>
