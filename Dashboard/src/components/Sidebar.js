@@ -17,10 +17,9 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-3 p-5 border-b border-white/5">
         <div className="h-10 w-10 overflow-hidden rounded-lg relative">
-          <Image
-            src="/images/logo.png"
+          <img
+            src="/images/logo.svg"
             alt="Northspec Studio Logo"
-            fill
             className="object-contain"
           />
         </div>

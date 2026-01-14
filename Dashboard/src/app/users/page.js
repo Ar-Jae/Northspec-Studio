@@ -1,98 +1,137 @@
-"use client";
+import PageHeader from "@/components/PageHeader";
+import Link from "next/link";
 
-import { useState, useEffect } from "react";
+const UsersPage = () => {
+  const users = [
+    {
+      id: 1,
+      name: "Arlene McCoy",
+      email: "arlene@northspec.com",
+      role: "Admin",
+      status: "Active",
+      avatar: "https://i.pravatar.cc/150?u=arlene",
+    },
+    {
+      id: 2,
+      name: "John Doe",
+      email: "john.doe@example.com",
+      role: "Editor",
+      status: "Active",
+      avatar: "https://i.pravatar.cc/150?u=john",
+    },
+    {
+      id: 3,
+      name: "Jane Smith",
+      email: "jane.smith@example.com",
+      role: "Viewer",
+      status: "Inactive",
+      avatar: "https://i.pravatar.cc/150?u=jane",
+    },
+  ];
 
-export default function UsersPage() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchUsers() {
-      try {
-        const res = await fetch("http://localhost:4000/api/dashboard/users");
-        if (res.ok) {
-          const data = await res.json();
-          setUsers(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch users:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchUsers();
-  }, []);
+  const actions = [
+    {
+      label: "Invite User",
+      primary: true,
+      href: "/users/invite",
+    },
+  ];
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-2xl font-semibold text-white">Users</h1>
-        <button className="rounded-lg bg-brand-gold px-4 py-2 text-sm font-medium text-white hover:bg-green-700">
-          Add User
-        </button>
-      </div>
-      
-      <div className="overflow-hidden rounded-2xl border border-white/5">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-gray-50 text-xs font-medium uppercase text-gray-500">
-            <tr>
-              <th className="px-6 py-4">User</th>
-              <th className="px-6 py-4">Email</th>
-              <th className="px-6 py-4">Role</th>
-              <th className="px-6 py-4">Status</th>
-              <th className="px-6 py-4">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {users.map((user) => (
-              <tr key={user._id} className="hover:bg-gray-50">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="h-8 w-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold font-bold">
-                      {(user.firstName || user.username || 'U').charAt(0).toUpperCase()}
-                    </div>
-                    <span className="font-medium text-white">
-                      {user.firstName ? `${user.firstName} ${user.lastName || ''}` : (user.username || 'Unknown User')}
-                    </span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-gray-600">{user.email || 'N/A'}</td>
-                <td className="px-6 py-4">
-                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${user.isAdmin ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-300'}`}>
-                    {user.isAdmin ? 'Admin' : 'User'}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    user.status === 'approved' ? 'bg-brand-gold/20 text-brand-gold' : 
-                    user.status === 'pending' ? 'bg-amber-100 text-amber-700' : 
-                    'bg-red-100 text-red-700'
-                  }`}>
-                    <span className={`h-1.5 w-1.5 rounded-full ${
-                      user.status === 'approved' ? 'bg-brand-gold' : 
-                      user.status === 'pending' ? 'bg-amber-500' : 
-                      'bg-red-500'
-                    }`}></span>
-                    {user.status ? user.status.charAt(0).toUpperCase() + user.status.slice(1) : 'Unknown'}
-                  </span>
-                </td>
-                <td className="px-6 py-4">
-                  <button className="text-gray-400 hover:text-gray-600">
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-                    </svg>
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {users.length === 0 && !loading && (
+    <div>
+      <PageHeader title="Users" actions={actions.map(action => 
+        action.href ? (
+          <Link href={action.href} key={action.label} passHref>
+            <span className={action.primary ? "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-brand-gold text-black" : "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-white/5 text-gray-300 border border-white/5"}>
+              {action.label}
+            </span>
+          </Link>
+        ) : (
+          <button
+            key={action.label}
+            className={action.primary ? "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-brand-gold text-black" : "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-white/5 text-gray-300 border border-white/5"}
+          >
+            {action.label}
+          </button>
+        )
+      )} />
+      <div className="p-6">
+        <div className="overflow-hidden rounded-lg border border-white/5">
+          <table className="min-w-full divide-y divide-white/5">
+            <thead className="bg-white/5">
               <tr>
-                <td colSpan="5" className="px-6 py-8 text-center text-gray-500">No users found.</td>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400"
+                >
+                  Role
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-400"
+                >
+                  Status
+                </th>
+                <th scope="col" className="relative px-6 py-3">
+                  <span className="sr-only">Actions</span>
+                </th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {users.map((user) => (
+                <tr key={user.id} className="hover:bg-white/5">
+                  <td className="whitespace-nowrap px-6 py-4">
+                    <div className="flex items-center">
+                      <div className="h-10 w-10 flex-shrink-0">
+                        <img
+                          className="h-10 w-10 rounded-full"
+                          src={user.avatar}
+                          alt=""
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <div className="text-sm font-medium text-white">
+                          {user.name}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          {user.email}
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-300">
+                    {user.role}
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-sm">
+                  <span
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                        user.status === "Active"
+                          ? "bg-green-500/10 text-green-400"
+                          : "bg-gray-500/10 text-gray-400"
+                      }`}
+                    >
+                      {user.status}
+                    </span>
+                  </td>
+                  <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                    <a href="#" className="text-brand-gold hover:text-brand-gold/70">
+                      Edit
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default UsersPage;

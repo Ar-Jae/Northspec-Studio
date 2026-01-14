@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import PageHeader from "../components/PageHeader";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState("Overview");
+  const pathname = usePathname();
   const [activities, setActivities] = useState([]);
   const [files, setFiles] = useState([]);
   const [leads, setLeads] = useState([]);
@@ -56,76 +59,39 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col h-screen">
-      {/* Top Bar */}
-      <header className="flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-4 text-sm text-gray-300">
-          <button className="hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+      <PageHeader 
+        breadcrumbs={["Overview"]} 
+        actions={[
+          { label: "New Project", primary: true, icon: (
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-          </button>
-          <button className="hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-            </svg>
-          </button>
-          <span className="text-gray-400">Dashboards</span>
-          <span className="text-gray-500">/</span>
-          <span className="text-white font-medium">Overview</span>
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-64 rounded-lg bg-brand-gray/10 px-4 py-2 pl-10 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-gold/50"
-            />
-            <svg className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-          <button className="text-gray-400 hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-          </button>
-          <button className="text-gray-400 hover:text-white">
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-            </svg>
-          </button>
-        </div>
-      </header>
+          )} 
+        ]}
+      />
 
       {/* Main Content Area */}
-      <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
+      <div className="flex-1 overflow-auto p-6">
         {/* Secondary Nav */}
         <div className="mb-6 flex items-center justify-between border-b border-white/5 pb-4">
           <div className="flex gap-6">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`pb-2 text-sm font-medium transition ${
-                  activeTab === tab
-                    ? "border-b-2 border-gray-900 text-white"
-                    : "text-gray-500 hover:text-gray-300"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+            {tabs.map((tab) => {
+              const href = tab === "Overview" ? "/" : `/${tab.toLowerCase()}`;
+              const isActive = pathname === href;
+              return (
+                <Link
+                  href={href}
+                  key={tab}
+                  className={`pb-2 text-sm font-medium transition ${
+                    isActive
+                      ? "border-b-2 border-gray-900 text-white"
+                      : "text-gray-500 hover:text-gray-300"
+                  }`}
+                >
+                  {tab}
+                </Link>
+              );
+            })}
           </div>
           <div className="flex items-center gap-3">
             <button className="flex items-center gap-2 text-sm text-gray-600 hover:text-white">

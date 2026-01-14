@@ -1,68 +1,94 @@
-"use client";
+import PageHeader from "@/components/PageHeader";
+import Link from "next/link";
 
-import { useState, useEffect } from "react";
+const TargetsPage = () => {
+  const targets = [
+    {
+      id: "TGT-001",
+      title: "Q1 New Client Acquisition",
+      value: "50",
+      target: "100",
+      unit: "Clients",
+      progress: 50,
+    },
+    {
+      id: "TGT-002",
+      title: "Q1 Revenue",
+      value: "$150,000",
+      target: "$250,000",
+      unit: "USD",
+      progress: 60,
+    },
+    {
+      id: "TGT-003",
+      title: "Website Conversion Rate",
+      value: "3.5%",
+      target: "5%",
+      unit: "Percentage",
+      progress: 70,
+    },
+    {
+        id: "TGT-004",
+        title: "Social Media Engagement",
+        value: "2500",
+        target: "5000",
+        unit: "Interactions",
+        progress: 50,
+      },
+  ];
 
-export default function TargetsPage() {
-  const [targets, setTargets] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchTargets() {
-      try {
-        const res = await fetch("http://localhost:4000/api/dashboard/targets");
-        if (res.ok) {
-          const data = await res.json();
-          setTargets(data);
-        }
-      } catch (error) {
-        console.error("Failed to fetch targets:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchTargets();
-  }, []);
+  const actions = [
+    {
+      label: "New Target",
+      primary: true,
+      href: "/targets/create",
+    },
+  ];
 
   return (
-    <div className="flex-1 overflow-auto rounded-tl-3xl bg-brand-gray p-6">
-      <h1 className="mb-6 text-2xl font-semibold text-white">Targets</h1>
-      
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {targets.map((target) => (
-          <div key={target._id} className="rounded-2xl border border-white/5 p-5">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="rounded-full bg-brand-gold/20 px-3 py-1 text-xs font-medium text-brand-gold">
-                {target.category}
-              </span>
-              <span className="text-xs text-gray-500">
-                Due: {new Date(target.deadline).toLocaleDateString()}
-              </span>
-            </div>
-            <h3 className="mb-2 text-lg font-semibold text-white">{target.title}</h3>
-            <div className="mb-4">
-              <div className="mb-1 flex justify-between text-sm">
-                <span className="text-gray-600">Progress</span>
-                <span className="font-medium text-white">
-                  {Math.round((target.current / target.goal) * 100)}%
-                </span>
+    <div>
+      <PageHeader title="Targets" actions={actions.map(action => 
+        action.href ? (
+          <Link href={action.href} key={action.label} passHref>
+            <span className={action.primary ? "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-brand-gold text-black" : "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-white/5 text-gray-300 border border-white/5"}>
+              {action.label}
+            </span>
+          </Link>
+        ) : (
+          <button
+            key={action.label}
+            className={action.primary ? "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-brand-gold text-black" : "flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition-all bg-white/5 text-gray-300 border border-white/5"}
+          >
+            {action.label}
+          </button>
+        )
+      )} />
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {targets.map((target) => (
+            <div key={target.id} className="bg-white/5 p-6 rounded-lg">
+              <h3 className="text-lg font-bold text-white">{target.title}</h3>
+              <p className="text-sm text-gray-400 mt-1">{target.unit}</p>
+              <div className="mt-4">
+                <div className="flex justify-between items-end">
+                    <span className="text-3xl font-bold text-white">{target.value}</span>
+                    <span className="text-gray-400">/ {target.target}</span>
+                </div>
+                <div className="mt-2">
+                  <div className="w-full bg-gray-600 rounded-full h-2.5">
+                    <div
+                      className="bg-brand-gold h-2.5 rounded-full"
+                      style={{ width: `${target.progress}%` }}
+                    ></div>
+                  </div>
+                </div>
               </div>
-              <div className="h-2 w-full rounded-full bg-gray-100">
-                <div
-                  className="h-full rounded-full bg-brand-gold"
-                  style={{ width: `${(target.current / target.goal) * 100}%` }}
-                ></div>
-              </div>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Current: ${target.current.toLocaleString()}</span>
-              <span className="font-medium text-white">Goal: ${target.goal.toLocaleString()}</span>
-            </div>
-          </div>
-        ))}
-        {targets.length === 0 && !loading && (
-          <p className="text-gray-500">No targets found.</p>
-        )}
+          ))}
+        </div>
       </div>
     </div>
   );
-}
+};
+
+export default TargetsPage;
