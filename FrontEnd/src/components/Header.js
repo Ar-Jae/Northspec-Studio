@@ -86,29 +86,32 @@ export default function Header() {
   const navLinks = useMemo(() => site.nav, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full pt-6">
-      <Container className="relative flex h-16 items-center justify-between">
-        <div className="flex items-center">
+    <header className="fixed top-0 z-50 w-full bg-brand-dark/95 backdrop-blur-xl">
+      <Container className="flex flex-wrap md:flex-nowrap h-16 items-center justify-between gap-2 px-2 md:px-0">
+        <div className="flex items-center flex-shrink-0">
           <Logo className="text-white" />
         </div>
 
-        <nav className="hidden md:block absolute left-1/2 -translate-x-1/2" aria-label="Primary">
-          <ul className="flex items-center gap-1 rounded-full bg-white/5 p-1 backdrop-blur-md border border-white/10">
+        {/* Desktop nav */}
+        <nav className="hidden md:block flex-grow text-center" aria-label="Primary">
+          <ul className="inline-flex items-center gap-1 rounded-full bg-white/5 p-1 backdrop-blur-md border border-white/10">
             {navLinks.map((item) => (
               <NavLink key={item.href} item={item} pathname={pathname} />
             ))}
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        {/* Desktop contact button */}
+        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
           <Button as="link" href="/contact" variant="brand">
             Contact Us
           </Button>
         </div>
 
+        {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold md:hidden flex-shrink-0"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
           aria-controls={panelId}
@@ -120,12 +123,14 @@ export default function Header() {
         </button>
       </Container>
 
+      {/* Mobile nav panel - always visible and scrollable below header */}
       <div
         id={panelId}
         className={cn(
-          "md:hidden fixed inset-0 top-24 z-40 bg-brand-dark/95 backdrop-blur-xl overflow-y-auto",
+          "md:hidden fixed left-0 right-0 z-40 bg-brand-dark/95 backdrop-blur-xl transition-all duration-200 pt-16 max-h-screen overflow-y-auto",
           mobileOpen ? "block" : "hidden"
         )}
+        style={{ top: 0, height: '100vh' }}
       >
         <Container className="py-4">
           <nav aria-label="Mobile">
@@ -164,7 +169,6 @@ export default function Header() {
                         </button>
                       )}
                     </div>
-                    
                     {hasChildren && isExpanded && (
                       <ul className="ml-4 mt-1 flex flex-col gap-1 border-l border-white/10 pl-4">
                         {item.children.map((child) => (
