@@ -15,26 +15,30 @@ export default function Footer() {
     return null;
   }
 
+  const showCTA = pathname !== "/services";
+
   return (
     <footer className="bg-brand-dark">
       {/* CTA Section */}
-      <div className="border-y border-white/10 bg-white/[0.02]">
-        <Container className="py-16 sm:py-24">
-          <div className="flex flex-col items-center text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mb-6">
-              Ready to automate your business?
-            </h2>
-            <p className="text-slate-400 max-w-xl mb-10">
-              Stop wasting time on manual tasks. Let's build the systems that will scale your operations while you sleep.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button as="link" href="/contact" variant="brand" className="px-8 py-4 text-lg">
-                Send a Message
-              </Button>
+      {showCTA && (
+        <div className="border-y border-white/10 bg-white/[0.02]">
+          <Container className="py-16 sm:py-24">
+            <div className="flex flex-col items-center text-center">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mb-6">
+                Ready to automate your business?
+              </h2>
+              <p className="text-slate-400 max-w-xl mb-10">
+                Stop wasting time on manual tasks. Let's build the systems that will scale your operations while you sleep.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button as="link" href="/contact" variant="brand" className="px-8 py-4 text-lg">
+                  Send a Message
+                </Button>
+              </div>
             </div>
-          </div>
-        </Container>
-      </div>
+          </Container>
+        </div>
+      )}
 
       {/* Newsletter section */}
       <div className="border-b border-white/10 bg-brand-dark">
