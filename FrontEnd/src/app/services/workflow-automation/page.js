@@ -23,7 +23,7 @@ export default function WorkflowAutomationPage() {
             <div className="space-y-8">
               <h2 className="text-2xl font-semibold text-white font-serif">Automation Infrastructure</h2>
               <p className="text-slate-400 leading-relaxed">
-                We specialize in building "invisible infrastructure"—the workflows that run in the background to keep your business moving without human intervention.
+                We specialize in building "invisible infrastructure" - the workflows that run in the background to keep your business moving without human intervention.
               </p>
               
               <div className="grid gap-6 sm:grid-cols-2">

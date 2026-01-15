@@ -147,7 +147,7 @@ export default function RetainersPage() {
             <div className="space-y-8">
               <h2 className="text-3xl font-bold text-white font-serif">Why a Retainer?</h2>
               <p className="text-slate-400 leading-relaxed">
-                Once your platform is live, your business doesn’t stop evolving — and neither should your system. 
+                Once your platform is live, your business doesn’t stop evolving - and neither should your system. 
                 Our retainers provide ongoing development, stability, and peace of mind so your platform continues to perform.
               </p>
               <div className="grid gap-6 sm:grid-cols-2">

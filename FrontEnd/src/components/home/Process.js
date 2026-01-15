@@ -37,7 +37,7 @@ const steps = [
       "Continuous testing throughout development",
     ],
     footer:
-      "Every feature is tested for performance, reliability, and edge cases — not just “happy paths.”",
+      "Every feature is tested for performance, reliability, and edge cases - not just “happy paths.”",
   },
   {
     title: "Deployment & Ongoing Support",
@@ -50,7 +50,7 @@ const steps = [
       "Optional ongoing support and maintenance",
     ],
     footer:
-      "You’re not left guessing after launch — we ensure a smooth transition and long-term reliability.",
+      "You’re not left guessing after launch - we ensure a smooth transition and long-term reliability.",
   },
 ];
 

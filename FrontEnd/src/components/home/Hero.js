@@ -63,7 +63,7 @@ export default function Hero() {
                 In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
               </p>
               <Button as="link" href="/services" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
-                START YOUR JOURNEY
+                KICK OFF YOUR PROJECT
               </Button>
             </motion.div>
           </div>

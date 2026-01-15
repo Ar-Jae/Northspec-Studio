@@ -96,7 +96,7 @@ export default function CareersPage() {
                 <h2 className="text-2xl font-bold text-white font-serif mb-4">Our Philosophy</h2>
                 <p className="text-slate-300 leading-relaxed">
                   At Northspec, we don't believe in busy work. We believe in deep work blocks, clear requirements, and high-quality output. 
-                  We operate as a distributed team of senior engineers who take ownership of their work. No micromanagement, no useless meetings—just engineering.
+                  We operate as a distributed team of senior engineers who take ownership of their work. No micromanagement, no useless meetings - just engineering.
                 </p>
               </section>
             </div>

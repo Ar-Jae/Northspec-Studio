@@ -7,7 +7,7 @@ export default function CorporatePage(){
       <p className="text-sm text-gray-400 mt-2">Company-wide settings and resources.</p>
 
       <div className="mt-6 rounded bg-[#111] p-6 text-gray-300">
-        <p>Placeholder — add company directories, policies, and teams here.</p>
+        <p>Placeholder - add company directories, policies, and teams here.</p>
       </div>
     </div>
   );
