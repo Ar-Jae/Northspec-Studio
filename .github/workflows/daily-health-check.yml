@@ -1,0 +1,25 @@
+name: Daily Website/Backend Health Check
+
+on:
+  schedule:
+    # 5:00 AM America/New_York (DST-aware handled via cron job in OpenClaw).
+    # This GitHub Action runs as an additional reliability signal at 10:00 UTC.
+    - cron: '0 10 * * *'
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Verify frontend health endpoint
+        run: |
+          set -euo pipefail
+          curl -fsSL https://northspecstudio.com >/dev/null
+
+      - name: Verify backend health endpoint
+        run: |
+          set -euo pipefail
+          curl -fsSL https://northspecstudio.com/health | jq .

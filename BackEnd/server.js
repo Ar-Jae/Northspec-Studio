@@ -34,6 +34,15 @@ app.get('/', (req, res) => {
   res.send('Northspec Studio Backend is running');
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    service: 'northspec-backend',
+    timestamp: new Date().toISOString(),
+    uptimeSeconds: Math.round(process.uptime()),
+  });
+});
+
 // Dashboard Routes
 app.get('/api/dashboard/leads', dashboardController.getLeads);
 app.post('/api/dashboard/leads', dashboardController.createLead);

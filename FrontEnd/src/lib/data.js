@@ -1,26 +1,26 @@
 export const services = [
   {
-    title: "Web Development",
-    slug: "software-development",
-    short: "Production marketing sites and landing pages built with Next.js/React.",
-    description: "We build websites that load fast, read clearly, and are easy to maintain. Scope is defined up front, decisions are documented, and the handoff is clean.",
-    bullets: ["Next.js/React builds (App Router)", "Marketing sites + landing pages", "Accessible, responsive components", "Performance and Core Web Vitals"],
+    title: "AI & Workflow Automation",
+    slug: "workflow-automation",
+    short: "Automate repetitive operations so your team can focus on high-value execution.",
+    description: "We map your workflows, eliminate manual bottlenecks, and deploy practical AI automation that improves speed, consistency, and visibility.",
+    bullets: ["Automation audits + process mapping", "n8n and API-driven automations", "CRM, inbox, and ops workflow orchestration", "Monitoring + alerting for automation reliability"],
     order: 1
   },
   {
     title: "Software Engineering",
-    slug: "workflow-automation",
-    short: "APIs, integrations, and internal tools built with clear specs and stable interfaces.",
-    description: "We build and fix the systems behind your product. Expect clear requirements, documented tradeoffs, and code that your team can maintain.",
-    bullets: ["APIs + integrations", "Internal dashboards + tools", "Background jobs and workflows", "Auth + permissions"],
+    slug: "software-development",
+    short: "Web and backend engineering for business-critical systems.",
+    description: "From customer-facing websites to internal platforms, we deliver software with clear scope, maintainable architecture, and measurable outcomes.",
+    bullets: ["Web builds + modernization", "Backend APIs + integrations", "Internal tools + dashboards", "Reliability and incident hardening"],
     order: 2
   },
   {
-    title: "Product Support",
+    title: "Mobile App Development",
     slug: "integrations",
-    short: "Maintenance, debugging, audits, and performance work to keep systems stable.",
-    description: "Software is built to last, not just to launch. We reduce incidents, improve performance, and keep delivery predictable with ongoing support.",
-    bullets: ["Ongoing maintenance", "Performance + Core Web Vitals", "Debugging + incident response", "Audits + refactors"],
+    short: "Mobile products that connect directly to your operations.",
+    description: "We design and build mobile apps that support field teams, customer workflows, and real-time business operations.",
+    bullets: ["iOS + Android app delivery", "Backend-connected mobile workflows", "Role-based access and data sync", "App maintenance and iterative releases"],
     order: 3
   },
   {

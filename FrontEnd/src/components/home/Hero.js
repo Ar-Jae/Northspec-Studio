@@ -60,11 +60,16 @@ export default function Hero() {
               className="relative lg:absolute bottom-0 right-0 lg:right-10 z-20 max-w-xs w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
             >
               <p className="text-base sm:text-sm text-slate-400 leading-relaxed">
-                In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
+                We help established local companies remove operational bottlenecks with AI automation, reliable software engineering, and mobile apps that teams actually use.
               </p>
-              <Button as="link" href="/services" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
-                KICK OFF YOUR PROJECT
-              </Button>
+              <div className="w-full sm:w-auto flex flex-col sm:flex-row gap-3 sm:justify-end">
+                <Button as="link" href="/contact" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+                  Book Automation Audit
+                </Button>
+                <Button as="link" href="/services" variant="secondary" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+                  Scope Engineering Work
+                </Button>
+              </div>
             </motion.div>
           </div>
         </div>
