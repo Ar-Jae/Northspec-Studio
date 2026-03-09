@@ -80,11 +80,10 @@ const site = {
     { label: "Instagram", shortLabel: "IG", href: "https://www.instagram.com/northspec_studio/" },
     { label: "LinkedIn", shortLabel: "LI", href: "https://www.linkedin.com/in/northspec-studio/" },
   ],
-  // Calendar booking URL - supports Calendly, Cal.com, or any embeddable calendar
-  // Examples:
-  //   Calendly: "https://calendly.com/your-username/discovery-call"
-  //   Cal.com: "https://cal.com/your-username/discovery-call"
-  calendarUrl: "https://calendly.com/northspec",
+  // Google Appointment Schedule public booking URL (availability-only, no full calendar view)
+  // Example: https://calendar.app.google/xxxxxxxxxxxx
+  // Fallback currently points to your shared calendar if appointment link is not set yet.
+  calendarUrl: "https://calendar.google.com/calendar/u/0/r?cid=build@northspecstudio.com",
 };
 
 export default site;
