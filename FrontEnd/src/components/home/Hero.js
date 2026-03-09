@@ -57,7 +57,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="relative lg:absolute bottom-0 lg:-bottom-8 right-0 lg:right-10 z-20 max-w-sm w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
+              className="relative lg:absolute bottom-0 lg:-bottom-20 right-0 lg:right-10 z-20 max-w-sm w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
             >
               <p className="text-lg sm:text-base lg:text-xl text-slate-300 leading-relaxed">
                 We help established local companies modernize operations with workflow automation, software engineering, and mobile app development. Clear scope, senior execution, and measurable business outcomes.
