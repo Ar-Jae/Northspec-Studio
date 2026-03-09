@@ -62,7 +62,7 @@ export default function Hero() {
               <p className="text-lg sm:text-base lg:text-xl text-slate-300 leading-relaxed">
                 We help established local companies modernize operations with workflow automation, software engineering, and mobile app development. Clear scope, senior execution, and measurable business outcomes.
               </p>
-              <Button as="link" href="https://calendar.google.com/calendar/u/0/r?cid=build@northspecstudio.com" target="_blank" rel="noopener noreferrer" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+              <Button as="link" href={site.calendarUrl} target="_blank" rel="noopener noreferrer" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
                 BOOK AN AUTOMATION AUDIT
               </Button>
             </motion.div>

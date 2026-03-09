@@ -82,8 +82,7 @@ const site = {
   ],
   // Google Appointment Schedule public booking URL (availability-only, no full calendar view)
   // Example: https://calendar.app.google/xxxxxxxxxxxx
-  // Fallback currently points to your shared calendar if appointment link is not set yet.
-  calendarUrl: "https://calendar.google.com/calendar/u/0/r?cid=build@northspecstudio.com",
+  calendarUrl: "https://calendar.app.google/XMN48TcybVjmij4C7",
 };
 
 export default site;
