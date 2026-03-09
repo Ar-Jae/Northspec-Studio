@@ -200,28 +200,10 @@ export default function ContactForm() {
           </p>
         </div>
         
-        <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-          <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex justify-between items-center">
-            <div>
-              <h4 className="font-semibold text-white flex items-center gap-2">
-                <svg className="h-5 w-5 text-brand-gold" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                </svg>
-                Pick a time that works for you
-              </h4>
-              <p className="text-sm text-slate-400 mt-1">30-minute discovery call</p>
-            </div>
-          </div>
-          <div className="calendar-embed" style={{ minHeight: '650px' }}>
-            <iframe
-              src={site.calendarUrl}
-              width="100%"
-              height="650"
-              frameBorder="0"
-              title="Schedule a discovery call"
-              className="w-full"
-            />
-          </div>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+          <h4 className="font-semibold text-white">Pick a time that works for you</h4>
+          <p className="text-sm text-slate-400 mt-2">Use our inline scheduler to pick an available slot (9–5).</p>
+          <a href="/book" className="mt-6 inline-flex text-sm font-medium text-brand-dark bg-gradient-to-r from-brand-gold to-[#B8860B] px-5 py-3 rounded-lg">Open Inline Scheduler</a>
         </div>
         
         <p className="text-center text-sm text-slate-500">

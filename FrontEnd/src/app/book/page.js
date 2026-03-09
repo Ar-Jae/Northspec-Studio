@@ -5,6 +5,7 @@ import SectionHeading from "../../components/SectionHeading";
 import site from "../../content/site";
 import FadeIn from "../../components/animations/FadeIn";
 import { motion } from "framer-motion";
+import InlineScheduler from "../../components/book/InlineScheduler";
 
 export default function BookPage() {
   return (
@@ -55,21 +56,10 @@ export default function BookPage() {
               </div>
             </div>
 
-            {/* Right Side: Embedded Booking */}
+            {/* Right Side: Inline Scheduler */}
             <div className="lg:col-span-8">
-              <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden min-h-[600px] relative">
-                <div className="absolute inset-0 flex items-center justify-center -z-10">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
-                </div>
-
-                <iframe
-                  src={site.calendarUrl}
-                  width="100%"
-                  height="700"
-                  frameBorder="0"
-                  className="relative z-10"
-                  title="Schedule a Call"
-                ></iframe>
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+                <InlineScheduler />
               </div>
 
               <p className="mt-6 text-center text-xs text-slate-500 italic">
