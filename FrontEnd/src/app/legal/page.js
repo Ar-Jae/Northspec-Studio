@@ -157,8 +157,8 @@ export default function LegalPage() {
                   <h3 className="font-semibold text-white mb-2">6. Contact Us</h3>
                   <p>
                     If you have any questions about this Privacy Policy, please contact us at{" "}
-                    <a href="mailto:hello@northspecstudio.com" className="text-brand-gold hover:underline">
-                      hello@northspecstudio.com
+                    <a href="mailto:build@northspecstudio.com" className="text-brand-gold hover:underline">
+                      build@northspecstudio.com
                     </a>
                   </p>
                 </div>

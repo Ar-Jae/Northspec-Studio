@@ -86,8 +86,8 @@ export default function PrivacyPolicyPage() {
                 <h3 className="text-lg font-semibold text-white font-serif mb-2">Contact Us</h3>
                 <p>
                   If you have any questions about this Privacy Policy, please contact us at{" "}
-                  <a href="mailto:hello@northspecstudio.com" className="text-brand-gold hover:underline">
-                    hello@northspecstudio.com
+                  <a href="mailto:build@northspecstudio.com" className="text-brand-gold hover:underline">
+                    build@northspecstudio.com
                   </a>
                 </p>
               </div>

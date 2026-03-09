@@ -65,11 +65,11 @@ const site = {
     },
   ],
   contact: {
-    email: "hello@northspecstudio.com",
+    email: "build@northspecstudio.com",
     phone: "+1 (555) 014-2266",
     location: "Remote / North America",
     emails: {
-      main: "hello@northspecstudio.com",
+      main: "build@northspecstudio.com",
       projects: "projects@northspecstudio.com",
       billing: "billing@northspecstudio.com",
       press: "press@northspecstudio.com",

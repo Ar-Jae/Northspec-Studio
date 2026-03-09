@@ -234,7 +234,7 @@ export default function ContactForm() {
         
         <p className="text-center text-sm text-slate-500">
           Can't find a time that works?{" "}
-          <a href="mailto:hello@northspecstudio.com" className="text-brand-gold hover:underline">
+          <a href="mailto:build@northspecstudio.com" className="text-brand-gold hover:underline">
             Email us directly
           </a>
         </p>
