@@ -2,13 +2,13 @@ import Hero from "../components/home/Hero";
 import site from "../content/site";
 
 export const metadata = {
-  title: "Elite Engineering for Scalable Software & Automation",
+  title: "Automation, Software Engineering, and Mobile Apps for Growth",
   description:
-    "Northspec Studio provides senior-only engineering talent for custom software development, high-performance web apps, and intelligent workflow automations. Built to spec, built to last.",
+    "Northspec Studio helps established companies improve operations through workflow automation, software engineering, and mobile app development. Built to spec, built to last.",
   openGraph: {
-    title: "Northspec Studio | Elite Engineering for Scalable Software",
+    title: "Northspec Studio | Automation + Engineering for Established Companies",
     description:
-      "Modern engineering collective specializing in durable software, workflow automation, and scalable technical infrastructure.",
+      "Outcome-driven delivery across AI automation, software engineering, and mobile app development with reliability built in.",
     url: "/",
   },
 };
