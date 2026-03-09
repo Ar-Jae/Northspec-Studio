@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   getBookingConfig,
-  getCalendarClient,
+  googleApi,
   isSlotFree,
 } from "../../../../lib/googleCalendar";
 
@@ -15,11 +15,10 @@ export async function POST(req) {
     }
 
     const { tz, calendarId } = getBookingConfig();
-    const calendar = await getCalendarClient();
 
-    // Re-check slot before creating event
-    const freebusy = await calendar.freebusy.query({
-      requestBody: {
+    const freebusy = await googleApi("/calendar/v3/freeBusy", {
+      method: "POST",
+      body: {
         timeMin: new Date(start).toISOString(),
         timeMax: new Date(end).toISOString(),
         timeZone: tz,
@@ -27,24 +26,23 @@ export async function POST(req) {
       },
     });
 
-    const busy = freebusy.data.calendars?.[calendarId]?.busy || [];
+    const busy = freebusy.calendars?.[calendarId]?.busy || [];
     if (!isSlotFree({ start, end }, busy)) {
       return NextResponse.json({ error: "That time is no longer available" }, { status: 409 });
     }
 
-    const event = await calendar.events.insert({
-      calendarId,
-      requestBody: {
+    const event = await googleApi(`/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all`, {
+      method: "POST",
+      body: {
         summary: `Discovery Call — ${name}`,
         description: notes ? `Notes: ${notes}` : "Booked from website inline scheduler",
         start: { dateTime: new Date(start).toISOString(), timeZone: tz },
         end: { dateTime: new Date(end).toISOString(), timeZone: tz },
         attendees: [{ email, displayName: name }],
       },
-      sendUpdates: "all",
     });
 
-    return NextResponse.json({ ok: true, eventId: event.data.id, htmlLink: event.data.htmlLink });
+    return NextResponse.json({ ok: true, eventId: event.id, htmlLink: event.htmlLink });
   } catch (err) {
     return NextResponse.json({ error: err.message || "Failed to book" }, { status: 500 });
   }

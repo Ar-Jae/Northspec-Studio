@@ -1,4 +1,4 @@
-import { google } from "googleapis";
+import crypto from "node:crypto";
 
 function getEnv(name, fallback = "") {
   return process.env[name] || fallback;
@@ -6,6 +6,86 @@ function getEnv(name, fallback = "") {
 
 function getPrivateKey() {
   return getEnv("GOOGLE_PRIVATE_KEY").replace(/\\n/g, "\n");
+}
+
+function b64url(input) {
+  const b = Buffer.isBuffer(input) ? input : Buffer.from(input);
+  return b
+    .toString("base64")
+    .replace(/=/g, "")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_");
+}
+
+function createServiceJwt(clientEmail, privateKey) {
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: "RS256", typ: "JWT" };
+  const payload = {
+    iss: clientEmail,
+    scope: "https://www.googleapis.com/auth/calendar",
+    aud: "https://oauth2.googleapis.com/token",
+    exp: now + 3600,
+    iat: now,
+  };
+
+  const encodedHeader = b64url(JSON.stringify(header));
+  const encodedPayload = b64url(JSON.stringify(payload));
+  const data = `${encodedHeader}.${encodedPayload}`;
+
+  const signer = crypto.createSign("RSA-SHA256");
+  signer.update(data);
+  signer.end();
+  const signature = signer.sign(privateKey);
+
+  return `${data}.${b64url(signature)}`;
+}
+
+let tokenCache = { accessToken: "", expiresAt: 0 };
+
+async function getAccessToken() {
+  const clientEmail = getEnv("GOOGLE_CLIENT_EMAIL");
+  const privateKey = getPrivateKey();
+  if (!clientEmail || !privateKey) throw new Error("Missing Google service account credentials");
+
+  if (tokenCache.accessToken && Date.now() < tokenCache.expiresAt - 60_000) {
+    return tokenCache.accessToken;
+  }
+
+  const assertion = createServiceJwt(clientEmail, privateKey);
+  const body = new URLSearchParams({
+    grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
+    assertion,
+  });
+
+  const res = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body,
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error_description || data.error || "Failed to auth with Google");
+
+  tokenCache = {
+    accessToken: data.access_token,
+    expiresAt: Date.now() + Number(data.expires_in || 3600) * 1000,
+  };
+
+  return tokenCache.accessToken;
+}
+
+export async function googleApi(path, { method = "GET", body } = {}) {
+  const token = await getAccessToken();
+  const res = await fetch(`https://www.googleapis.com${path}`, {
+    method,
+    headers: {
+      authorization: `Bearer ${token}`,
+      "content-type": "application/json",
+    },
+    body: body ? JSON.stringify(body) : undefined,
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error?.message || data.error_description || "Google API error");
+  return data;
 }
 
 export function getBookingConfig() {
@@ -16,24 +96,6 @@ export function getBookingConfig() {
   const calendarId = getEnv("GOOGLE_CALENDAR_ID", "build@northspecstudio.com");
 
   return { tz, startHour, endHour, slotMinutes, calendarId };
-}
-
-export async function getCalendarClient() {
-  const clientEmail = getEnv("GOOGLE_CLIENT_EMAIL");
-  const privateKey = getPrivateKey();
-
-  if (!clientEmail || !privateKey) {
-    throw new Error("Missing Google service account credentials");
-  }
-
-  const auth = new google.auth.JWT({
-    email: clientEmail,
-    key: privateKey,
-    scopes: ["https://www.googleapis.com/auth/calendar"],
-  });
-
-  await auth.authorize();
-  return google.calendar({ version: "v3", auth });
 }
 
 export function buildDayRange(dateStr, timezone) {
@@ -56,9 +118,7 @@ export function buildSlotsForDate(dateStr, startHour, endHour, slotMinutes) {
       start.setHours(hour, minute, 0, 0);
       const end = new Date(start);
       end.setMinutes(end.getMinutes() + slotMinutes);
-      if (end.getHours() > endHour || (end.getHours() === endHour && end.getMinutes() > 0)) {
-        continue;
-      }
+      if (end.getHours() > endHour || (end.getHours() === endHour && end.getMinutes() > 0)) continue;
       slots.push({ start: start.toISOString(), end: end.toISOString() });
     }
   }

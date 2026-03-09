@@ -3,7 +3,7 @@ import {
   buildDayRange,
   buildSlotsForDate,
   getBookingConfig,
-  getCalendarClient,
+  googleApi,
   isSlotFree,
 } from "../../../../lib/googleCalendar";
 
@@ -14,11 +14,11 @@ export async function GET(req) {
     if (!date) return NextResponse.json({ error: "date is required" }, { status: 400 });
 
     const { tz, startHour, endHour, slotMinutes, calendarId } = getBookingConfig();
-    const calendar = await getCalendarClient();
     const { timeMin, timeMax, timezone } = buildDayRange(date, tz);
 
-    const freebusy = await calendar.freebusy.query({
-      requestBody: {
+    const freebusy = await googleApi("/calendar/v3/freeBusy", {
+      method: "POST",
+      body: {
         timeMin,
         timeMax,
         timeZone: timezone,
@@ -26,7 +26,7 @@ export async function GET(req) {
       },
     });
 
-    const busy = freebusy.data.calendars?.[calendarId]?.busy || [];
+    const busy = freebusy.calendars?.[calendarId]?.busy || [];
     const slots = buildSlotsForDate(date, startHour, endHour, slotMinutes)
       .filter((slot) => isSlotFree(slot, busy))
       .filter((slot) => new Date(slot.start).getTime() > Date.now());
