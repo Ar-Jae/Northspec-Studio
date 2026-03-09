@@ -55,22 +55,21 @@ export default function BookPage() {
               </div>
             </div>
 
-            {/* Right Side: Booking CTA */}
+            {/* Right Side: Embedded Booking */}
             <div className="lg:col-span-8">
-              <div className="rounded-3xl border border-white/10 bg-white/5 min-h-[420px] p-10 flex flex-col items-center justify-center text-center">
-                <h3 className="text-2xl font-semibold text-white font-serif">Pick an available time</h3>
-                <p className="mt-4 max-w-xl text-slate-400">
-                  Use our Google booking page to select from available dates and times only.
-                </p>
-                <a
-                  href={site.calendarUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm font-medium bg-gradient-to-r from-brand-gold to-[#B8860B] text-brand-dark font-semibold shadow-[0_0_20px_rgba(198,166,104,0.4)]"
-                >
-                  Open Google Booking
-                </a>
-                <p className="mt-4 text-xs text-slate-500">No full internal calendar access is shown on the booking page.</p>
+              <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden min-h-[600px] relative">
+                <div className="absolute inset-0 flex items-center justify-center -z-10">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
+                </div>
+
+                <iframe
+                  src={site.calendarUrl}
+                  width="100%"
+                  height="700"
+                  frameBorder="0"
+                  className="relative z-10"
+                  title="Schedule a Call"
+                ></iframe>
               </div>
 
               <p className="mt-6 text-center text-xs text-slate-500 italic">
