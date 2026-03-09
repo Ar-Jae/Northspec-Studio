@@ -70,9 +70,9 @@ const site = {
     location: "Remote / North America",
     emails: {
       main: "build@northspecstudio.com",
-      projects: "projects@northspecstudio.com",
-      billing: "billing@northspecstudio.com",
-      press: "press@northspecstudio.com",
+      projects: "build@northspecstudio.com",
+      billing: "build@northspecstudio.com",
+      press: "build@northspecstudio.com",
     },
   },
   social: [
