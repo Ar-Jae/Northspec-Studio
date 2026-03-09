@@ -1,25 +1,25 @@
 const site = {
   name: "Northspec Studio",
-  tagline: "Engineering websites and software that ship.",
+  tagline: "Automation, engineering, and mobile systems that deliver outcomes.",
   description:
-    "Northspec Studio engineers websites and software that ship. Web development, software engineering, and product support.",
+    "Northspec Studio helps established companies improve operations with workflow automation, software engineering, mobile app development, and reliability support.",
   keywords: [
     "Software Development",
     "Custom Web Applications",
     "Workflow Automation",
-    "n8n Automation",
+    "AI Automation",
+    "Mobile App Development",
     "Next.js Development",
     "API Integrations",
-    "Plaid Integration",
     "SaaS MVP Development",
     "Senior Software Engineers",
     "Technical Infrastructure",
     "Node.js Backend",
-    "Financial Technology Integrations",
     "Custom CRM Development",
     "Automated Inventory Systems",
     "Enterprise Workflow Design",
-    "Bespoke Business Software"
+    "Bespoke Business Software",
+    "Website Reliability Monitoring"
   ],
   twitterHandle: "@NorthspecStudio",
   url: "https://northspecstudio.com",
@@ -32,6 +32,7 @@ const site = {
         { label: "Built to Spec. Built to Last.", href: "/built-to-spec" },
         { label: "Software Development", href: "/services/software-development" },
         { label: "Workflow Automation", href: "/services/workflow-automation" },
+        { label: "Mobile App Development", href: "/services/mobile-app-development" },
         { label: "Integrations", href: "/services/integrations" },
         { label: "Maintenance & Support", href: "/services/maintenance-support" },
       ]

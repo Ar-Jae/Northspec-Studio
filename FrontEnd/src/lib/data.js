@@ -2,7 +2,7 @@ export const services = [
   {
     title: "Web Development",
     slug: "software-development",
-    short: "Production marketing sites and landing pages built with Next.js/React.",
+    short: "Production websites and web apps built for performance, clarity, and conversion.",
     description: "We build websites that load fast, read clearly, and are easy to maintain. Scope is defined up front, decisions are documented, and the handoff is clean.",
     bullets: ["Next.js/React builds (App Router)", "Marketing sites + landing pages", "Accessible, responsive components", "Performance and Core Web Vitals"],
     order: 1

@@ -149,7 +149,7 @@ export default function Footer() {
             <div>
               <Logo className="text-white" />
               <p className="mt-3 max-w-xs text-sm text-slate-400">
-                Engineering websites and software that ship. All projects follow our <Link href="/built-to-spec" className="text-brand-gold hover:underline">Built to Spec. Built to Last.</Link> method.
+                We deliver workflow automation, software engineering, and mobile systems with reliability ownership. All projects follow our <Link href="/built-to-spec" className="text-brand-gold hover:underline">Built to Spec. Built to Last.</Link> method.
               </p>
             </div>
 
