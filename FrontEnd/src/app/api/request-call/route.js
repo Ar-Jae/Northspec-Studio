@@ -8,10 +8,10 @@ export async function POST(req) {
     }
 
     const apiKey = process.env.VAPI_API_KEY;
-    const assistantId = process.env.VAPI_ASSISTANT_ID;
+    const assistantId = "5ef2e8d2-0c64-4a38-9963-2d8a848594ac";
     const phoneNumberId = process.env.VAPI_PHONE_NUMBER_ID;
 
-    if (!apiKey || !assistantId || !phoneNumberId) {
+    if (!apiKey || !phoneNumberId) {
       return NextResponse.json({ error: "Missing Vapi configuration" }, { status: 500 });
     }
 

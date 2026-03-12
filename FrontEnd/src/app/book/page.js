@@ -4,8 +4,6 @@ import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import site from "../../content/site";
 import FadeIn from "../../components/animations/FadeIn";
-import { motion } from "framer-motion";
-import InlineScheduler from "../../components/book/InlineScheduler";
 
 export default function BookPage() {
   return (
@@ -56,10 +54,18 @@ export default function BookPage() {
               </div>
             </div>
 
-            {/* Right Side: Inline Scheduler */}
+            {/* Right Side: Embedded Google Calendar */}
             <div className="lg:col-span-8">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
-                <InlineScheduler />
+              <div id="booking-calendar" className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden min-h-[600px] relative">
+                <iframe
+                  src="https://calendar.google.com/calendar/embed?src=build%40northspecstudio.com&ctz=America%2FNew_York"
+                  style={{ border: 0 }}
+                  width="100%"
+                  height="700"
+                  frameBorder="0"
+                  scrolling="no"
+                  title="Northspec Booking Calendar"
+                ></iframe>
               </div>
 
               <p className="mt-6 text-center text-xs text-slate-500 italic">
