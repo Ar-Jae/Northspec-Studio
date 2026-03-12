@@ -1,5 +1,5 @@
 import Hero from "../components/home/Hero";
-import site from "../content/site";
+import HomeBookingCalendar from "../components/home/HomeBookingCalendar";
 
 export const metadata = {
   title: "Automation, Software Engineering, and Mobile Apps for Growth",
@@ -17,6 +17,7 @@ export default function HomePage() {
   return (
     <main>
       <Hero />
+      <HomeBookingCalendar />
     </main>
   );
 }

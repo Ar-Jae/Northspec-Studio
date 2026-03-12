@@ -60,9 +60,9 @@ export default function Hero() {
               className="relative lg:absolute bottom-0 lg:-bottom-20 right-0 lg:right-10 z-20 max-w-sm w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
             >
               <p className="text-lg sm:text-base lg:text-xl text-slate-300 leading-relaxed">
-                We help established local companies modernize operations with workflow automation, software engineering, and mobile app development. Clear scope, senior execution, and measurable business outcomes.
+                We help local businesses modernize their operations with workflow automation, custom software, and mobile app development reducing manual work, improving efficiency, and creating measurable business results.
               </p>
-              <Button as="link" href={site.calendarUrl} target="_blank" rel="noopener noreferrer" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+              <Button as="link" href="#home-booking-calendar" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
                 BOOK AN AUTOMATION AUDIT
               </Button>
             </motion.div>
