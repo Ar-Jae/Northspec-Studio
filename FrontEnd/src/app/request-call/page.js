@@ -6,7 +6,9 @@ import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
 
 export default function RequestCallPage() {
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
@@ -20,14 +22,16 @@ export default function RequestCallPage() {
       const res = await fetch("/api/request-call", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name, phone }),
+        body: JSON.stringify({ firstName, lastName, email, phone }),
       });
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to request call");
 
       setStatus("success");
-      setName("");
+      setFirstName("");
+      setLastName("");
+      setEmail("");
       setPhone("");
     } catch (err) {
       setStatus("error");
@@ -43,17 +47,41 @@ export default function RequestCallPage() {
             <SectionHeading
               eyebrow="Request a Call"
               title="Get a Call from Our AI Agent"
-              description="Submit your phone number and our Vapi assistant will call you shortly."
+              description="Submit your details and our Vapi assistant will call you shortly."
               align="center"
             />
 
             <form onSubmit={onSubmit} className="mt-10 rounded-3xl border border-white/10 bg-white/5 p-8 space-y-5">
+              <div className="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm text-slate-300 mb-2">First Name</label>
+                  <input
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    className="w-full rounded-lg bg-white/5 border border-white/10 text-white p-3"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm text-slate-300 mb-2">Last Name</label>
+                  <input
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    className="w-full rounded-lg bg-white/5 border border-white/10 text-white p-3"
+                    required
+                  />
+                </div>
+              </div>
+
               <div>
-                <label className="block text-sm text-slate-300 mb-2">Name</label>
+                <label className="block text-sm text-slate-300 mb-2">Email</label>
                 <input
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full rounded-lg bg-white/5 border border-white/10 text-white p-3"
+                  placeholder="you@company.com"
                   required
                 />
               </div>

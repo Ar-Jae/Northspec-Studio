@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { name, phone } = await req.json();
-    if (!name || !phone) {
-      return NextResponse.json({ error: "name and phone are required" }, { status: 400 });
+    const { firstName, lastName, email, phone } = await req.json();
+    if (!firstName || !lastName || !email || !phone) {
+      return NextResponse.json({ error: "firstName, lastName, email, and phone are required" }, { status: 400 });
     }
+
+    const name = `${firstName} ${lastName}`.trim();
 
     const apiKey = process.env.VAPI_API_KEY;
     const assistantId = "5ef2e8d2-0c64-4a38-9963-2d8a848594ac";
@@ -27,6 +29,7 @@ export async function POST(req) {
         customer: {
           number: phone,
           name,
+          email,
         },
       }),
     });
