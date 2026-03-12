@@ -11,10 +11,10 @@ export async function POST(req) {
 
     const apiKey = process.env.VAPI_API_KEY;
     const assistantId = "5ef2e8d2-0c64-4a38-9963-2d8a848594ac";
-    const phoneNumberId = process.env.VAPI_PHONE_NUMBER_ID;
+    const phoneNumberId = "6d333f49-c7d2-431b-8812-ce933115dbb6";
 
-    if (!apiKey || !phoneNumberId) {
-      return NextResponse.json({ error: "Missing Vapi configuration" }, { status: 500 });
+    if (!apiKey) {
+      return NextResponse.json({ error: "Missing Vapi configuration: VAPI_API_KEY" }, { status: 500 });
     }
 
     const res = await fetch("https://api.vapi.ai/call", {
