@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+const N8N_WEBHOOK_URL = "https://n8n-qhlu.srv1059778.hstgr.cloud/webhook/0cb1a204-1900-4e84-8114-0215c50f3104";
+
 export async function POST(req) {
   try {
     const { firstName, lastName, email, phone } = await req.json();
@@ -9,37 +11,29 @@ export async function POST(req) {
 
     const name = `${firstName} ${lastName}`.trim();
 
-    const apiKey = process.env.VAPI_API_KEY;
-    const assistantId = "5ef2e8d2-0c64-4a38-9963-2d8a848594ac";
-    const phoneNumberId = "6d333f49-c7d2-431b-8812-ce933115dbb6";
-
-    if (!apiKey) {
-      return NextResponse.json({ error: "Missing Vapi configuration: VAPI_API_KEY" }, { status: 500 });
-    }
-
-    const res = await fetch("https://api.vapi.ai/call", {
+    const res = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        assistantId,
-        phoneNumberId,
-        customer: {
-          number: phone,
-          name,
-          email,
-        },
+        source: "northspecstudio.com",
+        event: "request_call_submitted",
+        firstName,
+        lastName,
+        name,
+        email,
+        phone,
+        submittedAt: new Date().toISOString(),
       }),
     });
 
-    const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      return NextResponse.json({ error: data?.message || "Failed to create Vapi call" }, { status: 500 });
+      const raw = await res.text().catch(() => "");
+      return NextResponse.json({ error: raw || "Failed to send request to automation workflow" }, { status: 500 });
     }
 
-    return NextResponse.json({ ok: true, callId: data?.id || null });
+    return NextResponse.json({ ok: true });
   } catch (err) {
     return NextResponse.json({ error: err.message || "Unexpected server error" }, { status: 500 });
   }
