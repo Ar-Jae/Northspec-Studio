@@ -1,25 +1,25 @@
 const site = {
   name: "Northspec Studio",
-  tagline: "Engineering websites and software that ship.",
+  tagline: "Automation, engineering, and mobile systems that deliver outcomes.",
   description:
-    "Northspec Studio engineers websites and software that ship. Web development, software engineering, and product support.",
+    "Northspec Studio helps established companies improve operations with workflow automation, software engineering, mobile app development, and reliability support.",
   keywords: [
     "Software Development",
     "Custom Web Applications",
     "Workflow Automation",
-    "n8n Automation",
+    "AI Automation",
+    "Mobile App Development",
     "Next.js Development",
     "API Integrations",
-    "Plaid Integration",
     "SaaS MVP Development",
     "Senior Software Engineers",
     "Technical Infrastructure",
     "Node.js Backend",
-    "Financial Technology Integrations",
     "Custom CRM Development",
     "Automated Inventory Systems",
     "Enterprise Workflow Design",
-    "Bespoke Business Software"
+    "Bespoke Business Software",
+    "Website Reliability Monitoring"
   ],
   twitterHandle: "@NorthspecStudio",
   url: "https://northspecstudio.com",
@@ -32,6 +32,7 @@ const site = {
         { label: "Built to Spec. Built to Last.", href: "/built-to-spec" },
         { label: "Software Development", href: "/services/software-development" },
         { label: "Workflow Automation", href: "/services/workflow-automation" },
+        { label: "Mobile App Development", href: "/services/mobile-app-development" },
         { label: "Integrations", href: "/services/integrations" },
         { label: "Maintenance & Support", href: "/services/maintenance-support" },
       ]
@@ -64,14 +65,14 @@ const site = {
     },
   ],
   contact: {
-    email: "hello@northspecstudio.com",
+    email: "build@northspecstudio.com",
     phone: "+1 (555) 014-2266",
     location: "Remote / North America",
     emails: {
-      main: "hello@northspecstudio.com",
-      projects: "projects@northspecstudio.com",
-      billing: "billing@northspecstudio.com",
-      press: "press@northspecstudio.com",
+      main: "build@northspecstudio.com",
+      projects: "build@northspecstudio.com",
+      billing: "build@northspecstudio.com",
+      press: "build@northspecstudio.com",
     },
   },
   social: [
@@ -79,11 +80,9 @@ const site = {
     { label: "Instagram", shortLabel: "IG", href: "https://www.instagram.com/northspec_studio/" },
     { label: "LinkedIn", shortLabel: "LI", href: "https://www.linkedin.com/in/northspec-studio/" },
   ],
-  // Calendar booking URL - supports Calendly, Cal.com, or any embeddable calendar
-  // Examples:
-  //   Calendly: "https://calendly.com/your-username/discovery-call"
-  //   Cal.com: "https://cal.com/your-username/discovery-call"
-  calendarUrl: "https://calendly.com/northspec",
+  // Google Appointment Schedule public booking URL (availability-only, no full calendar view)
+  // Example: https://calendar.app.google/xxxxxxxxxxxx
+  calendarUrl: "https://calendar.app.google/XMN48TcybVjmij4C7",
 };
 
 export default site;

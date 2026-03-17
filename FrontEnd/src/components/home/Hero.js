@@ -57,13 +57,13 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="relative lg:absolute bottom-0 right-0 lg:right-10 z-20 max-w-xs w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
+              className="relative lg:absolute bottom-0 lg:-bottom-20 right-0 lg:right-10 z-20 max-w-sm w-full px-2 sm:px-0 text-center lg:text-right flex flex-col items-center lg:items-end gap-6"
             >
-              <p className="text-base sm:text-sm text-slate-400 leading-relaxed">
-                In a world where digital presence means everything, we help businesses grow, attract clients, and stay one step ahead of the competition. Your goal is our focus. We create strategies that work.
+              <p className="text-lg sm:text-base lg:text-xl text-slate-300 leading-relaxed">
+                We help local businesses modernize their operations with workflow automation, custom software, and mobile app development reducing manual work, improving efficiency, and creating measurable business results.
               </p>
-              <Button as="link" href="/services" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
-                KICK OFF YOUR PROJECT
+              <Button as="link" href="/request-call" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+REQUEST A CALL
               </Button>
             </motion.div>
           </div>

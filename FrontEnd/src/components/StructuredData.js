@@ -45,15 +45,15 @@ export default function StructuredData() {
           "itemOffered": {
             "@type": "Service",
             "name": "Workflow Automation",
-            "description": "Streamlining business processes using n8n, Zapier, and custom integrations."
+            "description": "Streamlining business processes with AI-powered automation, integrations, and custom workflow systems."
           }
         },
         {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Financial Integrations",
-            "description": "Secure Plaid and API integrations for fintech applications."
+            "name": "Mobile App Development",
+            "description": "iOS and Android app development connected to production backend systems and operational workflows."
           }
         }
       ]

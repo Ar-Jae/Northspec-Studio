@@ -101,10 +101,10 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Desktop contact button */}
+        {/* Desktop CTA button */}
         <div className="hidden md:flex items-center gap-2 flex-shrink-0">
-          <Button as="link" href="/contact" variant="brand">
-            Contact Us
+          <Button as="link" href="/request-call" variant="brand">
+            Request a Call
           </Button>
         </div>
 

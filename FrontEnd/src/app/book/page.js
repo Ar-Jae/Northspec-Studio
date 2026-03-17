@@ -4,7 +4,6 @@ import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import site from "../../content/site";
 import FadeIn from "../../components/animations/FadeIn";
-import { motion } from "framer-motion";
 
 export default function BookPage() {
   return (
@@ -55,24 +54,20 @@ export default function BookPage() {
               </div>
             </div>
 
-            {/* Right Side: Calendar Embed */}
+            {/* Right Side: Embedded Google Calendar */}
             <div className="lg:col-span-8">
-              <div className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden min-h-[600px] relative">
-                {/* Loading State / Placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center -z-10">
-                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
-                </div>
-                
+              <div id="booking-calendar" className="rounded-3xl border border-white/10 bg-white/5 overflow-hidden min-h-[600px] relative">
                 <iframe
-                  src={site.calendarUrl}
+                  src="https://calendar.google.com/calendar/embed?src=build%40northspecstudio.com&ctz=America%2FNew_York"
+                  style={{ border: 0 }}
                   width="100%"
                   height="700"
                   frameBorder="0"
-                  className="relative z-10"
-                  title="Schedule a Call"
+                  scrolling="no"
+                  title="Northspec Booking Calendar"
                 ></iframe>
               </div>
-              
+
               <p className="mt-6 text-center text-xs text-slate-500 italic">
                 Can't find a time that works? Email us at <a href={`mailto:${site.contact.email}`} className="text-brand-gold hover:underline">{site.contact.email}</a>
               </p>

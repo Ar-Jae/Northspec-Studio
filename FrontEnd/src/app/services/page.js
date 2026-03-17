@@ -16,7 +16,7 @@ export default function ServicesPage() {
               <SectionHeading
                 eyebrow="Capabilities"
                 title="Our Service Offerings"
-                description="Custom software, workflow automation, and financial integrations built by senior engineers. All projects follow our Built to Spec. Built to Last. method."
+                description="AI/workflow automation, software engineering, and mobile app development for established companies. All projects follow our Built to Spec. Built to Last. method."
               />
               <div className="mt-8">
                 <Button as="link" href="/built-to-spec" variant="secondary">
@@ -74,12 +74,12 @@ export default function ServicesPage() {
             </div>
 
             <div className="rounded-3xl bg-hero-gradient p-12 text-center flex flex-col items-center gap-6 border border-white/10">
-              <h2 className="text-3xl font-bold text-white font-serif">Ready to automate your business?</h2>
+              <h2 className="text-3xl font-bold text-white font-serif">Need engineering scope this week?</h2>
               <p className="text-slate-300 max-w-sm">
-                Stop wasting time on manual tasks. Let's build systems that scale your operations while you sleep.
+                Tell us the outcome you need. We’ll map the right blend of automation, software, and mobile delivery with clear milestones.
               </p>
               <div className="mt-auto">
-                <Button as="link" href="/contact" variant="brand">Send a Message</Button>
+                <Button as="link" href="/book" variant="brand">Book Automation + Engineering Call</Button>
               </div>
             </div>
           </div>

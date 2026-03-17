@@ -2,7 +2,7 @@ export const services = [
   {
     title: "Web Development",
     slug: "software-development",
-    short: "Production marketing sites and landing pages built with Next.js/React.",
+    short: "Production websites and web apps built for performance, clarity, and conversion.",
     description: "We build websites that load fast, read clearly, and are easy to maintain. Scope is defined up front, decisions are documented, and the handoff is clean.",
     bullets: ["Next.js/React builds (App Router)", "Marketing sites + landing pages", "Accessible, responsive components", "Performance and Core Web Vitals"],
     order: 1
@@ -12,8 +12,16 @@ export const services = [
     slug: "workflow-automation",
     short: "APIs, integrations, and internal tools built with clear specs and stable interfaces.",
     description: "We build and fix the systems behind your product. Expect clear requirements, documented tradeoffs, and code that your team can maintain.",
-    bullets: ["APIs + integrations", "Internal dashboards + tools", "Background jobs and workflows", "Auth + permissions"],
+    bullets: ["Web and backend engineering", "APIs + integrations", "Internal dashboards + tools", "Auth + permissions"],
     order: 2
+  },
+  {
+    title: "Mobile App Development",
+    slug: "mobile-app-development",
+    short: "Production mobile experiences tied to your real operational workflows.",
+    description: "From field teams to customer apps, we design and build mobile products that connect with your backend systems and deliver measurable outcomes.",
+    bullets: ["iOS + Android delivery", "API-connected mobile workflows", "Launch + iteration support", "Performance + reliability standards"],
+    order: 3
   },
   {
     title: "Product Support",
@@ -21,7 +29,7 @@ export const services = [
     short: "Maintenance, debugging, audits, and performance work to keep systems stable.",
     description: "Software is built to last, not just to launch. We reduce incidents, improve performance, and keep delivery predictable with ongoing support.",
     bullets: ["Ongoing maintenance", "Performance + Core Web Vitals", "Debugging + incident response", "Audits + refactors"],
-    order: 3
+    order: 4
   },
   {
     title: "Maintenance & Support",
@@ -34,7 +42,7 @@ export const services = [
       "Bug Fixes & Incident Response",
       "Feature Updates & Iterations"
     ],
-    order: 4
+    order: 5
   },
   {
     title: "Custom Plans",
@@ -47,7 +55,7 @@ export const services = [
       "Legacy System Migrations",
       "R&D and Prototyping"
     ],
-    order: 5
+    order: 6
   }
 ];
 
