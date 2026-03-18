@@ -1,7 +1,6 @@
 import BackgroundCanvasClient from "../components/3d/BackgroundCanvasClient";
 import ImmersiveHero from "../components/home/ImmersiveHero";
 import ServicesSection from "../components/home/ServicesSection";
-import WorkSection from "../components/home/WorkSection";
 import ProcessSection from "../components/home/ProcessSection";
 import PricingSection from "../components/home/PricingSection";
 import ContactSection from "../components/home/ContactSection";
@@ -27,7 +26,6 @@ export default function HomePage() {
       {/* All sections flow as one continuous page */}
       <ImmersiveHero />
       <ServicesSection />
-      <WorkSection />
       <ProcessSection />
       <PricingSection />
       <ContactSection />
