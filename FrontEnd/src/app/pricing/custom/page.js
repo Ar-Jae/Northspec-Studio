@@ -27,7 +27,7 @@ const steps = [
     phase: "Discovery & Planning",
     title: "Analyze your requirements, workflows, and constraints",
     description:
-      "We spend time understanding your business—not just what to build, but why. Requirements, constraints, and success criteria are defined before architecture begins.",
+      "We spend time understanding your business, not just what to build, but why. Requirements, constraints, and success criteria are defined before architecture begins.",
     detail: "Stakeholder interviews → Requirements doc → Scope definition",
   },
   {
@@ -35,7 +35,7 @@ const steps = [
     phase: "System Architecture",
     title: "Design how everything connects and scales",
     description:
-      "We architect the full system—data models, integration points, API contracts, and infrastructure—before writing a single line of code.",
+      "We architect the full system, data models, integration points, API contracts, and infrastructure, before writing a single line of code.",
     detail: "Technical spec → Architecture plan → Scalability review",
   },
   {
@@ -43,7 +43,7 @@ const steps = [
     phase: "Development",
     title: "Build with performance and long-term reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see the system working at every stage—no black-box development, no surprises at the end.",
+      "Milestone-based delivery with real visibility. You see the system working at every stage, no black-box development, no surprises at the end.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -57,16 +57,16 @@ const steps = [
 ];
 
 const whyCustom = [
-  "Built specifically for your business—not forced into someone else's template",
+  "Built specifically for your business, not forced into someone else's template",
   "Eliminates inefficiencies across systems by designing exactly what you need",
-  "Scalable architecture from day one—built to grow with your operations",
+  "Scalable architecture from day one, built to grow with your operations",
   "Long-term flexibility and control over your own system and roadmap",
 ];
 
 const riskReduction = [
   { label: "Structured Process", desc: "Defined milestones prevent scope from expanding without visibility or agreement." },
   { label: "Clear Communication", desc: "You see the project at every stage. No updates dropped into a void." },
-  { label: "Scalable from Day One", desc: "Architecture decisions are made for your growth—not just your launch." },
+  { label: "Scalable from Day One", desc: "Architecture decisions are made for your growth, not just your launch." },
   { label: "Fixed-Price Quotes", desc: "You know the full cost before work begins. No hourly billing, no runaway budgets." },
 ];
 
@@ -77,9 +77,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -135,13 +135,13 @@ export default function CustomPlansPage() {
   const ctaIn     = useInView(ctaRef,     { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-screen">
+    <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -153,7 +153,7 @@ export default function CustomPlansPage() {
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -168,7 +168,7 @@ export default function CustomPlansPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,8vw,7.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Custom Software," delay={0.6} className="block" />
             <SplitReveal text="Built Around" delay={1.0} className="block" />
             <SplitReveal
@@ -241,7 +241,7 @@ export default function CustomPlansPage() {
               animate={whatIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
                 Not every project fits{" "}
                 <em className="not-italic text-brand-gold">a predefined package.</em>
               </h2>
@@ -249,7 +249,7 @@ export default function CustomPlansPage() {
                 Some systems are too complex, too specialized, or too deeply tied
                 to your specific workflows to be scoped into a standard tier. Custom
                 projects are how we handle the work that requires real architectural
-                thinking—not templated solutions.
+                thinking, not templated solutions.
               </p>
             </motion.div>
 
@@ -296,7 +296,7 @@ export default function CustomPlansPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whoIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Complex needs.{" "}
               <em className="not-italic text-brand-gold">Proper solutions.</em>
@@ -402,13 +402,13 @@ export default function CustomPlansPage() {
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
                 <SectionLabel>Investment</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
                   Priced for{" "}
                   <em className="not-italic text-brand-gold">the complexity it takes.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually based on what your system
-                  actually requires. Every quote is fixed-price—no hourly billing,
+                  actually requires. Every quote is fixed-price, no hourly billing,
                   no surprises, no budget overruns.
                 </p>
               </div>
@@ -422,7 +422,7 @@ export default function CustomPlansPage() {
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
                     Projects start at
                   </p>
-                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                  <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
                     $25,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
@@ -492,7 +492,7 @@ export default function CustomPlansPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whyIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Built for your business.{" "}
               <em className="not-italic text-brand-gold">Not someone else&apos;s.</em>
@@ -553,7 +553,7 @@ export default function CustomPlansPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={riskIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-12 max-w-2xl"
+            className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-12 max-w-2xl"
           >
             Custom doesn&apos;t mean{" "}
             <em className="not-italic text-brand-gold">unpredictable.</em>
@@ -603,7 +603,7 @@ export default function CustomPlansPage() {
           >
             <div className="max-w-2xl">
               <SectionLabel>After Launch</SectionLabel>
-              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4">
                 Most custom projects transition into{" "}
                 <em className="not-italic text-brand-gold">ongoing support.</em>
               </h2>
@@ -675,9 +675,9 @@ export default function CustomPlansPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
-            Let&apos;s Build the Right System—{" "}
+            Let&apos;s Build the Right System, {" "}
             <em className="not-italic text-brand-gold">Not Just Any System.</em>
           </motion.h2>
 
@@ -687,7 +687,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly—architecture, timeline, and fixed-price quote included.
+            Tell us what you&apos;re building and we&apos;ll scope it properly, architecture, timeline, and fixed-price quote included.
           </motion.p>
 
           <motion.div
@@ -743,7 +743,7 @@ function HowItWorksHead() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+          className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
         >
           A structured process for{" "}
           <em className="not-italic text-brand-gold">complex systems.</em>

@@ -28,7 +28,7 @@ const steps = [
     phase: "System Design",
     title: "Define architecture up front",
     description:
-      "We design the technical architecture, integration points, and data flows specific to your business. No generic templates—every decision is made for your context.",
+      "We design the technical architecture, integration points, and data flows specific to your business. No generic templates, every decision is made for your context.",
     detail: "Technical spec → Architecture diagram → Integration map",
   },
   {
@@ -36,7 +36,7 @@ const steps = [
     phase: "Build & Delivery",
     title: "Develop, test, and deploy",
     description:
-      "We build in milestones with regular check-ins and real visibility. You see progress at every stage—no black-box development, no surprises at the finish line.",
+      "We build in milestones with regular check-ins and real visibility. You see progress at every stage, no black-box development, no surprises at the finish line.",
     detail: "Milestone delivery → Staging access → Production deploy",
   },
   {
@@ -50,7 +50,7 @@ const steps = [
 ];
 
 const why = [
-  "Designed around your business—not forced into templates",
+  "Designed around your business, not forced into templates",
   "Built for long-term scalability from day one",
   "Structured process to reduce risk and delivery delays",
   "Clear communication and milestone-based expectations",
@@ -63,9 +63,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -118,13 +118,13 @@ export default function BuiltToSpecPage() {
   const ctaIn   = useInView(ctaRef,   { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-screen">
+    <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -136,7 +136,7 @@ export default function BuiltToSpecPage() {
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -151,7 +151,7 @@ export default function BuiltToSpecPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(3rem,9vw,8rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.25rem,6.3vw,5.85rem)]">
             <SplitReveal text="Custom Systems," delay={0.6} className="block" />
             <SplitReveal
               text="Built to Spec."
@@ -223,7 +223,7 @@ export default function BuiltToSpecPage() {
               animate={whatIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
                 Not every project fits{" "}
                 <em className="not-italic text-brand-gold">a standard package.</em>
               </h2>
@@ -282,7 +282,7 @@ export default function BuiltToSpecPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whoIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Built for{" "}
               <em className="not-italic text-brand-gold">serious teams.</em>
@@ -396,13 +396,13 @@ export default function BuiltToSpecPage() {
               {/* Left */}
               <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
                 <SectionLabel>Investment</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
                   Priced for the{" "}
                   <em className="not-italic text-brand-gold">scope of the work.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually. Pricing reflects the
-                  real complexity of the system being built—not a package tier.
+                  real complexity of the system being built, not a package tier.
                 </p>
               </div>
 
@@ -416,7 +416,7 @@ export default function BuiltToSpecPage() {
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
                     Starting at
                   </p>
-                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                  <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
                     $20,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
@@ -432,7 +432,7 @@ export default function BuiltToSpecPage() {
                   transition={{ duration: 0.7, delay: 0.35 }}
                   className="text-slate-400 text-sm leading-relaxed"
                 >
-                  Final pricing is always scoped—never guessed. You receive a
+                  Final pricing is always scoped, never guessed. You receive a
                   detailed spec and fixed-price quote before any work begins.
                 </motion.p>
 
@@ -478,7 +478,7 @@ export default function BuiltToSpecPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whyIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Structured work{" "}
               <em className="not-italic text-brand-gold">reduces risk.</em>
@@ -536,7 +536,7 @@ export default function BuiltToSpecPage() {
           >
             <div className="max-w-2xl">
               <SectionLabel>After Launch</SectionLabel>
-              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4">
                 Most built-to-spec projects become{" "}
                 <em className="not-italic text-brand-gold">ongoing partnerships.</em>
               </h2>
@@ -599,7 +599,7 @@ export default function BuiltToSpecPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
             Let&apos;s Build It{" "}
             <em className="not-italic text-brand-gold">Right the First Time.</em>
@@ -667,7 +667,7 @@ function HowItWorksHead() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+          className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
         >
           A process built to{" "}
           <em className="not-italic text-brand-gold">eliminate risk.</em>

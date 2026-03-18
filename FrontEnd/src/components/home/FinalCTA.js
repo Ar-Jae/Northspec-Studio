@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function FinalCTA() {
   return (
-    <section className="relative z-10 py-32 scroll-mt-16">
+    <section className="relative z-10 py-24 sm:py-32 scroll-mt-16">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -22,7 +22,7 @@ export default function FinalCTA() {
         }}
       />
 
-      <div className="relative z-10 w-full px-36 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -42,7 +42,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+          className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
         >
           Ready to Build Something{" "}
           <em className="not-italic text-brand-gold">That Scales?</em>

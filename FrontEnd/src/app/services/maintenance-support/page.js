@@ -82,7 +82,7 @@ const steps = [
     phase: "Support Plan",
     title: "Define scope, priorities, and response levels",
     description:
-      "We establish what's covered, how we prioritize issues, and what response times to expect—so nothing is ambiguous.",
+      "We establish what's covered, how we prioritize issues, and what response times to expect, so nothing is ambiguous.",
     detail: "Scope definition → Priority tiers → SLA agreement",
   },
   {
@@ -117,9 +117,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -210,13 +210,13 @@ export default function MaintenanceSupportPage() {
   const ctaIn    = useInView(ctaRef,    { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-screen">
+    <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -228,7 +228,7 @@ export default function MaintenanceSupportPage() {
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +243,7 @@ export default function MaintenanceSupportPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,8vw,7.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Keep Your System" delay={0.6} className="block" />
             <SplitReveal text="Running, Secure," delay={1.0} className="block" />
             <SplitReveal
@@ -316,12 +316,12 @@ export default function MaintenanceSupportPage() {
               animate={riskIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
                 Software doesn&apos;t stay{" "}
                 <em className="not-italic text-brand-gold">&ldquo;done.&rdquo;</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Without ongoing support, systems degrade quietly—until they break
+                Without ongoing support, systems degrade quietly, until they break
                 loudly. We ensure your system stays stable, secure, and continuously
                 improving so you&apos;re never caught off guard.
               </p>
@@ -370,7 +370,7 @@ export default function MaintenanceSupportPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whoIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Businesses that{" "}
               <em className="not-italic text-brand-gold">can&apos;t afford downtime.</em>
@@ -471,13 +471,13 @@ export default function MaintenanceSupportPage() {
               {/* Left */}
               <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
                 <SectionLabel>Investment</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
                   Ongoing engineering for{" "}
                   <em className="not-italic text-brand-gold">serious systems.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Industry standard maintenance runs 10–20% of your system&apos;s value
-                  per year. We price based on scope and level of involvement—not
+                  per year. We price based on scope and level of involvement, not
                   arbitrary tiers.
                 </p>
               </div>
@@ -492,7 +492,7 @@ export default function MaintenanceSupportPage() {
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
                     Monthly retainer range
                   </p>
-                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                  <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
                     $3,000 – $10,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
@@ -609,7 +609,7 @@ export default function MaintenanceSupportPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={whyIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Support is{" "}
               <em className="not-italic text-brand-gold">risk prevention.</em>
@@ -667,14 +667,14 @@ export default function MaintenanceSupportPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <SectionLabel>The Natural Next Step</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4">
                   Most clients move into ongoing support{" "}
                   <em className="not-italic text-brand-gold">directly after launch.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times">
                   Every project we build is designed to transition seamlessly into
                   an ongoing support engagement. You don&apos;t need to find a new team,
-                  explain your system again, or start over—we already know it.
+                  explain your system again, or start over, we already know it.
                 </p>
               </div>
               <div className="space-y-4">
@@ -741,7 +741,7 @@ export default function MaintenanceSupportPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
             Don&apos;t Let Your System{" "}
             <em className="not-italic text-brand-gold">Break After Launch.</em>
@@ -806,7 +806,7 @@ function WhatWeProvideHead({ buildRef, buildIn }) {
           initial={{ opacity: 0, y: 40 }}
           animate={buildIn ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+          className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
         >
           Engineering coverage for{" "}
           <em className="not-italic text-brand-gold">every layer of your system.</em>
@@ -847,7 +847,7 @@ function HowItWorksHead() {
           initial={{ opacity: 0, y: 40 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+          className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
         >
           Structured support that{" "}
           <em className="not-italic text-brand-gold">grows with your system.</em>

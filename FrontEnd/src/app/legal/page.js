@@ -17,7 +17,7 @@ export default function LegalPage() {
   return (
     <div className="bg-brand-dark">
       <BackgroundCanvasClient />
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20">
         <FadeIn>
           <SectionHeading
             eyebrow="Legal"

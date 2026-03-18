@@ -65,9 +65,9 @@ const cookieTypes = [
 
 export default function CookiePolicyPage() {
   return (
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="bg-brand-dark min-h-[40vh] relative overflow-hidden">
       <BackgroundCanvasClient />
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20 relative z-10">
         <FadeIn>
           <SectionHeading
             eyebrow="Legal"
@@ -80,7 +80,7 @@ export default function CookiePolicyPage() {
 
               <Section title="What Are Cookies">
                 <p>
-                  Cookies are small text files stored on your device when you visit a website. They allow the site to remember information about your visit — such as your preferences or whether you have already submitted a form.
+                  Cookies are small text files stored on your device when you visit a website. They allow the site to remember information about your visit, such as your preferences or whether you have already submitted a form.
                 </p>
               </Section>
 
@@ -110,9 +110,9 @@ export default function CookiePolicyPage() {
                 </p>
                 <Card>
                   <ul className="space-y-2 text-sm not-italic font-sans text-slate-300">
-                    <li>• Google Calendar — for booking integration</li>
-                    <li>• Analytics providers — for anonymous usage data</li>
-                    <li>• Form services — for contact and application submissions</li>
+                    <li>• Google Calendar, for booking integration</li>
+                    <li>• Analytics providers, for anonymous usage data</li>
+                    <li>• Form services, for contact and application submissions</li>
                   </ul>
                 </Card>
               </Section>

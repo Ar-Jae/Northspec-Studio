@@ -31,7 +31,7 @@ export default function CaseStudyDetailPage({ params }) {
 
   if (loading) {
     return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
+      <div className="bg-brand-dark min-h-[40vh] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-brand-gold"></div>
       </div>
     );
@@ -39,7 +39,7 @@ export default function CaseStudyDetailPage({ params }) {
 
   if (!study) {
     return (
-      <div className="bg-brand-dark min-h-screen flex items-center justify-center">
+      <div className="bg-brand-dark min-h-[40vh] flex items-center justify-center">
         <Container className="text-center">
           <h1 className="text-4xl font-bold text-white font-serif">Case Study Not Found</h1>
           <p className="mt-4 text-slate-400">The case study you are looking for does not exist or has been moved.</p>
@@ -52,8 +52,8 @@ export default function CaseStudyDetailPage({ params }) {
   }
 
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-[40vh]">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20">
         <FadeIn>
           <SectionHeading
             eyebrow={`Case Study: ${study.industry}`}

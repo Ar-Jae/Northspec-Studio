@@ -11,7 +11,7 @@ import site from "../../content/site";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-brand-dark pt-20 flex flex-col justify-center">
+    <section className="relative min-h-screen w-full overflow-hidden bg-brand-dark pt-24 flex flex-col justify-center">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-hero-gradient opacity-20 pointer-events-none" />
 

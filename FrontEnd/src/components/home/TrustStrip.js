@@ -12,7 +12,7 @@ export default function TrustStrip() {
         transition={{ duration: 0.8 }}
         className="text-center text-[11px] font-bold tracking-[0.3em] text-slate-500 uppercase px-6"
       >
-        Built for startups, operators, and teams who need reliable systems—not experiments.
+        Built for startups, operators, and teams who need reliable systems, not experiments.
       </motion.p>
     </div>
   );

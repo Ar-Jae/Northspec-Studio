@@ -8,9 +8,9 @@ import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export default function BookPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
+    <div className="bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20">
         <FadeIn>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-2xl">

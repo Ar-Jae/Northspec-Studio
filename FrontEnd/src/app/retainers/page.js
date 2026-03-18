@@ -37,13 +37,13 @@ const retainerPlans = [
     price: "$5,000 – $7,000",
     period: "/month",
     commitment: "3-month minimum",
-    for: "Products that need continuous development alongside maintenance—features, integrations, and performance work.",
+    for: "Products that need continuous development alongside maintenance, features, integrations, and performance work.",
     includes: [
       "Everything in Essential",
       "Ongoing feature development",
       "Integrations and automation work",
       "Performance improvements",
-      "Priority support — 48-hour SLA",
+      "Priority support, 48-hour SLA",
     ],
     accent: "border-brand-gold/30",
     glow: "from-brand-gold/15 to-transparent",
@@ -160,7 +160,7 @@ const whyTwo = [
   { title: "Clear Cost Ownership", desc: "Know exactly what's engineering and what's infrastructure." },
   { title: "Independent Scaling", desc: "Scale compute without changing your development support tier." },
   { title: "Faster Incident Response", desc: "We own the infrastructure, so fixes happen without coordination delays." },
-  { title: "Predictable Monthly Total", desc: "Fixed pricing across both layers—no billing surprises or hourly guesswork." },
+  { title: "Predictable Monthly Total", desc: "Fixed pricing across both layers, no billing surprises or hourly guesswork." },
 ];
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
@@ -170,9 +170,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -228,7 +228,7 @@ export default function RetainersPage() {
   const ctaIn      = useInView(ctaRef,      { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-screen">
+    <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
@@ -246,7 +246,7 @@ export default function RetainersPage() {
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-32 pb-16"
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-16"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -261,7 +261,7 @@ export default function RetainersPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,7vw,6.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5rem)]">
             <SplitReveal text="Ongoing Development" delay={0.6} className="block" />
             <SplitReveal text="& Support for" delay={1.0} className="block" />
             <SplitReveal
@@ -277,7 +277,7 @@ export default function RetainersPage() {
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
             className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-6 font-times"
           >
-            We don&apos;t just build software—we stay involved to ensure it remains
+            We don&apos;t just build software, we stay involved to ensure it remains
             stable, scalable, and continuously improving.
           </motion.p>
 
@@ -342,12 +342,12 @@ export default function RetainersPage() {
               animate={whyIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
                 Software isn&apos;t{" "}
                 <em className="not-italic text-brand-gold">static.</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Without ongoing engineering support, systems degrade quietly—until
+                Without ongoing engineering support, systems degrade quietly, until
                 they break loudly. We provide continuous support that keeps your
                 system stable, secure, and evolving with your business.
               </p>
@@ -386,7 +386,7 @@ export default function RetainersPage() {
               <p className="text-slate-400 text-sm leading-relaxed">
                 Retainer and managed infrastructure plans are available exclusively to clients whose systems run on Northspec infrastructure.
                 Direct environment access is what makes proactive monitoring and rapid fixes possible.
-                Clients who opted for self-hosting at delivery are not eligible—future support requires a new engagement.
+                Clients who opted for self-hosting at delivery are not eligible, future support requires a new engagement.
               </p>
             </div>
           </div>
@@ -409,7 +409,7 @@ export default function RetainersPage() {
             animate={plansIn ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <SectionLabel>Layer 01 — Retainer Plans</SectionLabel>
+            <SectionLabel>Layer 01, Retainer Plans</SectionLabel>
           </motion.div>
 
           <div className="flex items-center justify-between gap-4 mb-4">
@@ -417,7 +417,7 @@ export default function RetainersPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={plansIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Choose your{" "}
               <em className="not-italic text-brand-gold">level of involvement.</em>
@@ -431,7 +431,7 @@ export default function RetainersPage() {
             className="text-slate-400 text-sm font-times mb-12 max-w-xl"
           >
             Instead of paying per task, you get dedicated engineering capacity, predictable progress,
-            and faster execution—every month.
+            and faster execution, every month.
           </motion.p>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -505,13 +505,13 @@ export default function RetainersPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <SectionLabel>What You Get</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4">
                   Ongoing engineering,{" "}
                   <em className="not-italic text-brand-gold">not just reactive fixes.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times">
                   Every retainer plan includes a defined level of monthly engineering capacity.
-                  You know what you&apos;re getting, what&apos;s covered, and what to expect—before the month begins.
+                  You know what you&apos;re getting, what&apos;s covered, and what to expect, before the month begins.
                 </p>
               </div>
               <div className="space-y-4">
@@ -550,7 +550,7 @@ export default function RetainersPage() {
             animate={infraIn ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <SectionLabel>Layer 02 — Managed Infrastructure</SectionLabel>
+            <SectionLabel>Layer 02, Managed Infrastructure</SectionLabel>
           </motion.div>
 
           <div className="flex items-center justify-between gap-4 mb-4">
@@ -558,7 +558,7 @@ export default function RetainersPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={infraIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               The environment your{" "}
               <em className="not-italic text-brand-gold">system lives in.</em>
@@ -572,7 +572,7 @@ export default function RetainersPage() {
             className="text-slate-400 text-sm font-times mb-12 max-w-xl"
           >
             Dedicated deployment, AI workload scaling, performance optimization, monitoring,
-            security, and backups—so you never have to think about infrastructure.
+            security, and backups, so you never have to think about infrastructure.
           </motion.p>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -644,7 +644,7 @@ export default function RetainersPage() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={twoIn ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6"
+                className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6"
               >
                 Clarity on exactly{" "}
                 <em className="not-italic text-brand-gold">what you&apos;re paying for.</em>
@@ -657,7 +657,7 @@ export default function RetainersPage() {
               >
                 Separating service and infrastructure gives you the flexibility to right-size
                 each independently as your business scales. One client at $6,000/month is
-                $72,000/year—a real, predictable engagement.
+                $72,000/year, a real, predictable engagement.
               </motion.p>
             </div>
 
@@ -688,7 +688,7 @@ export default function RetainersPage() {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <SectionLabel>Custom Partnerships</SectionLabel>
-                <h3 className="font-serif font-bold text-white text-[clamp(1.5rem,2.5vw,2.5rem)] leading-[1.1] tracking-tight mb-3">
+                <h3 className="font-serif font-bold text-white text-[clamp(1.5rem,2.5vw,2.5rem)] leading-[1.05] tracking-tight mb-3">
                   Need something more specialized?
                 </h3>
                 <p className="text-slate-400 text-sm leading-relaxed font-times">
@@ -793,7 +793,7 @@ export default function RetainersPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
             Build Once.{" "}
             <em className="not-italic text-brand-gold">Improve Continuously.</em>
