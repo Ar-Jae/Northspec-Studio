@@ -186,7 +186,7 @@ export default function ContactForm() {
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company / Project Name</label>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company</label>
                   <input 
                     value={form.companyOrProjectName} 
                     onChange={(e) => updateField("companyOrProjectName", e.target.value)} 

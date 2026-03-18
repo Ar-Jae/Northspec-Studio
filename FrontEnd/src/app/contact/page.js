@@ -19,8 +19,8 @@ export default function ContactPage() {
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Contact"
-                title="Let's build something durable"
-                description="Tell us what you’re building. We’ll follow up with a clear plan and timeline."
+                title="Submit Project Specs"
+                description="Our engineering team will follow up with a technical plan and timeline within 24 hours."
               />
             </div>
             <div className="flex-none">

@@ -267,11 +267,11 @@ export default function ContactSection() {
             className="lg:col-span-8 space-y-8"
           >
             <div>
-              <h3 className="text-3xl font-bold font-serif text-white mb-2">
-                Send a message
+              <h3 className="text-3xl font-bold font-serif text-white mb-2 uppercase tracking-tight">
+                Submit Project Specs
               </h3>
-              <p className="text-sm text-slate-500">
-                We respond within 1 business day.
+              <p className="text-sm text-slate-500 italic">
+                Define your requirements. We respond within 1 business day.
               </p>
             </div>
 
