@@ -101,10 +101,11 @@ export default function ImmersiveHero() {
         <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6
           text-[clamp(3rem,10vw,9rem)]"
         >
-          <SplitReveal text="Built to Spec." delay={0.7} className="block" />
+          <SplitReveal text="Build, Launch," delay={0.7} className="block" />
+          <SplitReveal text="and Scale" delay={1.0} className="block" />
           <SplitReveal
-            text="Built to Last."
-            delay={1.1}
+            text="Software That Works."
+            delay={1.3}
             className="block text-brand-gold"
           />
         </h1>
@@ -113,42 +114,36 @@ export default function ImmersiveHero() {
         <motion.p
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
+          transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
           className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
         >
-          Automation, software engineering, and mobile systems that deliver
-          measurable outcomes for established companies.
+          We design and develop production-ready applications, automation
+          systems, and platforms for startups and growing businesses.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.95, duration: 0.7 }}
+          transition={{ delay: 2.1, duration: 0.7 }}
           className="flex flex-col sm:flex-row items-center gap-4"
         >
           <Button
             as="link"
-            href="/request-call"
+            href="/contact"
             variant="brand"
             className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
           >
-            Request a Call
+            Start a Project
           </Button>
-          <a
-            href="#services"
-            className="group flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors"
+          <Button
+            as="link"
+            href="/request-call"
+            variant="outline"
+            className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
           >
-            See our services
-            <svg
-              className="w-4 h-4 group-hover:translate-x-1 transition-transform"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+            Book a Call
+          </Button>
         </motion.div>
 
         {/* Social row */}

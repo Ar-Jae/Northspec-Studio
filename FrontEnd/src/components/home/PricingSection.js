@@ -195,8 +195,8 @@ export default function PricingSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
             >
-              Guided{" "}
-              <em className="not-italic text-brand-gold">pricing.</em>
+              Built for{" "}
+              <em className="not-italic text-brand-gold">Serious Projects.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
@@ -214,7 +214,7 @@ export default function PricingSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-4 max-w-xs text-slate-400 leading-relaxed text-sm font-times"
           >
-            Starting points and typical ranges — enough to qualify fit before a call. Final pricing is scoped, not guessed.
+            Most of our clients invest between $12,000 and $50,000+ depending on scope and complexity. Final pricing is scoped, not guessed.
           </motion.p>
 
           <motion.div
