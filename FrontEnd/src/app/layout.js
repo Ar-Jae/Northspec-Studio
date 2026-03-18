@@ -7,7 +7,7 @@ import StructuredData from "../components/StructuredData";
 import { AuthProvider } from "../lib/auth-context";
 import site from "../content/site";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter    = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata = {
@@ -35,7 +35,7 @@ export const metadata = {
     description: site.description,
     images: [
       {
-        url: `${site.url}/og-image.jpg`, // Ensure this image exists in public folder
+        url: `${site.url}/og-image.jpg`,
         width: 1200,
         height: 630,
         alt: site.name,
@@ -75,7 +75,7 @@ export default function RootLayout({ children }) {
             Skip to content
           </a>
           <Header />
-          <main id="main" className="min-h-[70vh]">
+          <main id="main">
             {children}
           </main>
           <Footer />
