@@ -132,7 +132,7 @@ export default function ContactSection() {
       id="contact"
       className="relative z-10 py-32 sm:py-40 scroll-mt-16"
     >
-      {/* Backdrop — slightly warmer at the bottom */}
+      {/* Backdrop - slightly warmer at the bottom */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -204,7 +204,7 @@ export default function ContactSection() {
           >
             <p className="text-slate-400 leading-relaxed">
               Tell us what you're building. We'll follow up with a clear plan
-              and timeline — no obligation, no sales pitch.
+              and timeline - no obligation, no sales pitch.
             </p>
 
             {/* Channels */}

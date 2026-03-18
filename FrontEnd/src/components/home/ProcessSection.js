@@ -9,7 +9,7 @@ const steps = [
     phase: "Discover",
     title: "Understand the problem first",
     description:
-      "We start by mapping your operations, constraints, and goals — before a single line of code is written. No assumptions. No guessing.",
+      "We start by mapping your operations, constraints, and goals - before a single line of code is written. No assumptions. No guessing.",
     detail: "Discovery call → Problem statement → Stakeholder alignment",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@ const steps = [
     phase: "Build",
     title: "Clean code, predictable delivery",
     description:
-      "We execute against the spec with regular check-ins. You see progress at every milestone — no black-box development.",
+      "We execute against the spec with regular check-ins. You see progress at every milestone - no black-box development.",
     detail: "Milestone-based delivery → Weekly updates → Code review",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">

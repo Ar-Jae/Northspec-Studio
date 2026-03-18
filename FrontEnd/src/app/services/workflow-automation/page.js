@@ -32,7 +32,7 @@ export default function WorkflowAutomationPage() {
                 <div className="absolute -left-4 top-0 w-1 h-full bg-brand-gold/20 mr-4" />
                 <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-6 px-4">Invisible Infrastructure</h2>
                 <p className="text-slate-400 leading-relaxed font-medium text-lg px-4 italic">
-                  We specialize in building the "silent engines" of modern business—workflows that run 24/7 without human intervention, ensuring data parity and operational speed across your entire stack.
+                  We specialize in building the "silent engines" of modern business-workflows that run 24/7 without human intervention, ensuring data parity and operational speed across your entire stack.
                 </p>
               </div>
               

@@ -56,11 +56,11 @@ export default function TestimonialsPage() {
               <>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
                   <p className="text-lg text-slate-300 italic leading-relaxed">"Northspec delivered our MVP ahead of schedule and with better architecture than we initially planned. Highly recommended."</p>
-                  <p className="mt-6 font-semibold text-white">— Founder, Fintech Startup</p>
+                  <p className="mt-6 font-semibold text-white">- Founder, Fintech Startup</p>
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
                   <p className="text-lg text-slate-300 italic leading-relaxed">"The level of communication and transparency is unmatched. We always knew exactly where the project stood."</p>
-                  <p className="mt-6 font-semibold text-white">— CTO, E-commerce Platform</p>
+                  <p className="mt-6 font-semibold text-white">- CTO, E-commerce Platform</p>
                 </div>
               </>
             )}

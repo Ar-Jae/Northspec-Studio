@@ -92,7 +92,7 @@ export default function WorkPage() {
                   <p className="text-slate-300 italic text-lg leading-relaxed relative z-10">
                     {t.quote}
                   </p>
-                  <p className="mt-8 text-sm font-bold text-white uppercase tracking-widest">— {t.author}</p>
+                  <p className="mt-8 text-sm font-bold text-white uppercase tracking-widest">- {t.author}</p>
                 </motion.div>
               ))}
             </div>

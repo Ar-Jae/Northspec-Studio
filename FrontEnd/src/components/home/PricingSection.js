@@ -251,7 +251,7 @@ export default function PricingSection() {
                 Automation Add-Ons
               </p>
               <h3 className="text-2xl font-bold font-serif text-white leading-tight mb-3">
-                n8n workflow automation — priced separately
+                n8n workflow automation - priced separately
               </h3>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                 Setup from $1,500 · Simple workflows from $500 · AI workflows $1,500–$2,500
@@ -276,7 +276,7 @@ export default function PricingSection() {
                 Ready to build something <br className="hidden sm:block" /> durable?
               </h3>
               <p className="text-slate-400 text-sm mb-10 max-w-xs leading-relaxed relative z-10">
-                Free technical consultation — clear plan and timeline included.
+                Free technical consultation - clear plan and timeline included.
               </p>
               <div className="relative z-10">
                 <a
