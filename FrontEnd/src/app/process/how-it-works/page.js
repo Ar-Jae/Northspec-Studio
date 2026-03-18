@@ -5,6 +5,7 @@ import SectionHeading from "../../../components/SectionHeading";
 import Button from "../../../components/Button";
 import FadeIn from "../../../components/animations/FadeIn";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 
 const phases = [
   {
@@ -47,49 +48,58 @@ const phases = [
 
 export default function HowItWorksPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden text-slate-400">
+      <BackgroundCanvasClient />
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <SectionHeading
-            eyebrow="Process"
-            title="How It Works"
-            description="We follow a structured, engineering-first process designed to eliminate uncertainty and deliver production-ready systems on time."
-          />
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
+            <div className="max-w-2xl">
+              <SectionHeading
+                eyebrow="Process"
+                title="How It Works"
+                description="We follow a structured, engineering-first process designed to eliminate uncertainty and deliver production-ready systems on time."
+              />
+            </div>
+            <div className="flex-none">
+              <div className="text-8xl font-black text-white/[0.03] font-times select-none italic tracking-tighter uppercase leading-none">PRCS</div>
+            </div>
+          </div>
 
           {/* Interactive Timeline */}
-          <div className="mt-24 relative">
+          <div className="mt-24 relative z-10">
             {/* Vertical Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/10 -translate-x-1/2 hidden md:block" />
+            <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-[1px] bg-white/[0.05] -translate-x-1/2 hidden md:block" />
 
-            <div className="space-y-24">
+            <div className="space-y-40">
               {phases.map((phase, index) => (
-                <div key={phase.id} className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-0 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
+                <div key={phase.id} className={`relative flex flex-col md:flex-row items-center gap-12 md:gap-0 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
                   {/* Phase Number Circle */}
-                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-brand-dark border border-brand-gold flex items-center justify-center z-10 shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                    <span className="text-brand-gold font-bold text-sm">{phase.id}</span>
+                  <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 rounded-2xl bg-brand-dark border border-white/5 flex items-center justify-center z-10 backdrop-blur-xl group hover:border-brand-gold/30 transition-all duration-500">
+                    <span className="text-white font-black text-xl font-times italic tracking-tighter transition-colors group-hover:text-brand-gold">{phase.id}</span>
                   </div>
 
                   {/* Content Card */}
-                  <div className="w-full md:w-[45%] ml-12 md:ml-0">
+                  <div className="w-full md:w-[42%] ml-20 md:ml-0">
                     <motion.div
                       whileHover={{ y: -5 }}
-                      className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm hover:border-brand-gold/30 transition-colors group"
+                      className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl transition-all duration-700 group relative overflow-hidden hover:border-brand-gold/20"
                     >
-                      <h3 className="text-2xl font-semibold text-white font-serif group-hover:text-brand-gold transition-colors">{phase.title}</h3>
-                      <p className="mt-4 text-slate-400 leading-relaxed">{phase.description}</p>
+                      <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">PHASE</div>
+                      <h3 className="text-2xl font-bold text-white font-times uppercase tracking-[0.2em] group-hover:text-brand-gold transition-colors relative z-10">{phase.title}</h3>
+                      <p className="mt-6 text-slate-400 leading-relaxed font-medium italic relative z-10">{phase.description}</p>
                       
-                      <ul className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <ul className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 relative z-10">
                         {phase.details.map((detail) => (
-                          <li key={detail} className="flex items-center gap-2 text-xs text-slate-300">
-                            <span className="w-1 h-1 rounded-full bg-brand-gold" />
+                          <li key={detail} className="flex items-start gap-3 text-xs text-slate-300 font-bold uppercase tracking-widest leading-tight">
+                            <span className="mt-1.5 w-1 h-1 rounded-full bg-brand-gold/60 shrink-0" />
                             {detail}
                           </li>
                         ))}
                       </ul>
 
-                      <div className="mt-8">
-                        <Button as="link" href={phase.href} variant="secondary" className="text-xs">
-                          Learn more about {phase.title}
+                      <div className="mt-12 relative z-10 border-t border-white/5 pt-8">
+                        <Button as="link" href={phase.href} variant="secondary" className="text-[10px] py-4">
+                          Dive into {phase.title}
                         </Button>
                       </div>
                     </motion.div>

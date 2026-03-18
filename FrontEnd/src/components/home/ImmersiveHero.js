@@ -87,7 +87,7 @@ export default function ImmersiveHero() {
 
       <motion.div
         style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 pt-20"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
       >
         {/* Eyebrow */}
         <motion.div
@@ -120,7 +120,7 @@ export default function ImmersiveHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.7, duration: 0.8, ease: "easeOut" }}
-          className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12"
+          className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
         >
           Automation, software engineering, and mobile systems that deliver
           measurable outcomes for established companies.

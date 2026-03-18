@@ -7,6 +7,7 @@ import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
 import { motion } from "framer-motion";
 import { faqs } from "../../lib/data";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 const pricingPlans = [
   {
@@ -23,8 +24,8 @@ const pricingPlans = [
       "Documentation & handoff",
     ],
     bestFor: "MVPs • First launch products",
-    color: "border-slate-800/50 bg-slate-900/20",
-    accent: "group-hover:border-slate-400/30",
+    color: "border-slate-800/50 bg-white/5",
+    accent: "group-hover:border-slate-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-slate-400",
   },
   {
@@ -41,8 +42,8 @@ const pricingPlans = [
       "Documentation & training",
     ],
     bestFor: "Customer portals • Internal tools",
-    color: "border-blue-900/20 bg-blue-900/5",
-    accent: "group-hover:border-blue-400/30",
+    color: "border-blue-900/20 bg-white/5",
+    accent: "group-hover:border-blue-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-blue-400",
   },
   {
@@ -60,8 +61,8 @@ const pricingPlans = [
       "Full documentation + training",
     ],
     bestFor: "Growing SaaS • Ops-heavy businesses",
-    color: "border-brand-gold/20 bg-brand-gold/5",
-    accent: "border-brand-gold/40",
+    color: "border-brand-gold/20 bg-white/5",
+    accent: "group-hover:border-brand-gold/40 group-hover:bg-brand-gold/10",
     iconColor: "text-brand-gold",
     popular: true,
   },
@@ -81,8 +82,8 @@ const pricingPlans = [
       "Full documentation",
     ],
     bestFor: "Finance • Healthcare • Corporations",
-    color: "border-purple-900/20 bg-purple-900/5",
-    accent: "group-hover:border-purple-400/30",
+    color: "border-purple-900/20 bg-white/5",
+    accent: "group-hover:border-purple-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-purple-400",
   },
 ];
@@ -92,11 +93,11 @@ const retainerPlans = [
     name: "Maintenance & Support",
     price: "From $1,500/mo",
     description: "Ongoing engineering support to keep your systems secure and fast.",
-    color: "border-cyan-900/20 bg-cyan-900/5",
-    accent: "hover:border-cyan-400/30",
-    iconColor: "text-cyan-400",
-    iconBg: "bg-cyan-400/10",
-    dotColor: "bg-cyan-400",
+    color: "border-white/10 bg-white/5",
+    accent: "hover:border-brand-gold/30 hover:bg-brand-gold/5",
+    iconColor: "text-brand-gold",
+    iconBg: "bg-brand-gold/10",
+    dotColor: "bg-brand-gold",
     bullets: [
       "Security Patches & Updates",
       "Performance Audits",
@@ -108,11 +109,11 @@ const retainerPlans = [
     name: "Custom Plans",
     price: "Custom Quote",
     description: "Tailored engineering partnerships for unique business requirements.",
-    color: "border-rose-900/20 bg-rose-900/5",
-    accent: "hover:border-rose-400/30",
-    iconColor: "text-rose-400",
-    iconBg: "bg-rose-400/10",
-    dotColor: "bg-rose-400",
+    color: "border-white/10 bg-white/5",
+    accent: "hover:border-brand-gold/30 hover:bg-brand-gold/5",
+    iconColor: "text-brand-gold",
+    iconBg: "bg-brand-gold/10",
+    dotColor: "bg-brand-gold",
     bullets: [
       "Dedicated Engineering Teams",
       "Technical Consulting & Strategy",
@@ -124,10 +125,12 @@ const retainerPlans = [
 
 export default function PricingPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Investment"
@@ -136,46 +139,43 @@ export default function PricingPage() {
               />
             </div>
             <div className="flex-none">
-              <div className="text-8xl font-bold text-white/5 font-serif select-none">$$$</div>
+              <div className="text-8xl font-bold text-white/5 font-times select-none uppercase">RATE</div>
             </div>
           </div>
 
           <StaggerContainer className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {pricingPlans.map((plan) => (
               <StaggerItem key={plan.name}>
-                <div className={`group relative h-full rounded-3xl border p-8 transition-all duration-300 ${plan.color} ${plan.accent}`}>
+                <div className={`group relative h-full rounded-2xl border border-white/5 p-10 backdrop-blur-xl transition-all duration-500 overflow-hidden ${plan.accent}`}>
+                  <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">PLAN</div>
                   {plan.popular && (
-                    <span className="absolute -top-4 left-8 rounded-full bg-brand-gold px-4 py-1 text-xs font-bold text-brand-dark">
-                      Most Popular
+                    <span className="absolute -top-3 left-8 rounded-full bg-brand-gold px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-brand-dark z-20">
+                      Standard Issue
                     </span>
                   )}
-                  <div className="mb-8">
-                    <h3 className="text-xl font-bold text-white font-serif">{plan.name}</h3>
+                  <div className="mb-8 relative z-10">
+                    <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] font-times mb-2">{plan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className={`text-2xl font-bold ${plan.iconColor}`}>{plan.price}</span>
+                      <span className="text-3xl font-bold text-white font-times tracking-tight">{plan.price.split(' – ')[0]}</span>
                     </div>
-                    <p className="mt-2 text-xs text-slate-400 font-medium uppercase tracking-wider">{plan.delivery} delivery</p>
+                    <p className="mt-2 text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">{plan.delivery} DELIVERY</p>
                   </div>
                   
-                  <p className="mb-8 text-sm text-slate-400 leading-relaxed">
+                  <p className="mb-8 text-sm text-slate-400 leading-relaxed relative z-10 font-medium italic">
                     {plan.description}
                   </p>
 
-                  <ul className="mb-8 space-y-4">
+                  <ul className="mb-8 space-y-4 relative z-10">
                     {plan.includes.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-slate-300">
-                        <span className={`mt-1 ${plan.iconColor}`}>
-                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </span>
-                        {item}
+                      <li key={item} className="flex items-start gap-3 text-xs text-slate-300">
+                        <span className="mt-1 w-1.5 h-1.5 rounded-full bg-brand-gold/60 shrink-0" />
+                        <span className="leading-snug">{item}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-auto pt-8 border-t border-white/10">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4">Best For</p>
+                  <div className="mt-auto pt-8 relative z-10">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-times mb-4">Best For</p>
                     <p className="text-xs text-slate-300 italic">{plan.bestFor}</p>
                   </div>
                 </div>
@@ -183,36 +183,35 @@ export default function PricingPage() {
             ))}
           </StaggerContainer>
 
-          {/* Automation Add-ons */}
-          <div className="mt-32">
+          <div className="mt-32 relative z-10">
             <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-white font-serif">Automation Add-Ons (n8n)</h2>
-              <div className="h-[1px] flex-grow bg-white/10" />
+              <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest">Automation Add-Ons</h2>
+              <div className="h-[1px] flex-grow bg-white/[0.03]" />
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { title: "n8n Setup", price: "$1,500", desc: "Deployment & Security", color: "hover:border-blue-400/30", iconColor: "text-blue-400" },
-                { title: "Simple Workflows", price: "$500 each", desc: "Basic data sync", color: "hover:border-cyan-400/30", iconColor: "text-cyan-400" },
-                { title: "Advanced Workflows", price: "$900 – $1,200", desc: "Complex logic & APIs", color: "hover:border-brand-gold/30", iconColor: "text-brand-gold" },
-                { title: "AI Workflows", price: "$1,500 – $2,500", desc: "LLM integrations", color: "hover:border-purple-400/30", iconColor: "text-purple-400" }
+                { title: "n8n Setup", price: "$1,500", desc: "Deployment & Security", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "Simple Workflows", price: "$500 each", desc: "Basic data sync", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "Advanced Workflows", price: "$900 – $1,200", desc: "Complex logic & APIs", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "AI Workflows", price: "$1,500 – $2,500", desc: "LLM integrations", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" }
               ].map((item, i) => (
                 <motion.div 
                   key={i}
                   whileHover={{ y: -5 }}
-                  className={`rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors ${item.color}`}
+                  className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl transition-all duration-500 group hover:border-brand-gold/20"
                 >
-                  <h4 className="font-semibold text-white">{item.title}</h4>
-                  <p className={`font-bold mt-1 ${item.iconColor}`}>{item.price}</p>
-                  <p className="text-xs text-slate-500 mt-1">{item.desc}</p>
+                  <h4 className="font-bold text-white font-times uppercase tracking-widest text-xs group-hover:text-brand-gold transition-colors">{item.title}</h4>
+                  <p className="font-bold mt-4 text-2xl text-white font-times">{item.price}</p>
+                  <p className="text-[10px] text-slate-500 mt-2 uppercase tracking-widest font-bold">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
 
           {/* Retainers Section */}
-          <div className="mt-32">
+          <div className="mt-32 relative z-10">
             <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-white font-serif">Ongoing Support & Custom Plans</h2>
+              <h2 className="text-3xl font-bold text-white font-times">Ongoing Support & Custom Plans</h2>
               <div className="h-[1px] flex-grow bg-white/10" />
             </div>
             
@@ -221,11 +220,11 @@ export default function PricingPage() {
                 <motion.div 
                   key={plan.name}
                   whileHover={{ y: -5 }}
-                  className={`rounded-3xl border p-10 transition-all ${plan.color} ${plan.accent}`}
+                  className={`rounded-3xl border p-10 transition-all backdrop-blur-sm ${plan.color} ${plan.accent}`}
                 >
                   <div className="flex justify-between items-start mb-6">
                     <div>
-                      <h3 className="text-2xl font-bold text-white font-serif">{plan.name}</h3>
+                      <h3 className="text-2xl font-bold text-white font-times uppercase tracking-wide">{plan.name}</h3>
                       <p className={`font-semibold mt-1 ${plan.iconColor}`}>{plan.price}</p>
                     </div>
                     <div className={`p-3 rounded-2xl ${plan.iconBg} ${plan.iconColor}`}>
@@ -265,9 +264,9 @@ export default function PricingPage() {
                   { label: "Priority (~40% faster)", value: "+50%" },
                   { label: "Emergency (Mission Critical)", value: "+100%" }
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center border-b border-white/10 pb-4">
-                    <span className="text-slate-400">{item.label}</span>
-                    <span className="text-white font-bold">{item.value}</span>
+                  <div key={i} className="flex justify-between items-center border-b border-white/[0.03] pb-4 last:border-0 hover:bg-white/5 transition-colors p-2 rounded-lg">
+                    <span className="text-slate-400 font-times uppercase tracking-widest text-xs">{item.label}</span>
+                    <span className="text-white font-bold font-times">{item.value}</span>
                   </div>
                 ))}
               </div>

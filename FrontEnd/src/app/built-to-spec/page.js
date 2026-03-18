@@ -3,6 +3,7 @@ import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
 import { StaggerContainer, StaggerItem } from "../../components/animations/Stagger";
 import Button from "../../components/Button";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export const metadata = {
   title: "Built to Spec. Built to Last. | The Northspec Method",
@@ -38,48 +39,44 @@ const phases = [
 
 export default function BuiltToSpecPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      
       {/* Hero Section */}
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12 mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-3xl">
               <SectionHeading
                 eyebrow="The Method"
                 title="Built to Spec. Built to Last."
-                description="Our operational philosophy is simple: Radical transparency, elite senior engineering, and zero-BS project management."
+                description="Our operational philosophy is simple: Radical transparency, specialist engineering, and zero-BS project management."
               />
             </div>
             <div className="flex-none">
-              <div className="text-8xl font-bold text-white/5 font-serif select-none italic text-right">SPEC</div>
+              <div className="text-8xl font-bold text-white/5 font-times select-none italic text-right uppercase">SPEC</div>
             </div>
           </div>
         </FadeIn>
 
         {/* Core Values */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32">
-          <FadeIn delay={0.2}>
-            <h3 className="text-xl font-bold text-white font-serif mb-4">Elite Senior Talent</h3>
-            <p className="text-slate-400 leading-relaxed">
-              We do not employ juniors or account managers. Every person you interact with is a senior engineer capable of making architectural decisions on the spot.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.4}>
-            <h3 className="text-xl font-bold text-white font-serif mb-4">Fixed-Scope Execution</h3>
-            <p className="text-slate-400 leading-relaxed">
-              Hourly billing rewards inefficiency. We operate on a value-based, fixed-price model. We define clear deliverables, and the cost remains the same.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.6}>
-            <h3 className="text-xl font-bold text-white font-serif mb-4">Durable Architecture</h3>
-            <p className="text-slate-400 leading-relaxed">
-              We build for the 'Future You'. Clean, readable, and self-documenting code that is easier to maintain and scale as your business grows.
-            </p>
-          </FadeIn>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 relative z-10">
+          {[
+            { title: "Specialist Talent", desc: "We do not employ account managers. Every person you interact with is a specialist engineer capable of making architectural decisions on the spot." },
+            { title: "Fixed-Scope Execution", desc: "Hourly billing rewards inefficiency. We operate on a value-based, fixed-price model. We define clear deliverables, and the cost remains the same." },
+            { title: "Durable Architecture", desc: "We build for the 'Future You'. Clean, readable, and self-documenting code that is easier to maintain and scale as your business grows." }
+          ].map((item, i) => (
+            <FadeIn key={i} delay={0.2 * (i + 1)}>
+              <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-4">{item.title}</h3>
+              <p className="text-slate-400 leading-relaxed font-medium">
+                {item.desc}
+              </p>
+            </FadeIn>
+          ))}
         </div>
 
         {/* Phase Timeline */}
-        <div className="space-y-24 mb-32">
+        <div className="space-y-24 mb-32 relative z-10">
           <SectionHeading
             eyebrow="Lifecycle"
             title="The Northspec Project Lifecycle"
@@ -88,15 +85,15 @@ export default function BuiltToSpecPage() {
           <StaggerContainer className="grid gap-12 lg:grid-cols-2">
             {phases.map((phase) => (
               <StaggerItem key={phase.number}>
-                <div className="relative p-8 rounded-2xl border border-white/10 bg-white/5 hover:bg-white/[0.08] transition-colors group h-full">
-                  <span className="absolute top-8 right-8 text-4xl font-bold text-white/10 font-serif group-hover:text-brand-gold/20 transition-colors">
+                <div className="relative p-10 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-brand-gold/5 hover:border-brand-gold/20 transition-all group h-full">
+                  <span className="absolute top-10 right-10 text-5xl font-bold text-white/10 font-times group-hover:text-brand-gold/20 transition-colors">
                     {phase.number}
                   </span>
-                  <h3 className="text-2xl font-bold text-white font-serif mb-4">{phase.title}</h3>
-                  <p className="text-slate-400 mb-8 leading-relaxed">
+                  <h3 className="text-2xl font-bold text-white font-times uppercase tracking-wider mb-6">{phase.title}</h3>
+                  <p className="text-slate-400 mb-10 leading-relaxed font-medium">
                     {phase.description}
                   </p>
-                  <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-2">
+                  <div className="mt-auto pt-8 flex flex-col gap-3">
                     <span className="text-[10px] uppercase tracking-widest text-brand-gold font-bold">Primary Deliverable</span>
                     <span className="text-white text-sm font-medium">{phase.deliverable}</span>
                   </div>

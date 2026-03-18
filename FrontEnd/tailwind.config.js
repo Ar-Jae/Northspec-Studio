@@ -16,6 +16,7 @@ module.exports = {
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
         serif: ["var(--font-playfair)", "serif"],
+        times: ["Times New Roman", "serif"],
       },
       backgroundImage: {
         'hero-gradient': 'radial-gradient(circle at center, #C6A668 0%, transparent 70%)',

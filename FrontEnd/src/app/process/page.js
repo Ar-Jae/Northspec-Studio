@@ -2,6 +2,7 @@ import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
 import Button from "../../components/Button";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export const metadata = {
   title: "Process",
@@ -33,8 +34,10 @@ const steps = [
 
 export default function ProcessPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
           <SectionHeading
             eyebrow="Our Process"
@@ -43,77 +46,72 @@ export default function ProcessPage() {
           />
 
           {/* How Timelines Work */}
-          <div id="how-it-works" className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm scroll-mt-32">
-            <h2 className="text-2xl font-semibold text-white font-serif">How Timelines Work</h2>
-            <p className="mt-4 text-slate-300 max-w-3xl">
+          <div id="how-it-works" className="mt-16 rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl scroll-mt-32 hover:border-brand-gold/20 transition-all duration-500 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">TIME</div>
+            <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.2em] relative z-10">How Timelines Work</h2>
+            <p className="mt-6 text-slate-400 max-w-2xl leading-relaxed relative z-10 font-medium italic">
               Our delivery timelines are designed to prioritize reliability over rush. We leave space for real testing, account for feedback cycles, and avoid burnout that leads to compromised quality.
             </p>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-brand-gold font-bold block mb-1">✓ Quality First</span>
-                <p className="text-xs text-slate-400">We prioritize stability over speed every time.</p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-brand-gold font-bold block mb-1">✓ Real Testing</span>
-                <p className="text-xs text-slate-400">Space for edge cases and performance audits.</p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-brand-gold font-bold block mb-1">✓ Feedback Loops</span>
-                <p className="text-xs text-slate-400">Structured windows for your review and input.</p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <span className="text-brand-gold font-bold block mb-1">✓ No Burnout</span>
-                <p className="text-xs text-slate-400">Sustainable pace ensures consistent high quality.</p>
-              </div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 relative z-10">
+              {[
+                { label: "Quality First", desc: "We prioritize stability over speed every time." },
+                { label: "Real Testing", desc: "Space for edge cases and performance audits." },
+                { label: "Feedback Loops", desc: "Structured windows for your review and input." },
+                { label: "No Burnout", desc: "Sustainable pace ensures consistent high quality." }
+              ].map((item, i) => (
+                <div key={i} className="p-6 rounded-xl bg-white/[0.02] border border-white/5 group-hover:bg-brand-gold/5 transition-all duration-500 hover:scale-[1.02]">
+                  <span className="text-brand-gold font-bold block mb-2 text-[10px] uppercase tracking-[0.2em] font-times">✓ {item.label}</span>
+                  <p className="text-xs text-slate-400 font-bold uppercase tracking-widest leading-normal">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Capacity & Focus */}
-          <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-            <h2 className="text-2xl font-semibold text-white font-serif">Capacity & Focus</h2>
-            <p className="mt-4 text-slate-300 max-w-3xl">
+          <div className="mt-16 rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl hover:border-brand-gold/20 transition-all duration-500 group relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">CAP</div>
+            <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.2em] relative z-10">Capacity & Focus</h2>
+            <p className="mt-6 text-slate-400 max-w-2xl leading-relaxed relative z-10 font-medium italic">
               As a solo-led agency, we protect our focus to ensure your project gets the attention it deserves.
             </p>
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <h4 className="text-white font-semibold">The 1+1 Rule</h4>
-                <p className="mt-1 text-sm text-slate-400">
-                  We only handle one Primary build and one Secondary project at a time. This prevents context switching and ensures deep focus.
-                </p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <h4 className="text-white font-semibold">Deep Work Blocks</h4>
-                <p className="mt-1 text-sm text-slate-400">
-                  Development time is protected from interruptions. We respond to all communication within 24 hours on business days.
-                </p>
-              </div>
-              <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                <h4 className="text-white font-semibold">Staggered Kickoffs</h4>
-                <p className="mt-1 text-sm text-slate-400">
-                  We never start two projects in the same week. Every build gets a dedicated, high-energy launch phase.
-                </p>
-              </div>
+            <div className="mt-12 grid gap-6 md:grid-cols-3 relative z-10">
+              {[
+                { title: "The 1+1 Rule", desc: "We only handle one Primary build and one Secondary project at a time. This prevents context switching and ensures deep focus." },
+                { title: "Deep Work Blocks", desc: "Development time is protected from interruptions. We respond to all communication within 24 hours on business days." },
+                { title: "Staggered Kickoffs", desc: "We never start two projects in the same week. Every build gets a dedicated, high-energy launch phase." }
+              ].map((item, i) => (
+                <div key={i} className="p-8 rounded-xl bg-white/[0.02] border border-white/5 group-hover:bg-brand-gold/5 transition-all duration-500 hover:scale-[1.02]">
+                  <h4 className="text-white font-bold font-times uppercase tracking-[0.1em] text-xs mb-4">{item.title}</h4>
+                  <p className="text-sm text-slate-400 leading-relaxed font-medium">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* The Steps */}
-          <div className="mt-24">
-            <h2 className="text-3xl font-semibold text-white font-serif text-center">The Lifecycle of a Build</h2>
-            <div className="mt-16 space-y-12">
+          <div className="mt-40 relative z-10">
+            <div className="flex items-center gap-4 mb-20 justify-center">
+              <div className="h-[1px] w-24 bg-white/[0.03]" />
+              <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.3em]">Lifecycle</h2>
+              <div className="h-[1px] w-24 bg-white/[0.03]" />
+            </div>
+            <div className="mt-16 space-y-24">
               {steps.map((step, index) => {
                 const slug = step.title.toLowerCase().split(' ')[0];
                 const id = slug === 'discovery' ? 'discovery' : 
                            slug === 'iterative' ? 'development' : 
                            slug === 'deployment' ? 'delivery' : slug;
                 return (
-                  <div key={step.title} id={id} className="relative pl-12 md:pl-0 scroll-mt-32">
-                    <div className="md:grid md:grid-cols-5 md:gap-8 items-start">
-                      <div className="md:col-span-1 md:text-right">
-                        <span className="text-5xl font-bold text-white/10 font-serif">0{index + 1}</span>
+                  <div key={step.title} id={id} className="relative pl-12 md:pl-0 scroll-mt-32 group">
+                    <div className="md:grid md:grid-cols-5 md:gap-12 items-start">
+                      <div className="md:col-span-1 md:text-right pt-2 relative">
+                        <span className="text-5xl font-bold text-white/10 font-times italic tracking-tighter group-hover:text-brand-gold/20 transition-colors">0{index + 1}</span>
                       </div>
-                      <div className="md:col-span-4 pt-2">
-                        <h3 className="text-xl font-semibold text-white font-serif">{step.title}</h3>
-                        <p className="mt-3 text-slate-400 max-w-3xl leading-relaxed">{step.description}</p>
+                      <div className="md:col-span-4 pt-4 border-l border-white/5 pl-8 md:pl-12 group-hover:border-brand-gold/20 transition-colors duration-700">
+                        <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest group-hover:text-brand-gold transition-colors">{step.title}</h3>
+                        <p className="mt-6 text-slate-400 max-w-2xl leading-relaxed font-medium">{step.description}</p>
                       </div>
                     </div>
                   </div>
@@ -122,10 +120,11 @@ export default function ProcessPage() {
             </div>
           </div>
 
-          <div className="mt-24 text-center">
-            <h2 className="text-2xl font-semibold text-white font-serif">Ready to start?</h2>
-            <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
-              We work best with serious founders and businesses building real systems.
+          <div className="mt-40 text-center relative z-10">
+            <div className="inline-block p-10 rounded-2xl border border-white/5 bg-white/[0.03] backdrop-blur-xl">
+              <h2 className="text-2xl font-bold text-white font-times uppercase tracking-[0.2em] mb-6">Execution is Everything</h2>
+              <p className="text-slate-400 max-w-2xl mx-auto italic font-medium mb-10 text-sm">
+                We work best with serious founders and businesses building real systems.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <Button as="link" href="/contact" variant="brand">

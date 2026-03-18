@@ -5,13 +5,15 @@ import SectionHeading from "../../../components/SectionHeading";
 import Button from "../../../components/Button";
 import FadeIn from "../../../components/animations/FadeIn";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 
 export default function DevelopmentPage() {
   return (
     <div className="bg-brand-dark min-h-screen">
+      <BackgroundCanvasClient />
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Process Phase 02"
@@ -89,8 +91,8 @@ export default function DevelopmentPage() {
                   ))}
                 </ul>
 
-                <div className="mt-12 pt-8 border-t border-white/10">
-                  <h3 className="text-lg font-semibold text-white font-serif">Deep Work Focus</h3>
+                <div className="mt-12 pt-8">
+                  <h3 className="text-lg font-semibold text-white font-serif tracking-widest uppercase">Deep Work Focus</h3>
                   <p className="mt-2 text-sm text-slate-400">
                     We protect our development time to ensure high-quality output. We respond to all communication within 24 hours.
                   </p>

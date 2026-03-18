@@ -65,12 +65,7 @@ export default function WorkSection() {
         }}
       />
 
-      {/* Decorative large letter */}
-      <div className="absolute right-0 top-24 text-[20vw] font-serif font-bold text-white/[0.015] leading-none select-none pointer-events-none pr-4">
-        WORK
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="relative z-10 w-full px-36">
         {/* Heading */}
         <div ref={headRef} className="mb-24">
           <motion.div
@@ -85,21 +80,31 @@ export default function WorkSection() {
             </span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight max-w-3xl"
-          >
-            Outcomes, not{" "}
-            <em className="not-italic text-brand-gold">deliverables.</em>
-          </motion.h2>
+          <div className="flex items-center justify-between gap-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              Outcomes, not{" "}
+              <em className="not-italic text-brand-gold">deliverables.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              WORK
+            </motion.span>
+          </div>
 
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
+            initial={{ width: "0%" }}
+            animate={inView ? { width: "100%" } : {}}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent origin-left"
+            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent"
           />
         </div>
 

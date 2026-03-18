@@ -5,6 +5,7 @@ import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
 import FadeIn from "../../components/animations/FadeIn";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 const techStack = [
   { name: "Next.js", category: "Frontend" },
@@ -35,8 +36,9 @@ const categories = [
 export default function AboutPage() {
   return (
     <>
-    <div className="bg-brand-dark">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
           <SectionHeading
             eyebrow="About"
@@ -44,37 +46,45 @@ export default function AboutPage() {
             description="We build, fix, and maintain production software to spec. Clean code. Clear communication. No guesswork."
           />
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-12">
+          <div className="mt-16 grid gap-12 lg:grid-cols-12">
             <div id="why" className="lg:col-span-7 scroll-mt-32">
-              <h2 className="text-2xl font-semibold tracking-tight text-white font-serif">
-                Our Story
-              </h2>
-              <div className="mt-6 space-y-6 text-base text-slate-400 leading-relaxed">
+              <div className="flex items-center gap-4 mb-8">
+                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest">
+                  Our Story
+                </h2>
+                <div className="h-[1px] flex-grow bg-white/[0.03]" />
+              </div>
+              <div className="mt-6 space-y-8 text-lg text-slate-400 leading-relaxed font-medium italic">
                 <p>
                   Northspec Studio was founded on a simple observation: most software projects fail not because of a lack of talent, but because of a lack of clarity. 
-                  We saw agencies shipping "black box" code that clients couldn't maintain, and developers building features without understanding the business goals.
                 </p>
+                <div className="p-8 rounded-2xl border border-brand-gold/20 bg-brand-gold/5 backdrop-blur-xl">
+                  <p className="text-white italic">
+                    "We saw agencies shipping 'black box' code that clients couldn't maintain, and developers building features without understanding the business goals."
+                  </p>
+                </div>
                 <p>
-                  We decided to do things differently. We built a studio focused on <strong>durability</strong>. 
+                  We decided to do things differently. We built a studio focused on <span className="text-brand-gold uppercase tracking-widest font-bold">durability</span>. 
                   To us, that means writing code that lasts, documenting every major decision, and ensuring our clients actually own and understand their technical infrastructure.
                 </p>
                 <p>
-                  Today, we operate as a distributed team of senior engineers. We don't have account managers or junior developers. 
+                  Today, we operate as a distributed team of engineers. We don't have account managers. 
                   When you work with Northspec, you are working directly with the people writing the code.
                 </p>
               </div>
             </div>
 
             <aside className="lg:col-span-5">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 sticky top-32">
-                <h2 className="text-xl font-semibold tracking-tight text-white font-serif">
+              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl sticky top-32 group">
+                <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">BUILD</div>
+                <h2 className="text-xl font-bold text-white font-times uppercase tracking-widest relative z-10">
                   Ready to build?
                 </h2>
-                <p className="mt-4 text-slate-400 text-sm leading-relaxed">
+                <p className="mt-4 text-slate-400 text-sm leading-relaxed relative z-10 font-medium italic">
                   We specialize in high-performance engineering for teams that value durability and transparency.
                 </p>
 
-                <div className="mt-8 flex flex-col gap-3">
+                <div className="mt-10 flex flex-col gap-4 relative z-10">
                   <Button as="link" href="/contact" variant="brand">
                     Start a Project
                   </Button>
@@ -90,17 +100,18 @@ export default function AboutPage() {
     </div>
 
     {/* Core Values Section */}
-    <div className="bg-brand-dark/50 py-24 border-y border-white/5">
-      <Container>
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden py-32 border-y border-white/5">
+      <BackgroundCanvasClient />
+      <Container className="relative z-10">
         <FadeIn>
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-semibold text-white font-serif">Core Values</h2>
-            <p className="mt-4 text-slate-400">
+            <h2 className="text-4xl font-bold text-white font-times uppercase tracking-[0.2em]">Core Values</h2>
+            <p className="mt-6 text-slate-400 text-lg font-medium italic">
               These principles guide every line of code we write and every decision we make.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 title: "Durability",
@@ -111,17 +122,17 @@ export default function AboutPage() {
                 desc: "No black boxes. You have full access to the code, the docs, and the decision logs."
               },
               {
-                title: "Senior Execution",
-                desc: "Every project is handled by senior engineers. No hand-offs to juniors."
+                title: "Precision Execution",
+                desc: "Every project is handled by specialist engineers. No hand-offs to account managers."
               },
               {
                 title: "Fixed Scopes",
                 desc: "We believe in clear boundaries. We define what we're building and what it costs upfront."
               }
             ].map((value, i) => (
-              <div key={i} className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-gold/30 transition-colors">
-                <h3 className="text-lg font-semibold text-white font-serif">{value.title}</h3>
-                <p className="mt-3 text-sm text-slate-400 leading-relaxed">{value.desc}</p>
+              <div key={i} className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl hover:border-brand-gold/30 transition-all duration-500 group">
+                <h3 className="text-xs font-bold text-white font-times uppercase tracking-widest group-hover:text-brand-gold transition-colors">{value.title}</h3>
+                <p className="mt-6 text-sm text-slate-400 leading-relaxed font-medium italic">{value.desc}</p>
               </div>
             ))}
           </div>
@@ -130,9 +141,10 @@ export default function AboutPage() {
     </div>
 
     {/* Tech Stack Section */}
-    <div className="py-24 overflow-hidden bg-brand-dark relative">
+    <div className="py-24 overflow-hidden bg-brand-dark min-h-screen relative flex items-center">
+      <BackgroundCanvasClient />
       {/* Animated Background Marquee */}
-      <div className="absolute inset-0 flex flex-col justify-center gap-8 opacity-[0.03] pointer-events-none select-none">
+      <div className="absolute inset-0 flex flex-col justify-center gap-8 opacity-[0.02] pointer-events-none select-none">
         <motion.div 
           animate={{ x: [0, -1000] }}
           transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
@@ -228,7 +240,7 @@ export default function AboutPage() {
         <div className="max-w-3xl">
           <h2 className="text-3xl font-semibold text-white font-serif">Careers</h2>
           <p className="mt-4 text-slate-400">
-            We are always looking for senior-level talent who value autonomy, deep work, and engineering excellence. 
+            We are always looking for specialist talent who value autonomy, deep work, and engineering excellence. 
             While we are not currently hiring for full-time roles, we frequently partner with specialized contractors.
           </p>
           <div className="mt-8">

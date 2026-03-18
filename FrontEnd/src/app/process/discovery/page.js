@@ -5,38 +5,42 @@ import SectionHeading from "../../../components/SectionHeading";
 import Button from "../../../components/Button";
 import FadeIn from "../../../components/animations/FadeIn";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 
 export default function DiscoveryPage() {
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-2xl">
               <SectionHeading
-                eyebrow="Process Phase 01"
+                eyebrow="Phase 01"
                 title="Discovery & Scoping"
                 description="The most important part of any project. We define exactly what success looks like before a single line of code is written."
               />
             </div>
             <div className="flex-none">
-              <div className="text-8xl font-bold text-white/5 font-serif select-none">01</div>
+              <div className="text-8xl font-black text-white/[0.03] font-times select-none italic tracking-tighter uppercase leading-none">01</div>
             </div>
           </div>
 
-          <div className="mt-16 grid gap-16 lg:grid-cols-12">
-            <div className="lg:col-span-7 space-y-12">
+          <div className="grid gap-20 lg:grid-cols-12">
+            <div className="lg:col-span-7 space-y-16">
               <section>
-                <h2 className="text-2xl font-semibold text-white font-serif flex items-center gap-3">
-                  <span className="w-8 h-[1px] bg-brand-gold" />
-                  Eliminating Uncertainty
-                </h2>
-                <p className="mt-6 text-lg text-slate-400 leading-relaxed">
+                <div className="flex items-center gap-4 mb-8">
+                  <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.2em]">
+                    Certainty
+                  </h2>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
+                <p className="mt-6 text-lg text-slate-400 leading-relaxed font-medium italic">
                   Most software projects fail because of vague requirements. Our discovery phase is designed to uncover every constraint, edge case, and business goal early on.
                 </p>
               </section>
               
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-8 sm:grid-cols-2">
                 {[
                   {
                     title: "Stakeholder Interviews",
@@ -58,44 +62,49 @@ export default function DiscoveryPage() {
                   <motion.div 
                     key={i}
                     whileHover={{ y: -5 }}
-                    className="rounded-2xl border border-white/10 bg-white/5 p-6 hover:border-brand-gold/30 transition-colors"
+                    className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl hover:border-brand-gold/30 transition-all duration-500 group"
                   >
-                    <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                    <h3 className="text-xs font-bold text-white font-times uppercase tracking-widest group-hover:text-brand-gold transition-colors">{item.title}</h3>
+                    <p className="mt-4 text-sm text-slate-400 leading-relaxed font-medium italic">{item.desc}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            <aside className="lg:col-span-5 space-y-8">
-              <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm sticky top-32">
-                <h2 className="text-2xl font-semibold text-white font-serif">The Deliverables</h2>
-                <p className="mt-4 text-slate-400">At the end of the discovery phase, you'll receive:</p>
-                <ul className="mt-8 space-y-6">
+            <aside className="lg:col-span-5 relative">
+              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-12 backdrop-blur-xl sticky top-32 group overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">LIST</div>
+                <h2 className="text-2xl font-bold text-white font-times uppercase tracking-[0.1em] relative z-10">The Deliverables</h2>
+                <p className="mt-4 text-slate-400 font-medium italic relative z-10">At the end of the discovery phase, you'll receive:</p>
+                <ul className="mt-12 space-y-8 relative z-10">
                   {[
                     "Detailed Technical Specification",
                     "System Architecture Diagram",
                     "Fixed-Price Quote & Timeline",
                     "Risk Assessment & Mitigation Plan"
                   ].map((item, i) => (
-                    <li key={i} className="flex gap-4 text-slate-300 group">
-                      <span className="flex-none w-6 h-6 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center text-brand-gold text-[10px] font-bold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
+                    <li key={i} className="flex gap-6 text-slate-300 group/item">
+                      <span className="flex-none w-8 h-8 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-brand-gold text-xs font-bold group-hover/item:bg-brand-gold group-hover/item:text-brand-dark transition-all duration-500">
                         {i + 1}
                       </span>
-                      <span className="text-sm font-medium">{item}</span>
+                      <span className="text-sm font-bold uppercase tracking-widest pt-2">{item}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-12 pt-8 border-t border-white/10">
-                  <h3 className="text-lg font-semibold text-white font-serif">Ready to scope?</h3>
-                  <p className="mt-2 text-sm text-slate-400">
+                <div className="mt-16 pt-12 relative z-10 border-t border-white/5">
+                  <h3 className="text-xs font-bold text-brand-gold font-times tracking-[0.3em] uppercase mb-4">Ready to scope?</h3>
+                  <p className="text-sm text-slate-400 font-medium italic mb-10">
                     Book a discovery call and we'll start defining the roadmap for your project.
                   </p>
-                  <div className="mt-6">
-                    <Button as="link" href="/book" variant="brand" className="w-full">Book a Call</Button>
-                  </div>
+                  <Button as="link" href="/book" variant="brand" className="w-full">Book a Call</Button>
                 </div>
+              </div>
+            </aside>
+          </div>
+        </FadeIn>
+      </Container>
+    </div>
               </div>
             </aside>
           </div>

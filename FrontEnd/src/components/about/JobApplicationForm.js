@@ -18,7 +18,7 @@ function isValidUrl(value) {
 }
 
 const ROLES = [
-  "Senior Full-Stack Engineer",
+  "Full-Stack Engineer",
   "Automation Specialist",
   "Frontend Engineer",
   "Backend Engineer",

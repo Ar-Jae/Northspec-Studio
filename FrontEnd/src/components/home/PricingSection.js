@@ -176,12 +176,7 @@ export default function PricingSection() {
         }}
       />
 
-      {/* Decorative */}
-      <div className="absolute right-0 top-24 text-[18vw] font-serif font-bold text-white/[0.015] leading-none select-none pointer-events-none pr-4">
-        $$$
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="relative z-10 w-full px-36">
         {/* Heading */}
         <div ref={headRef} className="mb-24">
           <motion.div
@@ -196,33 +191,41 @@ export default function PricingSection() {
             </span>
           </motion.div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <div className="flex items-center justify-between gap-4">
             <motion.h2
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight max-w-2xl"
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
             >
               Transparent{" "}
               <em className="not-italic text-brand-gold">pricing.</em>
             </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.25 }}
-              className="max-w-xs text-slate-400 leading-relaxed text-sm"
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
             >
-              Scope-based pricing, defined up front. No hourly billing, no hidden charges.
-              Minimum project size: $2,500.
-            </motion.p>
+              $$$
+            </motion.span>
           </div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mt-4 max-w-xs text-slate-400 leading-relaxed text-sm font-times"
+          >
+            Scope-based pricing, defined up front. No hourly billing, no hidden charges.
+            Minimum project size: $2,500.
+          </motion.p>
+
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
+            initial={{ width: "0%" }}
+            animate={inView ? { width: "100%" } : {}}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent origin-left"
+            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent"
           />
         </div>
 
@@ -233,60 +236,58 @@ export default function PricingSection() {
           ))}
         </div>
 
-        {/* Add-on strip */}
+        {/* Merged CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7 }}
-          className="mt-16 rounded-3xl border border-white/8 bg-white/[0.03] backdrop-blur-md p-8"
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-16 rounded-[2.5rem] border border-brand-gold/20 bg-white/[0.03] overflow-hidden"
         >
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-            <div>
-              <p className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase mb-2">
+          <div className="grid lg:grid-cols-2 gap-0">
+            {/* Left side: Automation context */}
+            <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10 flex flex-col justify-center">
+              <p className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase mb-4">
                 Automation Add-Ons
               </p>
-              <h3 className="text-lg font-bold font-serif text-white">
+              <h3 className="text-2xl font-bold font-serif text-white leading-tight mb-3">
                 n8n workflow automation — priced separately
               </h3>
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                 Setup from $1,500 · Simple workflows from $500 · AI workflows $1,500–$2,500
               </p>
+              <a
+                href="/pricing"
+                className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors group"
+              >
+                Full pricing breakdown
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
             </div>
-            <a
-              href="/pricing"
-              className="flex-shrink-0 group flex items-center gap-2 text-sm font-medium text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-2.5"
-            >
-              Full pricing breakdown
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </div>
-        </motion.div>
 
-        {/* Gold CTA band */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="mt-8 rounded-3xl bg-brand-gold p-10 flex flex-col sm:flex-row items-center justify-between gap-6"
-        >
-          <div>
-            <h3 className="text-2xl font-bold font-serif text-brand-dark">
-              Ready to build something durable?
-            </h3>
-            <p className="text-brand-dark/70 text-sm mt-2">
-              Free technical consultation — clear plan and timeline included.
-            </p>
+            {/* Right side: High-intent CTA */}
+            <div className="p-10 lg:p-14 flex flex-col justify-center bg-brand-gold/5 relative overflow-hidden">
+              {/* Subtle background glow */}
+              <div className="absolute inset-0 bg-brand-gold/[0.02] pointer-events-none" />
+
+              <h3 className="text-3xl font-bold font-serif text-white mb-4 relative z-10">
+                Ready to build something <br className="hidden sm:block" /> durable?
+              </h3>
+              <p className="text-slate-400 text-sm mb-10 max-w-xs leading-relaxed relative z-10">
+                Free technical consultation — clear plan and timeline included.
+              </p>
+              <div className="relative z-10">
+                <a
+                  href="#contact"
+                  className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                >
+                  Start Your Project
+                </a>
+              </div>
+            </div>
           </div>
-          <a
-            href="#contact"
-            className="flex-shrink-0 bg-brand-dark text-white font-bold text-sm uppercase tracking-widest px-8 py-4 rounded-full hover:bg-black transition-colors"
-          >
-            Start Your Project
-          </a>
         </motion.div>
       </div>
     </section>

@@ -89,9 +89,9 @@ export default function LoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-white/10">
-            <p className="text-xs text-slate-500 text-center">
-              Demo credentials: Use any email with password of 6+ characters
+          <div className="mt-6 pt-6">
+            <p className="text-[10px] text-slate-500 text-center font-times uppercase tracking-[0.2em]">
+              Security Node: Northspec Control Center
             </p>
           </div>
         </div>

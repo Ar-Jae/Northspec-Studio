@@ -7,13 +7,14 @@ import FadeIn from "../../../components/animations/FadeIn";
 import JobApplicationForm from "../../../components/about/JobApplicationForm";
 import { StaggerContainer, StaggerItem } from "../../../components/animations/Stagger";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 
 const openRoles = [
   {
-    title: "Senior Full-Stack Engineer",
+    title: "Full-Stack Engineer",
     type: "Contract / Project-based",
     location: "Remote",
-    description: "We're looking for senior engineers who can take full ownership of complex Next.js and Node.js builds. You should be comfortable architecting systems from scratch and integrating with various third-party APIs.",
+    description: "We're looking for specialist engineers who can take full ownership of complex Next.js and Node.js builds. You should be comfortable architecting systems from scratch and integrating with various third-party APIs.",
     requirements: [
       "5+ years of professional experience",
       "Expertise in Next.js, React, and Node.js",
@@ -38,14 +39,15 @@ const openRoles = [
 export default function CareersPage() {
   return (
     <div className="bg-brand-dark min-h-screen">
+      <BackgroundCanvasClient />
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12 mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Careers"
                 title="Build the future of engineering"
-                description="We are always looking for senior-level talent who value autonomy, deep work, and engineering excellence."
+                description="We are always looking for specialist-level talent who value autonomy, deep work, and engineering excellence."
               />
             </div>
             <div className="flex-none">
@@ -96,7 +98,7 @@ export default function CareersPage() {
                 <h2 className="text-2xl font-bold text-white font-serif mb-4">Our Philosophy</h2>
                 <p className="text-slate-300 leading-relaxed">
                   At Northspec, we don't believe in busy work. We believe in deep work blocks, clear requirements, and high-quality output. 
-                  We operate as a distributed team of senior engineers who take ownership of their work. No micromanagement, no useless meetings - just engineering.
+                  We operate as a distributed team of engineers who take ownership of their work. No micromanagement, no useless meetings - just engineering.
                 </p>
               </section>
             </div>

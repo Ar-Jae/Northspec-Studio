@@ -12,7 +12,7 @@ const site = {
     "Next.js Development",
     "API Integrations",
     "SaaS MVP Development",
-    "Senior Software Engineers",
+    "Software Engineers",
     "Technical Infrastructure",
     "Node.js Backend",
     "Custom CRM Development",

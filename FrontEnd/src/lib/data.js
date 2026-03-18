@@ -70,7 +70,7 @@ export const testimonials = [
     name: "Dylan Reed", 
     title: "VP Engineering", 
     company: "LumenOps", 
-    quote: "They operated like a senior extension of our team, with strong code quality, pragmatic decisions, and clear delivery. Our internal tooling finally keeps up with the business." 
+    quote: "They operated like a core extension of our team, with strong code quality, pragmatic decisions, and clear delivery. Our internal tooling finally keeps up with the business." 
   },
   { 
     name: "Sofia Alvarez", 
