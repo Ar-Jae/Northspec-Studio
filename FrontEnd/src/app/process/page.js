@@ -125,14 +125,15 @@ export default function ProcessPage() {
               <h2 className="text-2xl font-bold text-white font-times uppercase tracking-[0.2em] mb-6">Execution is Everything</h2>
               <p className="text-slate-400 max-w-2xl mx-auto italic font-medium mb-10 text-sm">
                 We work best with serious founders and businesses building real systems.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-              <Button as="link" href="/contact" variant="brand">
-                Book a Discovery Call
-              </Button>
-              <Button as="link" href="/pricing" variant="secondary">
-                View Pricing
-              </Button>
+              </p>
+              <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                <Button as="link" href="/contact" variant="brand">
+                  Book a Discovery Call
+                </Button>
+                <Button as="link" href="/pricing" variant="secondary">
+                  View Pricing
+                </Button>
+              </div>
             </div>
           </div>
         </FadeIn>
