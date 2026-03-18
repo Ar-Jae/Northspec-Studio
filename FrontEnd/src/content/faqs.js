@@ -1,7 +1,7 @@
 const faqs = [
   {
     question: "Why is this more expensive than a normal website?",
-    answer: "Because we don’t build “just websites.” We build systems — frontends, backends, integrations, and automation that actually run your business. Cheap builds cost more in the long run through breakdowns, rebuilds, and technical debt. We price for reliability, scalability, and long-term stability, not shortcuts."
+    answer: "Because we don’t build “just websites.” We build systems - frontends, backends, integrations, and automation that actually run your business. Cheap builds cost more in the long run through breakdowns, rebuilds, and technical debt. We price for reliability, scalability, and long-term stability, not shortcuts."
   },
   {
     question: "Do you charge hourly or fixed price?",
@@ -21,11 +21,11 @@ const faqs = [
   },
   {
     question: "Why is automation priced separately?",
-    answer: "Because automation isn’t a feature — it’s infrastructure. It requires deployment, security, monitoring, and reliability engineering. Separating it keeps pricing fair and expectations clear."
+    answer: "Because automation isn’t a feature - it’s infrastructure. It requires deployment, security, monitoring, and reliability engineering. Separating it keeps pricing fair and expectations clear."
   },
   {
     question: "Do you offer payment plans?",
-    answer: "Yes — for larger projects. Typically 50% upfront and 50% before deployment. For bigger builds, milestone options (40/30/30) may be available. We do not do “pay after delivery.”"
+    answer: "Yes - for larger projects. Typically 50% upfront and 50% before deployment. For bigger builds, milestone options (40/30/30) may be available. We do not do “pay after delivery.”"
   },
   {
     question: "Do I own the code when it’s done?",

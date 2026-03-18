@@ -48,11 +48,11 @@ export default function SupportPage() {
             <aside className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
               <h2 className="text-2xl font-semibold text-white font-serif">Support Hours</h2>
               <div className="mt-6 space-y-4 text-slate-300">
-                <div className="flex justify-between border-b border-white/[0.03] pb-2">
+                <div className="flex justify-between  pb-2">
                   <span>Monday – Friday</span>
                   <span className="text-white">9am – 5pm EST</span>
                 </div>
-                <div className="flex justify-between border-b border-white/[0.03] pb-2">
+                <div className="flex justify-between  pb-2">
                   <span>Saturday</span>
                   <span className="text-white">Emergency Only</span>
                 </div>

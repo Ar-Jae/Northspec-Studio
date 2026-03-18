@@ -5,70 +5,70 @@ import { motion, useInView } from "framer-motion";
 
 const plans = [
   {
-    name: "Startup",
-    price: "$3,500 – $6,000",
-    delivery: "4–6 weeks",
-    description: "For founders building an MVP or first production system.",
+    name: "MVP & Early Product Builds",
+    price: "Starting at $8,000",
+    range: "Most projects: $12,000 – $30,000+",
+    delivery: "6–8 weeks",
+    description: "For teams validating and launching initial products. Designed to support initial user acquisition.",
     includes: [
-      "Up to 6 pages / screens",
-      "Basic backend (auth, CRUD, DB)",
+      "Frontend: up to 6 screens",
+      "Backend: auth, CRUD, database",
       "Secure API foundation",
       "Launch-ready architecture",
       "Documentation & handoff",
     ],
-    bestFor: "MVPs • First launch products",
     color: "border-slate-800/60",
     glow: "",
     accentColor: "text-slate-300",
   },
   {
-    name: "SMB",
-    price: "$7,000 – $12,000",
-    delivery: "6–8 weeks",
-    description: "For businesses replacing manual processes with reliable tools.",
+    name: "Growth Systems & Business Tools",
+    price: "Starting at $15,000",
+    range: "Most projects: $20,000 – $50,000+",
+    delivery: "8–12 weeks",
+    description: "For businesses replacing manual processes and building operational systems. Built to reduce overhead and improve efficiency.",
     includes: [
-      "8–10 pages / screens",
-      "Business-grade backend (roles, logs)",
-      "Secure API + webhook support",
-      "Performance & reliability testing",
-      "Integration support (CRM, billing)",
+      "8–10 screens",
+      "Role-based backend systems",
+      "API + webhook integrations",
+      "CRM / billing integrations",
+      "Documentation & training",
     ],
-    bestFor: "Customer portals • Internal tools",
     color: "border-blue-900/30",
     glow: "",
     accentColor: "text-blue-400",
   },
   {
-    name: "Mid-Market",
-    price: "$12,000 – $25,000",
-    delivery: "8–12 weeks",
-    description: "For companies needing scalability and structured growth.",
+    name: "Scalable Platforms & SaaS",
+    price: "Starting at $30,000",
+    range: "Most projects: $40,000 – $90,000+",
+    delivery: "10–16 weeks",
+    description: "For companies building scalable, revenue-generating platforms. Engineered for scale, performance, and growth.",
     includes: [
-      "12+ pages / app screens",
-      "Platform-level backend architecture",
-      "Advanced permissions + user roles",
+      "12+ screens",
+      "Platform-level backend",
+      "Advanced roles & permissions",
       "Complex integrations",
-      "Full QA, docs & training",
+      "Full QA + documentation",
     ],
-    bestFor: "Growing SaaS • Ops-heavy businesses",
     color: "border-brand-gold/40",
     glow: "shadow-[0_0_60px_rgba(198,166,104,0.08)]",
     accentColor: "text-brand-gold",
     popular: true,
   },
   {
-    name: "Enterprise",
-    price: "$25,000+",
-    delivery: "12–20+ weeks",
-    description: "For organizations requiring governance and robust systems.",
+    name: "Enterprise Systems",
+    price: "Starting at $60,000+",
+    range: "Custom quote required",
+    delivery: "16–24+ weeks",
+    description: "For organizations requiring high-performance, secure, and scalable systems built for long-term operational demand.",
     includes: [
-      "Complex app systems & dashboards",
-      "Enterprise-grade architecture",
-      "Multi-tenant / hierarchical roles",
-      "Security & compliance-ready",
-      "Observability, staging & CI/CD",
+      "Multi-system architecture",
+      "Enterprise-grade backend",
+      "Multi-tenant systems",
+      "Security & compliance",
+      "Observability + CI/CD",
     ],
-    bestFor: "Finance • Healthcare • Corporations",
     color: "border-purple-900/30",
     glow: "",
     accentColor: "text-purple-400",
@@ -125,7 +125,10 @@ function PricingCard({ plan, index }) {
         <div className={`text-3xl font-bold font-serif ${plan.accentColor} leading-tight`}>
           {plan.price}
         </div>
-        <p className="text-xs text-slate-600 font-medium uppercase tracking-wider mt-2">
+        <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-1">
+          {plan.range}
+        </p>
+        <p className="text-xs text-slate-600 font-medium uppercase tracking-wider mt-1">
           {plan.delivery} delivery
         </p>
       </div>
@@ -148,12 +151,6 @@ function PricingCard({ plan, index }) {
         ))}
       </ul>
 
-      <div className="mt-auto pt-6 border-t border-white/8">
-        <p className="text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-2">
-          Best For
-        </p>
-        <p className="text-xs text-slate-400 italic">{plan.bestFor}</p>
-      </div>
     </motion.div>
   );
 }
@@ -198,7 +195,7 @@ export default function PricingSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
             >
-              Transparent{" "}
+              Guided{" "}
               <em className="not-italic text-brand-gold">pricing.</em>
             </motion.h2>
             <motion.span
@@ -217,8 +214,7 @@ export default function PricingSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-4 max-w-xs text-slate-400 leading-relaxed text-sm font-times"
           >
-            Scope-based pricing, defined up front. No hourly billing, no hidden charges.
-            Minimum project size: $2,500.
+            Starting points and typical ranges — enough to qualify fit before a call. Final pricing is scoped, not guessed.
           </motion.p>
 
           <motion.div
@@ -236,6 +232,10 @@ export default function PricingSection() {
           ))}
         </div>
 
+        <p className="mt-8 text-center text-xs text-slate-600 font-medium">
+          All pricing is tailored based on scope, system complexity, integrations, and infrastructure requirements.
+        </p>
+
         {/* Merged CTA Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -251,7 +251,7 @@ export default function PricingSection() {
                 Automation Add-Ons
               </p>
               <h3 className="text-2xl font-bold font-serif text-white leading-tight mb-3">
-                n8n workflow automation — priced separately
+                n8n workflow automation - priced separately
               </h3>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
                 Setup from $1,500 · Simple workflows from $500 · AI workflows $1,500–$2,500
@@ -276,7 +276,7 @@ export default function PricingSection() {
                 Ready to build something <br className="hidden sm:block" /> durable?
               </h3>
               <p className="text-slate-400 text-sm mb-10 max-w-xs leading-relaxed relative z-10">
-                Free technical consultation — clear plan and timeline included.
+                Free technical consultation - clear plan and timeline included.
               </p>
               <div className="relative z-10">
                 <a

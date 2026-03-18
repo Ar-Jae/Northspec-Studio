@@ -13,7 +13,7 @@ export default function WorkflowAutomationPage() {
       
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 border-b border-white/5">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 ">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Efficiency"
@@ -32,7 +32,7 @@ export default function WorkflowAutomationPage() {
                 <div className="absolute -left-4 top-0 w-1 h-full bg-brand-gold/20 mr-4" />
                 <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-6 px-4">Invisible Infrastructure</h2>
                 <p className="text-slate-400 leading-relaxed font-medium text-lg px-4 italic">
-                  We specialize in building the "silent engines" of modern business—workflows that run 24/7 without human intervention, ensuring data parity and operational speed across your entire stack.
+                  We specialize in building the "silent engines" of modern business-workflows that run 24/7 without human intervention, ensuring data parity and operational speed across your entire stack.
                 </p>
               </div>
               
@@ -63,7 +63,7 @@ export default function WorkflowAutomationPage() {
             <div className="space-y-8">
               <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-10 backdrop-blur-2xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-brand-gold/10 transition-colors" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10 border-b border-white/5 pb-6">Protocol Targets</h2>
+                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10  pb-6">Protocol Targets</h2>
                 <ul className="space-y-10">
                   <li className="flex gap-6">
                     <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">01</span>

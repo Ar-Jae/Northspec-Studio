@@ -11,116 +11,118 @@ import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 const pricingPlans = [
   {
-    name: "Startup Plan",
-    price: "$3,500 – $6,000",
-    delivery: "4–6 weeks",
-    description: "For founders building an MVP or first production system.",
+    name: "MVP & Early Product Builds",
+    price: "Starting at $8,000",
+    range: "Most projects: $12,000 – $30,000+",
+    delivery: "6–8 weeks",
+    description: "For teams validating and launching initial products. Designed to support initial user acquisition.",
     includes: [
-      "Frontend: up to 6 pages/screens",
-      "Basic backend (auth, CRUD, database)",
+      "Frontend: up to 6 screens",
+      "Backend: auth, CRUD, database",
       "Secure API foundation",
       "Launch-ready architecture",
       "Performance essentials",
       "Documentation & handoff",
     ],
-    bestFor: "MVPs • First launch products",
     color: "border-slate-800/50 bg-white/5",
     accent: "group-hover:border-slate-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-slate-400",
   },
   {
-    name: "SMB Plan",
-    price: "$7,000 – $12,000",
-    delivery: "6–8 weeks",
-    description: "For businesses replacing manual processes or building reliable tools.",
+    name: "Growth Systems & Business Tools",
+    price: "Starting at $15,000",
+    range: "Most projects: $20,000 – $50,000+",
+    delivery: "8–12 weeks",
+    description: "For businesses replacing manual processes and building operational systems. Built to reduce overhead and improve efficiency.",
     includes: [
-      "Frontend: up to 8–10 pages/screens",
-      "Business-grade backend (roles, logs)",
-      "Secure API layer + webhook support",
-      "Performance + reliability testing",
-      "Integration support (CRM, billing)",
+      "8–10 screens",
+      "Role-based backend systems",
+      "API + webhook integrations",
+      "CRM / billing integrations",
+      "Reliability + performance testing",
       "Documentation & training",
     ],
-    bestFor: "Customer portals • Internal tools",
     color: "border-blue-900/20 bg-white/5",
     accent: "group-hover:border-blue-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-blue-400",
   },
   {
-    name: "Mid-Market",
-    price: "$12,000 – $25,000",
-    delivery: "8–12 weeks",
-    description: "For companies needing scalability and structured growth.",
+    name: "Scalable Platforms & SaaS",
+    price: "Starting at $30,000",
+    range: "Most projects: $40,000 – $90,000+",
+    delivery: "10–16 weeks",
+    description: "For companies building scalable, revenue-generating platforms. Engineered for scale, performance, and growth.",
     includes: [
-      "Frontend: 12+ pages/app screens",
-      "Platform-level backend architecture",
-      "Advanced permissions + user roles",
+      "12+ screens",
+      "Platform-level backend",
+      "Advanced roles & permissions",
       "Complex integrations",
-      "Stability + monitoring setup",
-      "Structured QA & testing",
-      "Full documentation + training",
+      "Monitoring + system stability",
+      "Full QA + documentation",
     ],
-    bestFor: "Growing SaaS • Ops-heavy businesses",
     color: "border-brand-gold/20 bg-white/5",
     accent: "group-hover:border-brand-gold/40 group-hover:bg-brand-gold/10",
     iconColor: "text-brand-gold",
     popular: true,
   },
   {
-    name: "Enterprise",
-    price: "$25,000+",
-    delivery: "12–20+ weeks",
-    description: "For organizations requiring governance and robust systems.",
+    name: "Enterprise Systems",
+    price: "Starting at $60,000+",
+    range: "Custom quote required",
+    delivery: "16–24+ weeks",
+    description: "For organizations requiring high-performance, secure, and scalable systems built for long-term operational demand.",
     includes: [
-      "Complex app systems & dashboards",
-      "Enterprise-grade architecture",
-      "Multi-tenant / hierarchical roles",
-      "Security & compliance-ready design",
-      "Load resilience + performance",
-      "Staging + production pipelines",
-      "Observability (monitoring, alerts)",
-      "Full documentation",
+      "Multi-system architecture",
+      "Enterprise-grade backend",
+      "Multi-tenant systems",
+      "Security & compliance",
+      "Observability + alerting",
+      "CI/CD pipelines",
     ],
-    bestFor: "Finance • Healthcare • Corporations",
     color: "border-purple-900/20 bg-white/5",
     accent: "group-hover:border-purple-400/30 group-hover:bg-brand-gold/5",
     iconColor: "text-purple-400",
+    custom: true,
   },
 ];
 
-const retainerPlans = [
+const ongoingPlans = [
   {
-    name: "Maintenance & Support",
-    price: "From $1,500/mo",
-    description: "Ongoing engineering support to keep your systems secure and fast.",
+    layer: "Layer 01 — Service Layer",
+    name: "Retainer Plans",
+    price: "From $3,000/mo",
+    description: "Ongoing product growth and reliability — not just support. Guaranteed engineering capacity with defined SLAs and minimum commitments.",
     color: "border-white/10 bg-white/5",
     accent: "hover:border-brand-gold/30 hover:bg-brand-gold/5",
     iconColor: "text-brand-gold",
     iconBg: "bg-brand-gold/10",
     dotColor: "bg-brand-gold",
     bullets: [
-      "Security Patches & Updates",
-      "Performance Audits",
+      "Code Maintenance",
+      "Feature Updates",
       "Bug Fixes & Incident Response",
-      "Feature Updates & Iterations"
-    ]
+      "Dev Support",
+    ],
+    href: "/retainers",
   },
   {
-    name: "Custom Plans",
-    price: "Custom Quote",
-    description: "Tailored engineering partnerships for unique business requirements.",
+    layer: "Layer 02 — Infrastructure Layer",
+    name: "Managed Infrastructure",
+    price: "From $750/mo",
+    description: "The environment your system lives in. Dedicated deployment, AI workload scaling, performance optimization, monitoring, security, and backups.",
     color: "border-white/10 bg-white/5",
     accent: "hover:border-brand-gold/30 hover:bg-brand-gold/5",
     iconColor: "text-brand-gold",
     iconBg: "bg-brand-gold/10",
     dotColor: "bg-brand-gold",
     bullets: [
-      "Dedicated Engineering Teams",
-      "Technical Consulting & Strategy",
-      "Legacy System Migrations",
-      "R&D and Prototyping"
-    ]
-  }
+      "Dedicated Deployment Environment",
+      "AI Workload Scaling",
+      "Performance Optimization",
+      "Monitoring, Security & Backups",
+    ],
+    href: "/retainers",
+  },
 ];
 
 export default function PricingPage() {
@@ -134,8 +136,8 @@ export default function PricingPage() {
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Investment"
-                title="Transparent Pricing"
-                description="High-performance engineering shouldn't be a black box. We offer clear, project-based pricing and ongoing support plans."
+                title="Guided Pricing"
+                description="We show you real starting points and typical ranges — enough to know if we're the right fit, without boxing either side into a number before we understand your scope."
               />
             </div>
             <div className="flex-none">
@@ -143,22 +145,43 @@ export default function PricingPage() {
             </div>
           </div>
 
-          <StaggerContainer className="mt-20 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 mb-8 grid gap-4 sm:grid-cols-3 not-italic font-sans text-sm">
+            {[
+              { label: "App & AI Development", anchor: "Projects typically start at $8,000+" },
+              { label: "Managed Retainer", anchor: "Starts at $3,000 / month" },
+              { label: "Managed Infrastructure", anchor: "Starts at $750 / month + usage" },
+            ].map((item) => (
+              <div key={item.label} className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 backdrop-blur-sm">
+                <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] mb-2">{item.label}</p>
+                <p className="text-slate-300 font-medium">{item.anchor}</p>
+              </div>
+            ))}
+          </div>
+
+          <StaggerContainer className="mt-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {pricingPlans.map((plan) => (
-              <StaggerItem key={plan.name}>
-                <div className={`group relative h-full rounded-2xl border border-white/5 p-10 backdrop-blur-xl transition-all duration-500 overflow-hidden ${plan.accent}`}>
-                  <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">PLAN</div>
+              <StaggerItem key={plan.name} className="pt-6">
+                <div className={`group relative h-full rounded-2xl border border-white/5 p-10 backdrop-blur-xl transition-all duration-500 ${plan.accent}`}>
+                  <div className="absolute inset-0 rounded-2xl overflow-hidden pointer-events-none">
+                    <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none group-hover:text-white/[0.04] transition-all duration-700">PLAN</div>
+                  </div>
                   {plan.popular && (
                     <span className="absolute -top-3 left-8 rounded-full bg-brand-gold px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-brand-dark z-20">
                       Standard Issue
                     </span>
                   )}
+                  {plan.custom && (
+                    <span className="absolute -top-3 left-8 rounded-full bg-white/10 border border-white/20 px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-slate-300 z-20">
+                      Custom Quote
+                    </span>
+                  )}
                   <div className="mb-8 relative z-10">
                     <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] font-times mb-2">{plan.name}</h3>
                     <div className="mt-4 flex items-baseline gap-1">
-                      <span className="text-3xl font-bold text-white font-times tracking-tight">{plan.price.split(' – ')[0]}</span>
+                      <span className="text-3xl font-bold text-white font-times tracking-tight">{plan.price}</span>
                     </div>
-                    <p className="mt-2 text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">{plan.delivery} DELIVERY</p>
+                    <p className="mt-1 text-[10px] text-slate-500 font-bold uppercase tracking-widest leading-none">{plan.range}</p>
+                    <p className="mt-2 text-[10px] text-slate-600 font-bold uppercase tracking-widest leading-none">{plan.delivery} DELIVERY</p>
                   </div>
                   
                   <p className="mb-8 text-sm text-slate-400 leading-relaxed relative z-10 font-medium italic">
@@ -174,14 +197,14 @@ export default function PricingPage() {
                     ))}
                   </ul>
 
-                  <div className="mt-auto pt-8 relative z-10">
-                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] font-times mb-4">Best For</p>
-                    <p className="text-xs text-slate-300 italic">{plan.bestFor}</p>
-                  </div>
                 </div>
               </StaggerItem>
             ))}
           </StaggerContainer>
+
+          <p className="mt-8 text-center text-xs text-slate-600 font-medium relative z-10">
+            All pricing is tailored based on scope, system complexity, integrations, and infrastructure requirements.
+          </p>
 
           <div className="mt-32 relative z-10">
             <div className="flex items-center gap-4 mb-12">
@@ -190,10 +213,10 @@ export default function PricingPage() {
             </div>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {[
-                { title: "n8n Setup", price: "$1,500", desc: "Deployment & Security", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
-                { title: "Simple Workflows", price: "$500 each", desc: "Basic data sync", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
-                { title: "Advanced Workflows", price: "$900 – $1,200", desc: "Complex logic & APIs", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
-                { title: "AI Workflows", price: "$1,500 – $2,500", desc: "LLM integrations", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" }
+                { title: "n8n Workflow Setup", price: "From $3,000", desc: "Typically $3,000 – $8,000", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "Core Automation Systems", price: "From $1,000", desc: "Typically $1,000 – $2,500", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "Advanced Workflow Systems", price: "From $3,000", desc: "Typically $3,000 – $10,000", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" },
+                { title: "AI-Driven Automation", price: "From $5,000", desc: "Typically $5,000 – $15,000+", color: "hover:border-brand-gold/30 hover:bg-brand-gold/5", iconColor: "text-brand-gold" }
               ].map((item, i) => (
                 <motion.div 
                   key={i}
@@ -210,20 +233,29 @@ export default function PricingPage() {
 
           {/* Retainers Section */}
           <div className="mt-32 relative z-10">
-            <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-3xl font-bold text-white font-times">Ongoing Support & Custom Plans</h2>
+            <div className="flex items-center gap-4 mb-8">
+              <h2 className="text-3xl font-bold text-white font-times">Ongoing Support & Managed Infrastructure</h2>
               <div className="h-[1px] flex-grow bg-white/10" />
+            </div>
+            <div className="mb-12 flex items-start gap-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-6">
+              <svg className="w-5 h-5 text-brand-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                <span className="text-brand-gold font-semibold">Northspec-hosted clients only.</span> Retainer plans are available exclusively to clients whose systems run on Northspec infrastructure. Direct access to your environment is what makes proactive monitoring and automatic fixes possible. Clients who self-host are not eligible — future support requires a new engagement.
+              </p>
             </div>
             
             <div className="grid gap-8 md:grid-cols-2">
-              {retainerPlans.map((plan) => (
-                <motion.div 
+              {ongoingPlans.map((plan) => (
+                <motion.div
                   key={plan.name}
                   whileHover={{ y: -5 }}
                   className={`rounded-3xl border p-10 transition-all backdrop-blur-sm ${plan.color} ${plan.accent}`}
                 >
                   <div className="flex justify-between items-start mb-6">
                     <div>
+                      <p className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-2">{plan.layer}</p>
                       <h3 className="text-2xl font-bold text-white font-times uppercase tracking-wide">{plan.name}</h3>
                       <p className={`font-semibold mt-1 ${plan.iconColor}`}>{plan.price}</p>
                     </div>
@@ -243,7 +275,7 @@ export default function PricingPage() {
                     ))}
                   </div>
                   <div className="mt-10">
-                    <Button as="link" href="/contact" variant="outline" className="w-full">Inquire About This Plan</Button>
+                    <Button as="link" href={plan.href} variant="outline" className="w-full">View Plans</Button>
                   </div>
                 </motion.div>
               ))}
@@ -264,7 +296,7 @@ export default function PricingPage() {
                   { label: "Priority (~40% faster)", value: "+50%" },
                   { label: "Emergency (Mission Critical)", value: "+100%" }
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center border-b border-white/[0.03] pb-4 last:border-0 hover:bg-white/5 transition-colors p-2 rounded-lg">
+                  <div key={i} className="flex justify-between items-center  pb-4 last:border-0 hover:bg-white/5 transition-colors p-2 rounded-lg">
                     <span className="text-slate-400 font-times uppercase tracking-widest text-xs">{item.label}</span>
                     <span className="text-white font-bold font-times">{item.value}</span>
                   </div>

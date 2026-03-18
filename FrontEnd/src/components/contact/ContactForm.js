@@ -29,13 +29,42 @@ export default function ContactForm() {
 
   const totalSteps = 6;
 
+  function isStepValid() {
+    switch (step) {
+      case 1:
+        return form.fullName && form.workEmail && form.phoneNumber && form.companyOrProjectName;
+      case 2:
+        return form.projectType && form.buildGoal;
+      case 3:
+        return form.budgetRange && form.budgetApproved;
+      case 4:
+        return (
+          form.automationInterest &&
+          form.confirmAutomationScopedPricedSeparately &&
+          form.confirmAutomationStartsAt1500 &&
+          form.confirmEachWorkflowQuotedIndividually
+        );
+      case 5:
+        return form.startTimeline;
+      case 6:
+        return form.decisionAuthority;
+      default:
+        return true;
+    }
+  }
+
   function updateField(key, value) {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
   const nextStep = (e) => {
     e.preventDefault();
-    if (step < totalSteps) setStep(step + 1);
+    if (isStepValid()) {
+      if (step < totalSteps) setStep(step + 1);
+      setError(""); // Clear any validation errors
+    } else {
+      setError("Please fill out all required fields to continue.");
+    }
   };
 
   const prevStep = (e) => {
@@ -45,6 +74,10 @@ export default function ContactForm() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (!isStepValid()) {
+      setError("Please complete the final step to submit.");
+      return;
+    }
     setStatus("loading");
     setError("");
 
@@ -92,7 +125,7 @@ export default function ContactForm() {
 
   return (
     <div className="relative">
-      {/* Progress Bar */}
+      {/* Progress Bar - border removed for a cleaner look */}
       <div className="absolute -top-12 left-0 w-full h-1 bg-white/5 rounded-full overflow-hidden">
         <motion.div 
           className="h-full bg-brand-gold"
@@ -126,7 +159,7 @@ export default function ContactForm() {
                   <input 
                     value={form.fullName} 
                     onChange={(e) => updateField("fullName", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium" 
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.fullName ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="John Doe"
                     required 
                   />
@@ -137,7 +170,7 @@ export default function ContactForm() {
                     type="email" 
                     value={form.workEmail} 
                     onChange={(e) => updateField("workEmail", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium" 
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.workEmail ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="john@company.com"
                     required 
                   />
@@ -147,22 +180,23 @@ export default function ContactForm() {
                   <input 
                     value={form.phoneNumber} 
                     onChange={(e) => updateField("phoneNumber", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium" 
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.phoneNumber ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="+1 (555) 000-0000" 
                     required 
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company / Project Name</label>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company</label>
                   <input 
                     value={form.companyOrProjectName} 
                     onChange={(e) => updateField("companyOrProjectName", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium" 
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.companyOrProjectName ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="Acme Corp"
                     required 
                   />
                 </div>
               </div>
+              {error && step === 1 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
@@ -185,10 +219,10 @@ export default function ContactForm() {
                   <select 
                     value={form.projectType} 
                     onChange={(e) => updateField("projectType", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.projectType ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="SaaS / Web App" className="bg-brand-dark">SaaS / Web App</option>
                     <option value="Business Website with Backend" className="bg-brand-dark">Business Website with Backend</option>
                     <option value="Internal Tool / Dashboard" className="bg-brand-dark">Internal Tool / Dashboard</option>
@@ -202,12 +236,13 @@ export default function ContactForm() {
                   <textarea 
                     value={form.buildGoal} 
                     onChange={(e) => updateField("buildGoal", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium min-h-[150px]" 
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.buildGoal ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium min-h-[150px]`}
                     placeholder="We need to automate our internal billing lifecycle..."
                     required 
                   />
                 </div>
               </div>
+              {error && step === 2 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
@@ -230,10 +265,10 @@ export default function ContactForm() {
                   <select 
                     value={form.budgetRange} 
                     onChange={(e) => updateField("budgetRange", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetRange ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Under $2,500" className="bg-brand-dark">Under $2,500</option>
                     <option value="$2,500 – $4,000" className="bg-brand-dark">$2,500 – $4,000</option>
                     <option value="$4,000 – $7,500" className="bg-brand-dark">$4,000 – $7,500</option>
@@ -246,16 +281,17 @@ export default function ContactForm() {
                   <select 
                     value={form.budgetApproved} 
                     onChange={(e) => updateField("budgetApproved", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetApproved ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Yes" className="bg-brand-dark">Yes</option>
                     <option value="Needs internal approval" className="bg-brand-dark">Needs internal approval</option>
                     <option value="Not yet" className="bg-brand-dark">Not yet</option>
                   </select>
                 </div>
               </div>
+              {error && step === 3 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
@@ -278,10 +314,10 @@ export default function ContactForm() {
                   <select 
                     value={form.automationInterest} 
                     onChange={(e) => updateField("automationInterest", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.automationInterest ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Yes, I already know what workflows I need" className="bg-brand-dark">Yes, I already know what workflows I need</option>
                     <option value="Yes, but I need guidance" className="bg-brand-dark">Yes, but I need guidance</option>
                     <option value="Maybe later" className="bg-brand-dark">Maybe later</option>
@@ -289,7 +325,7 @@ export default function ContactForm() {
                   </select>
                 </div>
 
-                <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6 space-y-4">
+                <div className={`rounded-xl border ${error && (!form.confirmAutomationScopedPricedSeparately || !form.confirmAutomationStartsAt1500 || !form.confirmEachWorkflowQuotedIndividually) ? 'border-red-500/50 bg-red-500/5' : 'border-white/5 bg-white/[0.02]'} p-6 space-y-4 transition-colors`}>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Technical Acknowledgement</p>
                   {[
                     { key: "confirmAutomationScopedPricedSeparately", label: "Automation is scoped/priced separately" },
@@ -301,14 +337,15 @@ export default function ContactForm() {
                         type="checkbox" 
                         checked={form[item.key]} 
                         onChange={(e) => updateField(item.key, e.target.checked)} 
-                        className="mt-1 accent-brand-gold bg-brand-dark border-white/10" 
+                        className={`mt-1 accent-brand-gold bg-brand-dark border-white/10 ${error && !form[item.key] ? 'ring-2 ring-red-500/20' : ''}`}
                         required 
                       />
-                      <span className="text-sm text-slate-400 group-hover:text-white transition-colors font-medium">{item.label}</span>
+                      <span className={`text-sm ${error && !form[item.key] ? 'text-red-300' : 'text-slate-400'} group-hover:text-white transition-colors font-medium`}>{item.label}</span>
                     </label>
                   ))}
                 </div>
               </div>
+              {error && step === 4 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
@@ -331,10 +368,10 @@ export default function ContactForm() {
                   <select 
                     value={form.startTimeline} 
                     onChange={(e) => updateField("startTimeline", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.startTimeline ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Immediately" className="bg-brand-dark">Immediately</option>
                     <option value="Within 30 days" className="bg-brand-dark">Within 30 days</option>
                     <option value="1–3 months" className="bg-brand-dark">1–3 months</option>
@@ -342,6 +379,7 @@ export default function ContactForm() {
                   </select>
                 </div>
               </div>
+              {error && step === 5 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
@@ -364,10 +402,10 @@ export default function ContactForm() {
                   <select 
                     value={form.decisionAuthority} 
                     onChange={(e) => updateField("decisionAuthority", e.target.value)} 
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.decisionAuthority ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                     required
                   >
-                    <option value="" className="bg-brand-dark">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Yes" className="bg-brand-dark">Yes</option>
                     <option value="No, but I influence the decision" className="bg-brand-dark">No, but I influence the decision</option>
                     <option value="No" className="bg-brand-dark">No</option>
@@ -375,17 +413,18 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              {error && <p className="text-red-400 text-xs font-medium italic mt-4">{error}</p>}
+              {error && step === 6 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest mt-4">{error}</p>}
             </motion.section>
           )}
         </AnimatePresence>
 
-        <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-white/5">
+        <div className="flex flex-col sm:flex-row gap-4 pt-8 ">
           {step > 1 && (
             <Button 
               onClick={prevStep} 
               variant="outline" 
               className="w-full sm:w-1/3 font-times uppercase tracking-widest text-xs py-4"
+              type="button"
             >
               Previous
             </Button>
@@ -393,7 +432,7 @@ export default function ContactForm() {
           <Button 
             type="submit" 
             variant="brand" 
-            className={`${step === 1 ? 'w-full' : 'flex-grow'} font-times uppercase tracking-widest text-xs py-4`}
+            className={`${step === 1 ? 'w-full' : 'flex-grow'} font-times uppercase tracking-widest text-xs py-4 ${status === "error" ? "bg-red-500/20 text-red-300 border-red-500/50" : ""}`}
             disabled={status === "loading"}
           >
             {status === "loading" ? "Processing..." : step === totalSteps ? "Submit Specs" : "Continue"}

@@ -12,7 +12,7 @@ export const metadata = {
 const steps = [
   {
     title: "Discovery & Scoping",
-    description: "We start by defining exactly what success looks like. No 'figuring it out later'—we document requirements, constraints, and success metrics before a single line of code is written.",
+    description: "We start by defining exactly what success looks like. No 'figuring it out later'-we document requirements, constraints, and success metrics before a single line of code is written.",
   },
   {
     title: "Architecture & Setup",

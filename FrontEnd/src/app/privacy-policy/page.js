@@ -1,6 +1,7 @@
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export const metadata = {
   title: "Privacy Policy",
@@ -14,8 +15,9 @@ export const metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-brand-dark">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+      <BackgroundCanvasClient />
+      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
           <SectionHeading
             eyebrow="Legal"
@@ -23,70 +25,96 @@ export default function PrivacyPolicyPage() {
             description="How we collect, use, and protect your personal information."
           />
 
-          <div className="mt-16 max-w-3xl space-y-8">
-            <div className="space-y-4 text-slate-300 text-sm leading-relaxed">
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Introduction</h3>
+          <div className="mt-16 max-w-3xl mx-auto space-y-12 text-center sm:text-left">
+            <div className="space-y-10 text-slate-400 text-lg leading-relaxed font-medium italic">
+              <div className="relative group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest whitespace-nowrap">
+                    Introduction
+                  </h3>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
                 <p>
-                  Northspec Studio ("we" or "us" or "our") operates the northspecstudio.com website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
+                  Northspec Studio ("Northspec") ("we" or "us" or "our") operates the northspecstudio.com website (the "Service"). This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
                 </p>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Information Collection and Use</h3>
-                <p className="mb-3">
+              <div className="relative group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest whitespace-nowrap">
+                    Information Collection and Use
+                  </h3>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
+                <p className="mb-6">
                   We collect several different types of information for various purposes to provide and improve our Service to you:
                 </p>
-                <ul className="list-disc list-inside space-y-2 ml-2">
-                  <li>
-                    <strong>Personal Data:</strong> While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). This may include but is not limited to:
-                    <ul className="list-disc list-inside mt-2 ml-4 space-y-1">
-                      <li>Email address</li>
-                      <li>First name and last name</li>
-                      <li>Company name</li>
-                      <li>Cookies and Usage Data</li>
+                <div className="grid gap-6 sm:grid-cols-2 text-left">
+                  <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                    <strong className="text-brand-gold uppercase tracking-widest text-sm block mb-3">Personal Data</strong>
+                    <ul className="space-y-2 text-sm not-italic font-sans text-slate-300">
+                      <li>• Email address</li>
+                      <li>• First and last name</li>
+                      <li>• Company name</li>
+                      <li>• Cookies & Usage Data</li>
                     </ul>
-                  </li>
-                  <li>
-                    <strong>Usage Data:</strong> We may also collect information on how the Service is accessed and used ("Usage Data"). This may include information such as your computer's IP address, browser type, browser version, the pages you visit, the time and date of your visit, and other diagnostic data.
-                  </li>
-                </ul>
+                  </div>
+                  <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm">
+                    <strong className="text-brand-gold uppercase tracking-widest text-sm block mb-3">Usage Data</strong>
+                    <p className="text-sm not-italic font-sans text-slate-300">
+                      Information on how the Service is accessed and used, including IP addresses, browser types, and page visit duration.
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Use of Data</h3>
-                <p className="mb-3">
-                  Northspec Studio uses the collected data for various purposes:
-                </p>
-                <ul className="list-disc list-inside space-y-1 ml-2">
-                  <li>To provide and maintain our Service</li>
-                  <li>To notify you about changes to our Service</li>
-                  <li>To allow you to participate in interactive features of our Service</li>
-                  <li>To provide customer support</li>
-                  <li>To gather analysis or valuable information so we can improve our Service</li>
-                  <li>To monitor the usage of our Service</li>
-                </ul>
+              <div className="relative group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest whitespace-nowrap">
+                    Use of Data
+                  </h3>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
+                <div className="p-8 rounded-2xl border border-brand-gold/10 bg-brand-gold/[0.02] backdrop-blur-sm text-left">
+                  <p className="mb-4 text-white text-center">Northspec uses the collected data to:</p>
+                  <ul className="grid gap-3 sm:grid-cols-2 text-sm not-italic font-sans text-slate-300">
+                    <li>• Provide and maintain our Service</li>
+                    <li>• Notify you about changes</li>
+                    <li>• Offer customer support</li>
+                    <li>• Gather analysis for improvements</li>
+                    <li>• Monitor service usage</li>
+                    <li>• Ensure security integrity</li>
+                  </ul>
+                </div>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Security of Data</h3>
+              <div className="relative group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest whitespace-nowrap">
+                    Security of Data
+                  </h3>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
                 <p>
-                  The security of your data is important to us but remember that no method of transmission over the Internet or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+                  The security of your data is paramount. While no method of electronic storage is 100% secure, we utilize industry-standard protocols to protect your information and maintain confidentiality.
                 </p>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Changes to This Privacy Policy</h3>
+              <div className="relative group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest whitespace-nowrap">
+                    Contact
+                  </h3>
+                  <div className="h-[1px] flex-grow bg-white/[0.03]" />
+                </div>
                 <p>
-                  We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "effective date" at the top of this Privacy Policy.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-white font-serif mb-2">Contact Us</h3>
-                <p>
-                  If you have any questions about this Privacy Policy, please contact us at{" "}
-                  <a href="mailto:build@northspecstudio.com" className="text-brand-gold hover:underline">
+                  For questions regarding this policy or our data practices, contact us at{" "}
+                  <a href="mailto:build@northspecstudio.com" className="text-brand-gold hover:underline not-italic font-bold">
                     build@northspecstudio.com
                   </a>
                 </p>

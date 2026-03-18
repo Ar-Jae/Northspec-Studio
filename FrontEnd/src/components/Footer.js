@@ -32,7 +32,7 @@ export default function Footer() {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Button as="link" href="/contact" variant="brand" className="px-8 py-4 text-lg">
-                  Send a Message
+                  Submit Project Specs
                 </Button>
               </div>
             </div>
@@ -127,24 +127,30 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-white">Resources</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-wide text-white">Legal & Resources</h3>
             <ul className="mt-6 space-y-2">
-              <li>
-                <a href="/privacy-policy" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="/terms-of-service" className="text-sm text-slate-400 hover:text-white transition-colors">
-                  Terms of Service
-                </a>
-              </li>
+              {[
+                { label: "Privacy Policy",       href: "/privacy-policy" },
+                { label: "Terms of Service",     href: "/terms-of-service" },
+                { label: "Service Agreement",    href: "/service-agreement" },
+                { label: "Refund Policy",        href: "/refund-policy" },
+                { label: "Cookie Policy",        href: "/cookie-policy" },
+                { label: "NDA Policy",           href: "/nda-policy" },
+                { label: "Accessibility",        href: "/accessibility" },
+                { label: "Security Policy",      href: "/security-policy" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
+        {/* Divider removed to create a more seamless transition */}
+        <div className="pt-8">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
               <Logo className="text-white" />
@@ -176,8 +182,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 border-t border-white/10 pt-6 text-xs text-slate-600">
+        {/* Copyright - border removed for a cleaner look */}
+        <div className="mt-8 pt-6 text-xs text-slate-600">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
         </div>
       </Container>

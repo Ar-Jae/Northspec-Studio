@@ -64,7 +64,7 @@ export default function ServicesPage() {
                       ))}
                     </ul>
                     
-                    <div className="mt-10 relative z-10 pt-6 border-t border-white/5">
+                    <div className="mt-10 relative z-10 pt-6 ">
                       <Link 
                         href={`/services/${slug}`}
                         className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] flex items-center gap-2 group/link"

@@ -79,7 +79,7 @@ const services = [
   {
     number: "05",
     title: "Integrations",
-    short: "Connect your systems — CRM, billing, communications — into one coherent stack.",
+    short: "Connect your systems - CRM, billing, communications - into one coherent stack.",
     bullets: [
       "CRM + billing connectors",
       "Webhook & event pipelines",

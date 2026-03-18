@@ -13,7 +13,7 @@ export default function MaintenanceSupportPage() {
       
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 border-b border-white/5">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 ">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Continuity"
@@ -63,13 +63,13 @@ export default function MaintenanceSupportPage() {
             <div className="space-y-8">
               <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-10 backdrop-blur-2xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-brand-gold/10 transition-colors" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10 border-b border-white/5 pb-6">Support Logistics</h2>
+                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10  pb-6">Support Logistics</h2>
                 <ul className="space-y-10">
                   <li className="flex gap-6">
                     <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">01</span>
                     <div>
                       <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Dedicated Retainers</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Guaranteed monthly engineering capacity for priority development.</p>
+                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Guaranteed monthly engineering capacity for priority development. Available exclusively to Northspec-hosted clients — direct infrastructure access is what makes proactive support possible.</p>
                     </div>
                   </li>
                   <li className="flex gap-6">
@@ -94,6 +94,26 @@ export default function MaintenanceSupportPage() {
                     </div>
                   </li>
                 </ul>
+              </div>
+
+              <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-xl">
+                <h3 className="text-sm font-bold text-white font-times uppercase tracking-widest mb-6">Hosting & Retainer Eligibility</h3>
+                <div className="space-y-4 text-sm">
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-brand-gold/20 bg-brand-gold/5">
+                    <div className="w-2 h-2 rounded-full bg-brand-gold mt-1.5 shrink-0" />
+                    <div>
+                      <p className="text-white font-semibold font-times uppercase tracking-wider text-xs mb-1">Northspec-Hosted</p>
+                      <p className="text-slate-400 italic leading-relaxed">Retainer eligible. We have direct access to your environment — monitoring, patching, and incident response happen automatically.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 p-4 rounded-2xl border border-white/5 bg-white/[0.02]">
+                    <div className="w-2 h-2 rounded-full bg-slate-600 mt-1.5 shrink-0" />
+                    <div>
+                      <p className="text-white font-semibold font-times uppercase tracking-wider text-xs mb-1">Client-Hosted</p>
+                      <p className="text-slate-400 italic leading-relaxed">Retainer plans are not available. Client owns full responsibility post-delivery. Future issues require a new engagement.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-3xl border border-brand-gold/10 bg-brand-gold/5 p-12 backdrop-blur-xl text-center group hover:bg-brand-gold/10 transition-colors duration-500">

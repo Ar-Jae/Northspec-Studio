@@ -20,7 +20,7 @@ export const metadata = {
 export default function HomePage() {
   return (
     <div className="relative bg-brand-dark">
-      {/* Persistent 3D canvas — fixed behind everything */}
+      {/* Persistent 3D canvas - fixed behind everything */}
       <BackgroundCanvasClient />
 
       {/* All sections flow as one continuous page */}

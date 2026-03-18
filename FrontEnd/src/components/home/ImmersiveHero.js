@@ -77,13 +77,7 @@ export default function ImmersiveHero() {
         }}
       />
 
-      {/* Horizontal rule top */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        animate={{ scaleX: 1 }}
-        transition={{ delay: 0.4, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute top-16 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-gold/30 to-transparent origin-left"
-      />
+      {/* Horizontal rule top removed for a cleaner, floating feel */}
 
       <motion.div
         style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
