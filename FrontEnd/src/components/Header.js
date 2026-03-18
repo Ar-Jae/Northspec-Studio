@@ -15,17 +15,18 @@ function NavLink({ item, pathname }) {
   const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
 
   return (
-    <li 
+    <li
       className="relative group"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
       <Link
         href={item.href}
+        onClick={(e) => scrollToSection(e, item.href, pathname)}
         className={cn(
           "px-5 py-2 text-sm font-medium rounded-full transition-all flex items-center gap-1",
-          isActive 
-            ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20" 
+          isActive
+            ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20"
             : "text-slate-300 hover:text-white hover:bg-white/10"
         )}
       >
@@ -72,10 +73,26 @@ function NavLink({ item, pathname }) {
   );
 }
 
+// On the homepage, these nav items scroll to sections instead of navigating away
+const HOME_SECTION_MAP = {
+  "/services": "#services",
+  "/pricing":  "#pricing",
+  "/contact":  "#contact",
+};
+
+function scrollToSection(e, href, pathname) {
+  const anchor = HOME_SECTION_MAP[href];
+  if (!anchor || pathname !== "/") return;
+  e.preventDefault();
+  const el = document.querySelector(anchor);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMobileItem, setExpandedMobileItem] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
   const panelId = useId();
 
   useEffect(() => {
@@ -83,10 +100,21 @@ export default function Header() {
     setExpandedMobileItem(null);
   }, [pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   const navLinks = useMemo(() => site.nav, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-brand-dark/95 backdrop-blur-xl">
+    <header className={cn(
+      "fixed top-0 z-50 w-full backdrop-blur-xl transition-all duration-500",
+      scrolled || pathname !== "/"
+        ? "bg-brand-dark/95 border-b border-white/5"
+        : "bg-transparent"
+    )}>
       <Container className="flex flex-wrap md:flex-nowrap h-16 items-center justify-between gap-2 px-2 md:px-0">
         <div className="flex items-center flex-shrink-0">
           <Logo className="text-white" />
@@ -146,6 +174,10 @@ export default function Header() {
                     <div className="flex items-center justify-between">
                       <Link
                         href={item.href}
+                        onClick={(e) => {
+                          scrollToSection(e, item.href, pathname);
+                          setMobileOpen(false);
+                        }}
                         className={cn(
                           "flex-grow rounded-lg px-3 py-2 text-sm font-medium",
                           isActive ? "bg-white/10 text-white" : "text-slate-400 hover:text-white hover:bg-white/5"

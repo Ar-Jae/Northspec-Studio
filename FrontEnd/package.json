@@ -11,7 +11,8 @@
     "framer-motion": "^11.11.17",
     "next": "^16.1.7",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",

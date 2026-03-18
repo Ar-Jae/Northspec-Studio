@@ -1,4 +1,10 @@
-import Hero from "../components/home/Hero";
+import BackgroundCanvasClient from "../components/3d/BackgroundCanvasClient";
+import ImmersiveHero from "../components/home/ImmersiveHero";
+import ServicesSection from "../components/home/ServicesSection";
+import WorkSection from "../components/home/WorkSection";
+import ProcessSection from "../components/home/ProcessSection";
+import PricingSection from "../components/home/PricingSection";
+import ContactSection from "../components/home/ContactSection";
 
 export const metadata = {
   title: "Automation, Software Engineering, and Mobile Apps for Growth",
@@ -14,8 +20,17 @@ export const metadata = {
 
 export default function HomePage() {
   return (
-    <main>
-      <Hero />
-    </main>
+    <div className="relative bg-brand-dark">
+      {/* Persistent 3D canvas — fixed behind everything */}
+      <BackgroundCanvasClient />
+
+      {/* All sections flow as one continuous page */}
+      <ImmersiveHero />
+      <ServicesSection />
+      <WorkSection />
+      <ProcessSection />
+      <PricingSection />
+      <ContactSection />
+    </div>
   );
 }
