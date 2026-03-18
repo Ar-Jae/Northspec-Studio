@@ -253,7 +253,7 @@ const sections = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="bg-brand-dark min-h-[40vh] relative overflow-hidden">
       <BackgroundCanvasClient />
 
       <div className="relative z-10 px-6 md:px-36 pt-40 pb-24 max-w-[1400px] mx-auto">

@@ -32,7 +32,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-dark flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-[40vh] bg-brand-dark flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <Container className="w-full max-w-md">
         <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
           <div className="text-center mb-8">

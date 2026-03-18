@@ -41,7 +41,7 @@ export default function CaseStudy() {
             initial={{ opacity: 0, y: 40 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
           >
             Built and{" "}
             <em className="not-italic text-brand-gold">Shipped.</em>
@@ -62,7 +62,7 @@ export default function CaseStudy() {
                 <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-4">
                   Operations Automation
                 </p>
-                <h3 className="text-2xl font-bold font-serif text-white leading-tight mb-4">
+                <h3 className="text-2xl font-bold font-serif text-white leading-[1.05] mb-4">
                   Automation System for Operations Team
                 </h3>
                 <p className="text-slate-400 text-sm leading-relaxed mb-8">

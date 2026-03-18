@@ -52,7 +52,7 @@ export default function OngoingSupport() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4"
+                  className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4"
                 >
                   Ongoing Product Support{" "}
                   <em className="not-italic text-brand-gold">& Growth</em>
@@ -99,7 +99,7 @@ export default function OngoingSupport() {
                 <p className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase mb-4">
                   Retainer Pricing
                 </p>
-                <div className="text-4xl font-bold font-serif text-white leading-tight mb-3">
+                <div className="text-4xl font-bold font-serif text-white leading-[1.05] mb-3">
                   $4,000 – $10,000
                   <span className="text-xl text-slate-400 font-normal">/month</span>
                 </div>

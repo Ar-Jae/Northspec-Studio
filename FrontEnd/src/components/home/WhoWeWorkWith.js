@@ -56,7 +56,7 @@ export default function WhoWeWorkWith() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6"
             >
               We partner with teams that need{" "}
               <em className="not-italic text-brand-gold">more than just code.</em>

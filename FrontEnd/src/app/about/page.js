@@ -77,7 +77,7 @@ function ApproachHead() {
       <SectionLabel>How We Think</SectionLabel>
       <SplitReveal
         text="A Product-Focused Approach."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-2xl"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
         This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes — not just shipping code.
@@ -94,7 +94,7 @@ function ProcessHead() {
       <SectionLabel>How We Work</SectionLabel>
       <SplitReveal
         text="A Process Built Around Predictability."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
         Buyers need to feel: this won&apos;t be chaotic. Here&apos;s how we keep it structured from day one.
@@ -111,7 +111,7 @@ function WhyHead() {
       <SectionLabel>Why Northspec</SectionLabel>
       <SplitReveal
         text="Built Because Most Projects Fail."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-2xl"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
     </motion.div>
   );
@@ -230,7 +230,7 @@ function WhatWeDoSection() {
         <SectionLabel>What We Do</SectionLabel>
         <SplitReveal
           text="We Don't Just Build Apps. We Build Systems."
-          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
           We don&apos;t just build applications — we build systems that businesses rely on.
@@ -314,7 +314,7 @@ function WhoSection() {
           <SectionLabel>Who We Work With</SectionLabel>
           <SplitReveal
             text="Teams Who Need a System Partner."
-            className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+            className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
           />
           <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
             We work best with businesses that need a reliable technical partner — not just a contractor to ship features and disappear.
@@ -364,7 +364,7 @@ function ImpactSection() {
         <SectionLabel>Results & Impact</SectionLabel>
         <SplitReveal
           text="Specific Results Build Real Trust."
-          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
           Every engagement is measured against one standard: did it make your business more reliable, more efficient, or more scalable?

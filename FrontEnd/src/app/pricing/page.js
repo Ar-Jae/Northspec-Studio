@@ -210,13 +210,13 @@ export default function PricingPage() {
   const ctaIn      = useInView(ctaRef,      { once: true, margin: "-80px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-screen">
+    <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-[70vh] w-full flex flex-col justify-center overflow-hidden"
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -228,7 +228,7 @@ export default function PricingPage() {
 
         <motion.div
           style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-32 pb-16"
+          className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-36 pt-24 pb-16"
         >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -243,7 +243,7 @@ export default function PricingPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,7vw,6.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,5.5rem)]">
             <SplitReveal text="Clear Pricing for" delay={0.6} className="block" />
             <SplitReveal
               text="Serious Projects."
@@ -286,7 +286,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={tiersRef} className="relative z-10 w-full px-36">
+        <div ref={tiersRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={tiersIn ? { opacity: 1, x: 0 } : {}}
@@ -300,7 +300,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={tiersIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Choose your{" "}
               <em className="not-italic text-brand-gold">starting point.</em>
@@ -345,7 +345,7 @@ export default function PricingPage() {
                   <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
                     {tier.name}
                   </h3>
-                  <div className="text-3xl font-bold font-serif text-white leading-tight mb-1">
+                  <div className="text-3xl font-bold font-serif text-white leading-[1.05] mb-1">
                     {tier.range}
                   </div>
                   <p className="text-[10px] text-slate-600 font-bold uppercase tracking-widest mt-1">
@@ -390,7 +390,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={customRef} className="relative z-10 w-full px-36">
+        <div ref={customRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={customIn ? { opacity: 1, y: 0 } : {}}
@@ -400,7 +400,7 @@ export default function PricingPage() {
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
                 <SectionLabel>Custom Builds</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
                   Projects that need a{" "}
                   <em className="not-italic text-brand-gold">tailored approach.</em>
                 </h2>
@@ -427,7 +427,7 @@ export default function PricingPage() {
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
                     Typical investment
                   </p>
-                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                  <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
                     $30,000 – $80,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
@@ -475,7 +475,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={retainRef} className="relative z-10 w-full px-36">
+        <div ref={retainRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={retainIn ? { opacity: 1, x: 0 } : {}}
@@ -489,7 +489,7 @@ export default function PricingPage() {
               initial={{ opacity: 0, y: 40 }}
               animate={retainIn ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Most clients continue{" "}
               <em className="not-italic text-brand-gold">after launch.</em>
@@ -571,7 +571,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={infraRef} className="relative z-10 w-full px-36">
+        <div ref={infraRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={infraIn ? { opacity: 1, y: 0 } : {}}
@@ -581,7 +581,7 @@ export default function PricingPage() {
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <SectionLabel>Managed Infrastructure</SectionLabel>
-                <h2 className="font-serif font-bold text-white text-[clamp(1.5rem,2.5vw,2.5rem)] leading-[1.1] tracking-tight mb-3">
+                <h2 className="font-serif font-bold text-white text-[clamp(1.5rem,2.5vw,2.5rem)] leading-[1.05] tracking-tight mb-3">
                   The environment your system lives in.
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times">
@@ -594,7 +594,7 @@ export default function PricingPage() {
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
                     Monthly range
                   </p>
-                  <div className="text-4xl font-bold font-serif text-white leading-tight">
+                  <div className="text-4xl font-bold font-serif text-white leading-[1.05]">
                     $750 – $2,500
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium mt-1">
@@ -623,7 +623,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={flowRef} className="relative z-10 w-full px-36">
+        <div ref={flowRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={flowIn ? { opacity: 1, x: 0 } : {}}
@@ -636,7 +636,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={flowIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-12 max-w-2xl"
+            className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-12 max-w-2xl"
           >
             Most projects follow a{" "}
             <em className="not-italic text-brand-gold">simple structure.</em>
@@ -686,7 +686,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={addonsRef} className="relative z-10 w-full px-36">
+        <div ref={addonsRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={addonsIn ? { opacity: 1, x: 0 } : {}}
@@ -739,7 +739,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={priorityRef} className="relative z-10 w-full px-36">
+        <div ref={priorityRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={priorityIn ? { opacity: 1, y: 0 } : {}}
@@ -795,7 +795,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={faqRef} className="relative z-10 w-full px-36">
+        <div ref={faqRef} className="relative z-10 w-full px-6 md:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={faqIn ? { opacity: 1, x: 0 } : {}}
@@ -808,7 +808,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={faqIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-12 max-w-2xl"
+            className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-12 max-w-2xl"
           >
             Common questions,{" "}
             <em className="not-italic text-brand-gold">straight answers.</em>
@@ -858,7 +858,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={ctaRef} className="relative z-10 w-full px-36 flex flex-col items-center text-center">
+        <div ref={ctaRef} className="relative z-10 w-full px-6 md:px-36 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
@@ -876,7 +876,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 40 }}
             animate={ctaIn ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+            className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
             Let&apos;s Scope{" "}
             <em className="not-italic text-brand-gold">Your Project.</em>

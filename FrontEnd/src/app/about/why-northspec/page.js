@@ -76,7 +76,7 @@ function ApproachHead() {
       <SectionLabel>Our Approach</SectionLabel>
       <SplitReveal
         text="A Different Way to Build Software."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-2xl"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-lg">
         This is what separates a structured partner from a freelancer or typical agency.
@@ -93,7 +93,7 @@ function RiskHead() {
       <SectionLabel>Risk Reduction</SectionLabel>
       <SplitReveal
         text="Built to Reduce the Risk of Getting This Wrong."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
         B2B buyers are making high-risk decisions. Here&apos;s how we address those fears directly.
@@ -110,7 +110,7 @@ function CompareHead() {
       <SectionLabel>The Northspec Difference</SectionLabel>
       <SplitReveal
         text="What Most Development Experiences Look Like."
-        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
         This is the contrast that makes the decision clear.
@@ -225,7 +225,7 @@ function WhyFailSection() {
         <SectionLabel>The Real Problem</SectionLabel>
         <SplitReveal
           text="Most Software Projects Fail for the Same Reasons."
-          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
           This isn&apos;t about talent. It&apos;s about process, structure, and long-term thinking. Most engagements lack all three.
@@ -312,7 +312,7 @@ function OutcomesSection() {
         <SectionLabel>What This Means for You</SectionLabel>
         <SplitReveal
           text="Your Outcomes, Not Our Process."
-          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
           Our process only matters if it translates into real results for your business.

@@ -42,7 +42,7 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+          className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
         >
           Ready to Build Something{" "}
           <em className="not-italic text-brand-gold">That Scales?</em>

@@ -66,7 +66,7 @@ export default function ImmersiveHero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+      className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
     >
       {/* Radial glow */}
       <div
@@ -81,7 +81,7 @@ export default function ImmersiveHero() {
 
       <motion.div
         style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
       >
         {/* Eyebrow */}
         <motion.div
@@ -98,8 +98,8 @@ export default function ImmersiveHero() {
         </motion.div>
 
         {/* Main headline */}
-        <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6
-          text-[clamp(3rem,10vw,9rem)]"
+        <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6
+          text-[clamp(2.5rem,8vw,7.5rem)]"
         >
           <SplitReveal text="Build, Launch," delay={0.7} className="block" />
           <SplitReveal text="and Scale" delay={1.0} className="block" />

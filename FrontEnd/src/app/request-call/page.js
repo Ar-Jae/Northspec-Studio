@@ -55,8 +55,8 @@ export default function RequestCallPage() {
   }
 
   return (
-    <div className="bg-brand-dark min-h-screen">
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
+    <div className="bg-brand-dark min-h-[40vh]">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20">
         <FadeIn>
           <div className="max-w-3xl mx-auto">
             <SectionHeading

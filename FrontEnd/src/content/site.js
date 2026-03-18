@@ -59,7 +59,6 @@ const site = {
       href: "/contact",
       children: [
         { label: "Contact Form", href: "/contact" },
-        { label: "Careers", href: "/contact/careers" },
         { label: "Support", href: "/contact/support" },
       ]
     },

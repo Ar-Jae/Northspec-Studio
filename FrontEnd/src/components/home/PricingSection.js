@@ -122,7 +122,7 @@ function PricingCard({ plan, index }) {
         <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-3">
           {plan.name}
         </p>
-        <div className={`text-3xl font-bold font-serif ${plan.accentColor} leading-tight`}>
+        <div className={`text-3xl font-bold font-serif ${plan.accentColor} leading-[1.05]`}>
           {plan.price}
         </div>
         <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-1">
@@ -193,7 +193,7 @@ export default function PricingSection() {
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               Built for{" "}
               <em className="not-italic text-brand-gold">Serious Projects.</em>
@@ -250,7 +250,7 @@ export default function PricingSection() {
               <p className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase mb-4">
                 Automation Add-Ons
               </p>
-              <h3 className="text-2xl font-bold font-serif text-white leading-tight mb-3">
+              <h3 className="text-2xl font-bold font-serif text-white leading-[1.05] mb-3">
                 n8n workflow automation - priced separately
               </h3>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">

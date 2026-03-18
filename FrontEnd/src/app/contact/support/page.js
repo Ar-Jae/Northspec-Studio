@@ -335,7 +335,7 @@ function UseCasesSection() {
         <SectionLabel>Use This Form For</SectionLabel>
         <SplitReveal
           text="What Kind of Issue Are You Facing?"
-          className="text-3xl md:text-4xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-xl"
+          className="text-3xl md:text-4xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-xl"
         />
       </motion.div>
 
@@ -382,7 +382,7 @@ function FormSection() {
           transition={{ duration: 0.7 }}
         >
           <SectionLabel>Submit a Request</SectionLabel>
-          <h2 className="text-3xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] mb-8">
+          <h2 className="text-3xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] mb-8">
             Tell Us What&apos;s Going On.
           </h2>
           <SupportForm />
@@ -398,7 +398,7 @@ function FormSection() {
         >
           <div>
             <SectionLabel>How We Handle Support</SectionLabel>
-            <h2 className="text-3xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] mb-8">
+            <h2 className="text-3xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] mb-8">
               A System, Not Just a Ticket Queue.
             </h2>
           </div>

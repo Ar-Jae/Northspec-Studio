@@ -15,9 +15,9 @@ export const metadata = {
 
 export default function TermsOfServicePage() {
   return (
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="bg-brand-dark min-h-[40vh] relative overflow-hidden">
       <BackgroundCanvasClient />
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
+      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20 relative z-10">
         <FadeIn>
           <SectionHeading
             eyebrow="Legal"
