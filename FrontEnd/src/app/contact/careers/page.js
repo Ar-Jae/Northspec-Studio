@@ -7,6 +7,7 @@ import FadeIn from "../../../components/animations/FadeIn";
 import JobApplicationForm from "../../../components/about/JobApplicationForm";
 import { StaggerContainer, StaggerItem } from "../../../components/animations/Stagger";
 import { motion } from "framer-motion";
+import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 
 const openRoles = [
   {
@@ -38,9 +39,10 @@ const openRoles = [
 export default function CareersPage() {
   return (
     <div className="bg-brand-dark min-h-screen">
+      <BackgroundCanvasClient />
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10 pb-12 mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
             <div className="max-w-2xl">
               <SectionHeading
                 eyebrow="Careers"

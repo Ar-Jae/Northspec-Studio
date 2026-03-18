@@ -1,6 +1,7 @@
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export const metadata = {
   title: "Legal",
@@ -15,6 +16,7 @@ export const metadata = {
 export default function LegalPage() {
   return (
     <div className="bg-brand-dark">
+      <BackgroundCanvasClient />
       <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20">
         <FadeIn>
           <SectionHeading
@@ -95,7 +97,7 @@ export default function LegalPage() {
             </section>
 
             {/* Privacy Policy */}
-            <section className="space-y-6 border-t border-white/10 pt-16">
+            <section className="space-y-6 pt-16">
               <h2 className="text-2xl font-serif font-semibold text-white">Privacy Policy</h2>
               
               <div className="space-y-4 text-slate-300 text-sm leading-relaxed">

@@ -21,10 +21,10 @@ export default function Footer() {
     <footer className="bg-brand-dark">
       {/* CTA Section */}
       {showCTA && (
-        <div className="border-y border-white/10 bg-white/[0.02]">
+        <div className="bg-white/[0.02]">
           <Container className="py-16 sm:py-24">
             <div className="flex flex-col items-center text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mb-6 uppercase tracking-wider">
                 Ready to automate your business?
               </h2>
               <p className="text-slate-400 max-w-xl mb-10">
@@ -41,8 +41,8 @@ export default function Footer() {
       )}
 
       {/* Newsletter section */}
-      <div className="border-b border-white/10 bg-brand-dark">
-        <Container className="py-8">
+      <div className="bg-brand-dark pb-8">
+        <Container>
           <NewsletterSignup />
         </Container>
       </div>

@@ -112,7 +112,7 @@ export default function Header() {
     <header className={cn(
       "fixed top-0 z-50 w-full backdrop-blur-xl transition-all duration-500",
       scrolled || pathname !== "/"
-        ? "bg-brand-dark/95 border-b border-white/5"
+        ? "bg-brand-dark/95"
         : "bg-transparent"
     )}>
       <Container className="flex flex-wrap md:flex-nowrap h-16 items-center justify-between gap-2 px-2 md:px-0">

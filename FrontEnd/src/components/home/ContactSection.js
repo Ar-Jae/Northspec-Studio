@@ -150,12 +150,7 @@ export default function ContactSection() {
         }}
       />
 
-      {/* Decorative letter */}
-      <div className="absolute left-0 top-24 text-[18vw] font-serif font-bold text-white/[0.015] leading-none select-none pointer-events-none pl-4">
-        HI
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="relative z-10 w-full px-36">
         {/* Heading */}
         <div ref={headRef} className="mb-20">
           <motion.div
@@ -170,21 +165,31 @@ export default function ContactSection() {
             </span>
           </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight max-w-3xl"
-          >
-            Let's build something{" "}
-            <em className="not-italic text-brand-gold">durable.</em>
-          </motion.h2>
+          <div className="flex items-center justify-between gap-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              Let's build something{" "}
+              <em className="not-italic text-brand-gold">durable.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              HI
+            </motion.span>
+          </div>
 
           <motion.div
-            initial={{ scaleX: 0 }}
-            animate={inView ? { scaleX: 1 } : {}}
+            initial={{ width: "0%" }}
+            animate={inView ? { width: "100%" } : {}}
             transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent origin-left"
+            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent"
           />
         </div>
 
@@ -259,19 +264,22 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-8"
+            className="lg:col-span-8 space-y-8"
           >
+            <div>
+              <h3 className="text-3xl font-bold font-serif text-white mb-2">
+                Send a message
+              </h3>
+              <p className="text-sm text-slate-500">
+                We respond within 1 business day.
+              </p>
+            </div>
+
             <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-md p-8 sm:p-12 overflow-hidden">
               {/* Corner glow */}
               <div className="absolute top-0 right-0 w-72 h-72 bg-brand-gold/4 rounded-full blur-3xl -mr-36 -mt-36 pointer-events-none" />
 
               <div className="relative z-10">
-                <h3 className="text-xl font-bold font-serif text-white mb-2">
-                  Send a message
-                </h3>
-                <p className="text-sm text-slate-500 mb-8">
-                  We respond within 1 business day.
-                </p>
                 <ContactForm />
               </div>
             </div>
