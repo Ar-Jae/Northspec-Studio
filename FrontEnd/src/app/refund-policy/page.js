@@ -68,6 +68,17 @@ export default function RefundPolicyPage() {
                 </Card>
               </Section>
 
+              <Section title="Delivery & Final Payment">
+                <p className="mb-6">
+                  Final payment is due on delivery day, at or before the delivery demo. Northspec will not hand over any deliverables, source code, credentials, or assets until full final payment has been received.
+                </p>
+                <Card gold>
+                  <p className="text-sm not-italic font-sans text-slate-300">
+                    <strong className="text-brand-gold">No payment, no delivery.</strong> If the Client fails to submit final payment on delivery day, the demo will conclude and all project materials will be withheld. The delivery will be rescheduled once payment is confirmed.
+                  </p>
+                </Card>
+              </Section>
+
               <Section title="Cancellation by Client">
                 <p className="mb-6">
                   If a client cancels a project after work has begun, the following applies:
@@ -106,9 +117,26 @@ export default function RefundPolicyPage() {
               </Section>
 
               <Section title="Retainer Cancellations">
-                <p>
-                  Ongoing retainer agreements (maintenance, support) require 30 days written notice to cancel. Fees for the current billing period are non-refundable. Unused hours within a retainer period do not carry over or convert to credit.
+                <p className="mb-6">
+                  Retainer agreements are available exclusively to clients on Northspec-hosted infrastructure. Clients who self-host at delivery are not eligible for retainer plans and must engage Northspec separately for any post-delivery support.
                 </p>
+                <p className="mb-6">
+                  For eligible retainer clients: ongoing agreements require 30 days written notice to cancel. Fees for the current billing period are non-refundable. Unused hours within a retainer period do not carry over or convert to credit.
+                </p>
+                <div className="space-y-4 not-italic font-sans">
+                  <Card gold>
+                    <strong className="text-brand-gold uppercase tracking-widest text-xs block mb-3">Service Suspension — 30 Days Past Due</strong>
+                    <p className="text-sm text-slate-300">If a retainer invoice remains unpaid <strong className="text-white">30 days past its due date</strong>, all hosted services associated with the account will be suspended. No data will be deleted during this period.</p>
+                  </Card>
+                  <Card>
+                    <strong className="text-white uppercase tracking-widest text-xs block mb-3">Data Removal — 90 Days Past Due</strong>
+                    <p className="text-sm text-slate-300">Failure to pay in full within <strong className="text-white">90 days</strong> of the invoice due date will result in the permanent removal of all client data from Northspec infrastructure. This action is irreversible. Northspec will make reasonable efforts to notify the Client before this threshold is reached.</p>
+                  </Card>
+                  <Card>
+                    <strong className="text-white uppercase tracking-widest text-xs block mb-3">Service Restoration</strong>
+                    <p className="text-sm text-slate-300">Upon receipt of the outstanding balance in full prior to the 90-day threshold, all services will be fully restored — typically within one business day. No penalties or reactivation fees apply beyond the overdue invoice amount.</p>
+                  </Card>
+                </div>
               </Section>
 
               <Section title="Requesting a Refund">

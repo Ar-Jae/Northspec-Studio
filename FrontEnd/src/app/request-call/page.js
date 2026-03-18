@@ -114,11 +114,12 @@ export default function RequestCallPage() {
                   <label className="block text-sm text-slate-300 mb-2">What budget range are you prepared to invest?</label>
                   <select value={form.budgetRange} onChange={(e) => updateField("budgetRange", e.target.value)} className="w-full rounded-lg bg-white/5 border border-white/10 text-white p-3" required>
                     <option value="" className="bg-brand-dark">Select one</option>
-                    <option value="Under $2,500" className="bg-brand-dark">Under $2,500</option>
-                    <option value="$2,500 – $4,000" className="bg-brand-dark">$2,500 – $4,000</option>
-                    <option value="$4,000 – $7,500" className="bg-brand-dark">$4,000 – $7,500</option>
-                    <option value="$7,500 – $12,000" className="bg-brand-dark">$7,500 – $12,000</option>
-                    <option value="$12,000+" className="bg-brand-dark">$12,000+</option>
+                    <option value="Under $8,000" className="bg-brand-dark">Under $8,000</option>
+                    <option value="$8,000 – $15,000" className="bg-brand-dark">$8,000 – $15,000</option>
+                    <option value="$15,000 – $30,000" className="bg-brand-dark">$15,000 – $30,000</option>
+                    <option value="$30,000 – $60,000" className="bg-brand-dark">$30,000 – $60,000</option>
+                    <option value="$60,000 – $100,000" className="bg-brand-dark">$60,000 – $100,000</option>
+                    <option value="$100,000+" className="bg-brand-dark">$100,000+</option>
                   </select>
                 </div>
                 <div>

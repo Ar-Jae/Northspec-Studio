@@ -87,6 +87,20 @@ export default function ServiceAgreementPage() {
                     </Card>
                   ))}
                 </div>
+                <div className="mt-4 space-y-4 not-italic font-sans">
+                  <Card gold>
+                    <strong className="text-brand-gold uppercase tracking-widest text-xs block mb-3">Non-Delivery for Non-Payment</strong>
+                    <p className="text-sm text-slate-300">Final payment is due on delivery day, prior to or at the time of the delivery demo. If the Client fails to submit final payment on delivery day, the project will not be delivered. Access to all deliverables, source code, and assets will be withheld until payment is received in full.</p>
+                  </Card>
+                  <Card>
+                    <strong className="text-white uppercase tracking-widest text-xs block mb-3">Retainer Non-Payment</strong>
+                    <ul className="space-y-2 text-sm text-slate-300">
+                      <li>• <strong className="text-white">30 days past due:</strong> All hosted services are suspended until the outstanding balance is settled. No data is deleted during this period.</li>
+                      <li>• <strong className="text-white">90 days past due:</strong> Failure to pay in full within 90 days will result in the permanent removal of all client data from Northspec infrastructure. This action is irreversible.</li>
+                      <li>• Upon receipt of full payment before the 90-day threshold, services will be fully restored without data loss.</li>
+                    </ul>
+                  </Card>
+                </div>
               </Section>
 
               <Section title="Intellectual Property">
@@ -132,6 +146,38 @@ export default function ServiceAgreementPage() {
               <Section title="Termination">
                 <p>
                   Either party may terminate with 14 days written notice. Upon termination, the Client owes payment for all work completed to date. Deposits are non-refundable once discovery and specification work has begun.
+                </p>
+              </Section>
+
+              <Section title="Hosting & Responsibility">
+                <p className="mb-6">
+                  At project delivery, the Client selects one of two hosting arrangements. This choice determines ongoing support eligibility and Northspec's post-delivery responsibilities.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2 not-italic font-sans">
+                  <Card>
+                    <strong className="text-white uppercase tracking-widest text-xs block mb-3">Client-Hosted</strong>
+                    <ul className="space-y-2 text-sm text-slate-300">
+                      <li>• Client provisions and manages all infrastructure</li>
+                      <li>• Northspec delivers the completed work and steps back</li>
+                      <li>• Client assumes full responsibility for uptime, security, and maintenance</li>
+                      <li>• Northspec bears no liability for any issues arising post-delivery</li>
+                      <li>• Retainer plans are not available</li>
+                      <li>• Future fixes or changes require a new paid engagement</li>
+                    </ul>
+                  </Card>
+                  <Card gold>
+                    <strong className="text-brand-gold uppercase tracking-widest text-xs block mb-3">Northspec-Hosted</strong>
+                    <ul className="space-y-2 text-sm text-slate-300">
+                      <li>• Northspec hosts and manages all infrastructure on its systems</li>
+                      <li>• Direct access allows faster incident response and automated fixes</li>
+                      <li>• Client is eligible for Northspec retainer plans</li>
+                      <li>• Proactive monitoring, patching, and uptime management included</li>
+                      <li>• Issues can often be resolved without client involvement</li>
+                    </ul>
+                  </Card>
+                </div>
+                <p className="mt-4 text-sm not-italic font-sans text-slate-500">
+                  The hosting arrangement is selected and documented at project delivery. Clients who initially chose self-hosting may transition to Northspec-hosted infrastructure under a separate infrastructure onboarding agreement.
                 </p>
               </Section>
 
