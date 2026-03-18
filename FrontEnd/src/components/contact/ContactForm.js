@@ -92,7 +92,7 @@ export default function ContactForm() {
 
   return (
     <div className="relative">
-      {/* Progress Bar */}
+      {/* Progress Bar - border removed for a cleaner look */}
       <div className="absolute -top-12 left-0 w-full h-1 bg-white/5 rounded-full overflow-hidden">
         <motion.div 
           className="h-full bg-brand-gold"
@@ -380,7 +380,7 @@ export default function ContactForm() {
           )}
         </AnimatePresence>
 
-        <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-white/5">
+        <div className="flex flex-col sm:flex-row gap-4 pt-8 ">
           {step > 1 && (
             <Button 
               onClick={prevStep} 

@@ -140,7 +140,7 @@ export default function WhyNorthspecPage() {
                 <p className="text-2xl text-white font-times italic leading-relaxed relative z-10 tracking-tight">
                   "Northspec isn't just a vendor; they are an extension of our engineering team. They care as much about the architecture as we do."
                 </p>
-                <div className="mt-12 flex items-center gap-6 relative z-10 border-t border-white/5 pt-10">
+                <div className="mt-12 flex items-center gap-6 relative z-10  pt-10">
                   <div className="w-16 h-16 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center text-brand-gold group-hover:bg-brand-gold/10 transition-colors">
                     <svg className="w-8 h-8 opacity-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                   </div>
@@ -164,7 +164,7 @@ export default function WhyNorthspecPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-white/5">
+                    <tr className="">
                       <th className="py-6 px-4 text-slate-500 text-xs uppercase tracking-widest font-bold font-times">Feature</th>
                       <th className="py-6 px-4 text-slate-500 text-xs uppercase tracking-widest font-bold font-times">Traditional Agency</th>
                       <th className="py-6 px-4 text-brand-gold text-xs uppercase tracking-widest font-bold font-times">Northspec Studio</th>
@@ -172,7 +172,7 @@ export default function WhyNorthspecPage() {
                   </thead>
                   <tbody>
                     {comparisons.map((row, i) => (
-                      <tr key={i} className="border-b border-white/[0.03] group hover:bg-white/[0.02] transition-colors last:border-0">
+                      <tr key={i} className=" group hover:bg-white/[0.02] transition-colors last:border-0">
                         <td className="py-6 px-4 text-white font-medium">{row.feature}</td>
                         <td className="py-6 px-4 text-slate-400 text-sm">{row.traditional}</td>
                         <td className={`py-6 px-4 text-sm font-bold ${row.highlight ? 'text-brand-gold' : 'text-white'}`}>

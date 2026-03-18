@@ -5,7 +5,7 @@ import FadeIn from "../animations/FadeIn";
 
 export default function CTASection() {
   return (
-    <section className="bg-gradient-to-r from-brand-dark to-slate-900 border-t border-white/10">
+    <section className="bg-gradient-to-r from-brand-dark to-slate-900 ">
       <Container className="py-14 sm:py-16">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>

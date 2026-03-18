@@ -92,7 +92,7 @@ export default function DiscoveryPage() {
                   ))}
                 </ul>
 
-                <div className="mt-16 pt-12 relative z-10 border-t border-white/5">
+                <div className="mt-16 pt-12 relative z-10 ">
                   <h3 className="text-xs font-bold text-brand-gold font-times tracking-[0.3em] uppercase mb-4">Ready to scope?</h3>
                   <p className="text-sm text-slate-400 font-medium italic mb-10">
                     Book a discovery call and we'll start defining the roadmap for your project.

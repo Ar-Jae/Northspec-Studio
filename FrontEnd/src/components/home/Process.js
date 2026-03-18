@@ -56,7 +56,7 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="bg-brand-dark border-t border-white/10">
+    <section className="bg-brand-dark ">
       <Container className="py-16 sm:py-20">
         <SectionHeading
           eyebrow="Process"

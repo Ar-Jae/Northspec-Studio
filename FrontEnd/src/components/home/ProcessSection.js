@@ -125,12 +125,7 @@ export default function ProcessSection() {
             </motion.span>
           </div>
 
-          <motion.div
-            initial={{ width: "0%" }}
-            animate={inView ? { width: "100%" } : {}}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-12 h-[1px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/20 to-transparent"
-          />
+          {/* Gradient line removed for a smoother transition to the steps */}
         </div>
 
         {/* Steps with animated connecting line */}
@@ -147,7 +142,7 @@ export default function ProcessSection() {
                   delay: i * 0.15,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group relative grid lg:grid-cols-12 gap-0 lg:gap-8 py-12 border-b border-white/6 last:border-0"
+                className="group relative grid lg:grid-cols-12 gap-0 lg:gap-8 py-12 last:border-0"
               >
                 {/* Number column */}
                 <div className="lg:col-span-1 flex lg:flex-col items-center lg:items-start gap-4 lg:gap-0 mb-6 lg:mb-0">

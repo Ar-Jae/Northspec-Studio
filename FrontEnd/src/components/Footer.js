@@ -143,8 +143,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
+        {/* Divider removed to create a more seamless transition */}
+        <div className="pt-8">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <div>
               <Logo className="text-white" />
@@ -176,8 +176,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="mt-8 border-t border-white/10 pt-6 text-xs text-slate-600">
+        {/* Copyright - border removed for a cleaner look */}
+        <div className="mt-8 pt-6 text-xs text-slate-600">
           <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
         </div>
       </Container>

@@ -148,7 +148,7 @@ function PricingCard({ plan, index }) {
         ))}
       </ul>
 
-      <div className="mt-auto pt-6 border-t border-white/8">
+      <div className="mt-auto pt-6 ">
         <p className="text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-2">
           Best For
         </p>

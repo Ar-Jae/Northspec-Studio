@@ -264,7 +264,7 @@ export default function PricingPage() {
                   { label: "Priority (~40% faster)", value: "+50%" },
                   { label: "Emergency (Mission Critical)", value: "+100%" }
                 ].map((item, i) => (
-                  <div key={i} className="flex justify-between items-center border-b border-white/[0.03] pb-4 last:border-0 hover:bg-white/5 transition-colors p-2 rounded-lg">
+                  <div key={i} className="flex justify-between items-center  pb-4 last:border-0 hover:bg-white/5 transition-colors p-2 rounded-lg">
                     <span className="text-slate-400 font-times uppercase tracking-widest text-xs">{item.label}</span>
                     <span className="text-white font-bold font-times">{item.value}</span>
                   </div>
