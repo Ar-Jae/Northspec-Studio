@@ -1,115 +1,852 @@
 "use client";
 
-import Container from "../../../components/Container";
-import SectionHeading from "../../../components/SectionHeading";
-import Button from "../../../components/Button";
-import FadeIn from "../../../components/animations/FadeIn";
+import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
+import Button from "../../../components/Button";
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const outcomes = [
+  "Replace manual workflows with systems that run automatically",
+  "Streamline operations so your team focuses on real work",
+  "Support business growth without adding overhead",
+  "Scale infrastructure as your product and users grow",
+];
+
+const whoFor = [
+  "Startups building MVPs and validating products",
+  "Businesses replacing inefficient manual processes",
+  "Teams scaling internal tools and operational systems",
+  "Companies building SaaS platforms and revenue products",
+];
+
+const whatWeBuild = [
+  {
+    number: "01",
+    title: "Web Applications",
+    short: "Custom-built applications designed for performance and scalability.",
+    bullets: [
+      "Full-stack React / Next.js",
+      "Scalable backend architecture",
+      "Auth, roles, and permissions",
+    ],
+    accent: "from-brand-gold/20 to-transparent",
+  },
+  {
+    number: "02",
+    title: "Internal Systems",
+    short: "Tools that reduce manual work and improve team efficiency.",
+    bullets: [
+      "Internal dashboards and portals",
+      "Workflow automation tools",
+      "Admin and ops systems",
+    ],
+    accent: "from-blue-500/10 to-transparent",
+  },
+  {
+    number: "03",
+    title: "SaaS Platforms",
+    short: "Revenue-generating products built for growth and long-term use.",
+    bullets: [
+      "Multi-tenant architecture",
+      "Subscription and billing logic",
+      "Platform-level scalability",
+    ],
+    accent: "from-purple-500/10 to-transparent",
+  },
+  {
+    number: "04",
+    title: "Integrations & APIs",
+    short: "Systems that connect your tools and automate workflows end-to-end.",
+    bullets: [
+      "REST and GraphQL APIs",
+      "Third-party service connectors",
+      "Webhook and event pipelines",
+    ],
+    accent: "from-emerald-500/10 to-transparent",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    phase: "Discovery",
+    title: "Define your requirements and goals",
+    description:
+      "We break down your workflows, constraints, and business objectives before writing a single line of code.",
+    detail: "Discovery call → Requirements doc → Scope definition",
+  },
+  {
+    number: "02",
+    phase: "System Design",
+    title: "Plan architecture and scalability",
+    description:
+      "We design the technical architecture, integration points, and data structure specific to your use case.",
+    detail: "Technical spec → Architecture plan → Timeline",
+  },
+  {
+    number: "03",
+    phase: "Development",
+    title: "Build with performance and reliability in mind",
+    description:
+      "Milestone-based delivery with real visibility. You see progress at every stage—no black-box development.",
+    detail: "Milestone delivery → Staging access → Code review",
+  },
+  {
+    number: "04",
+    phase: "Launch & Support",
+    title: "Deploy, monitor, and keep improving",
+    description:
+      "We handle deployment, monitor performance, and continue improving the system after it goes live.",
+    detail: "Production deploy → Monitoring → Ongoing improvements",
+  },
+];
+
+const why = [
+  "Built for real-world use, not prototypes or demos",
+  "Focus on performance, scalability, and long-term reliability",
+  "Clear communication with milestone-based delivery",
+  "Long-term product thinking—not one-off builds",
+];
+
+// ─── Sub-components ────────────────────────────────────────────────────────────
+
+function SplitReveal({ text, className, delay = 0 }) {
+  const words = text.split(" ");
+  return (
+    <span className={className}>
+      {words.map((word, wi) => (
+        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: delay + wi * 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <div className="flex items-center gap-4 mb-6">
+      <div className="h-[1px] w-10 bg-brand-gold" />
+      <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+        {children}
+      </span>
+    </div>
+  );
+}
+
+function TiltCard({ children, index }) {
+  const cardRef = useRef(null);
+
+  const onMove = (e) => {
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 18;
+    const y = (e.clientY - rect.top - rect.height / 2) / 18;
+    cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
+    cardRef.current.style.transition = "transform 0.05s linear";
+  };
+
+  const onLeave = () => {
+    cardRef.current.style.transform =
+      "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+    cardRef.current.style.transition = "transform 0.5s cubic-bezier(0.16,1,0.3,1)";
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-8
+        hover:border-brand-gold/30 transition-colors duration-500 cursor-default"
+      style={{ willChange: "transform" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SoftwareDevelopmentPage() {
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY       = useTransform(heroScroll, [0, 1], ["0%", "30%"]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
+
+  const whatRef  = useRef(null);
+  const whoRef   = useRef(null);
+  const buildRef = useRef(null);
+  const priceRef = useRef(null);
+  const whyRef   = useRef(null);
+  const retainRef= useRef(null);
+  const ctaRef   = useRef(null);
+
+  const whatIn   = useInView(whatRef,   { once: true, margin: "-100px" });
+  const whoIn    = useInView(whoRef,    { once: true, margin: "-100px" });
+  const buildIn  = useInView(buildRef,  { once: true, margin: "-100px" });
+  const priceIn  = useInView(priceRef,  { once: true, margin: "-100px" });
+  const whyIn    = useInView(whyRef,    { once: true, margin: "-100px" });
+  const retainIn = useInView(retainRef, { once: true, margin: "-100px" });
+  const ctaIn    = useInView(ctaRef,    { once: true, margin: "-100px" });
+
   return (
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="relative bg-brand-dark min-h-screen">
       <BackgroundCanvasClient />
-      
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
-        <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 ">
-            <div className="max-w-2xl">
-              <SectionHeading
-                eyebrow="Lifecycle"
-                title="Software Development"
-                description="Engineered for performance. Built for scale. We deliver production-ready systems that form the backbone of your digital operations."
-              />
-            </div>
-            <div className="flex-none hidden lg:block">
-              <div className="text-8xl font-bold text-white/[0.03] font-times select-none uppercase tracking-tighter">SOFT</div>
+
+      {/* ── HERO ────────────────────────────────────────────────────────────── */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+          }}
+        />
+
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-[1px] w-12 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Software Development
+            </span>
+            <div className="h-[1px] w-12 bg-brand-gold" />
+          </motion.div>
+
+          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,8vw,7.5rem)]">
+            <SplitReveal text="Custom Software" delay={0.6} className="block" />
+            <SplitReveal text="Built for Real" delay={1.0} className="block" />
+            <SplitReveal
+              text="Business Needs."
+              delay={1.3}
+              className="block text-brand-gold"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+          >
+            We design and develop scalable applications, internal systems, and
+            platforms that improve operations, automate workflows, and support growth.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.0, duration: 0.7 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
+            <Button
+              as="link"
+              href="/contact"
+              variant="brand"
+              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+            >
+              Start a Project
+            </Button>
+            <Button
+              as="link"
+              href="/request-call"
+              variant="outline"
+              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+            >
+              Book a Call
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
+      </section>
+
+      {/* ── WHAT WE ACTUALLY DO ──────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.88) 40%, rgba(5,5,5,0.88) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={whatRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={whatIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>What We Solve</SectionLabel>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={whatIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+                Software should solve problems—
+                <em className="not-italic text-brand-gold">not create more complexity.</em>
+              </h2>
+              <p className="text-slate-400 leading-relaxed text-sm font-times">
+                Every system we build is designed around a specific business outcome.
+                Not a generic feature list—a direct answer to a real operational problem.
+              </p>
+            </motion.div>
+
+            <div className="space-y-4">
+              {outcomes.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={whatIn ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02]
+                    hover:border-brand-gold/20 transition-colors duration-300"
+                >
+                  <span className="text-brand-gold font-bold mt-0.5 flex-shrink-0">→</span>
+                  <p className="text-slate-300 text-sm leading-relaxed">{item}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-2">
-            <div className="space-y-12">
-              <div className="relative">
-                <div className="absolute -left-4 top-0 w-1 h-full bg-brand-gold/20 mr-4" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-6 px-4">The Engineering Standard</h2>
-                <p className="text-slate-400 leading-relaxed font-medium text-lg px-4">
-                  We don't just write code; we engineer systems. Every project starts with a rigorous technical specification and ends with a robust, tested deployment. Our focus is on clean architecture, maintainability, and extreme performance.
+      {/* ── WHO THIS IS FOR ───────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={whoRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={whoIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>Who This Is For</SectionLabel>
+          </motion.div>
+
+          <div className="flex items-center justify-between gap-4 mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={whoIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              Serious projects.{" "}
+              <em className="not-italic text-brand-gold">Serious clients.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={whoIn ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              WHO
+            </motion.span>
+          </div>
+
+          <div className="grid gap-0">
+            {whoFor.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                animate={whoIn ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                  hover:border-brand-gold/20 transition-colors duration-300"
+              >
+                <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
+                  0{i + 1}
+                </span>
+                <p className="text-xl font-serif text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {item}
                 </p>
-              </div>
-              
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">01 / Logic</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Full-Stack Web</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Modern web applications built with Next.js, React, and Node.js.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">02 / Schema</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">API Design</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Secure, scalable REST and GraphQL APIs built for high-throughput performance.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">03 / Data</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Architecture</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Optimized SQL and NoSQL schemas designed for long-term data integrity.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">04 / DevOps</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Infrastructure</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Automated deployments and self-healing scaling on AWS and Vercel.</p>
-                </div>
-              </div>
-            </div>
+                <div className="ml-auto w-6 h-[1px] bg-brand-gold/0 group-hover:bg-brand-gold/60 transition-all duration-500 flex-shrink-0" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-8">
-              <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-10 backdrop-blur-2xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-brand-gold/10 transition-colors" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10  pb-6">Delivery Protocol</h2>
-                <ul className="space-y-10">
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">01</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Technical Discovery</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed">Defining requirements, stack selection, and immutable architecture patterns.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">02</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Iterative Sprints</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed">Weekly production-grade deployments with real-time feedback loops.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">03</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Rigorous QA</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed">Automated testing for security, performance, and boundary conditions.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">04</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Deployment</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed">Final production rollout with comprehensive documentation and engineering handoff.</p>
-                    </div>
-                  </li>
+      {/* ── WHAT WE BUILD ─────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full px-36">
+          <WhatWeBuildHead buildRef={buildRef} buildIn={buildIn} />
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whatWeBuild.map((item, i) => (
+              <TiltCard key={item.number} index={i}>
+                <div
+                  className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${item.accent} rounded-t-3xl`}
+                />
+                <div className="text-[11px] font-bold tracking-[0.3em] text-slate-700 mb-6">
+                  {item.number}
+                </div>
+                <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                  {item.short}
+                </p>
+                <ul className="space-y-2">
+                  {item.bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-2.5 text-xs text-slate-500">
+                      <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
+                      {b}
+                    </li>
+                  ))}
                 </ul>
+              </TiltCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICE ANCHOR ──────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={priceRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={priceIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-[2.5rem] border border-brand-gold/20 bg-white/[0.03] overflow-hidden"
+          >
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Left */}
+              <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
+                <SectionLabel>Investment</SectionLabel>
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                  Priced around the{" "}
+                  <em className="not-italic text-brand-gold">scope of work.</em>
+                </h2>
+                <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
+                  No hourly billing. No hidden costs. Every project is scoped and
+                  priced up front so you know exactly what you&apos;re investing.
+                </p>
               </div>
 
-              <div className="rounded-3xl border border-brand-gold/10 bg-brand-gold/5 p-12 backdrop-blur-xl text-center group hover:bg-brand-gold/10 transition-colors duration-500">
-                <h2 className="text-2xl font-bold text-white font-times uppercase tracking-[0.2em] mb-4">Request Build</h2>
-                <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-xs mx-auto mb-8 italic">
-                  Discuss your infrastructure requirements with our engineering team.
-                </p>
-                <div className="mt-6 flex flex-col gap-4">
-                  <Button as="link" href="/book" variant="brand" className="w-full font-times uppercase tracking-widest text-xs py-5">Book Discovery Call</Button>
-                  <Button as="link" href="/contact" variant="outline" className="w-full font-times uppercase tracking-widest text-xs py-5">Submit RFQ</Button>
-                </div>
+              {/* Right */}
+              <div className="p-12 lg:p-16 flex flex-col justify-center gap-8 bg-brand-gold/[0.03]">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={priceIn ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                  <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
+                    Typical range
+                  </p>
+                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                    $12,000 – $50,000+
+                  </div>
+                  <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
+                    Depending on scope and complexity
+                  </p>
+                </motion.div>
+
+                <div className="h-[1px] bg-white/[0.06]" />
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={priceIn ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 0.35 }}
+                  className="text-slate-400 text-sm leading-relaxed"
+                >
+                  Final pricing is always scoped—never guessed. You receive a
+                  fixed-price quote before any work begins.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={priceIn ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.45 }}
+                  className="flex flex-wrap gap-3"
+                >
+                  <a
+                    href="/pricing"
+                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                  >
+                    View Pricing
+                  </a>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
+                  >
+                    Get a Quote
+                  </a>
+                </motion.div>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── HOW WE WORK ───────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full px-36">
+          <HowWeWorkHead />
+
+          <div className="mt-16 space-y-0">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative grid lg:grid-cols-12 gap-0 lg:gap-8 py-12
+                  border-b border-white/[0.06] last:border-0"
+              >
+                <div className="lg:col-span-1 flex items-start mb-6 lg:mb-0">
+                  <div className="w-14 h-14 rounded-2xl border border-white/10 bg-brand-dark flex items-center justify-center text-brand-gold
+                    group-hover:border-brand-gold/40 group-hover:bg-brand-gold/10 transition-colors duration-300 flex-shrink-0">
+                    <span className="text-sm font-bold font-mono">{step.number}</span>
+                  </div>
+                </div>
+                <div className="lg:col-span-3 lg:pt-3">
+                  <div className="text-sm font-bold text-brand-gold tracking-wide">{step.phase}</div>
+                </div>
+                <div className="lg:col-span-5 lg:pt-1">
+                  <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
+                </div>
+                <div className="lg:col-span-3 lg:pt-2 mt-4 lg:mt-0">
+                  <p className="text-[11px] text-slate-600 leading-relaxed font-medium">{step.detail}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </FadeIn>
-      </Container>
+        </div>
+      </section>
+
+      {/* ── WHY CHOOSE US ─────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={whyRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={whyIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>Why Choose Us</SectionLabel>
+          </motion.div>
+
+          <div className="flex items-center justify-between gap-4 mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={whyIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              We solve{" "}
+              <em className="not-italic text-brand-gold">expensive problems.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={whyIn ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              WHY
+            </motion.span>
+          </div>
+
+          <div className="grid gap-0">
+            {why.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                animate={whyIn ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                  hover:border-brand-gold/20 transition-colors duration-300"
+              >
+                <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
+                  0{i + 1}
+                </span>
+                <p className="text-xl font-serif text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {item}
+                </p>
+                <div className="ml-auto w-6 h-[1px] bg-brand-gold/0 group-hover:bg-brand-gold/60 transition-all duration-500 flex-shrink-0" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── RETAINER TRANSITION ───────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={retainRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={retainIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-[2.5rem] border border-white/[0.08] bg-white/[0.02] p-12 lg:p-16"
+          >
+            <div className="max-w-2xl">
+              <SectionLabel>After Launch</SectionLabel>
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+                Most clients continue working with us{" "}
+                <em className="not-italic text-brand-gold">after launch.</em>
+              </h2>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 font-times">
+                We offer ongoing support engagements to keep your system
+                performing, growing, and evolving with your business.
+              </p>
+              <ul className="space-y-3 mb-10">
+                {[
+                  "Feature expansion and new capabilities",
+                  "Performance improvements and optimization",
+                  "Ongoing engineering and product support",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-slate-300">
+                    <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
+                Ongoing engagements from $4,000 – $10,000/month
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.9) 40%, rgba(5,5,5,0.9) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(198,166,104,0.06) 0%, transparent 70%)",
+          }}
+        />
+
+        <div ref={ctaRef} className="relative z-10 w-full px-36 flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-[1px] w-10 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Get Started
+            </span>
+            <div className="h-[1px] w-10 bg-brand-gold" />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+          >
+            Ready to Build Something{" "}
+            <em className="not-italic text-brand-gold">That Scales?</em>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
+          >
+            Let&apos;s talk about your project and how we can help.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
+            <a
+              href="/contact"
+              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+            >
+              Start a Project
+            </a>
+            <a
+              href="/request-call"
+              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
+            >
+              Book a Call
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ─── Extracted heads (avoid hook order issues) ────────────────────────────────
+
+function WhatWeBuildHead({ buildRef, buildIn }) {
+  return (
+    <div ref={buildRef}>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={buildIn ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-4 mb-6"
+      >
+        <div className="h-[1px] w-10 bg-brand-gold" />
+        <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+          What We Build
+        </span>
+      </motion.div>
+
+      <div className="flex items-center justify-between gap-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={buildIn ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+        >
+          Systems built for{" "}
+          <em className="not-italic text-brand-gold">your business.</em>
+        </motion.h2>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={buildIn ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+        >
+          BUILD
+        </motion.span>
+      </div>
+    </div>
+  );
+}
+
+function HowWeWorkHead() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-4 mb-6"
+      >
+        <div className="h-[1px] w-10 bg-brand-gold" />
+        <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+          How We Work
+        </span>
+      </motion.div>
+
+      <div className="flex items-center justify-between gap-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+        >
+          A structured process that{" "}
+          <em className="not-italic text-brand-gold">delivers.</em>
+        </motion.h2>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+        >
+          HOW
+        </motion.span>
+      </div>
     </div>
   );
 }

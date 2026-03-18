@@ -43,7 +43,7 @@ const site = {
       children: [
         { label: "All Pricing", href: "/pricing" },
         { label: "Retainers", href: "/retainers" },
-        { label: "Custom Plans", href: "/services/custom-plans" },
+        { label: "Custom Plans", href: "/pricing/custom" },
       ]
     },
     { 

@@ -1,114 +1,855 @@
 "use client";
 
-import Container from "../../../components/Container";
-import SectionHeading from "../../../components/SectionHeading";
-import Button from "../../../components/Button";
-import FadeIn from "../../../components/animations/FadeIn";
+import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
+import Button from "../../../components/Button";
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
+
+const problems = [
+  "Manual data entry that wastes hours and introduces errors",
+  "Duplicated work across tools that don't talk to each other",
+  "Inconsistent information across systems your team relies on",
+  "Slow operations because data has to be moved by hand",
+];
+
+const whoFor = [
+  "Businesses using multiple disconnected tools and platforms",
+  "Teams dealing with manual data transfer between systems",
+  "Companies scaling operations across growing tool stacks",
+  "Founders building platforms that require multiple integrations",
+];
+
+const whatWeBuild = [
+  {
+    number: "01",
+    title: "System Integrations",
+    short: "Connect CRMs, billing platforms, databases, and internal tools.",
+    bullets: [
+      "HubSpot, Salesforce, Stripe, and more",
+      "Custom middleware and connectors",
+      "Bi-directional sync across platforms",
+    ],
+    accent: "from-brand-gold/20 to-transparent",
+  },
+  {
+    number: "02",
+    title: "API Development",
+    short: "Enable secure, reliable communication between your systems.",
+    bullets: [
+      "REST and GraphQL API design",
+      "Authentication and access control",
+      "Versioning and documentation",
+    ],
+    accent: "from-blue-500/10 to-transparent",
+  },
+  {
+    number: "03",
+    title: "Data Synchronization",
+    short: "Ensure accurate, real-time data across every platform you use.",
+    bullets: [
+      "Real-time and scheduled sync",
+      "Data transformation and mapping",
+      "Error handling and retry logic",
+    ],
+    accent: "from-purple-500/10 to-transparent",
+  },
+  {
+    number: "04",
+    title: "Workflow Orchestration",
+    short: "Automate multi-step processes across your tools and services.",
+    bullets: [
+      "Event-driven workflow triggers",
+      "Cross-system process automation",
+      "Webhook pipelines and handlers",
+    ],
+    accent: "from-emerald-500/10 to-transparent",
+  },
+];
+
+const steps = [
+  {
+    number: "01",
+    phase: "System Analysis",
+    title: "Identify gaps, inefficiencies, and integration points",
+    description:
+      "We map your current tool stack, find where data breaks down, and define exactly what needs to connect and how.",
+    detail: "Tool audit → Data flow mapping → Integration scope",
+  },
+  {
+    number: "02",
+    phase: "Architecture Design",
+    title: "Design how your systems should communicate",
+    description:
+      "We design the integration architecture—data models, API contracts, sync logic—before writing a single line of code.",
+    detail: "Architecture plan → Data schema → API contracts",
+  },
+  {
+    number: "03",
+    phase: "Implementation",
+    title: "Build and test secure, reliable integrations",
+    description:
+      "We build every integration with error handling, retry logic, and monitoring built in from day one—not bolted on after.",
+    detail: "Build → QA testing → Staging validation",
+  },
+  {
+    number: "04",
+    phase: "Monitoring & Optimization",
+    title: "Ensure everything runs smoothly over time",
+    description:
+      "Integrations break when systems update. We monitor for failures, handle edge cases, and keep everything running reliably.",
+    detail: "Live monitoring → Alerting → Ongoing optimization",
+  },
+];
+
+const why = [
+  "Eliminate manual work that costs your team time and money",
+  "Reduce errors and inconsistencies across your data",
+  "Improve operational efficiency with real-time data flow",
+  "Scale your operations without rebuilding your system stack",
+];
+
+// ─── Sub-components ────────────────────────────────────────────────────────────
+
+function SplitReveal({ text, className, delay = 0 }) {
+  const words = text.split(" ");
+  return (
+    <span className={className}>
+      {words.map((word, wi) => (
+        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{
+              duration: 1,
+              delay: delay + wi * 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function SectionLabel({ children }) {
+  return (
+    <div className="flex items-center gap-4 mb-6">
+      <div className="h-[1px] w-10 bg-brand-gold" />
+      <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+        {children}
+      </span>
+    </div>
+  );
+}
+
+function TiltCard({ children, index }) {
+  const cardRef = useRef(null);
+
+  const onMove = (e) => {
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) / 18;
+    const y = (e.clientY - rect.top - rect.height / 2) / 18;
+    cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
+    cardRef.current.style.transition = "transform 0.05s linear";
+  };
+
+  const onLeave = () => {
+    cardRef.current.style.transform =
+      "perspective(1000px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+    cardRef.current.style.transition = "transform 0.5s cubic-bezier(0.16,1,0.3,1)";
+  };
+
+  return (
+    <motion.div
+      ref={cardRef}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      initial={{ opacity: 0, y: 60 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-8
+        hover:border-brand-gold/30 transition-colors duration-500 cursor-default"
+      style={{ willChange: "transform" }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default function IntegrationsPage() {
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY       = useTransform(heroScroll, [0, 1], ["0%", "30%"]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
+
+  const problemRef = useRef(null);
+  const whoRef     = useRef(null);
+  const buildRef   = useRef(null);
+  const priceRef   = useRef(null);
+  const whyRef     = useRef(null);
+  const retainRef  = useRef(null);
+  const ctaRef     = useRef(null);
+
+  const problemIn = useInView(problemRef, { once: true, margin: "-100px" });
+  const whoIn     = useInView(whoRef,     { once: true, margin: "-100px" });
+  const buildIn   = useInView(buildRef,   { once: true, margin: "-100px" });
+  const priceIn   = useInView(priceRef,   { once: true, margin: "-100px" });
+  const whyIn     = useInView(whyRef,     { once: true, margin: "-100px" });
+  const retainIn  = useInView(retainRef,  { once: true, margin: "-100px" });
+  const ctaIn     = useInView(ctaRef,     { once: true, margin: "-100px" });
+
   return (
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="relative bg-brand-dark min-h-screen">
       <BackgroundCanvasClient />
-      
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
-        <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16 ">
-            <div className="max-w-2xl">
-              <SectionHeading
-                eyebrow="Connectivity"
-                title="Integrations & API Mesh"
-                description="Bridge the gap between siloed systems. We build high-reliability custom middleware and API integrations for seamless data parity."
-              />
-            </div>
-            <div className="flex-none hidden lg:block">
-              <div className="text-8xl font-bold text-white/[0.03] font-times select-none uppercase tracking-tighter">MESH</div>
+
+      {/* ── HERO ────────────────────────────────────────────────────────────── */}
+      <section
+        ref={heroRef}
+        className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+          }}
+        />
+
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-20"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-[1px] w-12 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Integrations & APIs
+            </span>
+            <div className="h-[1px] w-12 bg-brand-gold" />
+          </motion.div>
+
+          <h1 className="font-serif font-bold leading-[0.9] tracking-tight text-white mb-6 text-[clamp(2.8rem,8vw,7.5rem)]">
+            <SplitReveal text="Connect Your" delay={0.6} className="block" />
+            <SplitReveal text="Systems." delay={1.0} className="block" />
+            <SplitReveal
+              text="Eliminate Data Silos."
+              delay={1.3}
+              className="block text-brand-gold"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+          >
+            We build reliable integrations that connect your tools, automate
+            workflows, and keep your business running without the manual overhead.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 2.0, duration: 0.7 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
+            <Button
+              as="link"
+              href="/contact"
+              variant="brand"
+              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+            >
+              Start an Integration Project
+            </Button>
+            <Button
+              as="link"
+              href="/request-call"
+              variant="outline"
+              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+            >
+              Book a Call
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
+      </section>
+
+      {/* ── THE REAL PROBLEM ──────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.88) 40%, rgba(5,5,5,0.88) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={problemRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={problemIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>The Real Problem</SectionLabel>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={problemIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <h2 className="font-serif font-bold text-white text-[clamp(2rem,4vw,4rem)] leading-[1.1] tracking-tight mb-6">
+                Most businesses run on tools that{" "}
+                <em className="not-italic text-brand-gold">don&apos;t talk to each other.</em>
+              </h2>
+              <p className="text-slate-400 leading-relaxed text-sm font-times">
+                The result is manual data entry, duplicated work, inconsistent
+                records, and slow operations. We solve this by connecting your
+                systems into one seamless, automated workflow.
+              </p>
+            </motion.div>
+
+            <div className="space-y-4">
+              {problems.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={problemIn ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.2 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02]
+                    hover:border-brand-gold/20 transition-colors duration-300"
+                >
+                  <span className="text-brand-gold font-bold mt-0.5 flex-shrink-0">→</span>
+                  <p className="text-slate-300 text-sm leading-relaxed">{item}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-2">
-            <div className="space-y-12">
-              <div className="relative">
-                <div className="absolute -left-4 top-0 w-1 h-full bg-brand-gold/20 mr-4" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-6 px-4">Connected Ecosystems</h2>
-                <p className="text-slate-400 leading-relaxed font-medium text-lg px-4 italic">
-                  Siloed data is the primary bottleneck for scaling. We specialize in engineering the "glue code" that connects disparate systems through custom middleware, webhook handlers, and secure API bridges.
+      {/* ── WHO THIS IS FOR ───────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={whoRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={whoIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>Who This Is For</SectionLabel>
+          </motion.div>
+
+          <div className="flex items-center justify-between gap-4 mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={whoIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              Teams whose systems{" "}
+              <em className="not-italic text-brand-gold">work against them.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={whoIn ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              WHO
+            </motion.span>
+          </div>
+
+          <div className="grid gap-0">
+            {whoFor.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                animate={whoIn ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                  hover:border-brand-gold/20 transition-colors duration-300"
+              >
+                <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
+                  0{i + 1}
+                </span>
+                <p className="text-xl font-serif text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {item}
                 </p>
-              </div>
-              
-              <div className="grid gap-6 sm:grid-cols-2">
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">01 / Ledger</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">FinTech Mesh</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Stripe, Plaid, and custom banking integrations for automated reconciliation.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">02 / Sales</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">CRM Sync</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">HubSpot, Salesforce, and Apollo deep integrations for real-time lead routing.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">03 / Assets</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Cloud Storage</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Google Drive, AWS S3, and Dropbox automated asset management pipelines.</p>
-                </div>
-                <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
-                  <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">04 / Comms</div>
-                  <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Messaging</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Twilio, SendGrid, and Slack notifications driven by operational events.</p>
-                </div>
-              </div>
-            </div>
+                <div className="ml-auto w-6 h-[1px] bg-brand-gold/0 group-hover:bg-brand-gold/60 transition-all duration-500 flex-shrink-0" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <div className="space-y-8">
-              <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-10 backdrop-blur-2xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-gold/5 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-brand-gold/10 transition-colors" />
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-10  pb-6">Integration Audit</h2>
-                <ul className="space-y-10">
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">01</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Technical Discovery</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Identifying schema mismatches and bottleneck points between disparate platforms.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">02</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Middleware Build</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Constructing redundant, serverless handlers with retry logic and error tracking.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">03</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Legacy Bridge</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">Connecting legacy databases to modern cloud services via secure API wrappers.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-6">
-                    <span className="text-brand-gold font-times font-bold text-xl tracking-tighter opacity-50">04</span>
-                    <div>
-                      <p className="font-bold text-white font-times uppercase tracking-wider mb-2">Protocol Security</p>
-                      <p className="text-sm text-slate-400 font-medium leading-relaxed italic">End-to-end credential management via OAuth2 and encrypted environment vaults.</p>
-                    </div>
-                  </li>
+      {/* ── WHAT WE BUILD ─────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full px-36">
+          <WhatWeBuildHead buildRef={buildRef} buildIn={buildIn} />
+
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {whatWeBuild.map((item, i) => (
+              <TiltCard key={item.number} index={i}>
+                <div
+                  className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${item.accent} rounded-t-3xl`}
+                />
+                <div className="text-[11px] font-bold tracking-[0.3em] text-slate-700 mb-6">
+                  {item.number}
+                </div>
+                <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-slate-400 leading-relaxed mb-6">
+                  {item.short}
+                </p>
+                <ul className="space-y-2">
+                  {item.bullets.map((b) => (
+                    <li key={b} className="flex items-center gap-2.5 text-xs text-slate-500">
+                      <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
+                      {b}
+                    </li>
+                  ))}
                 </ul>
+              </TiltCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PRICE ANCHOR ──────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={priceRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={priceIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-[2.5rem] border border-brand-gold/20 bg-white/[0.03] overflow-hidden"
+          >
+            <div className="grid lg:grid-cols-2 gap-0">
+              {/* Left */}
+              <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
+                <SectionLabel>Investment</SectionLabel>
+                <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.1] tracking-tight mb-4">
+                  Priced around the{" "}
+                  <em className="not-italic text-brand-gold">complexity of your stack.</em>
+                </h2>
+                <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
+                  No hourly billing. Every integration project is scoped upfront so
+                  you know exactly what you&apos;re getting and what it costs before
+                  any work begins.
+                </p>
               </div>
 
-              <div className="rounded-3xl border border-brand-gold/10 bg-brand-gold/5 p-12 backdrop-blur-xl text-center group hover:bg-brand-gold/10 transition-colors duration-500">
-                <h2 className="text-2xl font-bold text-white font-times uppercase tracking-[0.2em] mb-4">Eliminate Manual CSVs</h2>
-                <p className="text-sm text-slate-400 font-medium leading-relaxed max-w-xs mx-auto mb-8">
-                  Stop exporting data manually. Let's engineer a real-time integration that works while you sleep.
-                </p>
-                <div className="mt-6 flex flex-col gap-4">
-                  <Button as="link" href="/contact" variant="brand" className="w-full font-times uppercase tracking-widest text-xs py-5 px-8">Discuss My Stack</Button>
-                </div>
+              {/* Right */}
+              <div className="p-12 lg:p-16 flex flex-col justify-center gap-8 bg-brand-gold/[0.03]">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={priceIn ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                >
+                  <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
+                    Typical project range
+                  </p>
+                  <div className="text-5xl font-bold font-serif text-white leading-tight mb-1">
+                    $3,000 – $12,000+
+                  </div>
+                  <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
+                    Depending on complexity and systems involved
+                  </p>
+                </motion.div>
+
+                <div className="h-[1px] bg-white/[0.06]" />
+
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={priceIn ? { opacity: 1 } : {}}
+                  transition={{ duration: 0.7, delay: 0.35 }}
+                  className="text-slate-400 text-sm leading-relaxed"
+                >
+                  Final pricing is always scoped—never guessed. You receive a
+                  fixed-price quote before any work begins.
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={priceIn ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.45 }}
+                  className="flex flex-wrap gap-3"
+                >
+                  <a
+                    href="/pricing"
+                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                  >
+                    View Pricing
+                  </a>
+                  <a
+                    href="/contact"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
+                  >
+                    Get a Quote
+                  </a>
+                </motion.div>
               </div>
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ──────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div className="relative z-10 w-full px-36">
+          <HowItWorksHead />
+
+          <div className="mt-16 space-y-0">
+            {steps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.8, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative grid lg:grid-cols-12 gap-0 lg:gap-8 py-12
+                  border-b border-white/[0.06] last:border-0"
+              >
+                <div className="lg:col-span-1 flex items-start mb-6 lg:mb-0">
+                  <div className="w-14 h-14 rounded-2xl border border-white/10 bg-brand-dark flex items-center justify-center text-brand-gold
+                    group-hover:border-brand-gold/40 group-hover:bg-brand-gold/10 transition-colors duration-300 flex-shrink-0">
+                    <span className="text-sm font-bold font-mono">{step.number}</span>
+                  </div>
+                </div>
+                <div className="lg:col-span-3 lg:pt-3">
+                  <div className="text-sm font-bold text-brand-gold tracking-wide">{step.phase}</div>
+                </div>
+                <div className="lg:col-span-5 lg:pt-1">
+                  <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-slate-400 text-sm leading-relaxed">{step.description}</p>
+                </div>
+                <div className="lg:col-span-3 lg:pt-2 mt-4 lg:mt-0">
+                  <p className="text-[11px] text-slate-600 leading-relaxed font-medium">{step.detail}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </FadeIn>
-      </Container>
+        </div>
+      </section>
+
+      {/* ── WHY THIS MATTERS ──────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(8,6,3,0.93) 30%, rgba(8,6,3,0.93) 70%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={whyRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={whyIn ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>Why It Matters</SectionLabel>
+          </motion.div>
+
+          <div className="flex items-center justify-between gap-4 mb-16">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              animate={whyIn ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+            >
+              Make your business{" "}
+              <em className="not-italic text-brand-gold">run efficiently.</em>
+            </motion.h2>
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={whyIn ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+            >
+              WHY
+            </motion.span>
+          </div>
+
+          <div className="grid gap-0">
+            {why.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -30 }}
+                animate={whyIn ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                  hover:border-brand-gold/20 transition-colors duration-300"
+              >
+                <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
+                  0{i + 1}
+                </span>
+                <p className="text-xl font-serif text-slate-300 group-hover:text-white transition-colors duration-300">
+                  {item}
+                </p>
+                <div className="ml-auto w-6 h-[1px] bg-brand-gold/0 group-hover:bg-brand-gold/60 transition-all duration-500 flex-shrink-0" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── RETAINER TRANSITION ───────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.85) 40%, rgba(5,5,5,0.85) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+
+        <div ref={retainRef} className="relative z-10 w-full px-36">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={retainIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="rounded-[2.5rem] border border-white/[0.08] bg-white/[0.02] p-12 lg:p-16"
+          >
+            <div className="max-w-2xl">
+              <SectionLabel>After Launch</SectionLabel>
+              <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.1] tracking-tight mb-4">
+                Integration work evolves{" "}
+                <em className="not-italic text-brand-gold">as your systems grow.</em>
+              </h2>
+              <p className="text-slate-400 text-sm leading-relaxed mb-8 font-times">
+                Systems update. APIs change. New tools get added. We offer ongoing
+                support to keep your integrations running reliably as your business
+                and tech stack evolve.
+              </p>
+              <ul className="space-y-3 mb-10">
+                {[
+                  "New integrations as your tool stack expands",
+                  "Maintenance and updates when APIs change",
+                  "Performance monitoring and reliability improvements",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-sm text-slate-300">
+                    <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
+                Ongoing engagements from $1,500 – $4,000/month
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── FINAL CTA ─────────────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-32">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.9) 40%, rgba(5,5,5,0.9) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(198,166,104,0.06) 0%, transparent 70%)",
+          }}
+        />
+
+        <div ref={ctaRef} className="relative z-10 w-full px-36 flex flex-col items-center text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-[1px] w-10 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Get Started
+            </span>
+            <div className="h-[1px] w-10 bg-brand-gold" />
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+          >
+            Stop Letting Your Systems{" "}
+            <em className="not-italic text-brand-gold">Work Against You.</em>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
+          >
+            Let&apos;s map your tool stack, identify what&apos;s breaking down, and build integrations that fix it.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={ctaIn ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.35 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
+          >
+            <a
+              href="/contact"
+              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+            >
+              Start Your Integration Project
+            </a>
+            <a
+              href="/request-call"
+              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
+            >
+              Book a Call
+              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+// ─── Extracted heads (avoid hook order issues) ────────────────────────────────
+
+function WhatWeBuildHead({ buildRef, buildIn }) {
+  return (
+    <div ref={buildRef}>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={buildIn ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-4 mb-6"
+      >
+        <div className="h-[1px] w-10 bg-brand-gold" />
+        <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+          What We Build
+        </span>
+      </motion.div>
+
+      <div className="flex items-center justify-between gap-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={buildIn ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+        >
+          Infrastructure that makes your{" "}
+          <em className="not-italic text-brand-gold">systems work together.</em>
+        </motion.h2>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={buildIn ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+        >
+          BUILD
+        </motion.span>
+      </div>
+    </div>
+  );
+}
+
+function HowItWorksHead() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <div ref={ref}>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={inView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.6 }}
+        className="flex items-center gap-4 mb-6"
+      >
+        <div className="h-[1px] w-10 bg-brand-gold" />
+        <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+          How It Works
+        </span>
+      </motion.div>
+
+      <div className="flex items-center justify-between gap-4">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
+        >
+          A structured process for{" "}
+          <em className="not-italic text-brand-gold">reliable integration.</em>
+        </motion.h2>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
+        >
+          HOW
+        </motion.span>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button";
 
+const CALENDAR_URL = "https://calendar.app.google/XMN48TcybVjmij4C7";
+
 const initialForm = {
   fullName: "",
   workEmail: "",
@@ -12,11 +14,6 @@ const initialForm = {
   projectType: "",
   buildGoal: "",
   budgetRange: "",
-  budgetApproved: "",
-  automationInterest: "",
-  confirmAutomationScopedPricedSeparately: false,
-  confirmAutomationStartsAt1500: false,
-  confirmEachWorkflowQuotedIndividually: false,
   startTimeline: "",
   decisionAuthority: "",
 };
@@ -27,30 +24,22 @@ export default function ContactForm() {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
 
-  const totalSteps = 6;
+  const totalSteps = 5;
 
+  // Only Name, Email (step 1) and Budget (step 3) are required
   function isStepValid() {
     switch (step) {
       case 1:
-        return form.fullName && form.workEmail && form.phoneNumber && form.companyOrProjectName;
-      case 2:
-        return form.projectType && form.buildGoal;
+        return form.fullName && form.workEmail;
       case 3:
-        return form.budgetRange && form.budgetApproved;
-      case 4:
-        return (
-          form.automationInterest &&
-          form.confirmAutomationScopedPricedSeparately &&
-          form.confirmAutomationStartsAt1500 &&
-          form.confirmEachWorkflowQuotedIndividually
-        );
-      case 5:
-        return form.startTimeline;
-      case 6:
-        return form.decisionAuthority;
+        return form.budgetRange;
       default:
         return true;
     }
+  }
+
+  function isStepRequired() {
+    return step === 1 || step === 3;
   }
 
   function updateField(key, value) {
@@ -61,10 +50,16 @@ export default function ContactForm() {
     e.preventDefault();
     if (isStepValid()) {
       if (step < totalSteps) setStep(step + 1);
-      setError(""); // Clear any validation errors
+      setError("");
     } else {
-      setError("Please fill out all required fields to continue.");
+      setError("Please fill out the required fields to continue.");
     }
+  };
+
+  const skipStep = (e) => {
+    e.preventDefault();
+    if (step < totalSteps) setStep(step + 1);
+    setError("");
   };
 
   const prevStep = (e) => {
@@ -74,8 +69,8 @@ export default function ContactForm() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    if (!isStepValid()) {
-      setError("Please complete the final step to submit.");
+    if (!form.fullName || !form.workEmail || !form.budgetRange) {
+      setError("Name, email, and budget are required to submit.");
       return;
     }
     setStatus("loading");
@@ -89,7 +84,7 @@ export default function ContactForm() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to submit application");
+      if (!res.ok) throw new Error(data.error || "Failed to submit");
 
       setStatus("success");
       setForm(initialForm);
@@ -107,7 +102,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         className="text-center py-12"
@@ -117,31 +112,37 @@ export default function ContactForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-bold text-white font-times uppercase tracking-widest mb-4">Inquiry Received</h3>
-        <p className="text-slate-400 font-medium italic">Our engineering team will review your specs and respond within 1 business day.</p>
+        <h3 className="text-2xl font-bold text-white font-times uppercase tracking-widest mb-4">Request Received</h3>
+        <p className="text-slate-400 font-medium italic">We&apos;ll review your project and follow up within 24 hours.</p>
       </motion.div>
     );
   }
 
   return (
     <div className="relative">
-      {/* Progress Bar - border removed for a cleaner look */}
-      <div className="absolute -top-12 left-0 w-full h-1 bg-white/5 rounded-full overflow-hidden">
-        <motion.div 
+      {/* Timing + filter copy */}
+      <div className="mb-8 space-y-1">
+        <p className="text-xs text-slate-500 font-medium italic">This takes about 1–2 minutes. We&apos;ll review your project and follow up within 24 hours.</p>
+        <p className="text-[10px] text-brand-gold/60 font-medium uppercase tracking-widest font-times">We typically work on projects starting at $10,000+</p>
+      </div>
+
+      {/* Progress Bar */}
+      <div className="absolute -top-4 left-0 w-full h-px bg-white/5 overflow-hidden">
+        <motion.div
           className="h-full bg-brand-gold"
           initial={{ width: "0%" }}
           animate={{ width: `${(step / totalSteps) * 100}%` }}
           transition={{ duration: 0.5 }}
         />
       </div>
-      <div className="absolute -top-16 right-0 text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] font-times">
+      <div className="absolute -top-8 right-0 text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] font-times">
         Step {step} / {totalSteps}
       </div>
 
       <form onSubmit={step === totalSteps ? onSubmit : nextStep} className="space-y-8" noValidate>
         <AnimatePresence mode="wait">
           {step === 1 && (
-            <motion.section 
+            <motion.section
               key="step1"
               variants={stepVariants}
               initial="initial"
@@ -150,49 +151,49 @@ export default function ContactForm() {
               className="space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">01 / Identity</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Let's start with the basics.</p>
+                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">01 / Contact</h3>
+                <p className="text-xs text-slate-500 font-medium italic">Name and email are required. Everything else is optional.</p>
               </div>
               <div className="grid gap-6">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Full Name</label>
-                  <input 
-                    value={form.fullName} 
-                    onChange={(e) => updateField("fullName", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.fullName ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">
+                    Full Name <span className="text-brand-gold">*</span>
+                  </label>
+                  <input
+                    value={form.fullName}
+                    onChange={(e) => updateField("fullName", e.target.value)}
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.fullName ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="John Doe"
-                    required 
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Work Email</label>
-                  <input 
-                    type="email" 
-                    value={form.workEmail} 
-                    onChange={(e) => updateField("workEmail", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.workEmail ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">
+                    Email <span className="text-brand-gold">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    value={form.workEmail}
+                    onChange={(e) => updateField("workEmail", e.target.value)}
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.workEmail ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
                     placeholder="john@company.com"
-                    required 
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Phone Number</label>
-                  <input 
-                    value={form.phoneNumber} 
-                    onChange={(e) => updateField("phoneNumber", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.phoneNumber ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
-                    placeholder="+1 (555) 000-0000" 
-                    required 
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Phone <span className="text-slate-600">(optional)</span></label>
+                  <input
+                    value={form.phoneNumber}
+                    onChange={(e) => updateField("phoneNumber", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium"
+                    placeholder="+1 (555) 000-0000"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company</label>
-                  <input 
-                    value={form.companyOrProjectName} 
-                    onChange={(e) => updateField("companyOrProjectName", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.companyOrProjectName ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium`}
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Company <span className="text-slate-600">(optional)</span></label>
+                  <input
+                    value={form.companyOrProjectName}
+                    onChange={(e) => updateField("companyOrProjectName", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium"
                     placeholder="Acme Corp"
-                    required 
                   />
                 </div>
               </div>
@@ -201,7 +202,7 @@ export default function ContactForm() {
           )}
 
           {step === 2 && (
-            <motion.section 
+            <motion.section
               key="step2"
               variants={stepVariants}
               initial="initial"
@@ -210,44 +211,43 @@ export default function ContactForm() {
               className="space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">02 / Project Fit</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Define the scope of engineering.</p>
+                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">02 / Project</h3>
+                <p className="text-xs text-slate-500 font-medium italic">Tell us about the problem you&apos;re solving. You can skip this if you prefer.</p>
               </div>
               <div className="grid gap-6">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Project Category</label>
-                  <select 
-                    value={form.projectType} 
-                    onChange={(e) => updateField("projectType", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.projectType ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Project Category <span className="text-slate-600">(optional)</span></label>
+                  <select
+                    value={form.projectType}
+                    onChange={(e) => updateField("projectType", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
                   >
                     <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="SaaS / Web App" className="bg-brand-dark">SaaS / Web App</option>
                     <option value="Business Website with Backend" className="bg-brand-dark">Business Website with Backend</option>
                     <option value="Internal Tool / Dashboard" className="bg-brand-dark">Internal Tool / Dashboard</option>
-                    <option value="Automation-first system" className="bg-brand-dark">Automation-first system</option>
+                    <option value="Workflow Automation" className="bg-brand-dark">Workflow Automation</option>
+                    <option value="Mobile App" className="bg-brand-dark">Mobile App</option>
+                    <option value="System Integrations" className="bg-brand-dark">System Integrations</option>
                     <option value="Not sure yet" className="bg-brand-dark">Not sure yet</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Build Goals</label>
-                  <p className="text-[10px] text-slate-500 mb-3 italic tracking-tight">Describe the problem you’re solving and what success looks like.</p>
-                  <textarea 
-                    value={form.buildGoal} 
-                    onChange={(e) => updateField("buildGoal", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.buildGoal ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium min-h-[150px]`}
-                    placeholder="We need to automate our internal billing lifecycle..."
-                    required 
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">What are you trying to build or fix? <span className="text-slate-600">(optional)</span></label>
+                  <p className="text-[10px] text-slate-500 mb-3 italic tracking-tight">Describe the problem and what success looks like.</p>
+                  <textarea
+                    value={form.buildGoal}
+                    onChange={(e) => updateField("buildGoal", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium min-h-[130px]"
+                    placeholder="We need to automate our billing workflow and reduce manual entry..."
                   />
                 </div>
               </div>
-              {error && step === 2 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
           {step === 3 && (
-            <motion.section 
+            <motion.section
               key="step3"
               variants={stepVariants}
               initial="initial"
@@ -256,38 +256,24 @@ export default function ContactForm() {
               className="space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">03 / Budget Reality</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Alignment on investment range.</p>
+                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">03 / Budget</h3>
+                <p className="text-xs text-slate-500 font-medium italic">Helps us scope the right engagement for you.</p>
               </div>
               <div className="grid gap-6">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Investment Range</label>
-                  <select 
-                    value={form.budgetRange} 
-                    onChange={(e) => updateField("budgetRange", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetRange ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">
+                    Investment Range <span className="text-brand-gold">*</span>
+                  </label>
+                  <select
+                    value={form.budgetRange}
+                    onChange={(e) => updateField("budgetRange", e.target.value)}
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetRange ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                   >
                     <option value="" className="bg-brand-dark text-slate-400">Select one</option>
-                    <option value="Under $2,500" className="bg-brand-dark">Under $2,500</option>
-                    <option value="$2,500 – $4,000" className="bg-brand-dark">$2,500 – $4,000</option>
-                    <option value="$4,000 – $7,500" className="bg-brand-dark">$4,000 – $7,500</option>
-                    <option value="$7,500 – $12,000" className="bg-brand-dark">$7,500 – $12,000</option>
-                    <option value="$12,000+" className="bg-brand-dark">$12,000+</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Approval Status</label>
-                  <select 
-                    value={form.budgetApproved} 
-                    onChange={(e) => updateField("budgetApproved", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetApproved ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
-                  >
-                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
-                    <option value="Yes" className="bg-brand-dark">Yes</option>
-                    <option value="Needs internal approval" className="bg-brand-dark">Needs internal approval</option>
-                    <option value="Not yet" className="bg-brand-dark">Not yet</option>
+                    <option value="$10,000 – $20,000" className="bg-brand-dark">$10,000 – $20,000</option>
+                    <option value="$20,000 – $50,000" className="bg-brand-dark">$20,000 – $50,000</option>
+                    <option value="$50,000+" className="bg-brand-dark">$50,000+</option>
+                    <option value="Not sure yet" className="bg-brand-dark">Not sure yet</option>
                   </select>
                 </div>
               </div>
@@ -296,7 +282,7 @@ export default function ContactForm() {
           )}
 
           {step === 4 && (
-            <motion.section 
+            <motion.section
               key="step4"
               variants={stepVariants}
               initial="initial"
@@ -305,52 +291,30 @@ export default function ContactForm() {
               className="space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">04 / Automation</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Efficiency and workflow intelligence.</p>
+                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">04 / Timeline</h3>
+                <p className="text-xs text-slate-500 font-medium italic">Optional — skip if you&apos;re not sure yet.</p>
               </div>
               <div className="grid gap-6">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Automation Interest</label>
-                  <select 
-                    value={form.automationInterest} 
-                    onChange={(e) => updateField("automationInterest", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.automationInterest ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">When are you looking to start? <span className="text-slate-600">(optional)</span></label>
+                  <select
+                    value={form.startTimeline}
+                    onChange={(e) => updateField("startTimeline", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
                   >
                     <option value="" className="bg-brand-dark text-slate-400">Select one</option>
-                    <option value="Yes, I already know what workflows I need" className="bg-brand-dark">Yes, I already know what workflows I need</option>
-                    <option value="Yes, but I need guidance" className="bg-brand-dark">Yes, but I need guidance</option>
-                    <option value="Maybe later" className="bg-brand-dark">Maybe later</option>
-                    <option value="No" className="bg-brand-dark">No</option>
+                    <option value="As soon as possible" className="bg-brand-dark">As soon as possible</option>
+                    <option value="Within 30 days" className="bg-brand-dark">Within 30 days</option>
+                    <option value="1–3 months" className="bg-brand-dark">1–3 months</option>
+                    <option value="Just exploring" className="bg-brand-dark">Just exploring</option>
                   </select>
                 </div>
-
-                <div className={`rounded-xl border ${error && (!form.confirmAutomationScopedPricedSeparately || !form.confirmAutomationStartsAt1500 || !form.confirmEachWorkflowQuotedIndividually) ? 'border-red-500/50 bg-red-500/5' : 'border-white/5 bg-white/[0.02]'} p-6 space-y-4 transition-colors`}>
-                  <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Technical Acknowledgement</p>
-                  {[
-                    { key: "confirmAutomationScopedPricedSeparately", label: "Automation is scoped/priced separately" },
-                    { key: "confirmAutomationStartsAt1500", label: "Automation setup starts at $1,500" },
-                    { key: "confirmEachWorkflowQuotedIndividually", label: "Each workflow is quoted individually" }
-                  ].map((item) => (
-                    <label key={item.key} className="flex items-start gap-4 cursor-pointer group">
-                      <input 
-                        type="checkbox" 
-                        checked={form[item.key]} 
-                        onChange={(e) => updateField(item.key, e.target.checked)} 
-                        className={`mt-1 accent-brand-gold bg-brand-dark border-white/10 ${error && !form[item.key] ? 'ring-2 ring-red-500/20' : ''}`}
-                        required 
-                      />
-                      <span className={`text-sm ${error && !form[item.key] ? 'text-red-300' : 'text-slate-400'} group-hover:text-white transition-colors font-medium`}>{item.label}</span>
-                    </label>
-                  ))}
-                </div>
               </div>
-              {error && step === 4 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
           )}
 
           {step === 5 && (
-            <motion.section 
+            <motion.section
               key="step5"
               variants={stepVariants}
               initial="initial"
@@ -359,51 +323,16 @@ export default function ContactForm() {
               className="space-y-6"
             >
               <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">05 / Timeline</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Project urgency and scheduling.</p>
+                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">05 / Authority</h3>
+                <p className="text-xs text-slate-500 font-medium italic">Optional — helps us prepare the right conversation.</p>
               </div>
               <div className="grid gap-6">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Deployment Target</label>
-                  <select 
-                    value={form.startTimeline} 
-                    onChange={(e) => updateField("startTimeline", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.startTimeline ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
-                  >
-                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
-                    <option value="Immediately" className="bg-brand-dark">Immediately</option>
-                    <option value="Within 30 days" className="bg-brand-dark">Within 30 days</option>
-                    <option value="1–3 months" className="bg-brand-dark">1–3 months</option>
-                    <option value="Just exploring" className="bg-brand-dark">Just exploring</option>
-                  </select>
-                </div>
-              </div>
-              {error && step === 5 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
-            </motion.section>
-          )}
-
-          {step === 6 && (
-            <motion.section 
-              key="step6"
-              variants={stepVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              className="space-y-6"
-            >
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">06 / Authority</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Final confirmation of stakeholder status.</p>
-              </div>
-              <div className="grid gap-6">
-                <div>
-                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Decision Maker Status</label>
-                  <select 
-                    value={form.decisionAuthority} 
-                    onChange={(e) => updateField("decisionAuthority", e.target.value)} 
-                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.decisionAuthority ? 'border-red-500/50' : 'border-white/10'} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
-                    required
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Are you the decision maker? <span className="text-slate-600">(optional)</span></label>
+                  <select
+                    value={form.decisionAuthority}
+                    onChange={(e) => updateField("decisionAuthority", e.target.value)}
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
                   >
                     <option value="" className="bg-brand-dark text-slate-400">Select one</option>
                     <option value="Yes" className="bg-brand-dark">Yes</option>
@@ -413,30 +342,63 @@ export default function ContactForm() {
                 </div>
               </div>
 
-              {error && step === 6 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest mt-4">{error}</p>}
+              {error && step === 5 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest mt-4">{error}</p>}
             </motion.section>
           )}
         </AnimatePresence>
 
-        <div className="flex flex-col sm:flex-row gap-4 pt-8 ">
+        {/* Navigation */}
+        <div className="flex flex-col sm:flex-row gap-3 pt-8">
           {step > 1 && (
-            <Button 
-              onClick={prevStep} 
-              variant="outline" 
-              className="w-full sm:w-1/3 font-times uppercase tracking-widest text-xs py-4"
+            <Button
+              onClick={prevStep}
+              variant="outline"
+              className="w-full sm:w-auto sm:px-8 font-times uppercase tracking-widest text-xs py-4"
               type="button"
             >
-              Previous
+              Back
             </Button>
           )}
-          <Button 
-            type="submit" 
-            variant="brand" 
-            className={`${step === 1 ? 'w-full' : 'flex-grow'} font-times uppercase tracking-widest text-xs py-4 ${status === "error" ? "bg-red-500/20 text-red-300 border-red-500/50" : ""}`}
-            disabled={status === "loading"}
+          <div className="flex flex-1 gap-3">
+            {!isStepRequired() && step < totalSteps && (
+              <Button
+                onClick={skipStep}
+                variant="outline"
+                className="flex-1 font-times uppercase tracking-widest text-xs py-4 text-slate-500 border-white/5 hover:border-white/10"
+                type="button"
+              >
+                Skip
+              </Button>
+            )}
+            <Button
+              type="submit"
+              variant="brand"
+              className={`flex-1 font-times uppercase tracking-widest text-xs py-4 ${status === "error" ? "bg-red-500/20 text-red-300 border-red-500/50" : ""}`}
+              disabled={status === "loading"}
+            >
+              {status === "loading"
+                ? "Sending..."
+                : step === totalSteps
+                ? "Request a Project Review"
+                : "Continue"}
+            </Button>
+          </div>
+        </div>
+
+        {/* Book a Call option */}
+        <div className="pt-2 text-center">
+          <p className="text-[10px] text-slate-600 uppercase tracking-widest font-times mb-3">Or skip the form entirely</p>
+          <a
+            href={CALENDAR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-brand-gold transition-colors font-medium border border-white/10 hover:border-brand-gold/30 rounded-xl px-6 py-3"
           >
-            {status === "loading" ? "Processing..." : step === totalSteps ? "Submit Specs" : "Continue"}
-          </Button>
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Book a Call Directly
+          </a>
         </div>
       </form>
     </div>
