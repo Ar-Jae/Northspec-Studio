@@ -1,11 +1,11 @@
 export const metadata = {
-  title: "About Northspec Studio",
+  title: "About Northspec Studio | Built for Real Systems",
   description:
-    "We are a specialist engineering collective bridging the gap between high-cost internal hiring and low-quality outsourcing. Learn our 'Built to Spec' philosophy.",
+    "Northspec is a development studio focused on building scalable software, automation, and platforms that support real business operations. Projects start at $10,000.",
   openGraph: {
-    title: "About Northspec Studio | Elite Engineering Collective",
+    title: "About Northspec Studio | Built for Real Systems",
     description:
-      "Northspec Studio builds, fixes, and maintains web and software products to spec with clean code and clear communication.",
+      "We build systems businesses rely on — not just applications. Scalable software, workflow automation, and long-term engineering partnerships.",
     url: "/about",
   },
 };

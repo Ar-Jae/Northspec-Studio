@@ -1,256 +1,585 @@
 "use client";
 
-import Container from "../../components/Container";
-import SectionHeading from "../../components/SectionHeading";
-import Button from "../../components/Button";
-import FadeIn from "../../components/animations/FadeIn";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
+import Button from "../../components/Button";
+import Link from "next/link";
 
-const techStack = [
-  { name: "Next.js", category: "Frontend" },
-  { name: "React", category: "Frontend" },
-  { name: "Tailwind CSS", category: "Frontend" },
-  { name: "Framer Motion", category: "Frontend" },
-  { name: "Node.js", category: "Backend" },
-  { name: "Express", category: "Backend" },
-  { name: "Python", category: "Backend" },
-  { name: "Go", category: "Backend" },
-  { name: "PostgreSQL", category: "Database" },
-  { name: "MongoDB", category: "Database" },
-  { name: "Redis", category: "Database" },
-  { name: "AWS", category: "Cloud" },
-  { name: "Vercel", category: "Cloud" },
-  { name: "Docker", category: "Cloud" },
-  { name: "Terraform", category: "Cloud" },
-];
+// ─── Reusable primitives ──────────────────────────────────────────────────────
 
-const categories = [
-  { title: "Frontend", items: ["Next.js", "React", "Tailwind CSS", "Framer Motion"] },
-  { title: "Backend", items: ["Node.js", "Express", "Python", "Go"] },
-  { title: "Database", items: ["PostgreSQL", "MongoDB", "Redis"] },
-  { title: "Cloud", items: ["AWS", "Vercel", "Docker", "Terraform"] },
-];
+function SectionLabel({ children }) {
+  return (
+    <div className="flex items-center gap-3 mb-6">
+      <div className="w-8 h-px bg-brand-gold" />
+      <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times">
+        {children}
+      </span>
+    </div>
+  );
+}
 
+function SplitReveal({ text, className }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const words = text.split(" ");
+  return (
+    <h2 ref={ref} className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+          <motion.span
+            className="inline-block"
+            initial={{ y: "100%" }}
+            animate={inView ? { y: 0 } : {}}
+            transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </h2>
+  );
+}
+
+function TiltCard({ children, className = "" }) {
+  const ref = useRef(null);
+  function handleMouseMove(e) {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
+    el.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
+  }
+  function handleMouseLeave() {
+    if (ref.current) ref.current.style.transform = "";
+  }
+  return (
+    <div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-300 hover:border-brand-gold/30 ${className}`}
+      style={{ transformStyle: "preserve-3d" }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ─── Extracted section heads (avoids hook-order issues) ───────────────────────
+
+function ApproachHead() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
+      <SectionLabel>How We Think</SectionLabel>
+      <SplitReveal
+        text="A Product-Focused Approach."
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-2xl"
+      />
+      <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
+        This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes — not just shipping code.
+      </p>
+    </motion.div>
+  );
+}
+
+function ProcessHead() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center max-w-2xl mx-auto">
+      <SectionLabel>How We Work</SectionLabel>
+      <SplitReveal
+        text="A Process Built Around Predictability."
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+      />
+      <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
+        Buyers need to feel: this won&apos;t be chaotic. Here&apos;s how we keep it structured from day one.
+      </p>
+    </motion.div>
+  );
+}
+
+function WhyHead() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  return (
+    <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
+      <SectionLabel>Why Northspec</SectionLabel>
+      <SplitReveal
+        text="Built Because Most Projects Fail."
+        className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-2xl"
+      />
+    </motion.div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function AboutPage() {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
   return (
-    <>
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
+    <div className="bg-brand-dark text-white">
       <BackgroundCanvasClient />
-      <Container className="pt-32 pb-16 sm:pt-40 sm:pb-20 relative z-10">
-        <FadeIn>
-          <SectionHeading
-            eyebrow="About"
-            title="Engineering first"
-            description="We build, fix, and maintain production software to spec. Clean code. Clear communication. No guesswork."
+
+      {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
+      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
+        <motion.div style={{ y: heroY }} className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
+        </motion.div>
+
+        <div className="relative z-10 px-6 md:px-36 pt-40 pb-24 max-w-[1400px] mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>About Northspec</SectionLabel>
+          </motion.div>
+
+          <SplitReveal
+            text="Built for Real Systems, Not Just Code."
+            className="text-5xl md:text-7xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
           />
 
-          <div className="mt-16 grid gap-12 lg:grid-cols-12">
-            <div id="why" className="lg:col-span-7 scroll-mt-32">
-              <div className="flex items-center gap-4 mb-8">
-                <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest">
-                  Our Story
-                </h2>
-                <div className="h-[1px] flex-grow bg-white/[0.03]" />
-              </div>
-              <div className="mt-6 space-y-8 text-lg text-slate-400 leading-relaxed font-medium italic">
-                <p>
-                  Northspec Studio was founded on a simple observation: most software projects fail not because of a lack of talent, but because of a lack of clarity. 
-                </p>
-                <div className="p-8 rounded-2xl border border-brand-gold/20 bg-brand-gold/5 backdrop-blur-xl">
-                  <p className="text-white italic">
-                    "We saw agencies shipping 'black box' code that clients couldn't maintain, and developers building features without understanding the business goals."
-                  </p>
-                </div>
-                <p>
-                  We decided to do things differently. We built a studio focused on <span className="text-brand-gold uppercase tracking-widest font-bold">durability</span>. 
-                  To us, that means writing code that lasts, documenting every major decision, and ensuring our clients actually own and understand their technical infrastructure.
-                </p>
-                <p>
-                  Today, we operate as a distributed team of engineers. We don't have account managers. 
-                  When you work with Northspec, you are working directly with the people writing the code.
-                </p>
-              </div>
-            </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
+          >
+            Northspec is a development studio focused on building scalable software, automation, and platforms that support real business operations.
+          </motion.p>
 
-            <aside className="lg:col-span-5">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl sticky top-32 group">
-                <div className="absolute top-0 right-0 p-8 text-6xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">BUILD</div>
-                <h2 className="text-xl font-bold text-white font-times uppercase tracking-widest relative z-10">
-                  Ready to build?
-                </h2>
-                <p className="mt-4 text-slate-400 text-sm leading-relaxed relative z-10 font-medium italic">
-                  We specialize in high-performance engineering for teams that value durability and transparency.
-                </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="mt-12 flex flex-wrap gap-4"
+          >
+            <Button as="link" href="/contact" variant="brand">
+              Start a Project
+            </Button>
+            <a
+              href="https://calendar.app.google/XMN48TcybVjmij4C7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
+            >
+              Book a Call
+            </a>
+          </motion.div>
+        </div>
+      </section>
 
-                <div className="mt-10 flex flex-col gap-4 relative z-10">
-                  <Button as="link" href="/contact" variant="brand">
-                    Start a Project
-                  </Button>
-                  <Button as="link" href="/book" variant="secondary">
-                    Book a Discovery Call
-                  </Button>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </FadeIn>
-      </Container>
+      {/* ── 2. WHAT WE BUILD FOR ───────────────────────────────────────────── */}
+      <WhatWeDoSection />
+
+      {/* ── 3. A PRODUCT-FOCUSED APPROACH ─────────────────────────────────── */}
+      <ApproachSection />
+
+      {/* ── 4. WHO WE WORK WITH ───────────────────────────────────────────── */}
+      <WhoSection />
+
+      {/* ── 5. RESULTS / IMPACT ───────────────────────────────────────────── */}
+      <ImpactSection />
+
+      {/* ── 6. HOW WE WORK ────────────────────────────────────────────────── */}
+      <ProcessSection />
+
+      {/* ── 7. WHY NORTHSPEC ──────────────────────────────────────────────── */}
+      <WhySection />
+
+      {/* ── 8. POSITIONING + RETAINER BRIDGE ──────────────────────────────── */}
+      <BridgeSection />
+
+      {/* ── 9. FINAL CTA ──────────────────────────────────────────────────── */}
+      <CtaSection />
     </div>
+  );
+}
 
-    {/* Core Values Section */}
-    <div className="bg-brand-dark min-h-screen relative overflow-hidden py-32 border-y border-white/5">
-      <BackgroundCanvasClient />
-      <Container className="relative z-10">
-        <FadeIn>
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-white font-times uppercase tracking-[0.2em]">Core Values</h2>
-            <p className="mt-6 text-slate-400 text-lg font-medium italic">
-              These principles guide every line of code we write and every decision we make.
-            </p>
-          </div>
+// ─── Section components ────────────────────────────────────────────────────────
 
-          <div className="mt-24 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Durability",
-                desc: "We build systems that don't just work today, but are maintainable for years to come."
-              },
-              {
-                title: "Transparency",
-                desc: "No black boxes. You have full access to the code, the docs, and the decision logs."
-              },
-              {
-                title: "Precision Execution",
-                desc: "Every project is handled by specialist engineers. No hand-offs to account managers."
-              },
-              {
-                title: "Fixed Scopes",
-                desc: "We believe in clear boundaries. We define what we're building and what it costs upfront."
-              }
-            ].map((value, i) => (
-              <div key={i} className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 backdrop-blur-xl hover:border-brand-gold/30 transition-all duration-500 group">
-                <h3 className="text-xs font-bold text-white font-times uppercase tracking-widest group-hover:text-brand-gold transition-colors">{value.title}</h3>
-                <p className="mt-6 text-sm text-slate-400 leading-relaxed font-medium italic">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </FadeIn>
-      </Container>
-    </div>
+function WhatWeDoSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
-    {/* Tech Stack Section */}
-    <div className="py-24 overflow-hidden bg-brand-dark min-h-screen relative flex items-center">
-      <BackgroundCanvasClient />
-      {/* Animated Background Marquee */}
-      <div className="absolute inset-0 flex flex-col justify-center gap-8 opacity-[0.02] pointer-events-none select-none">
-        <motion.div 
-          animate={{ x: [0, -1000] }}
-          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap gap-12 text-8xl font-bold text-white uppercase"
+  const areas = [
+    { label: "Launching Products", desc: "MVPs and SaaS platforms built for real users, not just demos." },
+    { label: "Improving Operations", desc: "Automation and internal tooling that reduces manual overhead." },
+    { label: "Connecting Systems", desc: "API integrations that eliminate data silos and sync your stack." },
+    { label: "Supporting Long-Term Growth", desc: "Retainer partnerships that keep your system stable and scaling." },
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="max-w-2xl mb-16"
+      >
+        <SectionLabel>What We Do</SectionLabel>
+        <SplitReveal
+          text="We Don't Just Build Apps. We Build Systems."
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+        />
+        <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
+          We don&apos;t just build applications — we build systems that businesses rely on.
+        </p>
+      </motion.div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {areas.map((area, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+          >
+            <TiltCard>
+              <div className="w-8 h-px bg-brand-gold mb-6" />
+              <h3 className="text-sm font-bold text-white font-times uppercase tracking-widest mb-3">{area.label}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed font-medium italic">{area.desc}</p>
+            </TiltCard>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ApproachSection() {
+  const attributes = [
+    { title: "Long-Term Scalability", desc: "We architect for where your business is going, not just where it is today." },
+    { title: "Performance & Reliability", desc: "Systems built to handle real load — not just pass a demo." },
+    { title: "Structured Development", desc: "Clear scoping, milestone-based delivery, no surprises mid-build." },
+    { title: "Clear Communication", desc: "Direct access to the people writing the code. No account managers in between." },
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <div className="grid gap-16 lg:grid-cols-2 items-start">
+        <ApproachHead />
+        <div className="grid gap-5 sm:grid-cols-2">
+          {attributes.map((attr, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+            >
+              <TiltCard>
+                <h3 className="text-xs font-bold text-brand-gold font-times uppercase tracking-widest mb-3">{attr.title}</h3>
+                <p className="text-sm text-slate-400 leading-relaxed font-medium italic">{attr.desc}</p>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhoSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const clients = [
+    "Startups launching MVPs who need engineering they can trust",
+    "Businesses improving internal systems and eliminating manual work",
+    "Teams scaling products and platforms that are outgrowing their current stack",
+    "Companies replacing manual workflows with reliable automation",
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <div className="grid gap-16 lg:grid-cols-2 items-center">
+        <motion.div
+          ref={ref}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7 }}
         >
-          {Array(10).fill(techStack.map(t => t.name).join(" • ")).join(" • ")}
+          <SectionLabel>Who We Work With</SectionLabel>
+          <SplitReveal
+            text="Teams Who Need a System Partner."
+            className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+          />
+          <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
+            We work best with businesses that need a reliable technical partner — not just a contractor to ship features and disappear.
+          </p>
         </motion.div>
-        <motion.div 
-          animate={{ x: [-1000, 0] }}
-          transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-          className="flex whitespace-nowrap gap-12 text-8xl font-bold text-white uppercase"
-        >
-          {Array(10).fill(techStack.map(t => t.name).reverse().join(" • ")).join(" • ")}
-        </motion.div>
+
+        <div className="space-y-4">
+          {clients.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="flex items-start gap-4 rounded-xl border border-white/5 bg-white/[0.02] px-6 py-5"
+            >
+              <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 shrink-0" />
+              <p className="text-slate-300 font-medium text-sm leading-relaxed">{item}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ImpactSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const results = [
+    { stat: "Reduced", label: "Manual Processes", desc: "Through custom automation and workflow systems that replaced hours of daily manual work." },
+    { stat: "Built", label: "Scalable Systems", desc: "Production-grade platforms for growing teams that needed infrastructure to match their pace." },
+    { stat: "Delivered", label: "Production-Ready Apps", desc: "Launch-ready SaaS and internal tools shipped on time and maintained post-launch." },
+    { stat: "Long-Term", label: "Client Partnerships", desc: "Most clients continue working with us after their first project — on retainer, not one-off." },
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="text-center max-w-2xl mx-auto mb-16"
+      >
+        <SectionLabel>Results & Impact</SectionLabel>
+        <SplitReveal
+          text="Specific Results Build Real Trust."
+          className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
+        />
+        <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
+          Every engagement is measured against one standard: did it make your business more reliable, more efficient, or more scalable?
+        </p>
+      </motion.div>
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {results.map((r, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+          >
+            <TiltCard className="h-full">
+              <p className="text-brand-gold text-xs font-bold font-times uppercase tracking-widest mb-1">{r.stat}</p>
+              <h3 className="text-lg font-bold text-white font-times uppercase tracking-wide mb-4">{r.label}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed font-medium italic">{r.desc}</p>
+            </TiltCard>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ProcessSection() {
+  const steps = [
+    { num: "01", title: "Clear Scoping & Planning", desc: "Every project starts with a defined scope document. You know exactly what we're building and what it costs before anything begins." },
+    { num: "02", title: "Structured Development", desc: "Milestone-based delivery with regular check-ins. No disappearing for 6 weeks. You're involved throughout." },
+    { num: "03", title: "Reliable Delivery", desc: "We don't ship code that isn't production-ready. Every release is tested and documented before handoff." },
+    { num: "04", title: "Ongoing Support After Launch", desc: "We offer retainer partnerships for teams that want continued improvement and maintenance after the initial build." },
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <div className="mb-16">
+        <ProcessHead />
       </div>
 
-      <Container className="relative z-10">
-        <FadeIn>
-          <div className="grid gap-16 lg:grid-cols-2 items-center">
-            <div>
-              <h2 className="text-4xl font-semibold text-white font-serif">Our Tech Stack</h2>
-              <p className="mt-6 text-lg text-slate-400 leading-relaxed max-w-xl">
-                We specialize in modern, proven technologies that allow for rapid development without sacrificing performance or security. 
-                While we are tool-agnostic, these are the stacks where we provide the most value.
-              </p>
-              
-              <div className="mt-12 grid sm:grid-cols-2 gap-x-12 gap-y-10">
-                {categories.map((cat) => (
-                  <div key={cat.title} className="group">
-                    <h4 className="text-brand-gold text-xs font-bold uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                      <span className="w-8 h-[1px] bg-brand-gold/30 group-hover:w-12 transition-all" />
-                      {cat.title}
-                    </h4>
-                    <ul className="space-y-2">
-                      {cat.items.map((item) => (
-                        <li key={item} className="text-white text-base font-medium flex items-center gap-2 group/item">
-                          <span className="w-1.5 h-1.5 rounded-full bg-brand-gold/20 group-hover/item:bg-brand-gold transition-colors" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+          >
+            <TiltCard className="h-full relative overflow-hidden">
+              <div className="absolute top-4 right-4 text-5xl font-black text-white/[0.03] font-times select-none">
+                {s.num}
               </div>
-            </div>
+              <p className="text-[10px] font-bold text-brand-gold font-times uppercase tracking-[0.3em] mb-4">{s.num}</p>
+              <h3 className="text-sm font-bold text-white font-times uppercase tracking-widest mb-3">{s.title}</h3>
+              <p className="text-sm text-slate-500 leading-relaxed font-medium italic">{s.desc}</p>
+            </TiltCard>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
-            <div className="relative">
-              <div className="aspect-square rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-sm p-1">
-                <div className="h-full w-full rounded-[2.3rem] border border-white/5 bg-brand-dark/40 flex items-center justify-center relative overflow-hidden">
-                  {/* Floating Tech Grid */}
-                  <div className="grid grid-cols-3 gap-6 p-12">
-                    {techStack.slice(0, 9).map((tech, i) => (
-                      <motion.div
-                        key={tech.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                        whileHover={{ y: -5, scale: 1.05 }}
-                        className="aspect-square rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center p-4 group/icon relative"
-                      >
-                        <div className="absolute inset-0 bg-brand-gold/5 opacity-0 group-hover/icon:opacity-100 transition-opacity rounded-2xl" />
-                        <span className="text-[10px] font-bold text-slate-500 group-hover/icon:text-brand-gold transition-colors text-center uppercase tracking-tighter">
-                          {tech.name}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-gold/10 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-brand-gold/10 blur-[100px] rounded-full" />
-                </div>
-              </div>
-              
-              {/* Floating Badge */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-6 bg-brand-gold p-6 rounded-2xl shadow-2xl shadow-brand-gold/20 hidden md:block"
+function WhySection() {
+  const failReasons = [
+    "Rushed timelines with no planning phase",
+    "Poorly structured codebases that can't scale",
+    "Built for a demo — not for real-world usage",
+    "No documentation or handoff process",
+  ];
+
+  const howWeBuild = [
+    "Systems that work in real-world conditions",
+    "Architecture that scales with your business",
+    "Code that remains reliable and maintainable over time",
+    "Full ownership and documentation on every project",
+  ];
+
+  return (
+    <section className="py-28 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <div className="grid gap-16 lg:grid-cols-2 items-start">
+        <div>
+          <WhyHead />
+          <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-lg">
+            Most software projects fail not because of a lack of talent — but because of a lack of structure, clarity, and long-term thinking.
+          </p>
+
+          <div className="mt-10 space-y-3">
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest font-times mb-4">Common failure points</p>
+            {failReasons.map((r, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="flex items-start gap-3"
               >
-                <p className="text-brand-dark font-bold text-sm leading-tight">
-                  Production<br />Ready Stacks
-                </p>
+                <div className="w-1 h-1 rounded-full bg-red-500/40 mt-2 shrink-0" />
+                <p className="text-sm text-slate-500 font-medium">{r}</p>
               </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-10">
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-6">How we build</p>
+            <div className="space-y-4">
+              {howWeBuild.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-start gap-3"
+                >
+                  <svg className="w-4 h-4 text-brand-gold mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <p className="text-sm text-slate-300 font-medium leading-relaxed">{item}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
-        </FadeIn>
-      </Container>
-    </div>
 
-    <Container className="pb-24">
-      <div id="careers" className="rounded-3xl border border-white/10 bg-white/5 p-8 md:p-12 backdrop-blur-sm scroll-mt-32">
-        <div className="max-w-3xl">
-          <h2 className="text-3xl font-semibold text-white font-serif">Careers</h2>
-          <p className="mt-4 text-slate-400">
-            We are always looking for specialist talent who value autonomy, deep work, and engineering excellence. 
-            While we are not currently hiring for full-time roles, we frequently partner with specialized contractors.
-          </p>
-          <div className="mt-8">
-            <Button as="link" href="/contact/careers" variant="secondary">
-              View Openings
-            </Button>
+          {/* Tech stack teaser */}
+          <div className="mt-6 rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest font-times mb-4">Core stack</p>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "Node.js", "React", "PostgreSQL", "Python", "AWS", "Docker", "n8n"].map((tech) => (
+                <span key={tech} className="text-[10px] font-bold text-slate-400 font-times uppercase tracking-wider border border-white/10 rounded-lg px-3 py-1.5 hover:border-brand-gold/30 hover:text-brand-gold transition-colors">
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </Container>
-    </>
+    </section>
+  );
+}
+
+function BridgeSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="py-20 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-8"
+      >
+        <div className="max-w-xl">
+          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Partnerships</p>
+          <p className="text-lg text-white font-times italic leading-relaxed">
+            Most clients continue working with us long-term to maintain and grow their systems.
+          </p>
+          <p className="mt-2 text-sm text-slate-400 font-medium">
+            We offer dedicated retainer plans starting at $3,000/month for ongoing development and support.
+          </p>
+        </div>
+        <Link
+          href="/retainers"
+          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+        >
+          View Retainer Plans →
+        </Link>
+      </motion.div>
+    </section>
+  );
+}
+
+function CtaSection() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  return (
+    <section className="py-32 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 30 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7 }}
+        className="text-center max-w-3xl mx-auto"
+      >
+        <SectionLabel>Ready to Build</SectionLabel>
+        <SplitReveal
+          text="Let's Build Something That Lasts."
+          className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
+        />
+        <p className="mt-8 text-lg text-slate-400 font-medium italic leading-relaxed max-w-xl mx-auto">
+          Projects typically start at $10,000. We scope every engagement before any commitment is made.
+        </p>
+
+        <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <Button as="link" href="/contact" variant="brand">
+            Start a Project
+          </Button>
+          <a
+            href="https://calendar.app.google/XMN48TcybVjmij4C7"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
+          >
+            Book a Call
+          </a>
+        </div>
+      </motion.div>
+    </section>
   );
 }

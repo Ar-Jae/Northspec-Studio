@@ -1,9 +1,11 @@
 export const metadata = {
-  title: "Pricing & Engagement Models",
-  description: "Transparent, fixed-price models and engineering retainers for startups and mid-market enterprises. No hourly billing, no BS.",
+  title: "Pricing | Northspec Studio",
+  description:
+    "Clear pricing for serious software projects. Most clients invest between $12,000 and $50,000+ depending on scope and complexity.",
   openGraph: {
-    title: "Pricing & Plans | Northspec Studio",
-    description: "Transparent pricing for high-performance software engineering. From MVPs to Enterprise systems.",
+    title: "Pricing | Northspec Studio",
+    description:
+      "Project builds, custom systems, and ongoing support. Fixed-price quotes, no hourly billing.",
     url: "/pricing",
   },
 };
