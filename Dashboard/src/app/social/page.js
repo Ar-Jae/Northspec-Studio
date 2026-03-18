@@ -25,7 +25,7 @@ const SocialPage = () => {
     },
     { 
       platform: "LinkedIn", 
-      content: "We're hiring a new Senior Designer! Apply now on our website.", 
+      content: "We're hiring a new Designer! Apply now on our website.", 
       likes: 45, 
       shares: 10, 
       date: "2024-03-10" 

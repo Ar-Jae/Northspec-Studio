@@ -50,7 +50,7 @@ export default function BuiltToSpecPage() {
               <SectionHeading
                 eyebrow="The Method"
                 title="Built to Spec. Built to Last."
-                description="Our operational philosophy is simple: Radical transparency, elite senior engineering, and zero-BS project management."
+                description="Our operational philosophy is simple: Radical transparency, specialist engineering, and zero-BS project management."
               />
             </div>
             <div className="flex-none">
@@ -62,7 +62,7 @@ export default function BuiltToSpecPage() {
         {/* Core Values */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-32 relative z-10">
           {[
-            { title: "Elite Senior Talent", desc: "We do not employ juniors or account managers. Every person you interact with is a senior engineer capable of making architectural decisions on the spot." },
+            { title: "Specialist Talent", desc: "We do not employ account managers. Every person you interact with is a specialist engineer capable of making architectural decisions on the spot." },
             { title: "Fixed-Scope Execution", desc: "Hourly billing rewards inefficiency. We operate on a value-based, fixed-price model. We define clear deliverables, and the cost remains the same." },
             { title: "Durable Architecture", desc: "We build for the 'Future You'. Clean, readable, and self-documenting code that is easier to maintain and scale as your business grows." }
           ].map((item, i) => (

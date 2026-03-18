@@ -68,7 +68,7 @@ export default function AboutPage() {
                   To us, that means writing code that lasts, documenting every major decision, and ensuring our clients actually own and understand their technical infrastructure.
                 </p>
                 <p>
-                  Today, we operate as a distributed team of senior engineers. We don't have account managers or junior developers. 
+                  Today, we operate as a distributed team of engineers. We don't have account managers. 
                   When you work with Northspec, you are working directly with the people writing the code.
                 </p>
               </div>
@@ -122,8 +122,8 @@ export default function AboutPage() {
                 desc: "No black boxes. You have full access to the code, the docs, and the decision logs."
               },
               {
-                title: "Senior Execution",
-                desc: "Every project is handled by senior engineers. No hand-offs to juniors."
+                title: "Precision Execution",
+                desc: "Every project is handled by specialist engineers. No hand-offs to account managers."
               },
               {
                 title: "Fixed Scopes",
@@ -240,7 +240,7 @@ export default function AboutPage() {
         <div className="max-w-3xl">
           <h2 className="text-3xl font-semibold text-white font-serif">Careers</h2>
           <p className="mt-4 text-slate-400">
-            We are always looking for senior-level talent who value autonomy, deep work, and engineering excellence. 
+            We are always looking for specialist talent who value autonomy, deep work, and engineering excellence. 
             While we are not currently hiring for full-time roles, we frequently partner with specialized contractors.
           </p>
           <div className="mt-8">

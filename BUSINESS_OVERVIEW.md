@@ -3,14 +3,14 @@
 ## 1. Executive Summary
 Northspec Studio is a high-performance engineering collective designed for the modern era of software development. We specialize in building **durable software**, **intelligent workflow automations**, and **scalable technical infrastructure**. 
 
-Unlike traditional agencies that focus on billable hours and junior-heavy teams, Northspec operates as a **senior-only** partner. We bridge the gap between high-cost internal hiring and low-quality outsourcing by providing elite engineering talent on a fixed-scope, high-transparency basis.
+Unlike traditional agencies that focus on billable hours and junior-heavy teams, Northspec operates as a **domain-expert** partner. We bridge the gap between high-cost internal hiring and low-quality outsourcing by providing elite engineering talent on a fixed-scope, high-transparency basis.
 
 ---
 
 ## 2. Core Value Propositions
 
-### Elite Senior Talent
-We do not employ junior developers, account managers, or sales-only representatives. Every person a client interacts with is a senior engineer capable of making architectural decisions. This eliminates "lost in translation" errors and ensures that every line of code meets professional standards.
+### Elite Engineering Talent
+We do not employ account managers or sales-only representatives. Every person a client interacts with is an engineer capable of making architectural decisions. This eliminates "lost in translation" errors and ensures that every line of code meets professional standards.
 
 ### Fixed-Scope Execution
 We believe hourly billing is a conflict of interest. It rewards inefficiency. Northspec operates on a **Value-Based, Fixed-Price** model. We define clear deliverables and timelines upfront. If we finish early, the client gets their product faster; if we take longer, the cost remains the same.

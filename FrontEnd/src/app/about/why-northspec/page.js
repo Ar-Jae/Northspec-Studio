@@ -10,8 +10,8 @@ import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClien
 
 const values = [
   {
-    title: "Senior-Only Execution",
-    description: "We don't have junior developers or account managers. When you hire us, you work directly with the engineers building your system. This eliminates communication overhead and ensures every line of code meets senior standards.",
+    title: "Specialist Execution",
+    description: "We don't have account managers. When you hire us, you work directly with the engineers building your system. This eliminates communication overhead and ensures every line of code meets industry standards.",
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -60,7 +60,7 @@ const comparisons = [
   {
     feature: "Team",
     traditional: "Junior-heavy / Outsourced",
-    northspec: "100% Senior / In-house",
+    northspec: "100% In-house",
     highlight: false
   }
 ];
@@ -76,7 +76,7 @@ export default function WhyNorthspecPage() {
               <SectionHeading
                 eyebrow="Our Philosophy"
                 title="Why Northspec"
-                description="We aren't just another agency. We are an engineering partner focused on durability, transparency, and senior-level execution."
+                description="We aren't just another agency. We are an engineering partner focused on durability, transparency, and high-level execution."
               />
             </div>
             <div className="flex-none">

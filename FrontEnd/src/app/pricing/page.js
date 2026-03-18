@@ -1,3 +1,5 @@
+"use client";
+
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import Button from "../../components/Button";
