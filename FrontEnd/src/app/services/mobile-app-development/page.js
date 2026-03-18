@@ -11,7 +11,7 @@ const outcomes = [
   "Support customer growth and acquisition through mobile",
   "Streamline business operations with purpose-built tools",
   "Deliver reliable, scalable performance from day one",
-  "Build for long-term success—not just a launch demo",
+  "Build for long-term success, not just a launch demo",
 ];
 
 const whoFor = [
@@ -74,7 +74,7 @@ const steps = [
     phase: "Product Planning",
     title: "Define features, user flows, and business goals",
     description:
-      "Before design or code, we align on what the app needs to do and why—ensuring every feature maps to a real business outcome.",
+      "Before design or code, we align on what the app needs to do and why, ensuring every feature maps to a real business outcome.",
     detail: "Discovery call → Feature spec → User flow mapping",
   },
   {
@@ -90,7 +90,7 @@ const steps = [
     phase: "Development",
     title: "Build with performance and scalability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see the app working at every stage—no black-box development.",
+      "Milestone-based delivery with real visibility. You see the app working at every stage, no black-box development.",
     detail: "Milestone delivery → Staging builds → Code review",
   },
   {
@@ -104,7 +104,7 @@ const steps = [
 ];
 
 const why = [
-  "Built for real users—not just demos or pitch decks",
+  "Built for real users, not just demos or pitch decks",
   "Focus on performance, reliability, and long-term maintainability",
   "Structured delivery so you always know where the project stands",
   "Ongoing product thinking well beyond the initial launch",
@@ -117,9 +117,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -243,7 +243,7 @@ export default function MobileAppDevelopmentPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,6rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Mobile Apps Built" delay={0.6} className="block" />
             <SplitReveal text="to Launch, Scale," delay={1.0} className="block" />
             <SplitReveal
@@ -260,7 +260,7 @@ export default function MobileAppDevelopmentPage() {
             className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
           >
             We design and develop mobile applications that support real business
-            goals—from MVP launch to full-scale platforms.
+            goals, from MVP launch to full-scale platforms.
           </motion.p>
 
           <motion.div
@@ -317,7 +317,7 @@ export default function MobileAppDevelopmentPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
-                Building an app isn&apos;t about code—
+                Building an app isn&apos;t about code, 
                 <em className="not-italic text-brand-gold">it&apos;s about a product people actually use.</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
@@ -478,7 +478,7 @@ export default function MobileAppDevelopmentPage() {
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Most agencies charge $100,000–$250,000+ for mobile apps. We deliver
                   the same production-grade quality with a structured, transparent
-                  process—at a fraction of the cost.
+                  process, at a fraction of the cost.
                 </p>
               </div>
 
@@ -509,7 +509,7 @@ export default function MobileAppDevelopmentPage() {
                   className="text-slate-400 text-sm leading-relaxed"
                 >
                   Every project is scoped and priced upfront. No hourly billing,
-                  no hidden costs—a fixed quote before any work begins.
+                  no hidden costs, a fixed quote before any work begins.
                 </motion.p>
 
                 <motion.div

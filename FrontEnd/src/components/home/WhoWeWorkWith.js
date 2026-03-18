@@ -27,7 +27,7 @@ export default function WhoWeWorkWith() {
   const inView = useInView(headRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative z-10 py-32 scroll-mt-16">
+    <section className="relative z-10 py-24 sm:py-32 scroll-mt-16">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -36,8 +36,8 @@ export default function WhoWeWorkWith() {
         }}
       />
 
-      <div className="relative z-10 w-full px-36">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: heading */}
           <div ref={headRef}>
             <motion.div
@@ -68,7 +68,7 @@ export default function WhoWeWorkWith() {
               transition={{ duration: 0.7, delay: 0.25 }}
               className="text-slate-400 leading-relaxed text-sm font-times max-w-sm"
             >
-              We build systems that support real business growth—not experiments or prototypes.
+              We build systems that support real business growth, not experiments or prototypes.
             </motion.p>
           </div>
 

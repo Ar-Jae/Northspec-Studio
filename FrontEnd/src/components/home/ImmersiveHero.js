@@ -11,7 +11,7 @@ function ScrollIndicator() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2.2, duration: 0.8 }}
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20"
+      className="relative -mt-12 mb-4 flex flex-col items-center gap-2 z-20 pointer-events-none"
     >
       <span className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">
         Scroll
@@ -32,9 +32,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -81,7 +81,7 @@ export default function ImmersiveHero() {
 
       <motion.div
         style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-24 lg:px-36 pt-[1in] pb-24"
       >
         {/* Eyebrow */}
         <motion.div
@@ -99,7 +99,7 @@ export default function ImmersiveHero() {
 
         {/* Main headline */}
         <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6
-          text-[clamp(2.5rem,8vw,7.5rem)]"
+          text-[clamp(2.25rem,7.2vw,6.75rem)]"
         >
           <SplitReveal text="Build, Launch," delay={0.7} className="block" />
           <SplitReveal text="and Scale" delay={1.0} className="block" />
@@ -144,26 +144,6 @@ export default function ImmersiveHero() {
           >
             Book a Call
           </Button>
-        </motion.div>
-
-        {/* Social row */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.3, duration: 0.8 }}
-          className="mt-16 flex items-center gap-6"
-        >
-          {site.social.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[11px] font-bold tracking-widest text-slate-600 hover:text-brand-gold transition-colors"
-            >
-              {s.label}
-            </a>
-          ))}
         </motion.div>
       </motion.div>
 

@@ -25,9 +25,9 @@ function SplitReveal({ text, className }) {
   return (
     <h2 ref={ref} className={className} aria-label={text}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.3em]">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "100%" }}
             animate={inView ? { y: 0 } : {}}
             transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -51,9 +51,9 @@ const ISSUE_TYPES = [
 ];
 
 const PRIORITY_OPTIONS = [
-  { value: "critical", label: "🚨 Critical — system down or blocking work", color: "border-red-500/30 bg-red-500/5 text-red-300" },
-  { value: "moderate", label: "⚠️ Moderate — issue affecting workflow", color: "border-yellow-500/30 bg-yellow-500/5 text-yellow-300" },
-  { value: "general", label: "💡 General — request or low-priority question", color: "border-white/10 bg-white/[0.02] text-slate-400" },
+  { value: "critical", label: "🚨 Critical, system down or blocking work", color: "border-red-500/30 bg-red-500/5 text-red-300" },
+  { value: "moderate", label: "⚠️ Moderate, issue affecting workflow", color: "border-yellow-500/30 bg-yellow-500/5 text-yellow-300" },
+  { value: "general", label: "💡 General, request or low-priority question", color: "border-white/10 bg-white/[0.02] text-slate-400" },
 ];
 
 function SupportForm() {
@@ -269,7 +269,7 @@ export default function SupportPage() {
 
           <SplitReveal
             text="Ongoing Support for Your System."
-            className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-3xl mt-2"
+            className="text-[2.7rem] md:text-[3.375rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-3xl mt-2"
           />
 
           <motion.p
@@ -364,7 +364,7 @@ function FormSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const howWeHandle = [
-    { title: "Clear Communication", desc: "You get an acknowledgement and updates as we resolve the issue — no silence." },
+    { title: "Clear Communication", desc: "You get an acknowledgement and updates as we resolve the issue, no silence." },
     { title: "Structured Issue Tracking", desc: "Every request is logged and tracked through to resolution." },
     { title: "Fast Response for Critical Issues", desc: "System-down and blocking issues are treated as top priority." },
     { title: "Ongoing Monitoring", desc: "Retained clients have proactive monitoring included in their plan." },

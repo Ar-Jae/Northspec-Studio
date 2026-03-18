@@ -124,7 +124,7 @@ const sections = [
             },
             {
               label: "Development & Integrations",
-              services: ["APIs and integrations used during client projects are governed by the applicable service agreements for each engagement — not this policy."],
+              services: ["APIs and integrations used during client projects are governed by the applicable service agreements for each engagement, not this policy."],
             },
           ].map((block) => (
             <div key={block.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
@@ -264,7 +264,7 @@ export default function PrivacyPolicyPage() {
             <div className="w-8 h-px bg-brand-gold" />
             <span className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times">Legal</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]">
+          <h1 className="text-[2.7rem] md:text-[3.375rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05]">
             Privacy Policy
           </h1>
           <p className="mt-6 text-lg text-slate-400 font-medium italic leading-relaxed max-w-2xl">

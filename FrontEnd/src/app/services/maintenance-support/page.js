@@ -82,7 +82,7 @@ const steps = [
     phase: "Support Plan",
     title: "Define scope, priorities, and response levels",
     description:
-      "We establish what's covered, how we prioritize issues, and what response times to expect—so nothing is ambiguous.",
+      "We establish what's covered, how we prioritize issues, and what response times to expect, so nothing is ambiguous.",
     detail: "Scope definition → Priority tiers → SLA agreement",
   },
   {
@@ -117,9 +117,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -243,7 +243,7 @@ export default function MaintenanceSupportPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,6rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Keep Your System" delay={0.6} className="block" />
             <SplitReveal text="Running, Secure," delay={1.0} className="block" />
             <SplitReveal
@@ -321,7 +321,7 @@ export default function MaintenanceSupportPage() {
                 <em className="not-italic text-brand-gold">&ldquo;done.&rdquo;</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Without ongoing support, systems degrade quietly—until they break
+                Without ongoing support, systems degrade quietly, until they break
                 loudly. We ensure your system stays stable, secure, and continuously
                 improving so you&apos;re never caught off guard.
               </p>
@@ -477,7 +477,7 @@ export default function MaintenanceSupportPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Industry standard maintenance runs 10–20% of your system&apos;s value
-                  per year. We price based on scope and level of involvement—not
+                  per year. We price based on scope and level of involvement, not
                   arbitrary tiers.
                 </p>
               </div>
@@ -674,7 +674,7 @@ export default function MaintenanceSupportPage() {
                 <p className="text-slate-400 text-sm leading-relaxed font-times">
                   Every project we build is designed to transition seamlessly into
                   an ongoing support engagement. You don&apos;t need to find a new team,
-                  explain your system again, or start over—we already know it.
+                  explain your system again, or start over, we already know it.
                 </p>
               </div>
               <div className="space-y-4">

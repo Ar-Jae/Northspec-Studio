@@ -75,7 +75,6 @@ function NavLink({ item, pathname }) {
 
 // On the homepage, these nav items scroll to sections instead of navigating away
 const HOME_SECTION_MAP = {
-  "/services": "#services",
   "/pricing":  "#pricing",
   "/contact":  "#contact",
 };
@@ -115,7 +114,7 @@ export default function Header() {
         ? "bg-brand-dark/95"
         : "bg-transparent"
     )}>
-      <Container className="flex flex-wrap md:flex-nowrap h-16 items-center justify-between gap-2 px-2 md:px-0">
+      <Container className="flex flex-wrap md:flex-nowrap h-20 items-center justify-between gap-2 px-0">
         <div className="flex items-center flex-shrink-0">
           <Logo className="text-white" />
         </div>

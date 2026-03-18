@@ -23,7 +23,7 @@ const steps = [
     phase: "Build & Iterate",
     title: "Develop with performance and scale in mind",
     description:
-      "We build your system with milestone-based delivery and regular check-ins. No black-box development—you see progress every step of the way.",
+      "We build your system with milestone-based delivery and regular check-ins. No black-box development, you see progress every step of the way.",
     detail: "Milestone-based delivery → Weekly updates → Code review",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@ const steps = [
     phase: "Launch & Support",
     title: "Deploy, monitor, and keep improving",
     description:
-      "We deploy your product, monitor performance, and continue improving it over time. You own everything—code, infrastructure, and documentation.",
+      "We deploy your product, monitor performance, and continue improving it over time. You own everything, code, infrastructure, and documentation.",
     detail: "Deployment → Monitoring → Ongoing improvements",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +64,7 @@ export default function ProcessSection() {
     <section
       id="process"
       ref={sectionRef}
-      className="relative z-10 py-32 sm:py-40 scroll-mt-16"
+      className="relative z-10 py-24 sm:py-32 scroll-mt-16"
     >
       {/* Backdrop */}
       <div
@@ -75,9 +75,9 @@ export default function ProcessSection() {
         }}
       />
 
-      <div className="relative z-10 w-full px-36">
+      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
         {/* Heading */}
-        <div ref={headRef} className="mb-24">
+        <div ref={headRef} className="mb-16 md:mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}

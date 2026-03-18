@@ -90,7 +90,7 @@ const steps = [
     phase: "Development",
     title: "Build with performance and reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see progress at every stage—no black-box development.",
+      "Milestone-based delivery with real visibility. You see progress at every stage, no black-box development.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -107,7 +107,7 @@ const why = [
   "Built for real-world use, not prototypes or demos",
   "Focus on performance, scalability, and long-term reliability",
   "Clear communication with milestone-based delivery",
-  "Long-term product thinking—not one-off builds",
+  "Long-term product thinking, not one-off builds",
 ];
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
@@ -117,9 +117,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -243,7 +243,7 @@ export default function SoftwareDevelopmentPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,6rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Custom Software" delay={0.6} className="block" />
             <SplitReveal text="Built for Real" delay={1.0} className="block" />
             <SplitReveal
@@ -317,12 +317,12 @@ export default function SoftwareDevelopmentPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
-                Software should solve problems—
+                Software should solve problems, 
                 <em className="not-italic text-brand-gold">not create more complexity.</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
                 Every system we build is designed around a specific business outcome.
-                Not a generic feature list—a direct answer to a real operational problem.
+                Not a generic feature list, a direct answer to a real operational problem.
               </p>
             </motion.div>
 
@@ -506,7 +506,7 @@ export default function SoftwareDevelopmentPage() {
                   transition={{ duration: 0.7, delay: 0.35 }}
                   className="text-slate-400 text-sm leading-relaxed"
                 >
-                  Final pricing is always scoped—never guessed. You receive a
+                  Final pricing is always scoped, never guessed. You receive a
                   fixed-price quote before any work begins.
                 </motion.p>
 

@@ -25,9 +25,9 @@ function SplitReveal({ text, className }) {
   return (
     <h2 ref={ref} className={className} aria-label={text}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.3em]">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "100%" }}
             animate={inView ? { y: 0 } : {}}
             transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -143,7 +143,7 @@ export default function WhyNorthspecPage() {
 
           <SplitReveal
             text="Built for Systems That Actually Need to Work."
-            className="text-5xl md:text-7xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
+            className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
           />
 
           <motion.p
@@ -152,7 +152,7 @@ export default function WhyNorthspecPage() {
             transition={{ delay: 0.5, duration: 0.7 }}
             className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
           >
-            We focus on building reliable, scalable software that supports real business operations — not just prototypes or quick builds.
+            We focus on building reliable, scalable software that supports real business operations, not just prototypes or quick builds.
           </motion.p>
 
           <motion.div

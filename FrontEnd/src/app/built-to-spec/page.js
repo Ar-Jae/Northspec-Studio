@@ -28,7 +28,7 @@ const steps = [
     phase: "System Design",
     title: "Define architecture up front",
     description:
-      "We design the technical architecture, integration points, and data flows specific to your business. No generic templates—every decision is made for your context.",
+      "We design the technical architecture, integration points, and data flows specific to your business. No generic templates, every decision is made for your context.",
     detail: "Technical spec → Architecture diagram → Integration map",
   },
   {
@@ -36,7 +36,7 @@ const steps = [
     phase: "Build & Delivery",
     title: "Develop, test, and deploy",
     description:
-      "We build in milestones with regular check-ins and real visibility. You see progress at every stage—no black-box development, no surprises at the finish line.",
+      "We build in milestones with regular check-ins and real visibility. You see progress at every stage, no black-box development, no surprises at the finish line.",
     detail: "Milestone delivery → Staging access → Production deploy",
   },
   {
@@ -50,7 +50,7 @@ const steps = [
 ];
 
 const why = [
-  "Designed around your business—not forced into templates",
+  "Designed around your business, not forced into templates",
   "Built for long-term scalability from day one",
   "Structured process to reduce risk and delivery delays",
   "Clear communication and milestone-based expectations",
@@ -63,9 +63,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -151,7 +151,7 @@ export default function BuiltToSpecPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.5rem,7vw,6.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.25rem,6.3vw,5.85rem)]">
             <SplitReveal text="Custom Systems," delay={0.6} className="block" />
             <SplitReveal
               text="Built to Spec."
@@ -402,7 +402,7 @@ export default function BuiltToSpecPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually. Pricing reflects the
-                  real complexity of the system being built—not a package tier.
+                  real complexity of the system being built, not a package tier.
                 </p>
               </div>
 
@@ -432,7 +432,7 @@ export default function BuiltToSpecPage() {
                   transition={{ duration: 0.7, delay: 0.35 }}
                   className="text-slate-400 text-sm leading-relaxed"
                 >
-                  Final pricing is always scoped—never guessed. You receive a
+                  Final pricing is always scoped, never guessed. You receive a
                   detailed spec and fixed-price quote before any work begins.
                 </motion.p>
 

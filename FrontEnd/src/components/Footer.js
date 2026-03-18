@@ -21,10 +21,11 @@ export default function Footer() {
     <footer className="bg-brand-dark">
       {/* CTA Section */}
       {showCTA && (
-        <div className="bg-white/[0.02]">
-          <Container className="py-16 sm:py-24">
-            <div className="flex flex-col items-center text-center">
-              <h2 className="text-3xl sm:text-4xl font-bold text-white font-serif mb-6 uppercase tracking-wider">
+        <div className="bg-white/[0.02] border-t border-white/[0.06]">
+          <Container className="py-20 sm:py-28 relative overflow-hidden">
+            <div className="absolute inset-0 bg-brand-gold/[0.01] pointer-events-none" />
+            <div className="flex flex-col items-center text-center relative z-10">
+              <h2 className="text-3xl sm:text-5xl font-bold text-white font-serif mb-6 uppercase tracking-tight leading-tight max-w-2xl">
                 Ready to automate your business?
               </h2>
               <p className="text-slate-400 max-w-xl mb-10">

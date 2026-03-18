@@ -96,7 +96,7 @@ const retainerTiers = [
     name: "Growth",
     price: "$5,000 – $7,000",
     period: "/month",
-    for: "Ongoing development plus maintenance—for products that need to keep improving.",
+    for: "Ongoing development plus maintenance, for products that need to keep improving.",
     includes: [
       "Everything in Essential",
       "Feature development (defined scope)",
@@ -148,9 +148,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -190,24 +190,23 @@ export default function PricingPage() {
   const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
 
   const tiersRef   = useRef(null);
+  const tiersIn    = useInView(tiersRef, { once: true, margin: "-100px" });
   const customRef  = useRef(null);
+  const customIn   = useInView(customRef, { once: true, margin: "-100px" });
   const retainRef  = useRef(null);
+  const retainIn   = useInView(retainRef, { once: true, margin: "-100px" });
   const infraRef   = useRef(null);
+  const infraIn    = useInView(infraRef, { once: true, margin: "-100px" });
   const addonsRef  = useRef(null);
+  const addonsIn   = useInView(addonsRef, { once: true, margin: "-100px" });
   const flowRef    = useRef(null);
+  const flowIn     = useInView(flowRef, { once: true, margin: "-100px" });
   const priorityRef= useRef(null);
+  const priorityIn = useInView(priorityRef, { once: true, margin: "-100px" });
   const faqRef     = useRef(null);
+  const faqIn      = useInView(faqRef, { once: true, margin: "-100px" });
   const ctaRef     = useRef(null);
-
-  const tiersIn    = useInView(tiersRef,    { once: true, margin: "-80px" });
-  const customIn   = useInView(customRef,   { once: true, margin: "-80px" });
-  const retainIn   = useInView(retainRef,   { once: true, margin: "-80px" });
-  const infraIn    = useInView(infraRef,    { once: true, margin: "-80px" });
-  const addonsIn   = useInView(addonsRef,   { once: true, margin: "-80px" });
-  const flowIn     = useInView(flowRef,     { once: true, margin: "-80px" });
-  const priorityIn = useInView(priorityRef, { once: true, margin: "-80px" });
-  const faqIn      = useInView(faqRef,      { once: true, margin: "-80px" });
-  const ctaIn      = useInView(ctaRef,      { once: true, margin: "-80px" });
+  const ctaIn      = useInView(ctaRef, { once: true, margin: "-100px" });
 
   return (
     <div className="relative bg-brand-dark min-h-[40vh]">
@@ -243,7 +242,7 @@ export default function PricingPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,5.5rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5rem)]">
             <SplitReveal text="Clear Pricing for" delay={0.6} className="block" />
             <SplitReveal
               text="Serious Projects."
@@ -381,7 +380,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── CUSTOM / BUILT-TO-SPEC ────────────────────────────────────────────── */}
-      <section className="relative z-10 py-24">
+      <section className="relative z-10 py-20 sm:py-24">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -390,7 +389,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={customRef} className="relative z-10 w-full px-6 md:px-36">
+        <div ref={customRef} className="relative z-10 w-full px-6 md:px-24 lg:px-36">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={customIn ? { opacity: 1, y: 0 } : {}}
@@ -466,7 +465,7 @@ export default function PricingPage() {
       </section>
 
       {/* ── ONGOING SUPPORT ───────────────────────────────────────────────────── */}
-      <section className="relative z-10 py-24">
+      <section className="relative z-10 py-20 sm:py-24">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -475,7 +474,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={retainRef} className="relative z-10 w-full px-6 md:px-36">
+        <div ref={retainRef} className="relative z-10 w-full px-6 md:px-24 lg:px-36">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={retainIn ? { opacity: 1, x: 0 } : {}}
@@ -571,7 +570,7 @@ export default function PricingPage() {
           }}
         />
 
-        <div ref={infraRef} className="relative z-10 w-full px-6 md:px-36">
+        <div ref={infraRef} className="relative z-10 w-full px-6 md:px-24 lg:px-36">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={infraIn ? { opacity: 1, y: 0 } : {}}
@@ -772,7 +771,7 @@ export default function PricingPage() {
                 {[
                   { title: "Fixed-Price, Not Hourly", desc: "You know the full cost before work begins. No surprises, no runaway bills." },
                   { title: "Scoped to Your Stage", desc: "A startup needs momentum. An enterprise needs governance. We price accordingly." },
-                  { title: "Built for the Long Run", desc: "Every project is designed with post-launch continuity in mind—not just delivery." },
+                  { title: "Built for the Long Run", desc: "Every project is designed with post-launch continuity in mind, not just delivery." },
                 ].map((item, i) => (
                   <div key={i}>
                     <h4 className="text-white font-bold font-serif text-sm mb-2">{item.title}</h4>

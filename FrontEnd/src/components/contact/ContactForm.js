@@ -292,7 +292,7 @@ export default function ContactForm() {
             >
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">04 / Timeline</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Optional — skip if you&apos;re not sure yet.</p>
+                <p className="text-xs text-slate-500 font-medium italic">Optional, skip if you&apos;re not sure yet.</p>
               </div>
               <div className="grid gap-6">
                 <div>
@@ -324,7 +324,7 @@ export default function ContactForm() {
             >
               <div className="space-y-2">
                 <h3 className="text-xl font-bold text-white font-times uppercase tracking-widest">05 / Authority</h3>
-                <p className="text-xs text-slate-500 font-medium italic">Optional — helps us prepare the right conversation.</p>
+                <p className="text-xs text-slate-500 font-medium italic">Optional, helps us prepare the right conversation.</p>
               </div>
               <div className="grid gap-6">
                 <div>

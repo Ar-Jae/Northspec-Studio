@@ -82,7 +82,7 @@ const steps = [
     phase: "System Design",
     title: "Design workflows, integrations, and logic",
     description:
-      "We architect the automation system—triggers, conditions, integrations, and data flows—before building anything.",
+      "We architect the automation system, triggers, conditions, integrations, and data flows, before building anything.",
     detail: "Workflow diagrams → Integration spec → Logic design",
   },
   {
@@ -104,7 +104,7 @@ const steps = [
 ];
 
 const why = [
-  "Reduce operational costs—not just save time",
+  "Reduce operational costs, not just save time",
   "Save hours of manual work every week, reliably",
   "Improve accuracy and eliminate costly human error",
   "Scale your operations without scaling your team",
@@ -117,9 +117,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -243,7 +243,7 @@ export default function WorkflowAutomationPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,6rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Automate Your" delay={0.6} className="block" />
             <SplitReveal text="Workflows." delay={1.0} className="block" />
             <SplitReveal
@@ -321,7 +321,7 @@ export default function WorkflowAutomationPage() {
                 <em className="not-italic text-brand-gold">slow businesses down.</em>
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Most teams are running on duct-taped workflows—copy-pasting data,
+                Most teams are running on duct-taped workflows, copy-pasting data,
                 manually triggering processes, and losing hours to tasks that should
                 happen automatically. We build the systems that fix that.
               </p>
@@ -507,7 +507,7 @@ export default function WorkflowAutomationPage() {
                   transition={{ duration: 0.7, delay: 0.35 }}
                   className="text-slate-400 text-sm leading-relaxed"
                 >
-                  Final pricing is always scoped—never guessed. You receive a
+                  Final pricing is always scoped, never guessed. You receive a
                   fixed-price quote before any work begins.
                 </motion.p>
 

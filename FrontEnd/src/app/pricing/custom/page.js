@@ -27,7 +27,7 @@ const steps = [
     phase: "Discovery & Planning",
     title: "Analyze your requirements, workflows, and constraints",
     description:
-      "We spend time understanding your business—not just what to build, but why. Requirements, constraints, and success criteria are defined before architecture begins.",
+      "We spend time understanding your business, not just what to build, but why. Requirements, constraints, and success criteria are defined before architecture begins.",
     detail: "Stakeholder interviews → Requirements doc → Scope definition",
   },
   {
@@ -35,7 +35,7 @@ const steps = [
     phase: "System Architecture",
     title: "Design how everything connects and scales",
     description:
-      "We architect the full system—data models, integration points, API contracts, and infrastructure—before writing a single line of code.",
+      "We architect the full system, data models, integration points, API contracts, and infrastructure, before writing a single line of code.",
     detail: "Technical spec → Architecture plan → Scalability review",
   },
   {
@@ -43,7 +43,7 @@ const steps = [
     phase: "Development",
     title: "Build with performance and long-term reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see the system working at every stage—no black-box development, no surprises at the end.",
+      "Milestone-based delivery with real visibility. You see the system working at every stage, no black-box development, no surprises at the end.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -57,16 +57,16 @@ const steps = [
 ];
 
 const whyCustom = [
-  "Built specifically for your business—not forced into someone else's template",
+  "Built specifically for your business, not forced into someone else's template",
   "Eliminates inefficiencies across systems by designing exactly what you need",
-  "Scalable architecture from day one—built to grow with your operations",
+  "Scalable architecture from day one, built to grow with your operations",
   "Long-term flexibility and control over your own system and roadmap",
 ];
 
 const riskReduction = [
   { label: "Structured Process", desc: "Defined milestones prevent scope from expanding without visibility or agreement." },
   { label: "Clear Communication", desc: "You see the project at every stage. No updates dropped into a void." },
-  { label: "Scalable from Day One", desc: "Architecture decisions are made for your growth—not just your launch." },
+  { label: "Scalable from Day One", desc: "Architecture decisions are made for your growth, not just your launch." },
   { label: "Fixed-Price Quotes", desc: "You know the full cost before work begins. No hourly billing, no runaway budgets." },
 ];
 
@@ -77,9 +77,9 @@ function SplitReveal({ text, className, delay = 0 }) {
   return (
     <span className={className}>
       {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden mr-[0.25em] last:mr-0">
+        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{
@@ -168,7 +168,7 @@ export default function CustomPlansPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.3rem,6vw,6rem)]">
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
             <SplitReveal text="Custom Software," delay={0.6} className="block" />
             <SplitReveal text="Built Around" delay={1.0} className="block" />
             <SplitReveal
@@ -249,7 +249,7 @@ export default function CustomPlansPage() {
                 Some systems are too complex, too specialized, or too deeply tied
                 to your specific workflows to be scoped into a standard tier. Custom
                 projects are how we handle the work that requires real architectural
-                thinking—not templated solutions.
+                thinking, not templated solutions.
               </p>
             </motion.div>
 
@@ -408,7 +408,7 @@ export default function CustomPlansPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually based on what your system
-                  actually requires. Every quote is fixed-price—no hourly billing,
+                  actually requires. Every quote is fixed-price, no hourly billing,
                   no surprises, no budget overruns.
                 </p>
               </div>
@@ -677,7 +677,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
           >
-            Let&apos;s Build the Right System—{" "}
+            Let&apos;s Build the Right System, {" "}
             <em className="not-italic text-brand-gold">Not Just Any System.</em>
           </motion.h2>
 
@@ -687,7 +687,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly—architecture, timeline, and fixed-price quote included.
+            Tell us what you&apos;re building and we&apos;ll scope it properly, architecture, timeline, and fixed-price quote included.
           </motion.p>
 
           <motion.div

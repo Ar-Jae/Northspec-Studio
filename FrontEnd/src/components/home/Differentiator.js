@@ -27,7 +27,7 @@ export default function Differentiator() {
   const inView = useInView(headRef, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative z-10 py-32 scroll-mt-16">
+    <section className="relative z-10 py-24 sm:py-32 scroll-mt-16">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -36,8 +36,8 @@ export default function Differentiator() {
         }}
       />
 
-      <div className="relative z-10 w-full px-36">
-        <div ref={headRef} className="mb-16">
+      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+        <div ref={headRef} className="mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}

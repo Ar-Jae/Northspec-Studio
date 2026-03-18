@@ -26,9 +26,9 @@ function SplitReveal({ text, className }) {
   return (
     <h2 ref={ref} className={className} aria-label={text}>
       {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.3em]">
           <motion.span
-            className="inline-block"
+            className="inline-block -mb-[0.2em]"
             initial={{ y: "100%" }}
             animate={inView ? { y: 0 } : {}}
             transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
@@ -80,7 +80,7 @@ function ApproachHead() {
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
-        This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes — not just shipping code.
+        This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes, not just shipping code.
       </p>
     </motion.div>
   );
@@ -145,7 +145,7 @@ export default function AboutPage() {
 
           <SplitReveal
             text="Built for Real Systems, Not Just Code."
-            className="text-5xl md:text-7xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
+            className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
           />
 
           <motion.p
@@ -233,7 +233,7 @@ function WhatWeDoSection() {
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          We don&apos;t just build applications — we build systems that businesses rely on.
+          We don&apos;t just build applications, we build systems that businesses rely on.
         </p>
       </motion.div>
 
@@ -261,7 +261,7 @@ function WhatWeDoSection() {
 function ApproachSection() {
   const attributes = [
     { title: "Long-Term Scalability", desc: "We architect for where your business is going, not just where it is today." },
-    { title: "Performance & Reliability", desc: "Systems built to handle real load — not just pass a demo." },
+    { title: "Performance & Reliability", desc: "Systems built to handle real load, not just pass a demo." },
     { title: "Structured Development", desc: "Clear scoping, milestone-based delivery, no surprises mid-build." },
     { title: "Clear Communication", desc: "Direct access to the people writing the code. No account managers in between." },
   ];
@@ -317,7 +317,7 @@ function WhoSection() {
             className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
           />
           <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-            We work best with businesses that need a reliable technical partner — not just a contractor to ship features and disappear.
+            We work best with businesses that need a reliable technical partner, not just a contractor to ship features and disappear.
           </p>
         </motion.div>
 
@@ -349,7 +349,7 @@ function ImpactSection() {
     { stat: "Reduced", label: "Manual Processes", desc: "Through custom automation and workflow systems that replaced hours of daily manual work." },
     { stat: "Built", label: "Scalable Systems", desc: "Production-grade platforms for growing teams that needed infrastructure to match their pace." },
     { stat: "Delivered", label: "Production-Ready Apps", desc: "Launch-ready SaaS and internal tools shipped on time and maintained post-launch." },
-    { stat: "Long-Term", label: "Client Partnerships", desc: "Most clients continue working with us after their first project — on retainer, not one-off." },
+    { stat: "Long-Term", label: "Client Partnerships", desc: "Most clients continue working with us after their first project, on retainer, not one-off." },
   ];
 
   return (
@@ -434,7 +434,7 @@ function WhySection() {
   const failReasons = [
     "Rushed timelines with no planning phase",
     "Poorly structured codebases that can't scale",
-    "Built for a demo — not for real-world usage",
+    "Built for a demo, not for real-world usage",
     "No documentation or handoff process",
   ];
 
@@ -451,7 +451,7 @@ function WhySection() {
         <div>
           <WhyHead />
           <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-lg">
-            Most software projects fail not because of a lack of talent — but because of a lack of structure, clarity, and long-term thinking.
+            Most software projects fail not because of a lack of talent, but because of a lack of structure, clarity, and long-term thinking.
           </p>
 
           <div className="mt-10 space-y-3">
