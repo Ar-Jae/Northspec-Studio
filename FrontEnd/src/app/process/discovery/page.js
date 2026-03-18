@@ -105,12 +105,6 @@ export default function DiscoveryPage() {
         </FadeIn>
       </Container>
     </div>
-              </div>
-            </aside>
-          </div>
-        </FadeIn>
-      </Container>
-    </div>
   );
 }
 
