@@ -6,13 +6,12 @@ import { motion, useInView } from "framer-motion";
 const services = [
   {
     number: "01",
-    title: "Web Development",
-    short: "Production marketing sites and landing pages built with Next.js/React.",
+    title: "Product Development",
+    short: "Launch fast with a solid foundation built for real growth.",
     bullets: [
-      "Next.js / React (App Router)",
-      "Marketing sites + landing pages",
-      "Accessible, responsive components",
-      "Core Web Vitals & performance",
+      "MVPs and early-stage products",
+      "Full-stack web applications",
+      "Scalable architecture built for growth",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -24,31 +23,12 @@ const services = [
   },
   {
     number: "02",
-    title: "Software Engineering",
-    short: "APIs, integrations, and internal tools built with clear specs and stable interfaces.",
+    title: "Automation & AI Systems",
+    short: "Reduce manual work and increase efficiency across your operations.",
     bullets: [
-      "APIs + third-party integrations",
-      "Internal dashboards + tools",
-      "Background jobs & workflows",
-      "Auth + permissions systems",
-    ],
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
-      </svg>
-    ),
-    accent: "from-blue-500/10 to-transparent",
-  },
-  {
-    number: "03",
-    title: "Workflow Automation",
-    short: "Eliminate manual work with intelligent automation that scales with your business.",
-    bullets: [
-      "n8n workflow automation",
-      "CRM + billing integrations",
-      "AI-powered workflows",
-      "Custom automation pipelines",
+      "Workflow automation (n8n, APIs)",
+      "AI-powered processes and integrations",
+      "Data pipelines and system connections",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -59,58 +39,21 @@ const services = [
     accent: "from-purple-500/10 to-transparent",
   },
   {
-    number: "04",
-    title: "Mobile App Development",
-    short: "iOS and Android apps tied to your operational workflows.",
+    number: "03",
+    title: "Platforms & Internal Tools",
+    short: "Build systems your business can rely on at any scale.",
     bullets: [
-      "iOS + Android delivery",
-      "React Native builds",
-      "Tied to backend systems",
-      "App Store deployment",
+      "SaaS platforms",
+      "Internal dashboards and tools",
+      "Role-based systems and integrations",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
       </svg>
     ),
-    accent: "from-cyan-500/10 to-transparent",
-  },
-  {
-    number: "05",
-    title: "Integrations",
-    short: "Connect your systems - CRM, billing, communications - into one coherent stack.",
-    bullets: [
-      "CRM + billing connectors",
-      "Webhook & event pipelines",
-      "Third-party API bridges",
-      "Data sync & transforms",
-    ],
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-      </svg>
-    ),
-    accent: "from-emerald-500/10 to-transparent",
-  },
-  {
-    number: "06",
-    title: "Product Support",
-    short: "Maintenance, debugging, audits, and performance work to keep systems stable.",
-    bullets: [
-      "Ongoing maintenance retainers",
-      "Performance + Core Web Vitals",
-      "Debugging + incident response",
-      "Audits + code refactors",
-    ],
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>
-    ),
-    accent: "from-rose-500/10 to-transparent",
+    accent: "from-blue-500/10 to-transparent",
   },
 ];
 
@@ -189,8 +132,8 @@ export default function ServicesSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
             >
-              Engineering that{" "}
-              <em className="not-italic text-brand-gold">delivers.</em>
+              What We{" "}
+              <em className="not-italic text-brand-gold">Build.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
@@ -208,8 +151,8 @@ export default function ServicesSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-4 max-w-sm text-slate-400 leading-relaxed text-sm font-times"
           >
-            Every engagement is scope-defined up front. No hourly billing,
-            no scope creep, no surprises. You own the code from day one.
+            We partner with teams that need more than just code—we build
+            systems that support real business growth.
           </motion.p>
 
           {/* Gold divider */}
@@ -222,7 +165,7 @@ export default function ServicesSection() {
         </div>
 
         {/* Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-3">
           {services.map((svc, i) => (
             <TiltCard key={svc.number} index={i}>
               {/* Gradient glow top */}

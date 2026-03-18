@@ -6,25 +6,11 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 const steps = [
   {
     number: "01",
-    phase: "Discover",
-    title: "Understand the problem first",
+    phase: "Strategy & Scope",
+    title: "Define what needs to be built",
     description:
-      "We start by mapping your operations, constraints, and goals - before a single line of code is written. No assumptions. No guessing.",
-    detail: "Discovery call → Problem statement → Stakeholder alignment",
-    icon: (
-      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    ),
-  },
-  {
-    number: "02",
-    phase: "Specify",
-    title: "Document every decision",
-    description:
-      "We write the spec before we build. Every requirement, every tradeoff, every interface is documented so there are zero surprises.",
-    detail: "Technical spec → Scope doc → Timeline & milestones",
+      "We map your business goals, constraints, and requirements before writing a single line of code. Every project starts with a clear plan.",
+    detail: "Discovery call → Problem statement → Scope document",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
@@ -33,11 +19,11 @@ const steps = [
     ),
   },
   {
-    number: "03",
-    phase: "Build",
-    title: "Clean code, predictable delivery",
+    number: "02",
+    phase: "Build & Iterate",
+    title: "Develop with performance and scale in mind",
     description:
-      "We execute against the spec with regular check-ins. You see progress at every milestone - no black-box development.",
+      "We build your system with milestone-based delivery and regular check-ins. No black-box development—you see progress every step of the way.",
     detail: "Milestone-based delivery → Weekly updates → Code review",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -47,12 +33,12 @@ const steps = [
     ),
   },
   {
-    number: "04",
-    phase: "Deliver",
-    title: "You own everything",
+    number: "03",
+    phase: "Launch & Support",
+    title: "Deploy, monitor, and keep improving",
     description:
-      "Clean handoff. Full documentation. You own the code, the infrastructure, and the systems. No lock-in, no gotchas.",
-    detail: "Deployment → Documentation → Full code ownership",
+      "We deploy your product, monitor performance, and continue improving it over time. You own everything—code, infrastructure, and documentation.",
+    detail: "Deployment → Monitoring → Ongoing improvements",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
@@ -111,9 +97,9 @@ export default function ProcessSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(2.5rem,5vw,5rem)] leading-[1] tracking-tight"
             >
-              Built to Spec.{" "}
+              A Structured Approach{" "}
               <br />
-              <em className="not-italic text-brand-gold">Built to Last.</em>
+              <em className="not-italic text-brand-gold">That Delivers.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
