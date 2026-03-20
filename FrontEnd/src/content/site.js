@@ -29,37 +29,36 @@ const site = {
       label: "Services", 
       href: "/services",
       children: [
-        { label: "Built to Spec. Built to Last.", href: "/built-to-spec" },
-        { label: "Software Development", href: "/services/software-development" },
-        { label: "Workflow Automation", href: "/services/workflow-automation" },
-        { label: "Mobile App Development", href: "/services/mobile-app-development" },
-        { label: "Integrations", href: "/services/integrations" },
-        { label: "Maintenance & Support", href: "/services/maintenance-support" },
+        { label: "Built to Spec", href: "/built-to-spec", description: "Our engineering philosophy and standards." },
+        { label: "Software Engineering", href: "/services/software-development", description: "Custom web and backend systems." },
+        { label: "Workflow Automation", href: "/services/workflow-automation", description: "n8n and AI-driven process optimization." },
+        { label: "Mobile Apps", href: "/services/mobile-app-development", description: "iOS and Android product development." },
+        { label: "Integrations", href: "/services/integrations", description: "Connect your existing software stack." },
       ]
     },
     { 
       label: "Pricing", 
       href: "/pricing",
       children: [
-        { label: "All Pricing", href: "/pricing" },
-        { label: "Retainers", href: "/retainers" },
-        { label: "Custom Plans", href: "/pricing/custom" },
+        { label: "Standard Plans", href: "/pricing", description: "Transparent tiered pricing for projects." },
+        { label: "Retainers", href: "/retainers", description: "Ongoing support and engineering bandwidth." },
+        { label: "Custom Quotes", href: "/pricing/custom", description: "Bespoke solutions for unique needs." },
       ]
     },
     { 
       label: "About", 
       href: "/about",
       children: [
-        { label: "About Us", href: "/about" },
-        { label: "Why Northspec", href: "/about/why-northspec" },
+        { label: "Company", href: "/about", description: "Our story, mission, and team." },
+        { label: "Why Us", href: "/about/why-northspec", description: "What makes Northspec the right partner." },
       ]
     },
     { 
       label: "Contact", 
       href: "/contact",
       children: [
-        { label: "Contact Form", href: "/contact" },
-        { label: "Support", href: "/contact/support" },
+        { label: "General", href: "/contact", description: "Start a new project conversation." },
+        { label: "Support", href: "/contact/support", description: "Help for active clients and systems." },
       ]
     },
   ],

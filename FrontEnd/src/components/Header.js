@@ -22,18 +22,17 @@ function NavLink({ item, pathname }) {
     >
       <Link
         href={item.href}
-        onClick={(e) => scrollToSection(e, item.href, pathname)}
         className={cn(
-          "px-5 py-2 text-sm font-medium rounded-full transition-all flex items-center gap-1",
+          "px-4 py-2 text-sm font-medium rounded-xl transition-all flex items-center gap-1",
           isActive
-            ? "bg-brand-gold text-brand-dark shadow-lg shadow-brand-gold/20"
-            : "text-slate-300 hover:text-white hover:bg-white/10"
+            ? "text-brand-gold bg-brand-gold/10"
+            : "text-slate-400 hover:text-white hover:bg-white/5"
         )}
       >
         {item.label}
         {item.children && (
           <svg 
-            className={cn("w-4 h-4 transition-transform duration-200", isOpen && "rotate-180")} 
+            className={cn("w-3.5 h-3.5 transition-transform duration-200", isOpen && "rotate-180")} 
             fill="none" 
             viewBox="0 0 24 24" 
             stroke="currentColor"
@@ -53,14 +52,21 @@ function NavLink({ item, pathname }) {
               transition={{ duration: 0.2 }}
               className="absolute left-0 mt-2 w-56 rounded-2xl bg-brand-dark/90 backdrop-blur-xl border border-white/10 p-2 shadow-2xl"
             >
-              <ul className="flex flex-col gap-1">
+              <ul className="flex flex-col gap-0.5">
                 {item.children.map((child) => (
                   <li key={child.href}>
                     <Link
                       href={child.href}
-                      className="block px-4 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                      className="group/item flex flex-col items-start px-4 py-3 leading-tight transition-all hover:bg-white/5 rounded-xl border border-transparent hover:border-white/5"
                     >
-                      {child.label}
+                      <span className="text-sm font-semibold text-slate-200 group-hover/item:text-brand-gold transition-colors">
+                        {child.label}
+                      </span>
+                      {child.description && (
+                        <p className="mt-1 text-[12px] text-slate-500 group-hover/item:text-slate-400 line-clamp-1">
+                          {child.description}
+                        </p>
+                      )}
                     </Link>
                   </li>
                 ))}
@@ -114,14 +120,14 @@ export default function Header() {
         ? "bg-brand-dark/95"
         : "bg-transparent"
     )}>
-      <Container className="flex flex-wrap md:flex-nowrap h-20 items-center justify-between gap-2 px-0">
+      <Container className="flex items-center justify-between h-20">
         <div className="flex items-center flex-shrink-0">
           <Logo className="text-white" />
         </div>
 
         {/* Desktop nav */}
-        <nav className="hidden md:block flex-grow text-center" aria-label="Primary">
-          <ul className="inline-flex items-center gap-1 rounded-full bg-white/5 p-1 backdrop-blur-md border border-white/10">
+        <nav className="hidden md:block" aria-label="Primary">
+          <ul className="flex items-center gap-2">
             {navLinks.map((item) => (
               <NavLink key={item.href} item={item} pathname={pathname} />
             ))}
@@ -129,9 +135,12 @@ export default function Header() {
         </nav>
 
         {/* Desktop CTA button */}
-        <div className="hidden md:flex items-center gap-2 flex-shrink-0">
+        <div className="hidden md:flex items-center gap-4 flex-shrink-0">
+          <Link href="tel:+1234567890" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+            Support
+          </Link>
           <Button as="link" href="/request-call" variant="brand">
-            Request a Call
+            Get Started
           </Button>
         </div>
 
