@@ -12,13 +12,13 @@ import FinalCTA from "../components/home/FinalCTA";
 import ContactSection from "../components/home/ContactSection";
 
 export const metadata = {
-  title: "Build, Launch, and Scale Software That Actually Works | Northspec Studio",
+  title: "Build, Launch, and Scale Software That Works for You | Northspec Studio",
   description:
-    "Northspec Studio designs and develops production-ready applications, automation systems, and platforms for startups and growing businesses.",
+    "Northspec Studio designs and develops production ready applications, automation systems, and scalable platforms that help startups and growing businesses operate more efficiently and scale with confidence.",
   openGraph: {
     title: "Northspec Studio | Product Development & Automation for Startups",
     description:
-      "We build MVPs, automation systems, and scalable platforms for startups and growing businesses. Serious projects only.",
+      "We design and develop production ready applications, automation systems, and scalable platforms that help startups and growing businesses operate more efficiently and scale with confidence.",
     url: "/",
   },
 };

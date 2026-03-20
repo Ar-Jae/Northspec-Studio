@@ -813,7 +813,7 @@ export default function PricingPage() {
             <em className="not-italic text-brand-gold">straight answers.</em>
           </motion.h2>
 
-          <div className="max-w-3xl space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {faqs.map((faq, i) => (
               <motion.details
                 key={i}
@@ -821,7 +821,7 @@ export default function PricingPage() {
                 animate={faqIn ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + i * 0.06 }}
                 className="group rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6
-                  [&_summary::-webkit-details-marker]:hidden hover:border-white/15 transition-colors duration-300"
+                  [&_summary::-webkit-details-marker]:hidden hover:border-white/15 transition-colors duration-300 h-fit"
               >
                 <summary className="flex cursor-pointer items-center justify-between gap-4 text-white">
                   <h3 className="text-base font-semibold font-serif leading-snug">{faq.question}</h3>
