@@ -101,10 +101,9 @@ export default function ImmersiveHero() {
         <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6
           text-[clamp(2.25rem,7.2vw,6.75rem)]"
         >
-          <SplitReveal text="Build, Launch," delay={0.7} className="block" />
-          <SplitReveal text="and Scale" delay={1.0} className="block" />
+          <SplitReveal text="Build, Launch, and Scale" delay={0.7} className="block" />
           <SplitReveal
-            text="Software That Works."
+            text="Software That Works for You."
             delay={1.3}
             className="block text-brand-gold"
           />
@@ -117,8 +116,9 @@ export default function ImmersiveHero() {
           transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
           className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
         >
-          We design and develop production-ready applications, automation
-          systems, and platforms for startups and growing businesses.
+          We design and develop production ready applications, automation
+          systems, and scalable platforms that help startups and growing
+          businesses operate more efficiently and scale with confidence.
         </motion.p>
 
         {/* CTAs */}
