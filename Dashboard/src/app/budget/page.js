@@ -9,7 +9,7 @@ export default function BudgetPage() {
   useEffect(() => {
     async function fetchBudgets() {
       try {
-        const res = await fetch("http://localhost:4000/api/dashboard/budgets");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/budgets`);
         if (res.ok) {
           const data = await res.json();
           setBudgets(data);

@@ -15,9 +15,9 @@ export default function LeadsPage() {
     async function fetchData() {
       try {
         const [contactsRes, prospectsRes, statsRes] = await Promise.all([
-          fetch("http://localhost:4000/api/contacts"),
-          fetch("http://localhost:4000/api/prospects"),
-          fetch("http://localhost:4000/api/prospects/stats")
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/contacts`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/prospects`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/prospects/stats`)
         ]);
 
         if (contactsRes.ok) {

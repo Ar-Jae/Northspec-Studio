@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const API_URL = "http://localhost:4000/api";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api";
 
 const placeholders = [
   { key: "{name}", description: "Contact's first name" },

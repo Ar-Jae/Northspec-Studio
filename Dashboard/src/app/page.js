@@ -28,9 +28,9 @@ export default function Dashboard() {
     async function fetchData() {
       try {
         const [activitiesRes, filesRes, leadsRes] = await Promise.all([
-          fetch("http://localhost:4000/api/dashboard/activities"),
-          fetch("http://localhost:4000/api/dashboard/files"),
-          fetch("http://localhost:4000/api/dashboard/leads")
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/activities`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/files`),
+          fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/leads`)
         ]);
 
         if (activitiesRes.ok) {

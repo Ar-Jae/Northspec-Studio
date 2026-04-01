@@ -15,7 +15,7 @@ export default function DocumentsPage() {
   const fetchDocuments = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:4000/api/documents");
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/documents`);
       if (res.ok) {
         const data = await res.json();
         setDocuments(data);
@@ -40,7 +40,7 @@ export default function DocumentsPage() {
     formData.append("file", file);
 
     try {
-      const res = await fetch("http://localhost:4000/api/documents/upload", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/documents/upload`, {
         method: "POST",
         body: formData,
       });

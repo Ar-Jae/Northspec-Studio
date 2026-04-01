@@ -9,7 +9,7 @@ export default function ActivityPage() {
   useEffect(() => {
     async function fetchActivities() {
       try {
-        const res = await fetch("http://localhost:4000/api/dashboard/activities");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/activities`);
         if (res.ok) {
           const data = await res.json();
           setActivities(data);

@@ -103,7 +103,7 @@ class CampaignScheduler {
 
     const now = new Date();
     let emailsSentToday = 0;
-    const baseUrl = process.env.BASE_URL || 'http://localhost:4000';
+    const baseUrl = process.env.BASE_URL || 'https://northspec-studio-production.up.railway.app';
 
     // Count emails already sent today for this campaign
     const todayStart = new Date();

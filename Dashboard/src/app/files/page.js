@@ -9,7 +9,7 @@ export default function FilesPage() {
   useEffect(() => {
     async function fetchFiles() {
       try {
-        const res = await fetch("http://localhost:4000/api/dashboard/files");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "https://northspec-studio-production.up.railway.app"}/api/dashboard/files`);
         if (res.ok) {
           const data = await res.json();
           setFiles(data);
