@@ -4,8 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Button from "../Button";
 
-const CALENDAR_URL = "https://calendar.app.google/XMN48TcybVjmij4C7";
-
 const initialForm = {
   fullName: "",
   workEmail: "",
@@ -14,6 +12,11 @@ const initialForm = {
   projectType: "",
   buildGoal: "",
   budgetRange: "",
+  budgetApproved: "",
+  automationInterest: "",
+  confirmAutomationScopedPricedSeparately: false,
+  confirmAutomationStartsAt1500: false,
+  confirmEachWorkflowQuotedIndividually: false,
   startTimeline: "",
   decisionAuthority: "",
 };
@@ -32,17 +35,41 @@ export default function ContactForm() {
       case 1:
         return form.fullName && form.workEmail;
       case 3:
-        return form.budgetRange;
+        return form.budgetRange && form.budgetApproved && form.automationInterest;
+      case 5:
+        return form.confirmAutomationScopedPricedSeparately && form.confirmAutomationStartsAt1500 && form.confirmEachWorkflowQuotedIndividually;
       default:
         return true;
     }
   }
 
   function isStepRequired() {
-    return step === 1 || step === 3;
+    return step === 1 || step === 3 || step === 5;
   }
 
   function updateField(key, value) {
+    if (key === "phoneNumber") {
+      // Remove all non-digits
+      const digits = value.replace(/\D/g, "");
+      
+      // Limit to 10 digits
+      const limited = digits.slice(0, 10);
+      
+      // Apply mask: (123) 456-7890
+      let formatted = "";
+      if (limited.length > 0) {
+        if (limited.length <= 3) {
+          formatted = `(${limited}`;
+        } else if (limited.length <= 6) {
+          formatted = `(${limited.slice(0, 3)}) ${limited.slice(3)}`;
+        } else {
+          formatted = `(${limited.slice(0, 3)}) ${limited.slice(3, 6)}-${limited.slice(6)}`;
+        }
+      }
+      
+      setForm((prev) => ({ ...prev, [key]: formatted }));
+      return;
+    }
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
@@ -69,8 +96,17 @@ export default function ContactForm() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    if (!form.fullName || !form.workEmail || !form.budgetRange) {
-      setError("Name, email, and budget are required to submit.");
+    if (
+      !form.fullName ||
+      !form.workEmail ||
+      !form.budgetRange ||
+      !form.budgetApproved ||
+      !form.automationInterest ||
+      !form.confirmAutomationScopedPricedSeparately ||
+      !form.confirmAutomationStartsAt1500 ||
+      !form.confirmEachWorkflowQuotedIndividually
+    ) {
+      setError("Please complete all required fields and confirmations.");
       return;
     }
     setStatus("loading");
@@ -181,10 +217,11 @@ export default function ContactForm() {
                 <div>
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">Phone <span className="text-slate-600">(optional)</span></label>
                   <input
+                    type="tel"
                     value={form.phoneNumber}
                     onChange={(e) => updateField("phoneNumber", e.target.value)}
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium"
-                    placeholder="+1 (555) 000-0000"
+                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium text-xs sm:text-sm lg:text-base leading-relaxed tracking-wider"
+                    placeholder="(123) 456-7890"
                   />
                 </div>
                 <div>
@@ -276,6 +313,36 @@ export default function ContactForm() {
                     <option value="Not sure yet" className="bg-brand-dark">Not sure yet</option>
                   </select>
                 </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">
+                    Has this budget been approved? <span className="text-brand-gold">*</span>
+                  </label>
+                  <select
+                    value={form.budgetApproved}
+                    onChange={(e) => updateField("budgetApproved", e.target.value)}
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetApproved ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
+                  >
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
+                    <option value="Yes" className="bg-brand-dark">Yes</option>
+                    <option value="Pending Approval" className="bg-brand-dark">Pending Approval</option>
+                    <option value="No / Just exploring" className="bg-brand-dark">No / Just exploring</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 font-times">
+                    Are you interested in workflow automation? <span className="text-brand-gold">*</span>
+                  </label>
+                  <select
+                    value={form.automationInterest}
+                    onChange={(e) => updateField("automationInterest", e.target.value)}
+                    className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.automationInterest ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
+                  >
+                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
+                    <option value="Yes, highly interested" className="bg-brand-dark">Yes, highly interested</option>
+                    <option value="Just for this project" className="bg-brand-dark">Just for this project</option>
+                    <option value="Not at this time" className="bg-brand-dark">Not at this time</option>
+                  </select>
+                </div>
               </div>
               {error && step === 3 && <p className="text-red-400 text-[10px] font-medium italic uppercase tracking-widest">{error}</p>}
             </motion.section>
@@ -332,13 +399,38 @@ export default function ContactForm() {
                   <select
                     value={form.decisionAuthority}
                     onChange={(e) => updateField("decisionAuthority", e.target.value)}
-                    className="w-full rounded-xl bg-white/[0.03] border border-white/10 text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none"
+                    className="w-full bg-white/[0.03] border border-white/10 rounded-sm px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold/50 transition-colors uppercase tracking-widest font-times"
                   >
                     <option value="" className="bg-brand-dark text-slate-400">Select one</option>
-                    <option value="Yes" className="bg-brand-dark">Yes</option>
-                    <option value="No, but I influence the decision" className="bg-brand-dark">No, but I influence the decision</option>
-                    <option value="No" className="bg-brand-dark">No</option>
+                    <option value="Yes" className="bg-brand-dark">Yes, I am the decision maker</option>
+                    <option value="No" className="bg-brand-dark">No, I am representing someone else</option>
+                    <option value="Other" className="bg-brand-dark">Other</option>
                   </select>
+                </div>
+              </div>
+
+              <div className="pt-6 space-y-4 border-t border-white/5">
+                <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.2em] font-times mb-4">Automation Engineering Terms</p>
+                
+                <div className="flex items-start gap-3 group cursor-pointer" onClick={() => updateField("confirmAutomationScopedPricedSeparately", !form.confirmAutomationScopedPricedSeparately)}>
+                  <div className={`mt-0.5 w-4 h-4 rounded border flex-none flex items-center justify-center transition-colors ${form.confirmAutomationScopedPricedSeparately ? 'bg-brand-gold border-brand-gold' : 'border-white/20 bg-white/[0.03]'}`}>
+                    {form.confirmAutomationScopedPricedSeparately && <svg className="w-3 h-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>}
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium italic leading-tight select-none">I understand that automation engineering is scoped and priced separately from other development work. <span className="text-brand-gold font-bold">*</span></p>
+                </div>
+
+                <div className="flex items-start gap-3 group cursor-pointer" onClick={() => updateField("confirmAutomationStartsAt1500", !form.confirmAutomationStartsAt1500)}>
+                  <div className={`mt-0.5 w-4 h-4 rounded border flex-none flex items-center justify-center transition-colors ${form.confirmAutomationStartsAt1500 ? 'bg-brand-gold border-brand-gold' : 'border-white/20 bg-white/[0.03]'}`}>
+                    {form.confirmAutomationStartsAt1500 && <svg className="w-3 h-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>}
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium italic leading-tight select-none">I understand automation setups start at $1,500/mo or as fixed-fee projects. <span className="text-brand-gold font-bold">*</span></p>
+                </div>
+
+                <div className="flex items-start gap-3 group cursor-pointer" onClick={() => updateField("confirmEachWorkflowQuotedIndividually", !form.confirmEachWorkflowQuotedIndividually)}>
+                  <div className={`mt-0.5 w-4 h-4 rounded border flex-none flex items-center justify-center transition-colors ${form.confirmEachWorkflowQuotedIndividually ? 'bg-brand-gold border-brand-gold' : 'border-white/20 bg-white/[0.03]'}`}>
+                    {form.confirmEachWorkflowQuotedIndividually && <svg className="w-3 h-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>}
+                  </div>
+                  <p className="text-[11px] text-slate-400 font-medium italic leading-tight select-none">I understand each specific workflow automation is quoted and delivered individually. <span className="text-brand-gold font-bold">*</span></p>
                 </div>
               </div>
 
@@ -385,21 +477,6 @@ export default function ContactForm() {
           </div>
         </div>
 
-        {/* Book a Call option */}
-        <div className="pt-2 text-center">
-          <p className="text-[10px] text-slate-600 uppercase tracking-widest font-times mb-3">Or skip the form entirely</p>
-          <a
-            href={CALENDAR_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-brand-gold transition-colors font-medium border border-white/10 hover:border-brand-gold/30 rounded-xl px-6 py-3"
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            Book a Call Directly
-          </a>
-        </div>
       </form>
     </div>
   );

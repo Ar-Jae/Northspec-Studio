@@ -279,7 +279,7 @@ export default function MaintenanceSupportPage() {
             </Button>
             <Button
               as="link"
-              href="/request-call"
+              href="/contact"
               variant="outline"
               className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
             >
@@ -525,7 +525,7 @@ export default function MaintenanceSupportPage() {
                     Discuss Your System
                   </a>
                   <a
-                    href="/request-call"
+                    href="/contact"
                     className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
                   >
                     Book a Call
@@ -769,7 +769,7 @@ export default function MaintenanceSupportPage() {
               Start Ongoing Support
             </a>
             <a
-              href="/request-call"
+              href="/contact"
               className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
             >
               Book a Call

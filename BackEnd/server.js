@@ -14,6 +14,7 @@ const contentController = require('./controller/Content');
 const documentsController = require('./controller/Documents');
 const jobApplicationsController = require('./controller/JobApplications');
 const campaignScheduler = require('./services/campaignScheduler');
+const siteContext = require('./siteContext');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 
@@ -86,6 +87,85 @@ app.post('/api/n8n/prospects/decision-maker', prospectsEnrichmentController.addD
 app.post('/api/n8n/prospects/decision-makers/bulk', prospectsEnrichmentController.bulkAddDecisionMakers);
 app.post('/api/n8n/prospects/company-emails', prospectsEnrichmentController.updateCompanyEmails);
 app.post('/api/n8n/prospects/status', prospectsEnrichmentController.updateEnrichmentStatus);
+
+// Vapi Config Route (exposes only public key + assistant ID to the browser)
+app.get('/api/vapi/config', (req, res) => {
+  res.json({
+    publicKey:   process.env.NEXT_PUBLIC_VAPI_KEY,
+    assistantId: process.env.VAPI_ASSISTANT_ID,
+  });
+});
+
+// Vapi Chat Route (proxies text messages — keeps private key server-side)
+app.post('/api/vapi/chat', async (req, res) => {
+  const { message, history = [], sessionId } = req.body;
+  if (!message) return res.status(400).json({ error: 'message is required' });
+
+  try {
+    // System context is always first so the AI knows everything about the business.
+    // History follows so it never re-introduces itself.
+    const input = [
+      { role: 'system', content: siteContext },
+      ...history.map(({ role, content }) => ({ role, content })),
+      { role: 'user', content: message },
+    ];
+
+    const body = {
+      assistantId: process.env.VAPI_ASSISTANT_ID,
+      input,
+      ...(sessionId && { sessionId }),
+    };
+
+    const vapiRes = await fetch('https://api.vapi.ai/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.VAPI_API_KEY}`,
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (!vapiRes.ok) {
+      const err = await vapiRes.text();
+      return res.status(vapiRes.status).json({ error: err });
+    }
+
+    const data = await vapiRes.json();
+
+    // Log the raw response so we can see exactly what Vapi sends back
+    console.log('[vapi/chat] raw response:', JSON.stringify(data, null, 2));
+
+    // Vapi can return output in several shapes — try each fallback in order
+    let reply = '';
+
+    if (Array.isArray(data.output)) {
+      // Array of {role, content} — find the last assistant turn
+      const assistantMsg = [...data.output].reverse().find(m => m.role === 'assistant');
+      if (assistantMsg) {
+        // content can itself be a string or an array of content blocks
+        reply = Array.isArray(assistantMsg.content)
+          ? assistantMsg.content.map(b => b.text ?? b.content ?? '').join('')
+          : assistantMsg.content ?? '';
+      }
+    } else if (typeof data.output === 'string') {
+      reply = data.output;
+    } else if (data.message) {
+      reply = data.message;
+    } else if (data.reply) {
+      reply = data.reply;
+    }
+
+    if (!reply) {
+      console.warn('[vapi/chat] could not extract reply from:', JSON.stringify(data));
+      return res.status(502).json({ error: 'Empty response from assistant. Please try again.' });
+    }
+
+    res.json({ reply, sessionId: data.sessionId ?? sessionId ?? null });
+  } catch (err) {
+    console.error('[vapi/chat] error:', err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // Contact Routes
 app.post('/api/contacts', async (req, res) => {

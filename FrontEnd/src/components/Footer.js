@@ -101,30 +101,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Email Directory */}
-          <div>
-            <h3 className="text-xs font-semibold uppercase tracking-wide text-white">Email</h3>
-            <ul className="mt-6 space-y-2 text-xs text-slate-500">
-              <li>
-                <span className="block text-slate-400">Main:</span>
-                <a href={`mailto:${site.contact.emails?.main}`} className="text-brand-gold hover:text-yellow-300 transition-colors">
-                  {site.contact.emails?.main}
-                </a>
-              </li>
-              <li>
-                <span className="block text-slate-400 mt-2">Projects:</span>
-                <a href={`mailto:${site.contact.emails?.projects}`} className="text-brand-gold hover:text-yellow-300 transition-colors">
-                  {site.contact.emails?.projects}
-                </a>
-              </li>
-              <li>
-                <span className="block text-slate-400 mt-2">Billing:</span>
-                <a href={`mailto:${site.contact.emails?.billing}`} className="text-brand-gold hover:text-yellow-300 transition-colors">
-                  {site.contact.emails?.billing}
-                </a>
-              </li>
-            </ul>
-          </div>
 
           {/* Resources */}
           <div>

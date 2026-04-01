@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StructuredData from "../components/StructuredData";
 import { AuthProvider } from "../lib/auth-context";
+import VapiWidget from "../components/VapiWidget";
 import site from "../content/site";
 
 const inter    = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -79,6 +80,7 @@ export default function RootLayout({ children }) {
             {children}
           </main>
           <Footer />
+          <VapiWidget />
         </AuthProvider>
       </body>
     </html>

@@ -10,7 +10,7 @@ export default function TrustStrip() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="text-center text-[11px] font-bold tracking-[0.3em] text-slate-500 uppercase px-6"
+        className="text-center text-[11px] font-bold tracking-[0.3em] text-slate-500 uppercase px-0"
       >
         Built for startups, operators, and teams who need reliable systems, not experiments.
       </motion.p>

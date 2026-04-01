@@ -903,7 +903,7 @@ export default function PricingPage() {
               Start a Project
             </a>
             <a
-              href="/request-call"
+              href="/contact"
               className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
             >
               Book a Call

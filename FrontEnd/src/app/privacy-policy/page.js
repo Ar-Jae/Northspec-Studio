@@ -238,7 +238,7 @@ const sections = [
         <p>For questions, concerns, or requests related to this Privacy Policy or our data practices:</p>
         <div className="mt-6 rounded-xl border border-white/5 bg-white/[0.02] p-6 not-italic">
           <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Northspec Studio</p>
-          <p className="text-sm text-slate-300 font-medium">Remote / North America</p>
+          <p className="text-sm text-slate-300 font-medium">North America</p>
           <a
             href={`mailto:${SUPPORT_EMAIL}`}
             className="inline-block mt-2 text-brand-gold font-bold font-times hover:underline text-sm"

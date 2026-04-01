@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const N8N_WEBHOOK_URL = "https://n8n-qhlu.srv1059778.hstgr.cloud/webhook/0cb1a204-1900-4e84-8114-0215c50f3104";
+const N8N_WEBHOOK_URL = "https://n8n-rgfs.srv1059778.hstgr.cloud/webhook/fc930296-dff7-48a3-ad1d-2adc2444bc54";
 
 export async function POST(req) {
   try {
