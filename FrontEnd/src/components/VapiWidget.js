@@ -234,7 +234,7 @@ export default function VapiWidget() {
   useEffect(() => {
     let cancelled = false;
     Promise.all([
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/vapi/config`).then((r) => r.json()),
+      fetch(`/api/vapi/config`).then((r) => r.json()),
       import("@vapi-ai/web").then((m) => m.default),
     ]).then(([{ publicKey, assistantId }, Vapi]) => {
         if (cancelled || !publicKey || !assistantId) return;
@@ -292,7 +292,7 @@ export default function VapiWidget() {
         .filter((m) => m.source !== "voice")
         .map((m) => ({ role: m.role, content: m.text }));
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/vapi/chat`, {
+      const res = await fetch(`/api/vapi/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: trimmed, history, sessionId: sessionRef.current }),
