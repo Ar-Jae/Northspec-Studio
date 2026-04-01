@@ -47,6 +47,10 @@ Email build@northspecstudio.com, call +1 (413) 390-3673, or fill out the form at
 
 export async function POST(req) {
   try {
+    if (!process.env.VAPI_API_KEY || !process.env.VAPI_ASSISTANT_ID) {
+      return NextResponse.json({ error: "Vapi is not configured on the server." }, { status: 503 });
+    }
+
     const { message, history = [], sessionId } = await req.json();
     if (!message) {
       return NextResponse.json({ error: "message is required" }, { status: 400 });
@@ -75,7 +79,8 @@ export async function POST(req) {
 
     if (!vapiRes.ok) {
       const err = await vapiRes.text();
-      return NextResponse.json({ error: err }, { status: vapiRes.status });
+      console.error(`[vapi/chat] Vapi ${vapiRes.status}:`, err);
+      return NextResponse.json({ error: `Vapi error (${vapiRes.status}): ${err}` }, { status: vapiRes.status });
     }
 
     const data = await vapiRes.json();
