@@ -14,7 +14,7 @@ export default function FeaturedWork() {
   useEffect(() => {
     async function fetchWork() {
       try {
-        const res = await fetch("http://localhost:4000/api/content/case-studies");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/content/case-studies`);
         if (res.ok) {
           const data = await res.json();
           setFeatured(data.filter((s) => s.featured).slice(0, 2));

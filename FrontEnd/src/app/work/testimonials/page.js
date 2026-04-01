@@ -13,7 +13,7 @@ export default function TestimonialsPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:4000/api/content/testimonials");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/content/testimonials`);
         if (res.ok) {
           const json = await res.json();
           setData(json);

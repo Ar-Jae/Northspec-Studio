@@ -13,7 +13,7 @@ export default function CaseStudiesPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("http://localhost:4000/api/content/case-studies");
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000"}/api/content/case-studies`);
         if (res.ok) {
           const json = await res.json();
           setData(json);
