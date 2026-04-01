@@ -27,8 +27,12 @@ connectDB();
 // Start campaign scheduler
 campaignScheduler.start();
 
-app.use(cors());
-app.use(express.json());
+const allowedOrigins = process.env.NODE_ENV === 'production'
+  ? ['https://northspecstudio.com', 'https://www.northspecstudio.com']
+  : true;
+
+app.use(cors({ origin: allowedOrigins }));
+app.use(express.json({ limit: '1mb' }));
 
 // Routes
 app.get('/', (req, res) => {
@@ -131,9 +135,6 @@ app.post('/api/vapi/chat', async (req, res) => {
     }
 
     const data = await vapiRes.json();
-
-    // Log the raw response so we can see exactly what Vapi sends back
-    console.log('[vapi/chat] raw response:', JSON.stringify(data, null, 2));
 
     // Vapi can return output in several shapes — try each fallback in order
     let reply = '';
