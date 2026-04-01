@@ -36,7 +36,7 @@ export default function WhoWeWorkWith() {
         }}
       />
 
-      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left: heading */}
           <div ref={headRef}>

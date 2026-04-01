@@ -24,7 +24,7 @@ export default function OngoingSupport() {
         }}
       />
 
-      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

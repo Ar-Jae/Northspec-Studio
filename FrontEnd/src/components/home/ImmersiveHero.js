@@ -81,7 +81,7 @@ export default function ImmersiveHero() {
 
       <motion.div
         style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-24 lg:px-36 pt-[1in] pb-24"
+        className="relative z-10 flex flex-col items-center justify-center text-center px-0 md:px-24 lg:px-36 pt-[1in] pb-24"
       >
         {/* Eyebrow */}
         <motion.div
@@ -138,7 +138,7 @@ export default function ImmersiveHero() {
           </Button>
           <Button
             as="link"
-            href="/request-call"
+            href="/contact"
             variant="outline"
             className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
           >

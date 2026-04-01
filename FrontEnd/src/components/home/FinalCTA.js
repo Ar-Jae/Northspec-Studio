@@ -22,7 +22,7 @@ export default function FinalCTA() {
         }}
       />
 
-      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36 flex flex-col items-center text-center">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -72,7 +72,7 @@ export default function FinalCTA() {
             Start a Project
           </a>
           <a
-            href="/request-call"
+            href="/contact"
             className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
           >
             Book a Call

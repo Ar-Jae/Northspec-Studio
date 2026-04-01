@@ -64,14 +64,8 @@ const site = {
   ],
   contact: {
     email: "build@northspecstudio.com",
-    phone: "+1 (555) 014-2266",
-    location: "Remote / North America",
-    emails: {
-      main: "build@northspecstudio.com",
-      projects: "build@northspecstudio.com",
-      billing: "build@northspecstudio.com",
-      press: "build@northspecstudio.com",
-    },
+    phone: "+1 (413) 390-3673",
+    location: "North America",
   },
   social: [
     { label: "X", shortLabel: "X", href: "https://x.com/NorthspecStudio" },

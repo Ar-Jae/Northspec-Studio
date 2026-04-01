@@ -75,7 +75,7 @@ export default function ProcessSection() {
         }}
       />
 
-      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36">
         {/* Heading */}
         <div ref={headRef} className="mb-16 md:mb-20">
           <motion.div

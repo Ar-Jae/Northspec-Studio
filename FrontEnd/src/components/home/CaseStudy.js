@@ -23,7 +23,7 @@ export default function CaseStudy() {
         }}
       />
 
-      <div className="relative z-10 w-full px-6 md:px-24 lg:px-36">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36">
         <div ref={headRef} className="mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

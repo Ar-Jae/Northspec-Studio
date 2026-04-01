@@ -62,7 +62,7 @@ export default function Hero() {
               <p className="text-lg sm:text-base lg:text-xl text-slate-300 leading-relaxed">
                 We help local businesses modernize their operations with workflow automation, custom software, and mobile app development reducing manual work, improving efficiency, and creating measurable business results.
               </p>
-              <Button as="link" href="/request-call" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
+              <Button as="link" href="/contact" variant="brand" className="rounded-full px-6 py-4 sm:py-6 text-base sm:text-lg uppercase tracking-wider w-full sm:w-auto">
 REQUEST A CALL
               </Button>
             </motion.div>

@@ -173,7 +173,7 @@ export default function PricingSection() {
         }}
       />
 
-      <div className="relative z-10 w-full px-36">
+      <div className="relative z-10 w-full px-0 lg:px-36">
         {/* Heading */}
         <div ref={headRef} className="mb-24">
           <motion.div
