@@ -136,10 +136,7 @@ export default function Header() {
 
         {/* Desktop CTA button */}
         <div className="hidden md:flex items-center gap-4 flex-shrink-0">
-          <Link href="tel:+14133903673" className="text-sm font-medium text-slate-400 hover:text-white transition-colors">
-            Support
-          </Link>
-          <Button as="link" href="/contact" variant="brand">
+<Button as="link" href="/contact" variant="brand">
             Get Started
           </Button>
         </div>
