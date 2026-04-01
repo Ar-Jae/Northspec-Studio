@@ -97,16 +97,35 @@ function extractReply(output) {
     : assistantMsg.content ?? null;
 }
 
-function extractToolCalls(output) {
-  if (!Array.isArray(output)) return [];
-  return output
-    .filter((m) => m.role === "tool_calls" || m.role === "assistant")
-    .flatMap((m) => {
-      if (Array.isArray(m.content)) {
-        return m.content.filter((b) => b.type === "tool_call" || b.tool_call);
-      }
-      return [];
-    });
+// Vapi Chat API uses type "tool-call" (hyphen) and fields toolName/toolCallId/args.
+// OpenAI format uses type "tool_call" (underscore) and function.name/function.arguments/id.
+// Also handles top-level tool_calls array on the message object.
+function getCallsFromOutputItem(item) {
+  const calls = [];
+  if (Array.isArray(item.content)) {
+    for (const b of item.content) {
+      if (b.type === "tool-call" || b.type === "tool_call") calls.push(b);
+    }
+  }
+  if (Array.isArray(item.tool_calls)) {
+    for (const tc of item.tool_calls) calls.push(tc);
+  }
+  return calls;
+}
+
+function getToolName(call) {
+  return call.toolName ?? call.function?.name ?? call.tool_call?.function?.name ?? null;
+}
+
+function getToolArgs(call) {
+  try {
+    const raw = call.args ?? call.function?.arguments ?? call.tool_call?.function?.arguments ?? "{}";
+    return typeof raw === "string" ? JSON.parse(raw) : (raw ?? {});
+  } catch { return {}; }
+}
+
+function getToolCallId(call) {
+  return call.toolCallId ?? call.id ?? call.tool_call?.id ?? null;
 }
 
 async function callVapi(input, sessionId) {
@@ -167,10 +186,14 @@ export async function POST(req) {
         ?? data.message
         ?? data.reply;
 
-      // Find any tool calls in this response
+      // Find any output items that contain tool calls (Vapi or OpenAI format)
       const toolCallItems = output.filter(
-        (m) => m.role === "tool_calls" ||
-               (m.role === "assistant" && Array.isArray(m.content) && m.content.some((b) => b.type === "tool_call"))
+        (m) =>
+          m.role === "tool_calls" ||
+          (Array.isArray(m.tool_calls) && m.tool_calls.length > 0) ||
+          (m.role === "assistant" &&
+            Array.isArray(m.content) &&
+            m.content.some((b) => b.type === "tool-call" || b.type === "tool_call"))
       );
 
       if (toolCallItems.length === 0) {
@@ -182,25 +205,19 @@ export async function POST(req) {
       // Execute each tool call and collect results
       const toolResults = [];
       for (const item of toolCallItems) {
-        const calls = Array.isArray(item.content)
-          ? item.content.filter((b) => b.type === "tool_call")
-          : [];
+        const calls = getCallsFromOutputItem(item);
 
         for (const call of calls) {
-          const toolName = call.tool_call?.function?.name ?? call.function?.name;
-          const toolArgs = (() => {
-            try {
-              const raw = call.tool_call?.function?.arguments ?? call.function?.arguments ?? "{}";
-              return typeof raw === "string" ? JSON.parse(raw) : raw;
-            } catch { return {}; }
-          })();
-          const toolCallId = call.tool_call?.id ?? call.id;
+          const toolName   = getToolName(call);
+          const toolArgs   = getToolArgs(call);
+          const toolCallId = getToolCallId(call);
 
-          console.log(`[vapi/chat] calling tool: ${toolName}`, toolArgs);
+          console.log(`[vapi/chat] tool call: ${toolName}`, JSON.stringify(toolArgs));
 
           let result;
           const handler = toolHandlers[toolName];
           if (!handler) {
+            console.warn(`[vapi/chat] unknown tool: ${toolName}`);
             result = { success: false, error: `Unknown tool: ${toolName}` };
           } else {
             try {
@@ -211,9 +228,16 @@ export async function POST(req) {
             }
           }
 
+          console.log(`[vapi/chat] tool result for ${toolName}:`, JSON.stringify(result));
+
+          // Use Vapi native format (toolCallId / result) which the Chat API understands
           toolResults.push({
             role: "tool",
-            content: [{ type: "tool_result", tool_call_id: toolCallId, content: JSON.stringify(result) }],
+            content: [{
+              type: "tool-result",
+              toolCallId: toolCallId,
+              result: JSON.stringify(result),
+            }],
           });
         }
       }
