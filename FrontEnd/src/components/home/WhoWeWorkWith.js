@@ -6,19 +6,19 @@ import { motion, useInView } from "framer-motion";
 const clients = [
   {
     icon: "→",
-    text: "Startups launching MVPs and validating products",
+    text: "Companies with manual processes that cost time and money every week",
   },
   {
     icon: "→",
-    text: "Businesses replacing manual workflows with automation",
+    text: "Businesses looking to implement AI into their operations without disruption",
   },
   {
     icon: "→",
-    text: "Teams scaling internal tools and operational systems",
+    text: "Teams building AI workflows, agents, or automation into their products",
   },
   {
     icon: "→",
-    text: "Founders building SaaS platforms and revenue products",
+    text: "Startups launching AI-native or AI-augmented platforms",
   },
 ];
 
@@ -58,8 +58,8 @@ export default function WhoWeWorkWith() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6"
             >
-              We partner with teams that need{" "}
-              <em className="not-italic text-brand-gold">more than just code.</em>
+              We partner with teams that are ready to{" "}
+              <em className="not-italic text-brand-gold">put AI to work.</em>
             </motion.h2>
 
             <motion.p
@@ -68,7 +68,7 @@ export default function WhoWeWorkWith() {
               transition={{ duration: 0.7, delay: 0.25 }}
               className="text-slate-400 leading-relaxed text-sm font-times max-w-sm"
             >
-              We build systems that support real business growth, not experiments or prototypes.
+              We implement AI automation into companies that are ready to eliminate manual work and operate smarter.
             </motion.p>
           </div>
 

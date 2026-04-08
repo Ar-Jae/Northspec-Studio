@@ -155,7 +155,7 @@ function Message({ msg }) {
 
 // ── Main widget ───────────────────────────────────────────────────────────────
 
-const GREETING = "Hi there! I'm the Northspec AI assistant. I can answer questions about our services, pricing, and process, or you can tap the phone icon to speak with me directly. How can I help you today?";
+const GREETING = "Hi — I'm the Northspec AI. We help companies implement AI automation into their operations. I can answer questions about AI workflows, voice agents, pricing, or how we'd approach your specific situation. How can I help?";
 
 const INACTIVITY_MS = 60_000; // 1 minute
 

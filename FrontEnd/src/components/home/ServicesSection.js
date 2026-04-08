@@ -6,29 +6,12 @@ import { motion, useInView } from "framer-motion";
 const services = [
   {
     number: "01",
-    title: "Product Development",
-    short: "Launch fast with a solid foundation built for real growth.",
+    title: "AI Automation & Workflows",
+    short: "Replace manual processes with AI-powered workflows that run automatically.",
     bullets: [
-      "MVPs and early-stage products",
-      "Full-stack web applications",
-      "Scalable architecture built for growth",
-    ],
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    accent: "from-brand-gold/20 to-transparent",
-  },
-  {
-    number: "02",
-    title: "Automation & AI Systems",
-    short: "Reduce manual work and increase efficiency across your operations.",
-    bullets: [
-      "Workflow automation (n8n, APIs)",
-      "AI-powered processes and integrations",
-      "Data pipelines and system connections",
+      "AI workflow builds (n8n + LLMs)",
+      "CRM and ops automation",
+      "Multi-step intelligent pipelines",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,21 +19,38 @@ const services = [
           d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    accent: "from-purple-500/10 to-transparent",
+    accent: "from-brand-gold/20 to-transparent",
   },
   {
-    number: "03",
-    title: "Platforms & Internal Tools",
-    short: "Build systems your business can rely on at any scale.",
+    number: "02",
+    title: "AI Apps & Agents",
+    short: "Custom voice agents, intelligent portals, and autonomous systems built into your operations.",
     bullets: [
-      "SaaS platforms",
-      "Internal dashboards and tools",
-      "Role-based systems and integrations",
+      "Voice agent development (Vapi)",
+      "AI-powered internal tools",
+      "Autonomous task agents",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+          d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    ),
+    accent: "from-purple-500/10 to-transparent",
+  },
+  {
+    number: "03",
+    title: "Software & Mobile App Development",
+    short: "AI-compatible web apps, mobile apps, APIs, and platforms — the foundation every AI system needs.",
+    bullets: [
+      "Next.js/React web applications",
+      "API design and integrations",
+      "Mobile app development",
+    ],
+    icon: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
     accent: "from-blue-500/10 to-transparent",
@@ -121,7 +121,7 @@ export default function ServicesSection() {
           >
             <div className="h-[1px] w-10 bg-brand-gold" />
             <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-              What We Build
+              What We Automate
             </span>
           </motion.div>
 
@@ -133,7 +133,7 @@ export default function ServicesSection() {
               className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
               What We{" "}
-              <em className="not-italic text-brand-gold">Build.</em>
+              <em className="not-italic text-brand-gold">Automate.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}

@@ -12,13 +12,13 @@ import FinalCTA from "../components/home/FinalCTA";
 import ContactSection from "../components/home/ContactSection";
 
 export const metadata = {
-  title: "Build, Launch, and Scale Software That Works for You | Northspec Studio",
+  title: "AI Automation, Software Development & Consulting | Northspec Studio",
   description:
-    "Northspec Studio designs and develops production ready applications, automation systems, and scalable platforms that help startups and growing businesses operate more efficiently and scale with confidence.",
+    "Northspec Studio specializes in AI automation, software development, mobile app development, and consulting — helping companies implement intelligent systems and build reliable software.",
   openGraph: {
-    title: "Northspec Studio | Product Development & Automation for Startups",
+    title: "Northspec Studio | AI Automation, Software Development & Consulting",
     description:
-      "We design and develop production ready applications, automation systems, and scalable platforms that help startups and growing businesses operate more efficiently and scale with confidence.",
+      "Northspec Studio specializes in AI automation, software development, mobile app development, and consulting — helping companies implement intelligent systems and build reliable software.",
     url: "/",
   },
 };

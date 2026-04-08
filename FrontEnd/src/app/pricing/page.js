@@ -3,18 +3,104 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
-import Button from "../../components/Button";
 import { faqs } from "../../lib/data";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
+const aiAutomationTiers = [
+  {
+    name: "Smaller AI Projects",
+    range: "$5,000 – $15,000",
+    delivery: "3–5 weeks typical",
+    for: "A focused automation — replacing one or a handful of manual processes with intelligent workflows.",
+    typical: [
+      "Process audit and opportunity mapping",
+      "2–4 automated AI workflows",
+      "AI integration (OpenAI/Claude)",
+      "CRM or tool integration",
+      "Monitoring and documentation",
+    ],
+    accent: "border-white/[0.08]",
+    glow: "from-slate-400/10 to-transparent",
+  },
+  {
+    name: "Mid-Scale AI Implementation",
+    range: "$15,000 – $40,000",
+    delivery: "6–10 weeks typical",
+    for: "Replacing significant manual workload with a broader AI automation system across your operations.",
+    typical: [
+      "Full process analysis",
+      "5–12 automated AI workflows",
+      "LLM-powered routing and classification",
+      "CRM and ops integrations",
+      "Team training and support",
+    ],
+    accent: "border-brand-gold/30",
+    glow: "from-brand-gold/15 to-transparent",
+  },
+  {
+    name: "Large AI Infrastructure",
+    range: "$40,000 – $90,000+",
+    delivery: "10–16 weeks typical",
+    for: "Making AI a core operational backbone — full strategy through implementation with custom agents and systems.",
+    typical: [
+      "Full AI strategy and implementation",
+      "Custom AI agents and voice systems",
+      "Multi-system integrations",
+      "AI-powered internal tools",
+      "Ongoing ops retainer setup",
+    ],
+    accent: "border-purple-500/20",
+    glow: "from-purple-500/10 to-transparent",
+  },
+];
+
+const aiRetainerTiers = [
+  {
+    name: "Maintenance-Focused",
+    price: "$1,500 – $3,000",
+    period: "/month",
+    for: "Monitoring and maintaining live AI workflows — fixing edge cases, updating prompts, handling integration drift.",
+    typical: [
+      "Live workflow monitoring",
+      "Edge case fixes and prompt updates",
+      "Integration drift handling",
+      "Monthly performance review",
+    ],
+  },
+  {
+    name: "Maintenance + Expansion",
+    price: "$3,500 – $6,000",
+    period: "/month",
+    for: "Ongoing AI workflow expansion plus maintenance — adding new automations while keeping existing systems running.",
+    typical: [
+      "Everything in maintenance scope",
+      "New workflow builds monthly",
+      "LLM prompt refinements",
+      "Priority response times",
+    ],
+  },
+  {
+    name: "Dedicated AI Engineering",
+    price: "$7,000 – $15,000",
+    period: "/month",
+    for: "Full AI engineering capacity — new agents, integrations, voice systems, and strategic monthly expansion.",
+    typical: [
+      "Everything in expansion scope",
+      "Dedicated monthly AI sprint",
+      "New agent builds and voice systems",
+      "Architecture and roadmap reviews",
+    ],
+  },
+];
+
 const projectTiers = [
   {
-    name: "MVP & Early Products",
+    name: "Smaller Builds & MVPs",
     range: "$12,000 – $30,000",
-    delivery: "6–8 weeks",
+    delivery: "6–8 weeks typical",
     for: "Validating ideas and launching quickly with a production-ready product.",
-    includes: [
+    typical: [
       "Up to 6 screens / core views",
       "Auth, CRUD, and database",
       "Secure API foundation",
@@ -23,14 +109,13 @@ const projectTiers = [
     ],
     accent: "border-white/[0.08]",
     glow: "from-slate-400/10 to-transparent",
-    badge: null,
   },
   {
-    name: "Business Systems & Automation",
+    name: "Business & Operational Systems",
     range: "$20,000 – $50,000",
-    delivery: "8–12 weeks",
-    for: "Replacing manual workflows and building operational systems that improve efficiency.",
-    includes: [
+    delivery: "8–12 weeks typical",
+    for: "Building operational software and internal tools that improve how your business runs.",
+    typical: [
       "8–10 screens / views",
       "Role-based backend systems",
       "API + webhook integrations",
@@ -40,14 +125,13 @@ const projectTiers = [
     ],
     accent: "border-blue-500/20",
     glow: "from-blue-500/10 to-transparent",
-    badge: null,
   },
   {
-    name: "Scalable Platforms & SaaS",
+    name: "Platforms & SaaS",
     range: "$40,000 – $90,000+",
-    delivery: "10–16 weeks",
+    delivery: "10–16 weeks typical",
     for: "Revenue-generating platforms engineered for growth, performance, and long-term scale.",
-    includes: [
+    typical: [
       "12+ screens / views",
       "Platform-level backend",
       "Advanced roles & permissions",
@@ -57,14 +141,13 @@ const projectTiers = [
     ],
     accent: "border-brand-gold/30",
     glow: "from-brand-gold/15 to-transparent",
-    badge: "Most Common",
   },
   {
-    name: "Enterprise Systems",
+    name: "Enterprise & Complex Systems",
     range: "$60,000+",
-    delivery: "16–24+ weeks",
+    delivery: "16–24+ weeks typical",
     for: "High-performance, secure systems built for long-term operational demand at scale.",
-    includes: [
+    typical: [
       "Multi-system architecture",
       "Enterprise-grade backend",
       "Multi-tenant systems",
@@ -74,49 +157,45 @@ const projectTiers = [
     ],
     accent: "border-purple-500/20",
     glow: "from-purple-500/10 to-transparent",
-    badge: "Custom Quote",
   },
 ];
 
 const retainerTiers = [
   {
-    name: "Essential",
+    name: "Maintenance-Focused",
     price: "$3,000",
     period: "/month",
-    for: "Maintenance, bug fixes, and system stability for live applications.",
-    includes: [
+    for: "Keeping live applications stable, secure, and running smoothly.",
+    typical: [
       "Bug fixes and incident response",
       "Dependency and security updates",
       "Monthly system health review",
       "Async engineering support",
     ],
-    badge: null,
   },
   {
-    name: "Growth",
+    name: "Maintenance + Development",
     price: "$5,000 – $7,000",
     period: "/month",
-    for: "Ongoing development plus maintenance, for products that need to keep improving.",
-    includes: [
-      "Everything in Essential",
+    for: "Ongoing development plus maintenance for products that need to keep improving.",
+    typical: [
+      "Maintenance scope",
       "Feature development (defined scope)",
       "Performance optimization",
       "Priority response times",
     ],
-    badge: "Most Popular",
   },
   {
-    name: "Product Partner",
+    name: "Dedicated Engineering",
     price: "$8,000 – $12,000",
     period: "/month",
-    for: "Dedicated engineering capacity for serious products with continuous development needs.",
-    includes: [
-      "Everything in Growth",
+    for: "Dedicated engineering capacity for products with continuous development needs.",
+    typical: [
+      "Full maintenance scope",
       "Dedicated monthly sprint capacity",
       "Architecture and roadmap reviews",
       "Direct engineering access",
     ],
-    badge: null,
   },
 ];
 
@@ -243,9 +322,9 @@ export default function PricingPage() {
           </motion.div>
 
           <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5rem)]">
-            <SplitReveal text="Clear Pricing for" delay={0.6} className="block" />
+            <SplitReveal text="Clear Pricing for AI Automation" delay={0.6} className="block" />
             <SplitReveal
-              text="Serious Projects."
+              text="and Software Development."
               delay={1.0}
               className="block text-brand-gold"
             />
@@ -257,9 +336,10 @@ export default function PricingPage() {
             transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
             className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-6 font-times"
           >
-            Most clients invest between{" "}
-            <span className="text-white font-semibold">$12,000 and $50,000+</span>{" "}
-            depending on scope and complexity.
+            AI automation projects from{" "}
+            <span className="text-white font-semibold">$5,000</span>.{" "}
+            Software and mobile app projects from{" "}
+            <span className="text-white font-semibold">$12,000</span>.
           </motion.p>
 
           <motion.p
@@ -275,8 +355,125 @@ export default function PricingPage() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
       </section>
 
-      {/* ── PROJECT BUILDS ────────────────────────────────────────────────────── */}
+      {/* ── DISCLAIMER ───────────────────────────────────────────────────────── */}
+      <div className="relative z-10 w-full px-6 md:px-36 py-8">
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] px-8 py-5 text-sm text-slate-400 leading-relaxed font-times">
+          <span className="text-brand-gold font-bold text-[10px] uppercase tracking-[0.2em] mr-3">Note</span>
+          The ranges shown on this page are examples based on typical projects. Every engagement is custom-scoped to your specific needs — you receive a clear, fixed-price quote before any work begins. Nothing here is a packaged plan.
+        </div>
+      </div>
+
+      {/* ── AI AUTOMATION ─────────────────────────────────────────────────────── */}
       <section className="relative z-10 py-24">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,5,5,0.4) 0%, rgba(5,5,5,0.88) 40%, rgba(5,5,5,0.88) 60%, rgba(5,5,5,0.4) 100%)",
+          }}
+        />
+        <div className="relative z-10 w-full px-6 md:px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>AI Automation</SectionLabel>
+          </motion.div>
+          <div className="flex items-center justify-between gap-4 mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight max-w-2xl"
+            >
+              AI automation. Fixed-price, always scoped first.
+            </motion.h2>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {aiAutomationTiers.map((tier, i) => (
+              <motion.div
+                key={tier.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className={`rounded-2xl border bg-white/[0.02] p-8 flex flex-col hover:border-brand-gold/40 transition-colors ${tier.accent}`}
+              >
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${tier.glow} opacity-40 pointer-events-none`} />
+                <h3 className="text-lg font-bold text-white font-times uppercase tracking-widest mb-2">{tier.name}</h3>
+                <p className="text-2xl font-bold text-brand-gold mb-1">{tier.range}</p>
+                <p className="text-xs text-slate-500 font-medium mb-4">{tier.delivery}</p>
+                <p className="text-sm text-slate-400 italic leading-relaxed mb-6">{tier.for}</p>
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
+                <ul className="space-y-2 mt-auto">
+                  {tier.typical.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs text-slate-400 font-medium">
+                      <div className="w-1 h-1 rounded-full bg-brand-gold/60 mt-1.5 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AI RETAINER PLANS ─────────────────────────────────────────────────── */}
+      <section className="relative z-10 py-24 border-t border-white/[0.04]">
+        <div className="relative z-10 w-full px-6 md:px-36">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <SectionLabel>AI Retainer Plans</SectionLabel>
+          </motion.div>
+          <div className="flex items-center justify-between gap-4 mb-12">
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight max-w-2xl"
+            >
+              Keep your AI systems expanding and improving.
+            </motion.h2>
+          </div>
+          <div className="grid gap-6 lg:grid-cols-3">
+            {aiRetainerTiers.map((tier, i) => (
+              <motion.div
+                key={tier.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 flex flex-col hover:border-brand-gold/30 transition-colors relative overflow-hidden"
+              >
+                <h3 className="text-lg font-bold text-white font-times uppercase tracking-widest mb-2">{tier.name}</h3>
+                <p className="text-2xl font-bold text-brand-gold mb-1">{tier.price}<span className="text-sm font-normal text-slate-400">{tier.period}</span></p>
+                <p className="text-sm text-slate-400 italic leading-relaxed mb-6">{tier.for}</p>
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
+                <ul className="space-y-2 mt-auto">
+                  {tier.typical.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-xs text-slate-400 font-medium">
+                      <div className="w-1 h-1 rounded-full bg-brand-gold/60 mt-1.5 shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TRADITIONAL DEVELOPMENT BUILDS ────────────────────────────────────── */}
+      <section className="relative z-10 py-24 border-t border-white/[0.04]">
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -291,7 +488,7 @@ export default function PricingPage() {
             animate={tiersIn ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <SectionLabel>Project-Based Builds</SectionLabel>
+            <SectionLabel>Traditional Development Builds</SectionLabel>
           </motion.div>
 
           <div className="flex items-center justify-between gap-4 mb-12">
@@ -301,8 +498,8 @@ export default function PricingPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
-              Choose your{" "}
-              <em className="not-italic text-brand-gold">starting point.</em>
+              Software and mobile app{" "}
+              <em className="not-italic text-brand-gold">development builds.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
@@ -329,17 +526,6 @@ export default function PricingPage() {
                   className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${tier.glow} rounded-t-3xl`}
                 />
 
-                {/* Badge */}
-                {tier.badge && (
-                  <span className={`absolute -top-3 left-7 rounded-full px-4 py-1 text-[10px] uppercase tracking-widest font-bold z-20 ${
-                    tier.badge === "Most Common"
-                      ? "bg-brand-gold text-brand-dark"
-                      : "bg-white/10 border border-white/20 text-slate-300"
-                  }`}>
-                    {tier.badge}
-                  </span>
-                )}
-
                 <div className="mb-6">
                   <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
                     {tier.name}
@@ -356,8 +542,9 @@ export default function PricingPage() {
                   {tier.for}
                 </p>
 
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
                 <ul className="space-y-3">
-                  {tier.includes.map((item) => (
+                  {tier.typical.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-xs text-slate-400">
                       <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0 mt-1.5" />
                       {item}
@@ -512,19 +699,8 @@ export default function PricingPage() {
                 initial={{ opacity: 0, y: 40 }}
                 animate={retainIn ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative group rounded-3xl border bg-white/[0.03] backdrop-blur-md p-8
-                  transition-all duration-500 hover:bg-white/[0.05] ${
-                    tier.badge
-                      ? "border-brand-gold/30 hover:border-brand-gold/50"
-                      : "border-white/[0.08] hover:border-white/20"
-                  }`}
+                className="relative group rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-md p-8 transition-all duration-500 hover:bg-white/[0.05] hover:border-white/20"
               >
-                {tier.badge && (
-                  <span className="absolute -top-3 left-7 rounded-full bg-brand-gold px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-brand-dark z-20">
-                    {tier.badge}
-                  </span>
-                )}
-
                 <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
                   {tier.name}
                 </h3>
@@ -537,8 +713,9 @@ export default function PricingPage() {
                   {tier.for}
                 </p>
 
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
                 <ul className="space-y-3">
-                  {tier.includes.map((item) => (
+                  {tier.typical.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-xs text-slate-400">
                       <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0 mt-1.5" />
                       {item}

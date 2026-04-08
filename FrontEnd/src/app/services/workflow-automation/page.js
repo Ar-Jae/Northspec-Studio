@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
 import Button from "../../../components/Button";
 
@@ -212,6 +213,23 @@ export default function WorkflowAutomationPage() {
   return (
     <div className="relative bg-brand-dark min-h-[40vh]">
       <BackgroundCanvasClient />
+
+      {/* ── AI IMPLEMENTATION CALLOUT ────────────────────────────────────────── */}
+      <div className="relative z-20 pt-24 px-6 md:px-36">
+        <div className="rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-slate-400 font-medium">
+            This service is part of our expanded{" "}
+            <span className="text-white font-bold">AI Implementation offering.</span>{" "}
+            See our full AI automation packages, including LLM workflows, voice agents, and more.
+          </p>
+          <Link
+            href="/services/ai-implementation"
+            className="shrink-0 text-[10px] font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-lg px-4 py-2 whitespace-nowrap"
+          >
+            See AI Implementation →
+          </Link>
+        </div>
+      </div>
 
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
       <section

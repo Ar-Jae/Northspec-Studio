@@ -76,11 +76,11 @@ function ApproachHead() {
     <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
       <SectionLabel>How We Think</SectionLabel>
       <SplitReveal
-        text="A Product-Focused Approach."
+        text="An AI-First Approach."
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
-        This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes, not just shipping code.
+        We don't build AI systems until we know exactly what business problem they solve. Strategy before implementation. ROI before code.
       </p>
     </motion.div>
   );
@@ -144,7 +144,7 @@ export default function AboutPage() {
           </motion.div>
 
           <SplitReveal
-            text="Built for Real Systems, Not Just Code."
+            text="Built to Implement AI Into Real Operations."
             className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
           />
 
@@ -154,7 +154,7 @@ export default function AboutPage() {
             transition={{ delay: 0.5, duration: 0.7 }}
             className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
           >
-            Northspec is a development studio focused on building scalable software, automation, and platforms that support real business operations.
+            Northspec is an AI automation studio. We implement AI into company operations — building the workflows, agents, and systems that replace manual work and create leverage. Software and mobile app development supports that mission.
           </motion.p>
 
           <motion.div
@@ -164,7 +164,7 @@ export default function AboutPage() {
             className="mt-12 flex flex-wrap gap-4"
           >
             <Button as="link" href="/contact" variant="brand">
-              Start a Project
+              Start Automating
             </Button>
             <a
               href="https://calendar.app.google/XMN48TcybVjmij4C7"
@@ -212,10 +212,10 @@ function WhatWeDoSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const areas = [
-    { label: "Launching Products", desc: "MVPs and SaaS platforms built for real users, not just demos." },
-    { label: "Improving Operations", desc: "Automation and internal tooling that reduces manual overhead." },
-    { label: "Connecting Systems", desc: "API integrations that eliminate data silos and sync your stack." },
-    { label: "Supporting Long-Term Growth", desc: "Retainer partnerships that keep your system stable and scaling." },
+    { label: "Implementing AI Automation", desc: "We identify where AI creates value and build the workflows, agents, and systems that deliver it." },
+    { label: "Building AI Agents & Apps", desc: "From voice agents to intelligent internal tools — AI-native products built for real operations." },
+    { label: "Connecting Systems with Intelligence", desc: "AI-powered integrations that sync your stack, enrich your data, and eliminate manual data entry." },
+    { label: "Long-Term AI Operations", desc: "Retainer partnerships that keep your AI systems expanding and your operations continuously improving." },
   ];
 
   return (
@@ -229,11 +229,11 @@ function WhatWeDoSection() {
       >
         <SectionLabel>What We Do</SectionLabel>
         <SplitReveal
-          text="We Don't Just Build Apps. We Build Systems."
+          text="We Implement AI Into How Companies Operate."
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          We don&apos;t just build applications, we build systems that businesses rely on.
+          AI automation is our primary offering. Software and mobile app development supports the companies that need the foundation first.
         </p>
       </motion.div>
 
@@ -260,10 +260,10 @@ function WhatWeDoSection() {
 
 function ApproachSection() {
   const attributes = [
-    { title: "Long-Term Scalability", desc: "We architect for where your business is going, not just where it is today." },
-    { title: "Performance & Reliability", desc: "Systems built to handle real load, not just pass a demo." },
-    { title: "Structured Development", desc: "Clear scoping, milestone-based delivery, no surprises mid-build." },
-    { title: "Clear Communication", desc: "Direct access to the people writing the code. No account managers in between." },
+    { title: "AI Strategy Before Implementation", desc: "We don't build AI systems until we know exactly what business problem they solve and what ROI to expect." },
+    { title: "Proven AI Stack", desc: "n8n, OpenAI, Claude, Vapi — the tools we use ourselves to run our own operations and prospect enrichment pipelines." },
+    { title: "Structured Delivery", desc: "Clear scoping, milestone-based delivery, no surprises mid-build. Strategy defined first, then implementation." },
+    { title: "Clear Communication", desc: "Direct access to the people building your AI systems. No account managers, no hand-offs." },
   ];
 
   return (
@@ -296,10 +296,10 @@ function WhoSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const clients = [
-    "Startups launching MVPs who need engineering they can trust",
-    "Businesses improving internal systems and eliminating manual work",
-    "Teams scaling products and platforms that are outgrowing their current stack",
-    "Companies replacing manual workflows with reliable automation",
+    "Companies with manual processes that cost time and money every week",
+    "Businesses looking to implement AI into their operations without disruption",
+    "Teams building AI workflows, agents, or automation into their products",
+    "Startups launching AI-native or AI-augmented platforms and tools",
   ];
 
   return (
@@ -313,11 +313,11 @@ function WhoSection() {
         >
           <SectionLabel>Who We Work With</SectionLabel>
           <SplitReveal
-            text="Teams Who Need a System Partner."
+            text="Teams Ready to Implement AI."
             className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
           />
           <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-            We work best with businesses that need a reliable technical partner, not just a contractor to ship features and disappear.
+            We work best with businesses that are ready to put AI to work in their operations — not just exploring it as an idea.
           </p>
         </motion.div>
 
@@ -525,12 +525,12 @@ function BridgeSection() {
         className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-8"
       >
         <div className="max-w-xl">
-          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Partnerships</p>
+          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term AI Partnerships</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Most clients continue working with us long-term to maintain and grow their systems.
+            Most AI automation systems expand over time. We offer monthly retainer partnerships that add new workflows, integrate new tools, and keep your AI operations growing.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
-            We offer dedicated retainer plans starting at $3,000/month for ongoing development and support.
+            AI retainers from $1,500/month. Dev retainers from $3,000/month.
           </p>
         </div>
         <Link

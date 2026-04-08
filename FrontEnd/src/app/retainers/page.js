@@ -448,12 +448,6 @@ export default function RetainersPage() {
                   className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${plan.glow} rounded-t-3xl`}
                 />
 
-                {plan.badge && (
-                  <span className="absolute -top-3 left-7 rounded-full bg-brand-gold px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-brand-dark z-20">
-                    {plan.badge}
-                  </span>
-                )}
-
                 <div className="mb-6">
                   <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
                     {plan.name}
@@ -471,6 +465,7 @@ export default function RetainersPage() {
                   {plan.for}
                 </p>
 
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
                 <ul className="space-y-3">
                   {plan.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-xs text-slate-400">
@@ -585,12 +580,6 @@ export default function RetainersPage() {
                 className={`relative group rounded-3xl border ${plan.accent} bg-white/[0.03] backdrop-blur-md p-8
                   hover:bg-white/[0.05] transition-all duration-500`}
               >
-                {plan.badge && (
-                  <span className="absolute -top-3 left-7 rounded-full bg-brand-gold px-4 py-1 text-[10px] uppercase tracking-widest font-bold text-brand-dark z-20">
-                    {plan.badge}
-                  </span>
-                )}
-
                 <div className="mb-6">
                   <h3 className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
                     {plan.name}
@@ -605,6 +594,7 @@ export default function RetainersPage() {
                   {plan.description}
                 </p>
 
+                <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
                 <ul className="space-y-3">
                   {plan.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-xs text-slate-400">

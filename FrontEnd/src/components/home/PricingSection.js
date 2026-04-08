@@ -5,69 +5,48 @@ import { motion, useInView } from "framer-motion";
 
 const plans = [
   {
-    name: "MVP & Early Product Builds",
-    price: "Starting at $8,000",
-    range: "Most projects: $12,000 – $30,000+",
-    delivery: "6–8 weeks",
-    description: "For teams validating and launching initial products. Designed to support initial user acquisition.",
-    includes: [
-      "Frontend: up to 6 screens",
-      "Backend: auth, CRUD, database",
-      "Secure API foundation",
-      "Launch-ready architecture",
-      "Documentation & handoff",
+    name: "Smaller AI Projects",
+    range: "$5,000 – $15,000",
+    delivery: "3–5 weeks typical",
+    description: "A focused automation — replacing one or a handful of manual processes with intelligent workflows.",
+    typical: [
+      "Process audit and opportunity mapping",
+      "2–4 automated AI workflows",
+      "AI integration (OpenAI/Claude)",
+      "CRM or tool integration",
+      "Documentation and monitoring",
     ],
     color: "border-slate-800/60",
     glow: "",
     accentColor: "text-slate-300",
   },
   {
-    name: "Growth Systems & Business Tools",
-    price: "Starting at $15,000",
-    range: "Most projects: $20,000 – $50,000+",
-    delivery: "8–12 weeks",
-    description: "For businesses replacing manual processes and building operational systems. Built to reduce overhead and improve efficiency.",
-    includes: [
-      "8–10 screens",
-      "Role-based backend systems",
-      "API + webhook integrations",
-      "CRM / billing integrations",
-      "Documentation & training",
-    ],
-    color: "border-blue-900/30",
-    glow: "",
-    accentColor: "text-blue-400",
-  },
-  {
-    name: "Scalable Platforms & SaaS",
-    price: "Starting at $30,000",
-    range: "Most projects: $40,000 – $90,000+",
-    delivery: "10–16 weeks",
-    description: "For companies building scalable, revenue-generating platforms. Engineered for scale, performance, and growth.",
-    includes: [
-      "12+ screens",
-      "Platform-level backend",
-      "Advanced roles & permissions",
-      "Complex integrations",
-      "Full QA + documentation",
+    name: "Mid-Scale AI Implementation",
+    range: "$15,000 – $40,000",
+    delivery: "6–10 weeks typical",
+    description: "Replacing significant manual workload with a broader AI automation system across your operations.",
+    typical: [
+      "Full process analysis",
+      "5–12 automated AI workflows",
+      "LLM-powered routing and classification",
+      "CRM and ops integrations",
+      "Team training and support",
     ],
     color: "border-brand-gold/40",
     glow: "shadow-[0_0_60px_rgba(198,166,104,0.08)]",
     accentColor: "text-brand-gold",
-    popular: true,
   },
   {
-    name: "Enterprise Systems",
-    price: "Starting at $60,000+",
-    range: "Custom quote required",
-    delivery: "16–24+ weeks",
-    description: "For organizations requiring high-performance, secure, and scalable systems built for long-term operational demand.",
-    includes: [
-      "Multi-system architecture",
-      "Enterprise-grade backend",
-      "Multi-tenant systems",
-      "Security & compliance",
-      "Observability + CI/CD",
+    name: "Large AI Infrastructure",
+    range: "$40,000 – $90,000+",
+    delivery: "10–16 weeks typical",
+    description: "Making AI a core operational backbone — full strategy through implementation with custom agents and systems.",
+    typical: [
+      "Full AI strategy and implementation",
+      "Custom AI agents and voice systems",
+      "Multi-system integrations",
+      "AI-powered internal tools",
+      "Ongoing ops retainer setup",
     ],
     color: "border-purple-900/30",
     glow: "",
@@ -105,16 +84,8 @@ function PricingCard({ plan, index }) {
         transition-colors duration-500 cursor-default ${plan.color} ${plan.glow}`}
       style={{ willChange: "transform" }}
     >
-      {plan.popular && (
-        <div className="absolute -top-4 left-8">
-          <span className="bg-brand-gold text-brand-dark text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
-            Most Popular
-          </span>
-        </div>
-      )}
-
-      {/* Glow top line */}
-      {plan.popular && (
+      {/* Glow top line for gold tier */}
+      {plan.color === "border-brand-gold/40" && (
         <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent rounded-t-3xl" />
       )}
 
@@ -123,13 +94,10 @@ function PricingCard({ plan, index }) {
           {plan.name}
         </p>
         <div className={`text-3xl font-bold font-serif ${plan.accentColor} leading-[1.05]`}>
-          {plan.price}
-        </div>
-        <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider mt-1">
           {plan.range}
-        </p>
+        </div>
         <p className="text-xs text-slate-600 font-medium uppercase tracking-wider mt-1">
-          {plan.delivery} delivery
+          {plan.delivery}
         </p>
       </div>
 
@@ -137,8 +105,9 @@ function PricingCard({ plan, index }) {
         {plan.description}
       </p>
 
+      <p className="text-[9px] font-bold text-slate-600 uppercase tracking-[0.2em] mb-3">Typical scope</p>
       <ul className="space-y-3 mb-10">
-        {plan.includes.map((item) => (
+        {plan.typical.map((item) => (
           <li key={item} className="flex items-start gap-3 text-sm text-slate-300">
             <svg
               className={`w-4 h-4 mt-0.5 flex-shrink-0 ${plan.accentColor}`}
@@ -195,8 +164,8 @@ export default function PricingSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
-              Built for{" "}
-              <em className="not-italic text-brand-gold">Serious Projects.</em>
+              AI automation and{" "}
+              <em className="not-italic text-brand-gold">transparent pricing.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
@@ -214,7 +183,7 @@ export default function PricingSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-4 max-w-xs text-slate-400 leading-relaxed text-sm font-times"
           >
-            Most of our clients invest between $12,000 and $50,000+ depending on scope and complexity. Final pricing is scoped, not guessed.
+            AI automation projects from $5,000. Software and mobile app development from $12,000. All fixed-price, scoped before any commitment.
           </motion.p>
 
           <motion.div
@@ -226,14 +195,14 @@ export default function PricingSection() {
         </div>
 
         {/* Plans grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, i) => (
             <PricingCard key={plan.name} plan={plan} index={i} />
           ))}
         </div>
 
         <p className="mt-8 text-center text-xs text-slate-600 font-medium">
-          All pricing is tailored based on scope, system complexity, integrations, and infrastructure requirements.
+          These are example ranges based on typical projects. Every engagement is custom-scoped — you receive a fixed quote before any work begins.
         </p>
 
         {/* Merged CTA Section */}
@@ -248,13 +217,13 @@ export default function PricingSection() {
             {/* Left side: Automation context */}
             <div className="p-10 lg:p-14 border-b lg:border-b-0 lg:border-r border-white/10 flex flex-col justify-center">
               <p className="text-[10px] font-bold tracking-[0.3em] text-brand-gold uppercase mb-4">
-                Automation Add-Ons
+                Traditional Development
               </p>
               <h3 className="text-2xl font-bold font-serif text-white leading-[1.05] mb-3">
-                n8n workflow automation - priced separately
+                Software and mobile app builds also available
               </h3>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-                Setup from $1,500 · Simple workflows from $500 · AI workflows $1,500–$2,500
+                MVPs from $12,000 · Business Systems from $20,000 · SaaS Platforms from $40,000
               </p>
               <a
                 href="/pricing"
@@ -273,17 +242,17 @@ export default function PricingSection() {
               <div className="absolute inset-0 bg-brand-gold/[0.02] pointer-events-none" />
 
               <h3 className="text-3xl font-bold font-serif text-white mb-4 relative z-10">
-                Ready to build something <br className="hidden sm:block" /> durable?
+                Ready to automate <br className="hidden sm:block" /> your operations?
               </h3>
               <p className="text-slate-400 text-sm mb-10 max-w-xs leading-relaxed relative z-10">
-                Free technical consultation - clear plan and timeline included.
+                Free discovery call — we'll identify the highest-ROI AI automation for your business.
               </p>
               <div className="relative z-10">
                 <a
                   href="#contact"
                   className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
                 >
-                  Start Your Project
+                  Start Automating
                 </a>
               </div>
             </div>

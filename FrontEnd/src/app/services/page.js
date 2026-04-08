@@ -109,11 +109,11 @@ function ServicesHead() {
     <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center max-w-2xl mx-auto mb-16">
       <SectionLabel>All Services</SectionLabel>
       <SplitReveal
-        text="Everything We Build."
+        text="Everything We Automate and Build."
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-        Grouped by what you&apos;re trying to achieve, not by what we happen to offer.
+        AI automation is our primary offering. Software and mobile app development supports teams that need the foundation first.
       </p>
     </motion.div>
   );
@@ -156,7 +156,7 @@ export default function ServicesPage() {
           </motion.div>
 
           <SplitReveal
-            text="Software, Systems, and Automation, Built to Scale."
+            text="AI Automation. Built for Your Operations."
             className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
           />
 
@@ -166,8 +166,8 @@ export default function ServicesPage() {
             transition={{ delay: 0.5, duration: 0.7 }}
             className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
           >
-            We design and build custom software, automation workflows, and scalable platforms for startups and growing teams. Most clients invest between{" "}
-            <span className="text-white font-bold not-italic">$12,000 and $50,000+</span>.
+            We implement AI into your operations — workflows, agents, voice systems, and integrations. Software and mobile app development for teams that need the foundation first. AI automation projects start at{" "}
+            <span className="text-white font-bold not-italic">$8,000</span>.
           </motion.p>
 
           <motion.div
@@ -176,7 +176,7 @@ export default function ServicesPage() {
             transition={{ delay: 0.7, duration: 0.6 }}
             className="mt-12 flex flex-wrap gap-4"
           >
-            <Button as="link" href="/contact" variant="brand">Start a Project</Button>
+            <Button as="link" href="/contact" variant="brand">Start Automating</Button>
             <a
               href="https://calendar.app.google/XMN48TcybVjmij4C7"
               target="_blank"
@@ -220,11 +220,11 @@ function StartHereSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const paths = [
-    { label: "Launching a new product", action: "MVP & Software Development", href: "/services/software-development", tag: "Product Dev" },
-    { label: "Replacing manual work", action: "Automation & Integrations", href: "/services/workflow-automation", tag: "Automation" },
-    { label: "Building a mobile app", action: "Mobile App Development", href: "/services/mobile-app-development", tag: "Mobile" },
-    { label: "Scaling an existing system", action: "Platforms & Ongoing Support", href: "/services/maintenance-support", tag: "Growth" },
-    { label: "Need something custom", action: "Built-to-Spec or Custom Plan", href: "/pricing/custom", tag: "Custom" },
+    { label: "I want to automate manual processes", action: "AI Automation & Workflows", href: "/services/ai-implementation", tag: "AI" },
+    { label: "I want to build an AI agent or app", action: "AI Apps & Agents", href: "/services/ai-agents", tag: "AI" },
+    { label: "I need an AI strategy before I build", action: "AI Strategy & Consulting", href: "/services/ai-strategy", tag: "Strategy" },
+    { label: "I need a software or mobile app", action: "Software & Mobile App Development", href: "/services/software-development", tag: "Dev" },
+    { label: "I need a mobile app", action: "Mobile App Development", href: "/services/mobile-app-development", tag: "Mobile" },
   ];
 
   return (
@@ -276,77 +276,65 @@ function StartHereSection() {
 function AllServicesSection() {
   const groups = [
     {
-      label: "Product Development",
-      tag: "Best for launching products",
+      label: "AI Services — Primary Offering",
+      tag: "Best for replacing manual work with AI",
       services: [
         {
-          title: "Software Development",
-          desc: "Web apps, SaaS platforms, and internal tools built for real users and real usage.",
-          bullets: ["Custom web applications", "SaaS & dashboard builds", "Internal tools & admin systems", "API-first architecture"],
+          title: "AI Strategy & Consulting",
+          desc: "Find where AI creates real value in your operations before spending a dollar on implementation.",
+          bullets: ["AI readiness assessment", "Process audit and opportunity mapping", "Prioritized AI implementation roadmap", "Technology stack recommendation"],
+          href: "/services/ai-strategy",
+          badge: "Start Here",
+        },
+        {
+          title: "AI Implementation & Workflows",
+          desc: "We build the AI automation systems that replace your manual work — end to end.",
+          bullets: ["n8n workflow automation", "LLM-powered routing and classification", "CRM and ops automation", "AI-assisted data pipelines"],
+          href: "/services/ai-implementation",
+          badge: "Most Popular",
+        },
+        {
+          title: "AI Apps & Agents",
+          desc: "Purpose-built AI applications — voice agents, intelligent portals, and autonomous systems.",
+          bullets: ["Voice agent development (Vapi)", "AI-powered internal tools", "Autonomous task agents", "AI-native product builds"],
+          href: "/services/ai-agents",
+        },
+      ],
+    },
+    {
+      label: "Traditional Development — Supporting Services",
+      tag: "Best for teams that need the foundation first",
+      services: [
+        {
+          title: "Software & Mobile App Development",
+          desc: "AI-compatible software, web apps, and mobile apps — every system we build is designed to accept AI layers.",
+          bullets: ["Custom web applications", "SaaS and dashboard builds", "Internal tools and admin systems", "API-first architecture"],
           href: "/services/software-development",
         },
         {
           title: "Mobile App Development",
-          desc: "Lean, production-ready mobile apps without the $100K+ agency price tag.",
-          bullets: ["Cross-platform iOS & Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend & API integration"],
+          desc: "Lean, production-ready mobile apps built for real users and designed to scale.",
+          bullets: ["Cross-platform iOS and Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend and API integration"],
           href: "/services/mobile-app-development",
-          badge: "Popular",
         },
       ],
     },
     {
-      label: "Systems & Automation",
-      tag: "Best for improving operations",
-      services: [
-        {
-          title: "Workflow Automation",
-          desc: "Eliminate manual work and reduce operational overhead with custom automation systems.",
-          bullets: ["Multi-step workflow automation", "AI-assisted processing", "Trigger-based pipelines", "CRM & ops automation"],
-          href: "/services/workflow-automation",
-        },
-        {
-          title: "Integrations",
-          desc: "Connect your tools and eliminate data silos. Make your systems work together.",
-          bullets: ["API integrations", "Data sync between platforms", "Webhook & event systems", "Third-party connector builds"],
-          href: "/services/integrations",
-        },
-      ],
-    },
-    {
-      label: "Growth & Scale",
-      tag: "Best for scaling systems",
+      label: "Ongoing Support",
+      tag: "Best for keeping systems running and expanding",
       services: [
         {
           title: "Maintenance & Support",
-          desc: "Keep your system running, secure, and continuously improving after launch.",
-          bullets: ["Bug fixes & performance work", "Security updates & monitoring", "Feature additions", "System reliability"],
+          desc: "Keep your AI and software systems running, secure, and continuously improving.",
+          bullets: ["Bug fixes and performance work", "Security updates and monitoring", "Feature additions", "System reliability"],
           href: "/services/maintenance-support",
         },
         {
           title: "Ongoing Retainers",
-          desc: "Dedicated monthly development capacity for teams that need a long-term partner.",
-          bullets: ["$3,000–$20,000+/month", "Flexible monthly scope", "3–6 month minimum", "Most Popular: Growth Plan"],
+          desc: "Dedicated monthly capacity for teams that need a long-term partner for AI and software.",
+          bullets: ["AI retainers from $1,500/month", "Dev retainers from $3,000/month", "3-month minimum", "Expand AI workflows monthly"],
           href: "/retainers",
           badge: "Recurring",
-        },
-      ],
-    },
-    {
-      label: "Custom Solutions",
-      tag: "Best for complex builds",
-      services: [
-        {
-          title: "Built to Spec",
-          desc: "For complex systems that require tailored architecture and structured delivery.",
-          bullets: ["Full system design", "Enterprise-grade builds", "Custom integrations", "Starts at $30,000"],
-          href: "/built-to-spec",
-        },
-        {
-          title: "Custom Plans",
-          desc: "Scoped entirely around your needs. Designed for non-standard or multi-phase projects.",
-          bullets: ["Tailored architecture", "Multi-phase delivery", "Custom pricing structure", "From $25,000+"],
-          href: "/pricing/custom",
-          badge: "High-Value",
         },
       ],
     },
@@ -399,10 +387,10 @@ function PriceSection() {
         <div className="max-w-xl">
           <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Investment Range</p>
           <p className="text-2xl font-bold text-white font-times leading-snug">
-            Most clients invest between <span className="text-brand-gold">$12,000 and $50,000+</span> for a project build.
+            AI automation projects start at <span className="text-brand-gold">$8,000</span>. Software and mobile app projects from <span className="text-brand-gold">$12,000</span>.
           </p>
           <p className="mt-3 text-sm text-slate-400 font-medium">
-            Ongoing retainers run $3,000–$20,000+/month. We scope every engagement before any commitment is made.
+            All fixed-price, all scoped before commitment. AI retainers from $1,500/month.
           </p>
         </div>
         <div className="flex flex-col gap-3 shrink-0">
@@ -461,10 +449,10 @@ function WhySection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const reasons = [
-    { title: "Built for Real-World Usage", desc: "Not demos or prototypes. Systems designed to handle real users and real load." },
+    { title: "AI Built for Real Operations", desc: "Not demos or prototypes. AI systems designed around your actual workflows and integrated into your existing stack." },
+    { title: "Proven AI Stack", desc: "We run our own AI operations — Vapi voice agents, n8n enrichment pipelines, and LLM-powered workflows built in-house." },
     { title: "Structured Delivery Process", desc: "Scope defined first. Milestone payments. No surprises mid-build." },
-    { title: "Scalable Architecture", desc: "Designed for where you're going, not just where you are today." },
-    { title: "Long-Term Support Available", desc: "Retainer partnerships for teams that need continued development after launch." },
+    { title: "Long-Term AI Operations", desc: "Retainer partnerships that expand your AI workflows, train on new data, and keep your automation growing." },
   ];
 
   return (
@@ -518,10 +506,10 @@ function BridgeSection() {
         <div className="max-w-xl">
           <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">After Launch</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Most clients continue working with us after launch to maintain and grow their systems.
+            Most AI automation systems expand over time. We offer monthly retainer partnerships that add new workflows, integrate new tools, and keep your AI operations growing.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
-            Retainer plans from $3,000/month give you ongoing development capacity, monitoring, and support.
+            AI retainers from $1,500/month. Dev retainers from $3,000/month.
           </p>
         </div>
         <Link
@@ -548,17 +536,17 @@ function CtaSection() {
         transition={{ duration: 0.7 }}
         className="text-center max-w-3xl mx-auto"
       >
-        <SectionLabel>Ready to Build</SectionLabel>
+        <SectionLabel>Ready to Automate</SectionLabel>
         <SplitReveal
-          text="Let's Build the Right System."
+          text="Let's Implement AI Into Your Operations."
           className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-8 text-lg text-slate-400 font-medium italic leading-relaxed max-w-xl mx-auto">
-          We scope every engagement before any commitment is made. Projects start at $10,000.
+          We scope every engagement before any commitment is made. AI automation projects start at $8,000.
         </p>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
-          <Button as="link" href="/contact" variant="brand">Start a Project</Button>
+          <Button as="link" href="/contact" variant="brand">Start Automating</Button>
           <Button as="link" href="/pricing" variant="outline">View Pricing</Button>
         </div>
       </motion.div>
