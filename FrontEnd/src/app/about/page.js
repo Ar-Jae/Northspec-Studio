@@ -48,8 +48,8 @@ function TiltCard({ children, className = "" }) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = ((e.clientX rect.left) / rect.width 0.5) * 16;
-    const y = ((e.clientY rect.top) / rect.height 0.5) * -16;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
     el.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   }
   function handleMouseLeave() {
