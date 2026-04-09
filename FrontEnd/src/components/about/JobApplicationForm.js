@@ -113,12 +113,15 @@ export default function JobApplicationForm() {
         <p className="mt-4 text-slate-300">
           Thanks for reaching out. We'll review your profile and get back to you if there's a potential fit.
         </p>
-        <button
-          onClick={() => setStatus("idle")}
-          className="mt-8 text-brand-gold hover:underline text-sm font-bold uppercase tracking-widest"
-        >
-          Send another application
-        </button>
+        <div className="mt-8 flex justify-center">
+          <Button
+            onClick={() => setStatus("idle")}
+            variant="outline"
+            className="text-xs py-3"
+          >
+            Send another application
+          </Button>
+        </div>
       </div>
     );
   }
