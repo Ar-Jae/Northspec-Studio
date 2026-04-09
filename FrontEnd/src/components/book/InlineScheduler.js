@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Button from "../Button";
 
 function nextDays(count = 14) {
   const days = [];
@@ -114,13 +115,14 @@ export default function InlineScheduler() {
 
       {error ? <p className="text-red-400 text-sm">{error}</p> : null}
 
-      <button
+      <Button
         onClick={book}
         disabled={!selected || !name || !email || status === "loading"}
-        className="inline-flex items-center justify-center rounded-lg px-5 py-3 bg-gradient-to-r from-brand-gold to-[#B8860B] text-brand-dark font-semibold disabled:opacity-50"
+        variant="brand"
+        className="w-full"
       >
         {status === "loading" ? "Booking..." : "Book selected time"}
-      </button>
+      </Button>
     </div>
   );
 }

@@ -14,6 +14,8 @@ const variants = {
   outline:
     "border border-[#333333]/40 bg-transparent text-[#111111] hover:text-white",
   brand: "bg-brand-gold text-brand-dark border-brand-gold/40 hover:text-white",
+  "brand-dark": "bg-brand-dark text-white border-white/10 hover:text-white",
+  "outline-dark": "border border-brand-dark/20 bg-transparent text-brand-dark hover:text-white",
 };
 
 export default function Button({
@@ -49,7 +51,7 @@ export default function Button({
       {/* Circle Layer */}
       <span className={cn(
         "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-[50%] opacity-0 group-hover:w-[150%] group-hover:h-[500%] group-hover:opacity-100 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)]",
-        variant === "brand" ? "bg-[#111111]" : "bg-brand-gold"
+        (variant === "brand" || variant === "outline-dark") ? "bg-[#111111]" : "bg-brand-gold"
       )}></span>
 
       {/* Right arrow (arr-1) */}

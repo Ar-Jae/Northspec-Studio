@@ -45,7 +45,7 @@ export default function NewsletterSignup() {
               variant="brand"
               className="px-6"
             >
-              {subscribed ? "✓ Sent" : "Send"} →
+              {subscribed ? "✓ Sent" : "Send"}
             </Button>
           </div>
         </form>

@@ -228,6 +228,11 @@ export default function Header() {
                 );
               })}
             </ul>
+            <div className="mt-8 px-4">
+              <Button as="link" href="/contact" variant="brand" className="w-full justify-center" onClick={() => setMobileOpen(false)}>
+                Get Started
+              </Button>
+            </div>
           </nav>
         </Container>
       </div>
