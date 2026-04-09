@@ -52,9 +52,15 @@ function NavLink({ item, pathname }) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.2 }}
-              className="absolute left-0 mt-2 w-56 rounded-2xl bg-brand-dark/90 backdrop-blur-xl border border-white/10 p-2 shadow-2xl"
+              className={cn(
+                "absolute left-0 mt-2 rounded-2xl bg-brand-dark/90 backdrop-blur-xl border border-white/10 p-2 shadow-2xl",
+                item.label === "AI Automation" ? "w-[480px]" : "w-56"
+              )}
             >
-              <ul className="flex flex-col gap-0.5">
+              <ul className={cn(
+                "flex flex-col gap-0.5",
+                item.label === "AI Automation" && "grid grid-cols-2 gap-1"
+              )}>
                 {item.children.map((child) => (
                   <li key={child.href}>
                     <Link
