@@ -6,16 +6,12 @@ import { cn } from "../lib/utils";
 import { ArrowRight } from "lucide-react";
 
 const base =
-  "group relative inline-flex items-center gap-1 overflow-hidden rounded-[100px] border-[1.5px] border-[#333333]/40 bg-transparent px-8 py-3 text-sm font-semibold text-[#111111] cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-transparent hover:text-white hover:rounded-[12px] active:scale-[0.95]";
+  "group relative inline-flex items-center gap-1 overflow-hidden rounded-[100px] border-[1.5px] border-[#333333]/40 bg-transparent px-8 py-3 text-sm font-semibold cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-transparent hover:rounded-[12px] active:scale-[0.95]";
 
 const variants = {
-  primary: "bg-brand-dark text-white border-brand-dark hover:text-brand-dark",
-  secondary: "bg-brand-dark/10 text-brand-dark border-brand-dark/20 hover:text-brand-gold",
-  outline: "bg-transparent text-brand-dark border-brand-dark/20 hover:text-white",
-  brand: "bg-brand-gold text-brand-dark border-brand-gold hover:text-brand-dark",
-  "brand-dark": "bg-brand-dark text-white border-brand-dark hover:text-brand-gold",
+  brand: "bg-brand-gold text-brand-dark border-brand-gold hover:text-white",
+  "brand-dark": "bg-brand-dark text-white border-brand-dark hover:text-brand-dark",
   "outline-dark": "bg-transparent text-white border-white/20 hover:text-brand-dark",
-  outline: "bg-transparent text-white border-white/20 hover:text-brand-dark",
 };
 
 export default function Button({

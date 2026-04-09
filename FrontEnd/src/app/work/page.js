@@ -133,7 +133,7 @@ export default function WorkPage() {
             <Button
               as="link"
               href="/pricing"
-              variant="outline"
+              variant="outline-dark"
               className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
             >
               View Pricing

@@ -519,7 +519,7 @@ function BridgeSection() {
         <Button
           as="link"
           href="/retainers"
-          variant="outline"
+          variant="outline-dark"
           className="shrink-0"
         >
           View Retainer Plans

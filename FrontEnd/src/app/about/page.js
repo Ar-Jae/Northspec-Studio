@@ -139,14 +139,14 @@ export default function AboutPage() {
         <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
           Start a Project
         </Button>
-        <a
+        <Button
+          as="link"
           href="https://calendar.app.google/XMN48TcybVjmij4C7"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-full px-8 py-3 text-sm font-medium font-times uppercase tracking-widest bg-white/[0.03] backdrop-blur-md"
+          variant="outline-dark"
+          className="rounded-full px-8 py-3 text-sm font-medium font-times uppercase tracking-widest bg-white/[0.03] backdrop-blur-md"
         >
           Book a Call
-        </a>
+        </Button>
       </HeroSection>
 
       {/* ── 2. WHAT WE BUILD FOR ───────────────────────────────────────────── */}
@@ -541,14 +541,6 @@ function CtaSection() {
           <Button as="link" href="/contact" variant="brand">
             Request Strategy Call
           </Button>
-          <a
-            href="https://calendar.app.google/XMN48TcybVjmij4C7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
-          >
-            Book via Calendar
-          </a>
         </div>
       </motion.div>
     </section>

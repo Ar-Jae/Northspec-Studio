@@ -81,9 +81,9 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-7 relative z-10">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 sm:p-16 backdrop-blur-xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
-                <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">SUBMIT</div>
-                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] -mr-48 -mt-48 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 sm:p-16 backdrop-blur-xl relative overflow-hidden group/form hover:border-brand-gold/20 transition-all duration-700">
+                <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover/form:text-white/[0.04] transition-all duration-700">SUBMIT</div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] -mr-48 -mt-48 opacity-0 group-hover/form:opacity-100 transition-opacity duration-1000" />
                 
                 <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.2em] relative z-10">
                   Request A Review

@@ -52,7 +52,7 @@ export default function AISystemsClient() {
         subheading="We implement AI powered workflows, automation systems, and custom applications that reduce manual work and help businesses operate more efficiently."
       >
         <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">Start Automating</Button>
-        <Button as="link" href="#solutions" variant="outline" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">View Solutions</Button>
+        <Button as="link" href="#solutions" variant="outline-dark" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">View Solutions</Button>
       </HeroSection>
 
       {/* Big Promise Section */}
@@ -109,7 +109,7 @@ export default function AISystemsClient() {
                   <span>Instant CRM Integration</span>
                 </li>
               </ul>
-              <Button as="link" href="/ai-systems/ai-receptionist" variant="outline" className="w-full text-xs py-3 rounded-xl border-white/10 hover:border-brand-gold/50">Details</Button>
+              <Button as="link" href="/ai-systems/ai-receptionist" variant="outline-dark" className="w-full text-xs py-3 rounded-xl border-white/10 hover:border-brand-gold/50">Details</Button>
             </div>
 
             {/* Workflow Automation */}
@@ -135,7 +135,7 @@ export default function AISystemsClient() {
                   <span>Data Ingestion & Cleaning</span>
                 </li>
               </ul>
-              <Button as="link" href="/ai-systems/workflow-automation" variant="outline" className="w-full text-xs py-3 rounded-xl border-white/10 hover:border-brand-gold/50">Details</Button>
+              <Button as="link" href="/ai-systems/workflow-automation" variant="outline-dark" className="w-full text-xs py-3 rounded-xl border-white/10 hover:border-brand-gold/50">Details</Button>
             </div>
           </div>
         </div>

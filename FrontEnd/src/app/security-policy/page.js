@@ -352,7 +352,7 @@ const sections = [
             <Button
               as="link"
               href="/retainers"
-              variant="outline"
+              variant="outline-dark"
               className="text-xs py-3"
             >
               View Retainer Plans
@@ -385,14 +385,13 @@ const sections = [
           <Button as="link" href="/contact" variant="brand">
             Start a Project
           </Button>
-          <a
+          <Button
+            as="link"
             href="https://calendar.app.google/XMN48TcybVjmij4C7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
+            variant="outline-dark"
           >
             Book a Call
-          </a>
+          </Button>
         </div>
       </>
     ),

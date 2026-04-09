@@ -444,7 +444,7 @@ export default function ContactForm() {
           {step > 1 && (
             <Button
               onClick={prevStep}
-              variant="outline"
+              variant="outline-dark"
               className="w-full sm:w-auto sm:px-8 font-times uppercase tracking-widest text-xs py-4"
               type="button"
             >
@@ -455,7 +455,7 @@ export default function ContactForm() {
             {!isStepRequired() && step < totalSteps && (
               <Button
                 onClick={skipStep}
-                variant="outline"
+                variant="outline-dark"
                 className="flex-1 font-times uppercase tracking-widest text-xs py-4 text-slate-500 border-white/5 hover:border-white/10"
                 type="button"
               >

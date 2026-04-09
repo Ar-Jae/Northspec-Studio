@@ -97,7 +97,7 @@ export default function DevelopmentPage() {
                     We protect our development time to ensure high quality output. We respond to all communication within 24 hours.
                   </p>
                   <div className="mt-6">
-                    <Button as="link" href="/work" variant="secondary" className="w-full">View Our Work</Button>
+                    <Button as="link" href="/work" variant="brand-dark" className="w-full">View Our Work</Button>
                   </div>
                 </div>
               </div>

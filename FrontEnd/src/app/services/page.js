@@ -227,7 +227,7 @@ export default function ServicesPage() {
             className="flex flex-col sm:flex-row items-center gap-4"
           >
             <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">Start a Project</Button>
-            <Button as="link" href="/work" variant="outline" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">See Our Work</Button>
+            <Button as="link" href="/work" variant="outline-dark" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">See Our Work</Button>
           </motion.div>
         </motion.div>
 
@@ -356,7 +356,7 @@ function PriceSection() {
           <Button as="link" href="/pricing" variant="brand">
             View Full Pricing
           </Button>
-          <Button as="link" href="/pricing/custom" variant="outline">
+          <Button as="link" href="/pricing/custom" variant="outline-dark">
             Custom Projects
           </Button>
         </div>
@@ -474,7 +474,7 @@ function BridgeSection() {
         <Button
           as="link"
           href="/retainers"
-          variant="outline"
+          variant="outline-dark"
           className="shrink-0"
         >
           View Retainer Plans
@@ -508,7 +508,7 @@ function CtaSection() {
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button as="link" href="/contact" variant="brand">Start a Project</Button>
-          <Button as="link" href="/pricing" variant="outline">View Pricing</Button>
+          <Button as="link" href="/pricing" variant="outline-dark">View Pricing</Button>
         </div>
       </motion.div>
     </section>

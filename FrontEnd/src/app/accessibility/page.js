@@ -1,4 +1,5 @@
 import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
+import Button from "../../components/Button";
 
 export const metadata = {
   title: "Accessibility Commitment | Northspec Studio",
@@ -212,12 +213,14 @@ const sections = [
           <p className="text-sm text-slate-400 leading-relaxed mb-4">
             If you need help accessing any part of our website or require content in an alternative format, we are here to assist. reach out and we’ll make sure you get what you need.
           </p>
-          <a
+          <Button
+            as="link"
             href={`mailto:${SUPPORT_EMAIL}?subject=Accessibility Assistance`}
-            className="inline-flex items-center gap-2 bg-brand-gold text-brand-dark font-bold font-times uppercase tracking-widest text-[10px] rounded-lg px-4 py-2 hover:bg-brand-gold/90 transition-colors"
+            variant="brand"
+            className="text-[10px] px-4 py-2"
           >
             Get Assistance
-          </a>
+          </Button>
         </div>
       </>
     ),

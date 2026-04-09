@@ -238,13 +238,14 @@ const sections = [
         </p>
 
         <div className="mt-8 flex flex-wrap gap-4 not-italic">
-          <a
+          <Button
+            as="link"
             href={`mailto:${SUPPORT_EMAIL}?subject=NDA Request`}
-            className="inline-flex items-center gap-2 bg-brand-gold text-brand-dark font-bold font-times uppercase tracking-widest text-xs rounded-xl px-6 py-4 hover:bg-brand-gold/90 transition-colors"
+            variant="brand"
           >
             Request an NDA
-          </a>
-          <Button as="link" href="/contact" variant="outline">
+          </Button>
+          <Button as="link" href="/contact" variant="outline-dark">
             Start a Project
           </Button>
         </div>

@@ -68,8 +68,8 @@ function TiltCard({ children, className = "" }) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = ((e.clientX rect.left) / rect.width 0.5) * 16;
-    const y = ((e.clientY rect.top) / rect.height 0.5) * -16;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
     el.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   }
   function handleMouseLeave() {
@@ -214,7 +214,7 @@ export default function WhyNorthspecPage() {
             <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
               Start a Project
             </Button>
-            <Button as="link" href="/contact" variant="outline" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
+            <Button as="link" href="/contact" variant="outline-dark" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
               Book a Call
             </Button>
           </motion.div>
@@ -523,7 +523,7 @@ function BridgeSection() {
         <Button
           as="link"
           href="/retainers"
-          variant="outline"
+          variant="outline-dark"
           className="shrink-0"
         >
           View Retainer Plans
@@ -559,14 +559,13 @@ function CtaSection() {
           <Button as="link" href="/contact" variant="brand">
             Start a Project
           </Button>
-          <a
+          <Button
+            as="link"
             href="https://calendar.app.google/XMN48TcybVjmij4C7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
+            variant="outline-dark"
           >
             Book a Call
-          </a>
+          </Button>
         </div>
       </motion.div>
     </section>

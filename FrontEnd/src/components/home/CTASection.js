@@ -24,7 +24,7 @@ export default function CTASection() {
             <Button
               as="link"
               href="/work"
-              variant="secondary"
+              variant="brand-dark"
             >
               View Work
             </Button>

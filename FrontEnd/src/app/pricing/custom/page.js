@@ -204,7 +204,7 @@ export default function CustomPlansPage() {
             <Button
               as="link"
               href="/contact"
-              variant="outline"
+              variant="outline-dark"
               className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
             >
               Book a Strategy Call
@@ -448,18 +448,12 @@ export default function CustomPlansPage() {
                   transition={{ duration: 0.6, delay: 0.45 }}
                   className="flex flex-wrap gap-3"
                 >
-                  <a
-                    href="/contact"
-                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                  >
+                  <Button as="link" href="/contact" variant="brand">
                     Start a Custom Project
-                  </a>
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
-                  >
+                  </Button>
+                  <Button as="link" href="/contact" variant="outline-dark">
                     Book a Strategy Call
-                  </a>
+                  </Button>
                 </motion.div>
               </div>
             </div>
@@ -624,12 +618,14 @@ export default function CustomPlansPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <a
+                <Button
+                  as="link"
                   href="/retainers"
-                  className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                  variant="brand"
+                  className="px-8 py-4 text-xs font-bold uppercase tracking-[0.2em]"
                 >
                   View Retainer Plans
-                </a>
+                </Button>
                 <p className="text-xs text-slate-600 font-medium uppercase tracking-wider self-center">
                   Ongoing from $5,000 $12,000/month
                 </p>
@@ -695,21 +691,22 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
+            <Button
+              as="link"
               href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+              variant="brand"
+              className="px-10 py-5 text-xs uppercase tracking-[0.2em] font-bold"
             >
               Start a Custom Project
-            </a>
-            <a
+            </Button>
+            <Button
+              as="link"
               href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
+              variant="outline-dark"
+              className="px-8 py-4 text-sm font-bold"
             >
               Book a Strategy Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </div>
       </section>

@@ -116,7 +116,7 @@ export default function JobApplicationForm() {
         <div className="mt-8 flex justify-center">
           <Button
             onClick={() => setStatus("idle")}
-            variant="outline"
+            variant="outline-dark"
             className="text-xs py-3"
           >
             Send another application

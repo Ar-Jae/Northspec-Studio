@@ -195,7 +195,7 @@ export default function MobileAppDevelopmentClient() {
                 <Button
                   as="link"
                   href="/pricing"
-                  variant="outline"
+                  variant="outline-dark"
                   className="rounded-full px-8 py-4 text-xs font-bold uppercase tracking-[0.2em]"
                 >
                   View Pricing

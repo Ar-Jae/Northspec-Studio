@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
                       </ul>
 
                       <div className="mt-12 relative z-10  pt-8">
-                        <Button as="link" href={phase.href} variant="secondary" className="text-[10px] py-4">
+                        <Button as="link" href={phase.href} variant="brand-dark" className="text-[10px] py-4">
                           Dive into {phase.title}
                         </Button>
                       </div>
