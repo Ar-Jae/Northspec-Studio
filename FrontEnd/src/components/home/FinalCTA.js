@@ -42,10 +42,10 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl"
+          className="font-serif font-bold text-white text-[clamp(2rem,4vw,4.5rem)] leading-[1] tracking-tight mb-6 max-w-4xl italic"
         >
-          Ready to Build Something{" "}
-          <em className="not-italic text-brand-gold">That Scales?</em>
+          Ready to Implement Your{" "}
+          <em className="not-italic text-brand-gold">AI Strategy?</em>
         </motion.h2>
 
         <motion.p
@@ -53,9 +53,10 @@ export default function FinalCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
+          className="text-slate-400 text-lg leading-relaxed mb-12 max-w-lg font-times"
         >
-          Let&apos;s talk about your project and how we can help.
+          Tell us what you&apos;re building and we&apos;ll outline a clear AI implementation plan.
+          Replace manual overhead with systems that deliver actual ROI.
         </motion.p>
 
         <motion.div
@@ -69,13 +70,13 @@ export default function FinalCTA() {
             href="/contact"
             className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
           >
-            Start a Project
+            Start Automating
           </a>
           <a
-            href="/contact"
+            href="/ai-systems"
             className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
           >
-            Book a Call
+            See AI Solutions
             <svg
               className="w-4 h-4 group-hover:translate-x-1 transition-transform"
               fill="none" viewBox="0 0 24 24" stroke="currentColor"

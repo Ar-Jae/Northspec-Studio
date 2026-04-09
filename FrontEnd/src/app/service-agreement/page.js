@@ -37,17 +37,17 @@ const sections = [
   },
   {
     id: "scope",
-    title: "Scope of Work",
+    title: "Project Scope & Execution",
     content: (
       <>
         <p>
-          All work is performed based on a written scope of work agreed upon before development begins. The scope document defines deliverables, timeline, and the specific features or systems to be built.
+          Each engagement is governed by a technical Statement of Work (SOW) that defines the architecture, integrations, and automated workflows to be implemented.
         </p>
         <div className="mt-5 space-y-3 not-italic">
           {[
-            ["What Is Included", "Only work explicitly defined in the scope document is included in the quoted price. Any feature, integration, or system not described in that document is considered out of scope."],
-            ["What Is Not Included", "General consulting, strategic planning, third-party licensing fees, content creation, copywriting, or services not related to direct software delivery are not included unless explicitly stated."],
-            ["Scope Confirmation", "The Client is responsible for reviewing and approving the scope document before work begins. Approval (written or via payment of deposit) constitutes acceptance of the defined scope."],
+            ["Technical Boundaries", "Only the systems, APIs, and workflows explicitly defined in the SOW are included. Our focus is on high-value automation and system integrity; general consulting or content creation is excluded unless specified."],
+            ["Requirement Reliability", "The Client is responsible for the accuracy of business logic and data provided. If system requirements change materially after architectural sign-off, Northspec reserves the right to re-scope and re-price the engagement."],
+            ["Timely Cooperation", "To maintain deployment schedules, Clients must provide all necessary data, API credentials, and feedback within 48 hours of request. Delays may result in project suspension and rescheduling fees."],
           ].map(([title, desc]) => (
             <div key={title} className="flex gap-4 rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 shrink-0" />
@@ -62,42 +62,18 @@ const sections = [
     ),
   },
   {
-    id: "changes",
-    title: "Change Requests",
-    content: (
-      <>
-        <p>
-          Software development involves evolving requirements. All changes to the agreed scope are managed through a documented change request process.
-        </p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 not-italic">
-          {[
-            { label: "Request Process", desc: "Change requests must be submitted in writing (email or project management system). Verbal requests will not be actioned until confirmed in writing." },
-            { label: "Assessment", desc: "Northspec will assess the requested change and provide an updated estimate for time, cost, and impact on the existing timeline." },
-            { label: "Approval Required", desc: "No out-of-scope work will begin without written Client approval of the change request estimate. Work already in progress will not be paused without mutual agreement." },
-            { label: "Cumulative Impact", desc: "Significant accumulated changes may require a full scope revision. Northspec reserves the right to pause active development to re-scope when changes materially alter the project." },
-          ].map((item) => (
-            <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-              <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{item.label}</p>
-              <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-      </>
-    ),
-  },
-  {
     id: "payment",
-    title: "Payment Terms",
+    title: "Payment Terms & Protection",
     content: (
       <>
         <p>
-          All projects are priced on a fixed-scope basis. Payment schedules are defined in the project proposal. Standard payment structure is as follows:
+          Engagement begins upon receipt of the initial deposit. All payments are non-refundable once architectural or development work has commenced.
         </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-3 not-italic">
           {[
-            { label: "Deposit", value: "50% due upon signing", note: "Required before any work begins. Non-refundable." },
-            { label: "Milestone", value: "25% at mid-delivery", note: "Due upon delivery of agreed midpoint checkpoint." },
-            { label: "Final", value: "25% upon completion", note: "Due on delivery day, prior to or at time of delivery." },
+            { label: "Commitment Fee", value: "50% due on signing", note: "Secures engineering capacity and initiates system architecture. Non-refundable." },
+            { label: "Technical Milestone", value: "25% at mid-delivery", note: "Due upon delivery of the architectural midpoint or beta environment." },
+            { label: "Deployment Phase", value: "25% prior to go-live", note: "Due in full before final system deployment or handover of production credentials." },
           ].map((item) => (
             <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
               <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-1">{item.label}</p>
@@ -109,32 +85,43 @@ const sections = [
 
         <div className="mt-5 space-y-4 not-italic">
           <div className="rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-6">
-            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-3">Non-Delivery for Non-Payment</p>
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-3">Payment Enforcement</p>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Final payment is due on delivery day, prior to or at the time of the delivery. If the Client fails to submit final payment on delivery day, the project will not be delivered. Access to all deliverables, source code, and assets will be withheld until payment is received in full.
+              Full payment of the final invoice is required before system access is transferred. Northspec reserves the right to suspend API keys, pause automated workflows, or restrict access to production environments for any account with an overdue balance exceeding 7 days.
             </p>
           </div>
 
           <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Late Payments</p>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Retainer Billing</p>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Invoices are due within 14 calendar days of issuance. Northspec reserves the right to pause active development on accounts with overdue balances. Resumed work is subject to schedule availability and does not guarantee original timeline restoration.
+              Retainer agreements are billed monthly in advance and require a 3-month minimum commitment. Capacity is allocated on a "use-it-or-lose-it" basis per billing cycle. Unused hours or workflow capacity do not roll over to subsequent months.
             </p>
           </div>
-
-          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Retainer Non-Payment</p>
-            <ul className="space-y-2 text-sm text-slate-400">
-              <li className="flex items-start gap-2">
-                <span className="text-brand-gold/40 shrink-0 mt-0.5">›</span>
-                <span><strong className="text-white">30 days past due:</strong> All hosted services are suspended until the outstanding balance is settled. No data is deleted during this period.</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-red-500/40 shrink-0 mt-0.5">›</span>
-                <span><strong className="text-white">90 days past due:</strong> Failure to pay in full within 90 days will result in permanent removal of all client data from Northspec infrastructure. This action is irreversible. Payment received before the 90-day threshold will restore services without data loss.</span>
-              </li>
-            </ul>
-          </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "ai-disclaimer",
+    title: "AI & Automation Disclaimer",
+    content: (
+      <>
+        <p className="text-brand-gold font-bold mb-4 uppercase text-[10px] tracking-widest">Crucial for System Engagements</p>
+        <p>
+          The Client acknowledges that AI-driven systems and automated workflows are inherently dependent on third-party models (e.g., OpenAI, Anthropic) and external data inputs.
+        </p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2 not-italic">
+          {[
+            { title: "Output Variability", desc: "AI outputs may vary and are not guaranteed to be error-free or fully autonomous. Northspec is not liable for hallucinations or unexpected logic paths from third-party LLMs." },
+            { title: "API Dependencies", desc: "System performance is subject to the uptime, rate limits, and terms of third-party API providers. Changes in these external services may impact core functionality." },
+            { title: "Data Quality", desc: "Automation accuracy is directly proportional to the quality of input data provided by the Client. We are not responsible for system failures due to corrupt or incomplete data." },
+            { title: "Security Protocols", desc: "While we implement industry-standard encryption, the security of data in flight between third-party AI providers is governed by their respective security policies." },
+          ].map((item) => (
+            <div key={item.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <p className="text-xs font-bold text-white uppercase tracking-wider mb-2">{item.title}</p>
+              <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
         </div>
       </>
     ),
@@ -376,11 +363,11 @@ const sections = [
           To the fullest extent permitted by applicable law, Northspec Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to lost revenue, lost profits, loss of data, business interruption, or system downtime, arising from the delivery or use of any services or deliverables under this Agreement.
         </p>
         <p className="mt-4">
-          Northspec&apos;s total cumulative liability under any claim arising from a specific engagement shall not exceed the total fees paid by the Client for that engagement.
+          In no event shall Northspec&apos;s total cumulative liability for any claim arising out of a service engagement exceed 50% of the total fees paid by the Client for the specific project phase or milestone giving rise to the claim.
         </p>
         <div className="mt-5 rounded-xl border border-white/5 bg-white/[0.02] p-5 not-italic">
           <p className="text-sm text-slate-400 leading-relaxed">
-            This limitation applies even if Northspec has been advised of the possibility of such damages. Some jurisdictions do not allow exclusion of certain damages, in such cases, Northspec&apos;s liability is limited to the maximum extent permitted by law.
+            This limitation applies even if Northspec has been advised of the possibility of such damages. Some jurisdictions do not allow exclusion of certain damages; in such cases, Northspec&apos;s liability is limited to the maximum extent permitted by law.
           </p>
         </div>
       </>
@@ -388,7 +375,7 @@ const sections = [
   },
   {
     id: "termination",
-    title: "Termination",
+    title: "Termination & Exit Terms",
     content: (
       <>
         <p>
@@ -396,10 +383,10 @@ const sections = [
         </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 not-italic">
           {[
-            { label: "Work Completed is Billable", desc: "All work completed up to the point of termination is due and payable. Deliverables will not be transferred until outstanding invoices are settled." },
-            { label: "Deposits Are Non-Refundable", desc: "The initial deposit is non-refundable once discovery and specification work has commenced." },
-            { label: "Northspec-Initiated Termination", desc: "Northspec reserves the right to terminate immediately in cases of non-payment, material breach, or conduct that makes continued engagement unreasonable." },
-            { label: "Handoff", desc: "Upon termination, Northspec will provide a reasonable handoff of completed work, documentation, and access credentials within 10 business days, provided all invoices are settled." },
+            { label: "Work Completed is Billable", desc: "All work completed and technical resources allocated up to the point of termination are due and payable in full. Deliverables remain Northspec property until settled." },
+            { label: "Deposits Are Non-Refundable", desc: "The initial deposit is non-refundable once architectural discovery, system specification, or development work has commenced." },
+            { label: "Northspec-Initiated Termination", desc: "Northspec reserves the right to terminate immediately in cases of non-payment, material breach of these terms, or conduct that makes continued engagement untenable." },
+            { label: "Technical Handoff", desc: "Upon termination, Northspec will provide a standard handoff of technical assets and credentials. Deep-system handoff or infrastructure migration is billable as a separate phase." },
           ].map((item) => (
             <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
               <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{item.label}</p>
@@ -415,7 +402,7 @@ const sections = [
     title: "Governing Law",
     content: (
       <p>
-        This Agreement is governed by the laws of the United States and the state in which Northspec Studio is registered and operates. Any disputes arising from this Agreement that cannot be resolved informally shall first be submitted to good-faith mediation before litigation is pursued. Both parties agree to binding arbitration as the preferred dispute resolution mechanism, unless otherwise required by law.
+        This Agreement is governed by the laws of the United States. Any disputes arising from this Agreement that cannot be resolved informally shall be submitted to binding arbitration in Northspec&apos;s operating jurisdiction. Both parties waive their right to a jury trial for any matter arising out of this engagement.
       </p>
     ),
   },

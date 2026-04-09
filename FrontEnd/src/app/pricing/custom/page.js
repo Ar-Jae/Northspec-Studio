@@ -168,13 +168,12 @@ export default function CustomPlansPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
-            <SplitReveal text="Custom Software," delay={0.6} className="block" />
-            <SplitReveal text="Built Around" delay={1.0} className="block" />
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <SplitReveal text="Custom Software & Systems" delay={0.6} className="block text-[clamp(2.5rem,6.3vw,5.85rem)]" />
             <SplitReveal
-              text="Your Business."
-              delay={1.3}
-              className="block text-brand-gold"
+              text="Built Around Your Business."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
             />
           </h1>
 
@@ -182,7 +181,7 @@ export default function CustomPlansPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
             For projects that require tailored architecture, complex integrations,
             and systems designed specifically around how your business operates.
@@ -408,7 +407,7 @@ export default function CustomPlansPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually based on what your system
-                  actually requires. Every quote is fixed-price, no hourly billing,
+                  actually requires. Every quote is custom to your needs  -  no hourly billing,
                   no surprises, no budget overruns.
                 </p>
               </div>
@@ -439,7 +438,7 @@ export default function CustomPlansPage() {
                   className="text-slate-400 text-sm leading-relaxed"
                 >
                   Scope, architecture, and pricing are defined together during
-                  discovery. You receive a full fixed-price proposal before any
+                  discovery. You receive a full custom proposal tailored to your requirements before any
                   development begins.
                 </motion.p>
 
@@ -687,7 +686,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly, architecture, timeline, and fixed-price quote included.
+            Tell us what you&apos;re building and we&apos;ll scope it properly  -  architecture, timeline, and a custom proposal included, all tailored to your requirements.
           </motion.p>
 
           <motion.div

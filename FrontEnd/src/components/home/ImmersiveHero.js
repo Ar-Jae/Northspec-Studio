@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "../Button";
 import site from "../../content/site";
+import { SplineScene } from "@/components/ui/spline";
+import { Spotlight } from "@/components/ui/spotlight-hover";
+import { Spotlight as SpotlightStatic } from "@/components/ui/spotlight-static";
 
 function ScrollIndicator() {
   return (
@@ -11,7 +14,7 @@ function ScrollIndicator() {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 2.2, duration: 0.8 }}
-      className="relative -mt-12 mb-4 flex flex-col items-center gap-2 z-20 pointer-events-none"
+      className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 pointer-events-none"
     >
       <span className="text-[10px] font-bold tracking-[0.3em] text-slate-500 uppercase">
         Scroll
@@ -66,86 +69,118 @@ export default function ImmersiveHero() {
     <section
       id="hero"
       ref={sectionRef}
-      className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden bg-transparent"
     >
-      {/* Radial glow */}
+      {/* Background Static Spotlight */}
+      <SpotlightStatic
+        className="-top-40 left-0 md:left-60 md:-top-20"
+        fill="white"
+      />
+      
+      {/* Interactive Hover Spotlight */}
+      <Spotlight size={500} />
+
+      {/* Radial glow - Adjusted opacity for visibility of main background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+            "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.04) 0%, transparent 70%)",
         }}
       />
 
       {/* Horizontal rule top removed for a cleaner, floating feel */}
 
-      <motion.div
-        style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-0 md:px-24 lg:px-36 pt-[1in] pb-24"
-      >
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
-          className="flex items-center gap-4 mb-8"
-        >
-          <div className="h-[1px] w-12 bg-brand-gold" />
-          <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-            Northspec Studio
-          </span>
-          <div className="h-[1px] w-12 bg-brand-gold" />
-        </motion.div>
-
-        {/* Main headline */}
-        <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6
-          text-[clamp(2.25rem,7.2vw,6.75rem)]"
-        >
-          <SplitReveal text="Build, Launch, and Scale" delay={0.7} className="block" />
-          <SplitReveal
-            text="Software That Works for You."
-            delay={1.3}
-            className="block text-brand-gold"
-          />
-        </h1>
-
-        {/* Sub-tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
-          className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
-        >
-          We design and develop production ready applications, automation
-          systems, and scalable platforms that help startups and growing
-          businesses operate more efficiently and scale with confidence.
-        </motion.p>
-
-        {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.1, duration: 0.7 }}
-          className="flex flex-col sm:flex-row items-center gap-4"
-        >
-          <Button
-            as="link"
-            href="/contact"
-            variant="brand"
-            className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+      <div className="relative z-10 w-full mx-auto px-6 md:px-12 lg:px-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8 pt-12">
+          {/* Left content: Text & CTA */}
+          <motion.div
+            style={{ y: yContent, opacity: opacityOut, scale: scaleOut }}
+            className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left pt-12 lg:pt-0"
           >
-            Start a Project
-          </Button>
-          <Button
-            as="link"
-            href="/contact"
-            variant="outline"
-            className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
+            {/* Eyebrow */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.7, ease: "easeOut" }}
+              className="flex items-center gap-4 mb-8"
+            >
+              <div className="h-[1px] w-12 bg-brand-gold" />
+              <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+                Northspec Studio
+              </span>
+              <div className="h-[1px] w-12 bg-brand-gold" />
+            </motion.div>
+
+            {/* Main headline */}
+            <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-4">
+              <SplitReveal text="AI Automations &" delay={0.7} className="block text-[clamp(2.5rem,5.5vw,5rem)]" />
+              <SplitReveal
+                text="Web Development."
+                delay={1.3}
+                className="block text-brand-gold uppercase text-[clamp(1.5rem,3.2vw,3rem)]"
+              />
+            </h1>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.8, duration: 1 }}
+              className="mb-8"
+            >
+              <span className="text-[10px] sm:text-xs font-bold tracking-[0.4em] text-slate-500 uppercase font-times italic">
+                From AI Workflows to Custom Mobile & Web Apps.
+              </span>
+            </motion.div>
+
+            {/* Sub-tagline */}
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
+              className="max-w-xl text-slate-300 text-lg leading-relaxed mb-12 font-times font-medium italic"
+            >
+              Northspec Studio delivers industry-leading AI automations, high-performance web development, 
+              and custom mobile app development designed to scale your modern business.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.1, duration: 0.7 }}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
+            >
+              <Button
+                as="link"
+                href="/contact"
+                variant="brand"
+                className="rounded-full px-10 py-5 text-sm uppercase tracking-[0.2em] font-bold"
+              >
+                Schedule an AI Strategy Session
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right content: 3D Scene */}
+          <div 
+            className="flex-1 relative w-full h-[400px] md:h-[500px] lg:h-[700px] group cursor-grab active:cursor-grabbing overflow-visible z-10"
           >
-            Book a Call
-          </Button>
-        </motion.div>
-      </motion.div>
+            <div className="absolute inset-0 bg-brand-gold/5 rounded-3xl blur-3xl group-hover:bg-brand-gold/10 transition-colors duration-500 scale-150 translate-y-25" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 100 }}
+              transition={{ delay: 1.5, duration: 1.2, ease: "easeOut" }}
+              className="w-full h-full"
+            >
+              <SplineScene 
+                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                className="w-full h-[120%] relative z-10 overflow-visible"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       <ScrollIndicator />
 

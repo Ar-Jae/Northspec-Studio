@@ -63,7 +63,7 @@ export async function POST(req) {
     const body = await req.json();
     const { message } = body;
 
-    // Vapi sends different message types — we only care about tool-calls
+    // Vapi sends different message types  -  we only care about tool-calls
     if (message?.type !== "tool-calls") {
       return NextResponse.json({ result: "" });
     }

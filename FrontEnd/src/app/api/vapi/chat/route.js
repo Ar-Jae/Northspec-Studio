@@ -18,24 +18,23 @@ SERVICES
 7. Built to Spec - tailored architecture for complex systems, starts at $30,000
 8. Custom Plans - multi-phase or non-standard projects, from $25,000+
 
-PROJECT PRICING (fixed-price, not hourly)
-MVP and Early Products: $12,000-$30,000 | 6-8 weeks
-Business Systems and Automation: $20,000-$50,000 | 8-12 weeks
-Scalable Platforms and SaaS: $40,000-$90,000+ | 10-16 weeks
-Enterprise Systems: $60,000+ | 16-24+ weeks
-Minimum project: $2,500. Most projects: $12,000-$50,000+.
+PROJECT PRICING (custom-scoped, not hourly  -  all ranges are market-rate estimates)
+AI Automation Systems: $5,000-$20,000+ | 4-8 weeks
+AI-Enabled Platforms: $15,000-$60,000+ | 8-12 weeks
+Built-to-Spec Systems: $25,000-$80,000+ | 12-20+ weeks
+Every project is individually scoped. Ranges are estimates  -  actual investment depends on requirements.
 
 RETAINER PLANS (3-month minimum)
-Essential: $3,000/mo | Growth: $5,000-$7,000/mo | Product Partner: $8,000-$12,000/mo | Dedicated Team: $12,000-$20,000+/mo
+Essential: $3,000/mo | Growth: $5,000-$7,000/mo | Product Partner: $8,000-$12,000/mo | Dedicated Team: $15,000-$25,000+/mo
 
 AUTOMATION ADD-ONS
-n8n Workflow Setup: $3,000-$8,000 | Automation retainer: $750-$2,500/mo
+Core Automation Systems: $1,000-$2,500 | n8n Workflow Setup: $3,000-$8,000 | AI-Driven Automation: $5,000-$15,000+
 
 PAYMENT TERMS
 50% upfront / 50% before deployment. Large builds: 40/30/30 milestone option. Client owns 100% of code once paid in full.
 
 KEY FAQS
-- Fixed-price by scope. Always.
+- Custom-scoped per project, never hourly. All prices are market-rate estimates.
 - Client owns all code once paid.
 - Payment plans available.
 - Mobile apps: Yes, iOS and Android.
@@ -197,7 +196,7 @@ export async function POST(req) {
       );
 
       if (toolCallItems.length === 0) {
-        // No tool calls — we have our final reply
+        // No tool calls  -  we have our final reply
         reply = directReply || "";
         break;
       }

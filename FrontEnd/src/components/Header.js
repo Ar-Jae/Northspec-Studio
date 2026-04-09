@@ -12,7 +12,9 @@ import site from "../content/site";
 
 function NavLink({ item, pathname }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isActive = item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+  const isActive = item.href === "/"
+    ? pathname === "/"
+    : item.children?.some(child => pathname?.startsWith(child.href)) || pathname === item.href;
 
   return (
     <li
@@ -170,7 +172,9 @@ export default function Header() {
             <ul className="flex flex-col gap-1">
               {navLinks.map((item) => {
                 const isActive =
-                  item.href === "/" ? pathname === "/" : pathname?.startsWith(item.href);
+                  item.href === "/"
+                    ? pathname === "/"
+                    : item.children?.some(child => pathname?.startsWith(child.href)) || pathname === item.href;
                 const hasChildren = item.children && item.children.length > 0;
                 const isExpanded = expandedMobileItem === item.label;
 

@@ -1,39 +1,46 @@
 const site = {
   name: "Northspec Studio",
-  tagline: "Automation, engineering, and mobile systems that deliver outcomes.",
+  tagline: "AI Automations, Web Development, and Mobile App Solutions.",
   description:
-    "Northspec Studio helps established companies improve operations with workflow automation, software engineering, mobile app development, and reliability support.",
+    "Northspec Studio delivers industry-leading AI automations, high-performance web development, and custom mobile app development. We build the intelligent systems and digital products that scale modern businesses.",
   keywords: [
-    "Software Development",
-    "Custom Web Applications",
-    "Workflow Automation",
-    "AI Automation",
-    "Mobile App Development",
-    "Next.js Development",
-    "API Integrations",
-    "SaaS MVP Development",
-    "Software Engineers",
-    "Technical Infrastructure",
-    "Node.js Backend",
-    "Custom CRM Development",
-    "Automated Inventory Systems",
-    "Enterprise Workflow Design",
-    "Bespoke Business Software",
-    "Website Reliability Monitoring"
+    "AI Automations",
+    "Web Development Agency",
+    "Custom Mobile App Development",
+    "AI Workflow Automation",
+    "Full-Stack Web Development",
+    "AI Integration Services",
+    "Business Process Automation",
+    "Software Engineering Studio",
+    "n8n Automation Expert",
+    "Next.js Web Development",
+    "React Native Mobile Apps",
+    "AI Strategy Consulting",
+    "Digital Transformation AI",
+    "Scalable Web Applications",
+    "Enterprise AI Solutions"
   ],
   twitterHandle: "@NorthspecStudio",
   url: "https://northspecstudio.com",
   nav: [
     { label: "Home", href: "/" },
-    { 
-      label: "Services", 
+    {
+      label: "AI Automation",
+      href: "/ai-systems",
+      children: [
+        { label: "AI Systems", href: "/ai-systems", description: "Autonomous workflows and AI agents." },
+        { label: "AI Receptionist", href: "/ai-systems/ai-receptionist", description: "24/7 AI voice receptionist that answers, qualifies, and books." },
+        { label: "Workflow Automation", href: "/ai-systems/workflow-automation", description: "n8n and AI-driven process optimization." },
+        { label: "AI Integrations", href: "/ai-systems/integrations", description: "Connect AI to your existing stack." },
+        { label: "AI Optimization", href: "/ai-systems/maintenance-support", description: "Ongoing stability and AI refinement." },
+      ]
+    },
+    {
+      label: "Services",
       href: "/services",
       children: [
-        { label: "Built to Spec", href: "/built-to-spec", description: "Our engineering philosophy and standards." },
-        { label: "Software Engineering", href: "/services/software-development", description: "Custom web and backend systems." },
-        { label: "Workflow Automation", href: "/services/workflow-automation", description: "n8n and AI-driven process optimization." },
+        { label: "Software & Platforms", href: "/services/software-development", description: "Custom web and backend systems." },
         { label: "Mobile Apps", href: "/services/mobile-app-development", description: "iOS and Android product development." },
-        { label: "Integrations", href: "/services/integrations", description: "Connect your existing software stack." },
       ]
     },
     { 

@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const features = [
-  "Continuous feature development",
-  "System reliability and monitoring",
-  "Performance improvements",
-  "Dedicated engineering support",
+  "Continuous system optimization",
+  "AI model performance monitoring",
+  "New workflow implementation",
+  "Dedicated systems architecture",
 ];
 
 export default function OngoingSupport() {
@@ -54,8 +54,8 @@ export default function OngoingSupport() {
                   transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3rem)] leading-[1.05] tracking-tight mb-4"
                 >
-                  Ongoing Product Support{" "}
-                  <em className="not-italic text-brand-gold">& Growth</em>
+                  Continuous Systems{" "}
+                  <em className="not-italic text-brand-gold">& Evolution</em>
                 </motion.h2>
 
                 <motion.p
@@ -64,8 +64,8 @@ export default function OngoingSupport() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                   className="text-slate-400 text-sm leading-relaxed mb-8 max-w-sm font-times"
                 >
-                  We don&apos;t just build, we stay involved to ensure your system
-                  continues to perform and evolve.
+                  AI systems require ongoing optimization to stay competitive. We partner
+                  long-term to evolve your automation.
                 </motion.p>
 
                 <ul className="space-y-3">
@@ -100,18 +100,18 @@ export default function OngoingSupport() {
                   Retainer Pricing
                 </p>
                 <div className="text-4xl font-bold font-serif text-white leading-[1.05] mb-3">
-                  $4,000 – $10,000
+                  $3,000 – $12,000
                   <span className="text-xl text-slate-400 font-normal">/month</span>
                 </div>
                 <p className="text-slate-400 text-sm leading-relaxed mb-8 max-w-xs">
-                  Ongoing engagements for teams that need continuous
-                  engineering support and product growth.
+                  Dedicated AI engineering retainers for continuous 
+                  optimization and automated systems growth.
                 </p>
                 <a
-                  href="/pricing"
+                  href="/retainers"
                   className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors group"
                 >
-                  View retainer plans
+                  Explore retainer plans
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>

@@ -6,19 +6,19 @@ import { motion, useInView } from "framer-motion";
 const reasons = [
   {
     number: "01",
-    text: "Built for real-world usage, not prototypes",
+    text: "Systems-first engineering: We build for operational ROI, not experimental features",
   },
   {
     number: "02",
-    text: "Focus on performance, scalability, and reliability",
+    text: "Enterprise reliability using Vercel, AWS, and n8n orchestration",
   },
   {
     number: "03",
-    text: "Clear communication and structured delivery",
+    text: "Strategic RAG & AI implementation with high-fidelity, secure data sovereignty",
   },
   {
     number: "04",
-    text: "Long-term product thinking, not one-off builds",
+    text: "Production-ready systems with professional maintenance & high-ticket support",
   },
 ];
 

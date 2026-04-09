@@ -154,7 +154,7 @@ export default function RequestCallPage() {
                   </label>
                   <label className="flex items-start gap-3 text-sm text-slate-300">
                     <input type="checkbox" checked={form.confirmAutomationStartsAt1500} onChange={(e) => updateField("confirmAutomationStartsAt1500", e.target.checked)} className="mt-1" required />
-                    <span>Automation setup starts at $1,500</span>
+                    <span>Automation setup starts at $3,000 (retainer) or as a custom-scoped project</span>
                   </label>
                   <label className="flex items-start gap-3 text-sm text-slate-300">
                     <input type="checkbox" checked={form.confirmEachWorkflowQuotedIndividually} onChange={(e) => updateField("confirmEachWorkflowQuotedIndividually", e.target.checked)} className="mt-1" required />

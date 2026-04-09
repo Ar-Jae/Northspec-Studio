@@ -1,147 +1,15 @@
-"use client";
+import SoftwareDevelopmentClient from "./SoftwareDevelopmentClient";
 
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
-import Button from "../../../components/Button";
+export const metadata = {
+  title: "Custom Web Development | Scalable Software Solutions",
+  description: "High-performance web development and scalable software solutions. From React/Next.js platforms to internal admin systems, we build what your business needs to grow.",
+  keywords: ["Web Development", "Software Engineering", "Next.js", "Full Stack Development", "SaaS Development"]
+};
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const outcomes = [
-  "Replace manual workflows with systems that run automatically",
-  "Streamline operations so your team focuses on real work",
-  "Support business growth without adding overhead",
-  "Scale infrastructure as your product and users grow",
-];
-
-const whoFor = [
-  "Startups building MVPs and validating products",
-  "Businesses replacing inefficient manual processes",
-  "Teams scaling internal tools and operational systems",
-  "Companies building SaaS platforms and revenue products",
-];
-
-const whatWeBuild = [
-  {
-    number: "01",
-    title: "Web Applications",
-    short: "Custom-built applications designed for performance and scalability.",
-    bullets: [
-      "Full-stack React / Next.js",
-      "Scalable backend architecture",
-      "Auth, roles, and permissions",
-    ],
-    accent: "from-brand-gold/20 to-transparent",
-  },
-  {
-    number: "02",
-    title: "Internal Systems",
-    short: "Tools that reduce manual work and improve team efficiency.",
-    bullets: [
-      "Internal dashboards and portals",
-      "Workflow automation tools",
-      "Admin and ops systems",
-    ],
-    accent: "from-blue-500/10 to-transparent",
-  },
-  {
-    number: "03",
-    title: "SaaS Platforms",
-    short: "Revenue-generating products built for growth and long-term use.",
-    bullets: [
-      "Multi-tenant architecture",
-      "Subscription and billing logic",
-      "Platform-level scalability",
-    ],
-    accent: "from-purple-500/10 to-transparent",
-  },
-  {
-    number: "04",
-    title: "Integrations & APIs",
-    short: "Systems that connect your tools and automate workflows end-to-end.",
-    bullets: [
-      "REST and GraphQL APIs",
-      "Third-party service connectors",
-      "Webhook and event pipelines",
-    ],
-    accent: "from-emerald-500/10 to-transparent",
-  },
-];
-
-const steps = [
-  {
-    number: "01",
-    phase: "Discovery",
-    title: "Define your requirements and goals",
-    description:
-      "We break down your workflows, constraints, and business objectives before writing a single line of code.",
-    detail: "Discovery call → Requirements doc → Scope definition",
-  },
-  {
-    number: "02",
-    phase: "System Design",
-    title: "Plan architecture and scalability",
-    description:
-      "We design the technical architecture, integration points, and data structure specific to your use case.",
-    detail: "Technical spec → Architecture plan → Timeline",
-  },
-  {
-    number: "03",
-    phase: "Development",
-    title: "Build with performance and reliability in mind",
-    description:
-      "Milestone-based delivery with real visibility. You see progress at every stage, no black-box development.",
-    detail: "Milestone delivery → Staging access → Code review",
-  },
-  {
-    number: "04",
-    phase: "Launch & Support",
-    title: "Deploy, monitor, and keep improving",
-    description:
-      "We handle deployment, monitor performance, and continue improving the system after it goes live.",
-    detail: "Production deploy → Monitoring → Ongoing improvements",
-  },
-];
-
-const why = [
-  "Built for real-world use, not prototypes or demos",
-  "Focus on performance, scalability, and long-term reliability",
-  "Clear communication with milestone-based delivery",
-  "Long-term product thinking, not one-off builds",
-];
-
-// ─── Sub-components ────────────────────────────────────────────────────────────
-
-function SplitReveal({ text, className, delay = 0 }) {
-  const words = text.split(" ");
-  return (
-    <span className={className}>
-      {words.map((word, wi) => (
-        <span key={wi} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
-          <motion.span
-            className="inline-block -mb-[0.2em]"
-            initial={{ y: "110%", opacity: 0 }}
-            animate={{ y: "0%", opacity: 1 }}
-            transition={{
-              duration: 1,
-              delay: delay + wi * 0.12,
-              ease: [0.16, 1, 0.3, 1],
-            }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  );
+export default function SoftwareDevelopmentPage() {
+  return <SoftwareDevelopmentClient />;
 }
 
-function SectionLabel({ children }) {
-  return (
-    <div className="flex items-center gap-4 mb-6">
-      <div className="h-[1px] w-10 bg-brand-gold" />
-      <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-        {children}
       </span>
     </div>
   );
@@ -243,13 +111,12 @@ export default function SoftwareDevelopmentPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
-            <SplitReveal text="Custom Software" delay={0.6} className="block" />
-            <SplitReveal text="Built for Real" delay={1.0} className="block" />
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <SplitReveal text="Custom Software & Platforms" delay={0.6} className="block text-[clamp(2.5rem,6.3vw,5.85rem)]" />
             <SplitReveal
-              text="Business Needs."
-              delay={1.3}
-              className="block text-brand-gold"
+              text="Built for Real Business Needs."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
             />
           </h1>
 
@@ -257,7 +124,7 @@ export default function SoftwareDevelopmentPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
             We design and develop scalable applications, internal systems, and
             platforms that improve operations, automate workflows, and support growth.
@@ -506,8 +373,8 @@ export default function SoftwareDevelopmentPage() {
                   transition={{ duration: 0.7, delay: 0.35 }}
                   className="text-slate-400 text-sm leading-relaxed"
                 >
-                  Final pricing is always scoped, never guessed. You receive a
-                  fixed-price quote before any work begins.
+                  Every project is custom-scoped to your requirements. You receive a
+                  tailored proposal before any work begins.
                 </motion.p>
 
                 <motion.div

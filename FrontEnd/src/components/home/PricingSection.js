@@ -5,69 +5,52 @@ import { motion, useInView } from "framer-motion";
 
 const plans = [
   {
-    name: "MVP & Early Product Builds",
-    price: "Starting at $8,000",
-    range: "Most projects: $12,000 – $30,000+",
-    delivery: "6–8 weeks",
-    description: "For teams validating and launching initial products. Designed to support initial user acquisition.",
+    name: "AI Strategy & Automation",
+    price: "Starting at $10,000",
+    range: "Typical range: $10k – $20k",
+    delivery: "2–4 weeks",
+    description: "For businesses looking to automate core operations, lead flow, or implement an AI Receptionist.",
     includes: [
-      "Frontend: up to 6 screens",
-      "Backend: auth, CRUD, database",
-      "Secure API foundation",
-      "Launch-ready architecture",
-      "Documentation & handoff",
+      "AI Voice Receptionist setup",
+      "Operational workflow automation",
+      "Lead generation & CRM integration",
+      "Systems architecture & ROI audit",
+      "2 weeks post-launch support",
     ],
     color: "border-slate-800/60",
     glow: "",
     accentColor: "text-slate-300",
   },
   {
-    name: "Growth Systems & Business Tools",
-    price: "Starting at $15,000",
-    range: "Most projects: $20,000 – $50,000+",
-    delivery: "8–12 weeks",
-    description: "For businesses replacing manual processes and building operational systems. Built to reduce overhead and improve efficiency.",
+    name: "Autonomous AI Agency",
+    price: "Starting at $25,000",
+    range: "Typical range: $25k – $50k",
+    delivery: "6–12 weeks",
+    description: "Complete AI transformation for businesses scaling without increasing operational headcount.",
     includes: [
-      "8–10 screens",
-      "Role-based backend systems",
-      "API + webhook integrations",
-      "CRM / billing integrations",
-      "Documentation & training",
+      "Custom Multi-Agent Systems",
+      "Departmental workflow orchestration",
+      "Advanced API & Vector integrations",
+      "Proprietary AI knowledge bases",
+      "Full staff training & documentation",
     ],
-    color: "border-blue-900/30",
-    glow: "",
-    accentColor: "text-blue-400",
-  },
-  {
-    name: "Scalable Platforms & SaaS",
-    price: "Starting at $30,000",
-    range: "Most projects: $40,000 – $90,000+",
-    delivery: "10–16 weeks",
-    description: "For companies building scalable, revenue-generating platforms. Engineered for scale, performance, and growth.",
-    includes: [
-      "12+ screens",
-      "Platform-level backend",
-      "Advanced roles & permissions",
-      "Complex integrations",
-      "Full QA + documentation",
-    ],
+    popular: true,
     color: "border-brand-gold/40",
     glow: "shadow-[0_0_60px_rgba(198,166,104,0.08)]",
     accentColor: "text-brand-gold",
-    popular: true,
   },
   {
-    name: "Enterprise Systems",
-    price: "Starting at $60,000+",
-    range: "Custom quote required",
-    delivery: "16–24+ weeks",
-    description: "For organizations requiring high-performance, secure, and scalable systems built for long-term operational demand.",
+    name: "AI-First Platforms",
+    price: "Starting at $50,000",
+    range: "Typical range: $50k – $80k+",
+    delivery: "12–20 weeks",
+    description: "For companies building custom AI-native products or scaling massive operations with proprietary software.",
     includes: [
-      "Multi-system architecture",
-      "Enterprise-grade backend",
-      "Multi-tenant systems",
-      "Security & compliance",
-      "Observability + CI/CD",
+      "Custom AI Web Platform & SaaS",
+      "Deep-core AI implementation",
+      "Scalable infrastructure & data",
+      "Advanced system orchestration",
+      "Strategic technical partnership",
     ],
     color: "border-purple-900/30",
     glow: "",
@@ -173,7 +156,7 @@ export default function PricingSection() {
         }}
       />
 
-      <div className="relative z-10 w-full px-0 lg:px-36">
+      <div className="relative z-10 w-full px-0 md:px-24 lg:px-36 mx-auto">
         {/* Heading */}
         <div ref={headRef} className="mb-24">
           <motion.div
@@ -214,7 +197,7 @@ export default function PricingSection() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-4 max-w-xs text-slate-400 leading-relaxed text-sm font-times"
           >
-            Most of our clients invest between $12,000 and $50,000+ depending on scope and complexity. Final pricing is scoped, not guessed.
+            Ranges shown are market-rate estimates. Every project is custom-scoped  -  your actual investment is quoted individually based on scope and complexity.
           </motion.p>
 
           <motion.div
@@ -226,14 +209,14 @@ export default function PricingSection() {
         </div>
 
         {/* Plans grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, i) => (
             <PricingCard key={plan.name} plan={plan} index={i} />
           ))}
         </div>
 
         <p className="mt-8 text-center text-xs text-slate-600 font-medium">
-          All pricing is tailored based on scope, system complexity, integrations, and infrastructure requirements.
+          All pricing shown is a market-rate estimate. Every project is custom-scoped  -  your actual investment is determined during a discovery session based on your specific requirements.
         </p>
 
         {/* Merged CTA Section */}
@@ -254,7 +237,7 @@ export default function PricingSection() {
                 n8n workflow automation - priced separately
               </h3>
               <p className="text-slate-400 text-sm mb-8 leading-relaxed">
-                Setup from $1,500 · Simple workflows from $500 · AI workflows $1,500–$2,500
+                Core workflows from $1,000 · n8n setup from $3,000 · AI-driven automation from $5,000+
               </p>
               <a
                 href="/pricing"

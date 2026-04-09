@@ -94,7 +94,7 @@ export default function ContactForm() {
     if (step > 1) setStep(step - 1);
   };
 
-  async function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (
       !form.fullName ||
@@ -106,7 +106,7 @@ export default function ContactForm() {
       !form.confirmAutomationStartsAt1500 ||
       !form.confirmEachWorkflowQuotedIndividually
     ) {
-      setError("Please complete all required fields and confirmations.");
+      setError("Please complete all required fields and terms.");
       return;
     }
     setStatus("loading");
@@ -306,11 +306,11 @@ export default function ContactForm() {
                     onChange={(e) => updateField("budgetRange", e.target.value)}
                     className={`w-full rounded-xl bg-white/[0.03] border ${error && !form.budgetRange ? "border-red-500/50" : "border-white/10"} text-white p-4 focus:border-brand-gold/50 transition-colors outline-none font-medium appearance-none`}
                   >
-                    <option value="" className="bg-brand-dark text-slate-400">Select one</option>
+                    <option value="" className="bg-brand-dark text-slate-400">Select investment range</option>
                     <option value="$10,000 – $20,000" className="bg-brand-dark">$10,000 – $20,000</option>
                     <option value="$20,000 – $50,000" className="bg-brand-dark">$20,000 – $50,000</option>
                     <option value="$50,000+" className="bg-brand-dark">$50,000+</option>
-                    <option value="Not sure yet" className="bg-brand-dark">Not sure yet</option>
+                    <option value="Not sure yet" className="bg-brand-dark">Not sure yet / Exploring</option>
                   </select>
                 </div>
                 <div>
@@ -423,14 +423,14 @@ export default function ContactForm() {
                   <div className={`mt-0.5 w-4 h-4 rounded border flex-none flex items-center justify-center transition-colors ${form.confirmAutomationStartsAt1500 ? 'bg-brand-gold border-brand-gold' : 'border-white/20 bg-white/[0.03]'}`}>
                     {form.confirmAutomationStartsAt1500 && <svg className="w-3 h-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>}
                   </div>
-                  <p className="text-[11px] text-slate-400 font-medium italic leading-tight select-none">I understand automation setups start at $1,500/mo or as fixed-fee projects. <span className="text-brand-gold font-bold">*</span></p>
+                  <p className={`text-[11px] text-slate-400 font-medium italic leading-tight select-none ${form.confirmAutomationStartsAt1500 ? 'text-brand-gold' : ''}`}>I understand automation setups start at $3,000/mo or as custom-scoped projects. <span className="text-brand-gold font-bold">*</span></p>
                 </div>
 
                 <div className="flex items-start gap-3 group cursor-pointer" onClick={() => updateField("confirmEachWorkflowQuotedIndividually", !form.confirmEachWorkflowQuotedIndividually)}>
                   <div className={`mt-0.5 w-4 h-4 rounded border flex-none flex items-center justify-center transition-colors ${form.confirmEachWorkflowQuotedIndividually ? 'bg-brand-gold border-brand-gold' : 'border-white/20 bg-white/[0.03]'}`}>
                     {form.confirmEachWorkflowQuotedIndividually && <svg className="w-3 h-3 text-brand-dark" fill="currentColor" viewBox="0 0 20 20"><path d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/></svg>}
                   </div>
-                  <p className="text-[11px] text-slate-400 font-medium italic leading-tight select-none">I understand each specific workflow automation is quoted and delivered individually. <span className="text-brand-gold font-bold">*</span></p>
+                  <p className={`text-[11px] text-slate-400 font-medium italic leading-tight select-none ${form.confirmEachWorkflowQuotedIndividually ? 'text-brand-gold' : ''}`}>I understand each specific workflow automation is quoted and delivered individually. <span className="text-brand-gold font-bold">*</span></p>
                 </div>
               </div>
 

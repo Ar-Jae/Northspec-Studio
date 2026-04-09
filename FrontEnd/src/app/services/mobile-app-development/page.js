@@ -1,113 +1,25 @@
-"use client";
+import MobileAppDevelopmentClient from "./MobileAppDevelopmentClient";
 
-import { useRef } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import BackgroundCanvasClient from "../../../components/3d/BackgroundCanvasClient";
-import Button from "../../../components/Button";
+export const metadata = {
+  title: "Mobile App Development | iOS & Android Solutions",
+  description: "Custom mobile app development for iOS and Android. We build high-performance, scalable mobile products that integrate seamlessly with your business workflows.",
+  keywords: ["Mobile App Development", "iOS Development", "Android Development", "React Native", "AI Mobile Apps"]
+};
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
+export default function MobileAppDevelopmentPage() {
+  return <MobileAppDevelopmentClient />;
+}
 
-const outcomes = [
-  "Support customer growth and acquisition through mobile",
-  "Streamline business operations with purpose-built tools",
-  "Deliver reliable, scalable performance from day one",
-  "Build for long-term success, not just a launch demo",
-];
-
-const whoFor = [
-  "Startups launching mobile-first products and MVPs",
-  "Businesses expanding their offering into mobile platforms",
-  "Teams building internal mobile tools for field operations",
-  "Founders creating SaaS or consumer-facing applications",
-];
-
-const whatWeBuild = [
-  {
-    number: "01",
-    title: "MVP Mobile Apps",
-    short: "Launch quickly with a focused, production-ready application.",
-    bullets: [
-      "Core feature set scoped to launch",
-      "iOS and Android from one codebase",
-      "Built to iterate and expand post-launch",
-    ],
-    accent: "from-brand-gold/20 to-transparent",
-  },
-  {
-    number: "02",
-    title: "Cross-Platform Apps",
-    short: "Build once, deploy efficiently across iOS and Android.",
-    bullets: [
-      "React Native / Expo architecture",
-      "Native-grade performance and feel",
-      "Shared logic, platform-aware UI",
-    ],
-    accent: "from-blue-500/10 to-transparent",
-  },
-  {
-    number: "03",
-    title: "Scalable Platforms",
-    short: "Full-featured applications designed for growth and performance.",
-    bullets: [
-      "Multi-role user architecture",
-      "Real-time sync and offline support",
-      "Platform-level scalability planning",
-    ],
-    accent: "from-purple-500/10 to-transparent",
-  },
-  {
-    number: "04",
-    title: "Backend & API Integration",
-    short: "Power your app with secure, scalable backend infrastructure.",
-    bullets: [
-      "Custom API design and integration",
-      "Auth, roles, and permissions",
-      "Third-party service connectors",
-    ],
-    accent: "from-emerald-500/10 to-transparent",
-  },
-];
-
-const steps = [
-  {
-    number: "01",
-    phase: "Product Planning",
-    title: "Define features, user flows, and business goals",
-    description:
-      "Before design or code, we align on what the app needs to do and why, ensuring every feature maps to a real business outcome.",
-    detail: "Discovery call → Feature spec → User flow mapping",
-  },
-  {
-    number: "02",
-    phase: "Design & Architecture",
-    title: "Plan the user experience and system structure",
-    description:
-      "We design the app's UI/UX, data model, and backend architecture before writing a single line of code.",
-    detail: "UX wireframes → Architecture plan → Tech stack decision",
-  },
-  {
-    number: "03",
-    phase: "Development",
-    title: "Build with performance and scalability in mind",
-    description:
-      "Milestone-based delivery with real visibility. You see the app working at every stage, no black-box development.",
-    detail: "Milestone delivery → Staging builds → Code review",
-  },
-  {
-    number: "04",
-    phase: "Launch & Support",
-    title: "Deploy, monitor, and keep improving",
-    description:
-      "We handle App Store and Play Store submission, monitor post-launch performance, and continue improving the product.",
-    detail: "Store submission → Monitoring → Post-launch iterations",
+      "We handle everything from store submission to ongoing improvements as your system and user base evolve.",
+    detail: "App Store Submission → Post-Launch Monitoring → Continuous Support",
   },
 ];
 
 const why = [
-  "Built for real users, not just demos or pitch decks",
-  "Focus on performance, reliability, and long-term maintainability",
-  "Structured delivery so you always know where the project stands",
-  "Ongoing product thinking well beyond the initial launch",
+  "Mobile apps that connect reliably with your business systems",
+  "Focus on business use cases and operational efficiency",
+  "Modern cross-platform codebases that scale without bloat",
+  "A structured process that removes the risk from app builds",
 ];
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
@@ -238,18 +150,17 @@ export default function MobileAppDevelopmentPage() {
           >
             <div className="h-[1px] w-12 bg-brand-gold" />
             <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-              Mobile App Development
+              Product Interface Layer
             </span>
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
-            <SplitReveal text="Mobile Apps Built" delay={0.6} className="block" />
-            <SplitReveal text="to Launch, Scale," delay={1.0} className="block" />
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.5rem,6.3vw,5.85rem)]">
+            <SplitReveal text="Mobile Applications Built" delay={0.6} className="block" />
             <SplitReveal
-              text="and Perform."
-              delay={1.3}
-              className="block text-brand-gold"
+              text="Around Real Business Use-Cases."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
             />
           </h1>
 
@@ -257,10 +168,11 @@ export default function MobileAppDevelopmentPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
-            We design and develop mobile applications that support real business
-            goals, from MVP launch to full-scale platforms.
+            We design and develop production-ready mobile apps for customer
+            experiences, internal operations, and AI-enabled platforms that
+            need to perform at scale.
           </motion.p>
 
           <motion.div
@@ -317,13 +229,17 @@ export default function MobileAppDevelopmentPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
-                Building an app isn&apos;t about code, 
-                <em className="not-italic text-brand-gold">it&apos;s about a product people actually use.</em>
+                Not every business workflow{" "}
+                <em className="not-italic text-brand-gold">belongs on a desktop.</em>
               </h2>
-              <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Most app projects fail not because of bad code, but because of poor
-                planning, bloated scope, and no clear business outcome. We build apps
-                that solve a real problem, launch on time, and grow with your business.
+              <p className="text-slate-400 leading-relaxed text-sm font-times mb-6">
+                When your product, team, or customers need mobile access, we build 
+                apps that connect with your systems, support real business use cases, 
+                and scale reliably over time.
+              </p>
+              <p className="text-slate-400 leading-relaxed text-sm font-times italic">
+                We build the mobile interfaces that power AI-enabled products, 
+                internal tools, and scalable customer experiences.
               </p>
             </motion.div>
 
@@ -472,13 +388,12 @@ export default function MobileAppDevelopmentPage() {
               <div className="p-12 lg:p-16 border-b lg:border-b-0 lg:border-r border-white/[0.06] flex flex-col justify-center">
                 <SectionLabel>Investment</SectionLabel>
                 <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
-                  A lean alternative to{" "}
-                  <em className="not-italic text-brand-gold">agency-scale pricing.</em>
+                  Built for utility,{" "}
+                  <em className="not-italic text-brand-gold">priced for performance.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
-                  Most agencies charge $100,000–$250,000+ for mobile apps. We deliver
-                  the same production-grade quality with a structured, transparent
-                  process, at a fraction of the cost.
+                  Most mobile app engagements range from $15,000 to $50,000+ depending 
+                  on scope, platform requirements, integrations, and AI features.
                 </p>
               </div>
 
@@ -493,10 +408,10 @@ export default function MobileAppDevelopmentPage() {
                     Typical project range
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $15,000 – $60,000+
+                    $15,000 – $50,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
-                    Depending on scope and complexity
+                    Based on complexity and system logic
                   </p>
                 </motion.div>
 
