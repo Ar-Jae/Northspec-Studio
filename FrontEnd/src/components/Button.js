@@ -9,13 +9,12 @@ const base =
   "group relative inline-flex items-center gap-1 overflow-hidden rounded-[100px] border-[1.5px] border-[#333333]/40 bg-transparent px-8 py-3 text-sm font-semibold text-[#111111] cursor-pointer transition-all duration-[600ms] ease-[cubic-bezier(0.23,1,0.32,1)] hover:border-transparent hover:text-white hover:rounded-[12px] active:scale-[0.95]";
 
 const variants = {
-  primary: "bg-white text-brand-dark hover:bg-slate-200",
-  secondary: "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm",
-  outline:
-    "border border-[#333333]/40 bg-transparent text-[#111111] hover:text-white",
-  brand: "bg-brand-gold text-brand-dark border-brand-gold/40 hover:text-white",
-  "brand-dark": "bg-brand-dark text-white border-white/10 hover:text-white",
-  "outline-dark": "border border-brand-dark/20 bg-transparent text-brand-dark hover:text-white",
+  primary: "bg-brand-dark text-white border-brand-dark hover:text-brand-dark",
+  secondary: "bg-brand-dark/10 text-brand-dark border-brand-dark/20 hover:text-brand-gold",
+  outline: "bg-transparent text-brand-dark border-brand-dark/20 hover:text-white",
+  brand: "bg-brand-gold text-brand-dark border-brand-gold hover:text-white",
+  "brand-dark": "bg-brand-dark text-white border-brand-dark hover:text-brand-gold",
+  "outline-dark": "bg-transparent text-white border-white/20 hover:text-brand-dark",
 };
 
 export default function Button({
@@ -23,40 +22,34 @@ export default function Button({
   href,
   onClick,
   type = "button",
-  variant = "primary",
+  variant = "brand",
   className,
   children,
   ...props
 }) {
-  const classes = cn(base, variants[variant] || variants.outline, className);
+  const classes = cn(base, variants[variant] || variants.brand, className);
 
-  const bgCircleColor = variant === "brand" ? "bg-brand-gold" : "bg-[#111111]";
-  const circleHoverColor = variant === "brand" ? "group-hover:bg-[#111111]" : "group-hover:bg-[#111111]";
-  // If brand, start gold and transition to black? 
-  // User said: "all the black buttons should return to gold and all the gold button just turned to black"
-  // This likely refers to the "circle" animation or the base state.
-  
   const Content = () => (
     <>
       {/* Left arrow (arr-2) */}
       <ArrowRight 
-        className="absolute w-4 h-4 left-[-25%] stroke-current fill-none z-[9] group-hover:left-4 group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]" 
+        className="absolute w-4 h-4 left-[-25%] group-hover:left-4 transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[10]" 
       />
 
       {/* Text */}
-      <span className="relative z-[1] -translate-x-3 group-hover:translate-x-3 transition-all duration-[800ms] ease-out">
+      <span className="relative z-[10] -translate-x-3 group-hover:translate-x-3 transition-all duration-[600ms] ease-out">
         {children}
       </span>
 
       {/* Circle Layer */}
       <span className={cn(
-        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 rounded-[50%] opacity-0 group-hover:w-[150%] group-hover:h-[500%] group-hover:opacity-100 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)]",
-        (variant === "brand" || variant === "outline-dark") ? "bg-[#111111]" : "bg-brand-gold"
+        "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-0 h-0 rounded-full opacity-0 group-hover:w-[300%] group-hover:h-[300%] group-hover:opacity-100 transition-all duration-[800ms] ease-[cubic-bezier(0.19,1,0.22,1)] z-[5]",
+        (variant === "brand") ? "bg-brand-dark" : "bg-brand-gold"
       )}></span>
 
       {/* Right arrow (arr-1) */}
       <ArrowRight 
-        className="absolute w-4 h-4 right-4 stroke-current fill-none z-[9] group-hover:right-[-25%] group-hover:stroke-white transition-all duration-[800ms] ease-[cubic-bezier(0.34,1.56,0.64,1)]" 
+        className="absolute w-4 h-4 right-4 group-hover:right-[-25%] transition-all duration-[600ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] z-[10]" 
       />
     </>
   );
