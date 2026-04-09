@@ -4,6 +4,7 @@ import { useState } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
+import Button from "../../components/Button";
 
 const initialForm = {
   fullName: "",
@@ -193,13 +194,14 @@ export default function RequestCallPage() {
               {status === "success" ? <p className="text-green-400 text-sm">Application submitted successfully.</p> : null}
               {status === "error" ? <p className="text-red-400 text-sm">{error}</p> : null}
 
-              <button
+              <Button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full rounded-lg px-5 py-3 bg-gradient-to-r from-brand-gold to-[#B8860B] text-brand-dark font-semibold disabled:opacity-60"
+                variant="brand"
+                className="w-full"
               >
                 {status === "loading" ? "Submitting..." : "Submit Application"}
-              </button>
+              </Button>
             </form>
           </div>
         </FadeIn>
