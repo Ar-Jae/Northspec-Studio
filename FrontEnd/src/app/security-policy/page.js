@@ -348,12 +348,16 @@ const sections = [
           <p className="text-sm text-slate-300 leading-relaxed">
             Most clients continue with an ongoing retainer to maintain security updates, apply patches, monitor systems, and adapt to evolving risks. Without ongoing maintenance, even well-built systems become vulnerable over time.
           </p>
-          <a
-            href="/retainers"
-            className="inline-block mt-4 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold rounded-xl px-5 py-3 transition-colors"
-          >
-            View Retainer Plans →
-          </a>
+          <div className="mt-6 flex">
+            <Button
+              as="link"
+              href="/retainers"
+              variant="outline"
+              className="text-xs py-3"
+            >
+              View Retainer Plans
+            </Button>
+          </div>
         </div>
       </>
     ),

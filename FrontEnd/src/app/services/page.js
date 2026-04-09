@@ -471,12 +471,14 @@ function BridgeSection() {
             Retainer plans from $3,000/month give you ongoing development capacity, monitoring, and support.
           </p>
         </div>
-        <Link
+        <Button
+          as="link"
           href="/retainers"
-          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+          variant="outline"
+          className="shrink-0"
         >
-          View Retainer Plans →
-        </Link>
+          View Retainer Plans
+        </Button>
       </motion.div>
     </section>
   );

@@ -734,15 +734,13 @@ export default function AIReceptionistPage() {
                     per month (retainer)
                   </p>
                 </div>
-                <a
+                <Button
+                  as="link"
                   href="/retainers"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
+                  variant="outline-dark"
                 >
                   View Retainer Plans
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </a>
+                </Button>
               </div>
             </div>
           </motion.div>

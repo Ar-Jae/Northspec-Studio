@@ -521,18 +521,12 @@ export default function WorkflowAutomationPage() {
                   transition={{ duration: 0.6, delay: 0.45 }}
                   className="flex flex-wrap gap-3"
                 >
-                  <a
-                    href="/pricing"
-                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                  >
+                  <Button as="link" href="/pricing" variant="brand">
                     View Pricing
-                  </a>
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
-                  >
+                  </Button>
+                  <Button as="link" href="/contact" variant="outline-dark">
                     Get a Quote
-                  </a>
+                  </Button>
                 </motion.div>
               </div>
             </div>
