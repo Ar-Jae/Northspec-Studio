@@ -140,7 +140,7 @@ export default function ImmersiveHero() {
               transition={{ delay: 1.9, duration: 0.8, ease: "easeOut" }}
               className="max-w-xl text-slate-300 text-lg leading-relaxed mb-12 font-times font-medium italic"
             >
-              Northspec Studio delivers industry-leading AI automations, high-performance web development, 
+              Northspec Studio delivers industry leading AI automations, high performance web development, 
               and custom mobile app development designed to scale your modern business.
             </motion.p>
 

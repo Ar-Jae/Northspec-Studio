@@ -275,7 +275,7 @@ function WhyFailSection() {
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          This isn&apos;t about talent. It&apos;s about process, structure, and long-term thinking. Most engagements lack all three.
+          This isn&apos;t about talent. It&apos;s about process, structure, and long term thinking. Most engagements lack all three.
         </p>
       </motion.div>
 
@@ -344,7 +344,7 @@ function OutcomesSection() {
     { title: "Fewer Issues After Launch", desc: "Structured builds with real testing mean fewer surprises in production." },
     { title: "Systems That Scale", desc: "Architecture designed for growth, so you don't need a rebuild in 18 months." },
     { title: "Reduced Need for Rebuilds", desc: "Built right the first time. Maintainable code your team can actually work with." },
-    { title: "Clear Communication Throughout", desc: "Direct access to the engineers. Milestone-based delivery. No guesswork." },
+    { title: "Clear Communication Throughout", desc: "Direct access to the engineers. milestone based delivery. No guesswork." },
   ];
 
   return (
@@ -396,9 +396,9 @@ function RiskSection() {
   ];
 
   const doList = [
-    "Follow a structured, milestone-based process on every project",
+    "Follow a structured, milestone based process on every project",
     "Define clear scope and pricing before work begins",
-    "Stay involved long-term with retainer partnerships",
+    "Stay involved long term with retainer partnerships",
     "Give direct access to the engineers writing the code",
   ];
 
@@ -453,7 +453,7 @@ function RiskSection() {
 
 function ComparisonSection() {
   const rows = [
-    { feature: "Timeline", typical: "Unclear. Shifts mid-project.", northspec: "Milestone-based. Defined at start." },
+    { feature: "Timeline", typical: "Unclear. Shifts mid-project.", northspec: "milestone based. Defined at start." },
     { feature: "Communication", typical: "Account managers and ticket queues.", northspec: "Direct engineer access throughout." },
     { feature: "Pricing", typical: "Hourly or open-ended estimates.", northspec: "Fixed-scope pricing before work begins." },
     { feature: "Architecture", typical: "Built to ship fast, fix later.", northspec: "Built to scale from day one." },
@@ -514,7 +514,7 @@ function BridgeSection() {
         <div className="max-w-xl">
           <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Partnerships</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Most clients continue working with us long-term after launch to maintain and grow their systems.
+            Most clients continue working with us long term after launch to maintain and grow their systems.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
             Retainer plans from $3,000/month for ongoing development, support, and infrastructure.

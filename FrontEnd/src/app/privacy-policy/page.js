@@ -111,7 +111,7 @@ const sections = [
           {[
             {
               label: "Zero Model Training",
-              desc: "We prioritize Enterprise-grade AI APIs (e.g., OpenAI, Anthropic, AWS Bedrock) that do not use client data for model training. Your proprietary data never leaves your system or the specific, isolated environment we create.",
+              desc: "We prioritize Enterprise grade AI APIs (e.g., OpenAI, Anthropic, AWS Bedrock) that do not use client data for model training. Your proprietary data never leaves your system or the specific, isolated environment we create.",
             },
             {
               label: "Encrypted RAG",
@@ -119,7 +119,7 @@ const sections = [
             },
             {
               label: "No Persistence",
-              desc: "For many automation workflows, we design for zero persistence. processing data in-flight without long-term storage on our infrastructure, unless specifically required for system performance.",
+              desc: "For many automation workflows, we design for zero persistence. processing data in flight without long term storage on our infrastructure, unless specifically required for system performance.",
             },
             {
               label: "Audit Trails",

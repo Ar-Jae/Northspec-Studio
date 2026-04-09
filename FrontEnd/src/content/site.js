@@ -2,7 +2,7 @@ const site = {
   name: "Northspec Studio",
   tagline: "AI Automations, Web Development, and Mobile App Solutions.",
   description:
-    "Northspec Studio delivers industry-leading AI automations, high-performance web development, and custom mobile app development. We build the intelligent systems and digital products that scale modern businesses.",
+    "Northspec Studio delivers industry leading AI automations, high performance web development, and custom mobile app development. We build the intelligent systems and digital products that scale modern businesses.",
   keywords: [
     "AI Automations",
     "Web Development Agency",

@@ -11,8 +11,8 @@ Social: X @NorthspecStudio | IG @northspec_studio | LinkedIn /in/northspec-studi
 SERVICES
 1. Web Development Next.js/React marketing sites and web apps
 2. Software Engineering APIs, integrations, internal dashboards, auth, background jobs
-3. Mobile App Development iOS and Android (cross-platform), MVPs to full platforms
-4. Workflow Automation n8n and AI-driven automation, trigger-based pipelines, CRM automation
+3. Mobile App Development iOS and Android (cross platform), MVPs to full platforms
+4. Workflow Automation n8n and AI-driven automation, trigger based pipelines, CRM automation
 5. Integrations API integrations, data sync, webhooks, third-party connectors
 6. Maintenance and Support bug fixes, security updates, performance, incident response
 7. Built to Spec tailored architecture for complex systems, starts at $30,000

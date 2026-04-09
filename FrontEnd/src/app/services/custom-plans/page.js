@@ -32,7 +32,7 @@ export default function CustomPlansPage() {
                 <div className="absolute -left-4 top-0 w-1 h-full bg-brand-gold/20 mr-4" />
                 <h2 className="text-3xl font-bold text-white font-times uppercase tracking-widest mb-6 px-4">Tailored Solutions</h2>
                 <p className="text-slate-400 leading-relaxed font-medium text-lg px-4 italic">
-                  Whether you require a dedicated engineering squad for a long-term build, a specialized consultant for a complex migration, or a hybrid support model, we architect plans that align with your specific technical and business outcomes.
+                  Whether you require a dedicated engineering squad for a long term build, a specialized consultant for a complex migration, or a hybrid support model, we architect plans that align with your specific technical and business outcomes.
                 </p>
               </div>
               
@@ -45,7 +45,7 @@ export default function CustomPlansPage() {
                 <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
                   <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">02 / Strategy</div>
                   <h3 className="text-xl font-bold text-white font-times uppercase tracking-wider mb-3">Consulting</h3>
-                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">High-level architecture reviews and long-term technology roadmapping.</p>
+                  <p className="text-sm text-slate-400 font-medium leading-relaxed italic">High level architecture reviews and long term technology roadmapping.</p>
                 </div>
                 <div className="group rounded-2xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-brand-gold/30 hover:bg-brand-gold/5">
                   <div className="text-brand-gold font-times mb-4 text-xs tracking-widest uppercase">03 / Legacy</div>

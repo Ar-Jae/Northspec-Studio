@@ -23,7 +23,7 @@ const sections = [
     content: (
       <>
         <p>
-          Northspec Studio is committed to improving accessibility and usability for all visitors, including individuals with disabilities. We recognize that digital accessibility is an essential component of professional software engineering and enterprise-grade user experience.
+          Northspec Studio is committed to improving accessibility and usability for all visitors, including individuals with disabilities. We recognize that digital accessibility is an essential component of professional software engineering and enterprise grade user experience.
         </p>
         <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-5 not-italic">
           <p className="text-sm text-white font-bold font-times leading-relaxed uppercase tracking-wide">

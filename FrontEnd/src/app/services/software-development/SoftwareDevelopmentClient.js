@@ -27,7 +27,7 @@ const whatWeBuild = [
     title: "Web Applications",
     short: "Custom-built applications designed for performance and scalability.",
     bullets: [
-      "Full-stack React / Next.js",
+      "Full stack React / Next.js",
       "Scalable backend architecture",
       "Auth, roles, and permissions",
     ],
@@ -47,9 +47,9 @@ const whatWeBuild = [
   {
     number: "03",
     title: "SaaS Platforms",
-    short: "Revenue-generating products built for growth and long-term use.",
+    short: "Revenue-generating products built for growth and long term use.",
     bullets: [
-      "Multi-tenant architecture",
+      "Multi tenant architecture",
       "Subscription and billing logic",
       "Platform-level scalability",
     ],
@@ -58,7 +58,7 @@ const whatWeBuild = [
   {
     number: "04",
     title: "Integrations & APIs",
-    short: "Systems that connect your tools and automate workflows end-to-end.",
+    short: "Systems that connect your tools and automate workflows end to end.",
     bullets: [
       "REST and GraphQL APIs",
       "Third-party service connectors",
@@ -90,7 +90,7 @@ const steps = [
     phase: "Development",
     title: "Build with performance and reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see progress at every stage, no black-box development.",
+      "milestone based delivery with real visibility. You see progress at every stage, no black box development.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -105,9 +105,9 @@ const steps = [
 
 const why = [
   "Built for real-world use, not prototypes or demos",
-  "Focus on performance, scalability, and long-term reliability",
-  "Clear communication with milestone-based delivery",
-  "Long-term product thinking, not one-off builds",
+  "Focus on performance, scalability, and long term reliability",
+  "Clear communication with milestone based delivery",
+  "Long term product thinking, not one-off builds",
 ];
 
 // ─── Sub-components ────────────────────────────────────────────────────────────
@@ -177,8 +177,8 @@ export default function SoftwareDevelopmentClient() {
               transition={{ delay: 1, duration: 0.8 }}
             >
               <p className="text-xl text-slate-300 leading-relaxed font-times font-medium italic mb-12">
-                We design and build high-performance web applications, internal systems, and SaaS
-                platforms that solve real business problems and support long-term growth.
+                We design and build high performance web applications, internal systems, and SaaS
+                platforms that solve real business problems and support long term growth.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Button
@@ -349,7 +349,7 @@ export default function SoftwareDevelopmentClient() {
             Let&apos;s Build Your System.
           </h2>
           <p className="text-slate-400 text-lg mb-12 italic font-medium">
-            Ready to replace manual workflows with high-performance software and automation? Scale
+            Ready to replace manual workflows with high performance software and automation? Scale
             your operations with custom-built systems designed for your business.
           </p>
           <Button

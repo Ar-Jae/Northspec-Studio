@@ -29,7 +29,7 @@ const whatWeBuild = [
     bullets: [
       "LLM-powered task classification",
       "Intelligent response generation",
-      "AI-assisted decision-support logic",
+      "AI assisted decision-support logic",
     ],
     accent: "from-brand-gold/20 to-transparent",
   },
@@ -38,7 +38,7 @@ const whatWeBuild = [
     title: "Operational Automation",
     short: "Full-scale systems that reduce manual steps across your internal processes.",
     bullets: [
-      "End-to-end process automation",
+      "End to end process automation",
       "Internal routing and approval logic",
       "Scalable back-office systems",
     ],
@@ -51,7 +51,7 @@ const whatWeBuild = [
     bullets: [
       "Custom API and SaaS connectors",
       "Unified data and event pipelines",
-      "Cross-platform synchronization",
+      "Cross platform synchronization",
     ],
     accent: "from-purple-500/10 to-transparent",
   },
@@ -258,7 +258,7 @@ export default function WorkflowAutomationPage() {
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
             className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
-            We implement intelligent workflows, connected systems, and AI-powered
+            We implement intelligent workflows, connected systems, and AI powered
             automation that reduce manual work and improve business efficiency.
           </motion.p>
 

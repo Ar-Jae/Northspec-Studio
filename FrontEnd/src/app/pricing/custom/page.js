@@ -11,7 +11,7 @@ const whatThisIs = [
   "Custom workflows and business logic that off-the-shelf tools can't handle",
   "Complex integrations across multiple systems, platforms, and data sources",
   "Unique system architecture built around how your business actually operates",
-  "Business-specific platforms that need to scale reliably long-term",
+  "Business specific platforms that need to scale reliably long term",
 ];
 
 const whoFor = [
@@ -41,9 +41,9 @@ const steps = [
   {
     number: "03",
     phase: "Development",
-    title: "Build with performance and long-term reliability in mind",
+    title: "Build with performance and long term reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see the system working at every stage, no black-box development, no surprises at the end.",
+      "milestone based delivery with real visibility. You see the system working at every stage, no black box development, no surprises at the end.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -60,7 +60,7 @@ const whyCustom = [
   "Built specifically for your business, not forced into someone else's template",
   "Eliminates inefficiencies across systems by designing exactly what you need",
   "Scalable architecture from day one, built to grow with your operations",
-  "Long-term flexibility and control over your own system and roadmap",
+  "Long term flexibility and control over your own system and roadmap",
 ];
 
 const riskReduction = [

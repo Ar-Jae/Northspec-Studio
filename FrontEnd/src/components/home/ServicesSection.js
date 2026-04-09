@@ -25,7 +25,7 @@ const services = [
   {
     number: "02",
     title: "Web Development",
-    short: "High-performance web development and scalable architectures with AI at the core.",
+    short: "High performance web development and scalable architectures with AI at the core.",
     bullets: [
       "Custom Web Applications & SaaS",
       "Next.js & React Native Expertise",

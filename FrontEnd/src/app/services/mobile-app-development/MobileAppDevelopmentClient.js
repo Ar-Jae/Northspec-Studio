@@ -27,7 +27,7 @@ const whatWeBuild = [
     title: "AI-Enabled Mobile Apps",
     short: "Mobile applications that use AI features, assistants, or smart workflows.",
     bullets: [
-      "AI-powered assistants and chat",
+      "AI powered assistants and chat",
       "Intelligent data input & image processing",
       "Mobile-first AI automation loops",
     ],
@@ -39,7 +39,7 @@ const whatWeBuild = [
     short: "Internal apps that help teams work faster in the field or on the go.",
     bullets: [
       "Field data collection & reporting",
-      "Real-time operational dashboards",
+      "Real time operational dashboards",
       "Internal workflow management apps",
     ],
     accent: "from-blue-500/10 to-transparent",
@@ -61,7 +61,7 @@ const whatWeBuild = [
     short: "Mobile applications tied into your broader systems and business workflows.",
     bullets: [
       "Seamless API & system integrations",
-      "Cross-platform data synchronization",
+      "Cross platform data synchronization",
       "Admin and management mobile views",
     ],
     accent: "from-emerald-500/10 to-transparent",
@@ -90,8 +90,8 @@ const steps = [
     phase: "Development",
     title: "Build for performance, reliability, and scale",
     description:
-      "Our team develops production-ready mobile apps using modern cross-platform frameworks, ensuring native-grade performance and fast delivery.",
-    detail: "Milestone-based Build → Performance Testing → Production QA",
+      "Our team develops production-ready mobile apps using modern cross platform frameworks, ensuring native grade performance and fast delivery.",
+    detail: "milestone based Build → Performance Testing → Production QA",
   },
   {
     number: "04",
@@ -105,7 +105,7 @@ const steps = [
 
 const why = [
   "Designed for real-world impact, not just display.",
-  "High-performance architecture focused on speed and reliability.",
+  "High performance architecture focused on speed and reliability.",
   "Seamless integration with AI systems and automated workflows.",
   "Direct collaboration with engineering and design leads.",
 ];
@@ -180,7 +180,7 @@ export default function MobileAppDevelopmentClient() {
               transition={{ delay: 1, duration: 0.8 }}
             >
               <p className="text-xl text-slate-300 leading-relaxed font-times font-medium italic mb-12">
-                We build high-performance mobile applications for iOS and Android that bridge the
+                We build high performance mobile applications for iOS and Android that bridge the
                 gap between your systems and your users—wherever they are.
               </p>
               <div className="flex flex-wrap gap-4">

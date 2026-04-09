@@ -144,7 +144,7 @@ const sections = [
           <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Northspec Retains</p>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Northspec retains ownership of all pre-existing frameworks, boilerplate, reusable components, internal tooling, and methodologies used in delivery. These may be used in other client engagements. Third-party libraries and dependencies remain under their respective open-source or commercial licenses.
+              Northspec retains ownership of all pre-existing frameworks, boilerplate, reusable components, internal tooling, and methodologies used in delivery. These may be used in other client engagements. Third-party libraries and dependencies remain under their respective open source or commercial licenses.
             </p>
           </div>
           <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">

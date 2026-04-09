@@ -122,12 +122,12 @@ export const caseStudies = [
 export const faqs = [
   { 
     question: "Why is this more expensive than a normal website?", 
-    answer: "Because we don’t build “just websites.” We build systems - frontends, backends, integrations, and automation that actually run your business. Cheap builds cost more in the long run through breakdowns, rebuilds, and technical debt. We price for reliability, scalability, and long-term stability, not shortcuts.", 
+    answer: "Because we don’t build “just websites.” We build systems - frontends, backends, integrations, and automation that actually run your business. Cheap builds cost more in the long run through breakdowns, rebuilds, and technical debt. We price for reliability, scalability, and long term stability, not shortcuts.", 
     order: 1 
   },
   { 
     question: "Do you charge hourly or fixed price?", 
-    answer: "We price by scope and outcomes, not hours. Hourly encourages slow work, while scope pricing encourages efficient, high-quality delivery. You’ll always know your cost up front.", 
+    answer: "We price by scope and outcomes, not hours. Hourly encourages slow work, while scope pricing encourages efficient, high quality delivery. You’ll always know your cost up front.", 
     order: 2 
   },
   { 

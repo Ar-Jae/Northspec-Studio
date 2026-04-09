@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 const openRoles = [
   {
     title: "Senior Full-Stack Engineer",
-    type: "Contract / Project-based",
+    type: "Contract / Project based",
     location: "Remote",
     description: "We're looking for senior engineers who can take full ownership of complex Next.js and Node.js builds. You should be comfortable architecting systems from scratch and integrating with various third-party APIs.",
     requirements: [
@@ -23,7 +23,7 @@ const openRoles = [
   },
   {
     title: "Automation Specialist",
-    type: "Contract / Project-based",
+    type: "Contract / Project based",
     location: "Remote",
     description: "Help us build robust, scalable workflows for our clients. You'll be working primarily with n8n and custom Node.js scripts to bridge the gap between disparate business systems.",
     requirements: [
@@ -95,7 +95,7 @@ export default function CareersPage() {
               <section className="rounded-3xl border border-brand-gold/20 bg-brand-gold/5 p-10">
                 <h2 className="text-2xl font-bold text-white font-serif mb-4">Our Philosophy</h2>
                 <p className="text-slate-300 leading-relaxed">
-                  At Northspec, we don't believe in busy work. We believe in deep work blocks, clear requirements, and high-quality output. 
+                  At Northspec, we don't believe in busy work. We believe in deep work blocks, clear requirements, and high quality output. 
                   We operate as a distributed team of senior engineers who take ownership of their work. No micromanagement, no useless meetings. just engineering.
                 </p>
               </section>

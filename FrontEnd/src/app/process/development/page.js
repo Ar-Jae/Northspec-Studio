@@ -77,7 +77,7 @@ export default function DevelopmentPage() {
                   {[
                     { title: "Weekly Demos", desc: "A video call or recorded demo showing the latest progress." },
                     { title: "Slack/Discord Access", desc: "Direct access to the engineering team for quick questions." },
-                    { title: "Project Dashboard", desc: "Real-time tracking of tasks, milestones, and budget." }
+                    { title: "Project Dashboard", desc: "Real time tracking of tasks, milestones, and budget." }
                   ].map((item, i) => (
                     <li key={i} className="flex gap-4 text-slate-300 group">
                       <span className="flex-none w-6 h-6 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center text-brand-gold text-[10px] font-bold group-hover:bg-brand-gold group-hover:text-brand-dark transition-colors">
@@ -94,7 +94,7 @@ export default function DevelopmentPage() {
                 <div className="mt-12 pt-8">
                   <h3 className="text-lg font-semibold text-white font-serif tracking-widest uppercase">Deep Work Focus</h3>
                   <p className="mt-2 text-sm text-slate-400">
-                    We protect our development time to ensure high-quality output. We respond to all communication within 24 hours.
+                    We protect our development time to ensure high quality output. We respond to all communication within 24 hours.
                   </p>
                   <div className="mt-6">
                     <Button as="link" href="/work" variant="secondary" className="w-full">View Our Work</Button>

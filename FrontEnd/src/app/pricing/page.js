@@ -36,7 +36,7 @@ const projectTiers = [
       "Operational dashboards & portals",
       "Deep AI core implementation",
       "Advanced API & system logic",
-      "Scale-ready architecture",
+      "Scale ready architecture",
       "Full technical handoff",
     ],
     accent: "border-brand-gold/30",
@@ -387,7 +387,7 @@ export default function PricingPage() {
                     "Complex multi-system architecture",
                     "Specialized domain requirements",
                     "Custom infrastructure and deployment",
-                    "Long-term platform thinking built in",
+                    "Long term platform thinking built in",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm text-slate-300">
                       <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />

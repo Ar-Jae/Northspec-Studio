@@ -37,7 +37,7 @@ const builtToSpecCategories = [
   },
   {
     title: "Advanced Workflow Systems",
-    description: "End-to-end operational platforms that automate manual work and bridge system gaps.",
+    description: "End to end operational platforms that automate manual work and bridge system gaps.",
     icon: (
       <svg className="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 1.1.9 2 2 2h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2zM9 5v4m6-4v4" />
@@ -69,7 +69,7 @@ const steps = [
     phase: "Architecture & Design",
     title: "Defining the logic, data flow, and infrastructure",
     description:
-      "We design the internal architecture and secure data environments required to support your custom AI or automation features long-term.",
+      "We design the internal architecture and secure data environments required to support your custom AI or automation features long term.",
     detail: "Technical Architecture → Database Design → Integration Mapping",
   },
   {

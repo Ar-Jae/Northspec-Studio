@@ -27,7 +27,7 @@ const sections = [
         </p>
         <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-5 not-italic">
           <p className="text-sm text-white font-bold font-times leading-relaxed uppercase tracking-wide">
-            Every system we build is designed with protection, reliability, and long-term stability in mind.
+            Every system we build is designed with protection, reliability, and long term stability in mind.
           </p>
           <p className="mt-2 text-xs text-slate-400 font-medium">
             We integrate security protocols into every stage: architecture, development, testing, and deployment.
@@ -38,7 +38,7 @@ const sections = [
             { label: "Architecture", desc: "Hardened system design with isolated environments and minimum attack surfaces." },
             { label: "Logic Security", desc: "Rigorous validation of business logic and automated workflow triggers." },
             { label: "Data Sovereignty", desc: "Ensuring your data stays within your controlled infrastructure and stays private." },
-            { label: "Monitoring", desc: "Real-time performance and anomaly detection for proactive incident prevention." },
+            { label: "Monitoring", desc: "Real time performance and anomaly detection for proactive incident prevention." },
           ].map((item) => (
             <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
               <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{item.label}</p>
@@ -412,7 +412,7 @@ export default function SecurityPolicyPage() {
             Security Built Into Every System
           </h1>
           <p className="mt-6 text-lg text-slate-400 font-medium italic leading-relaxed max-w-2xl">
-            We design and develop high-throughput software, automation, and AI systems with security as a core priority. We protect your data, workflows, and operations with an enterprise-grade security mindset.
+            We design and develop high throughput software, automation, and AI systems with security as a core priority. We protect your data, workflows, and operations with an enterprise grade security mindset.
           </p>
           <p className="mt-4 text-xs text-slate-600 font-medium uppercase tracking-widest font-times">
             Effective date: {EFFECTIVE_DATE}

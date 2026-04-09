@@ -106,7 +106,7 @@ const steps = [
 const why = [
   "Prevent costly downtime before it impacts your business",
   "Keep systems secure and reliable without internal overhead",
-  "Reduce long-term technical debt that leads to rebuilds",
+  "Reduce long term technical debt that leads to rebuilds",
   "Enable continuous product growth without starting over",
 ];
 
@@ -680,7 +680,7 @@ export default function MaintenanceSupportPage() {
                 {[
                   { label: "Immediate", desc: "System handoff with zero knowledge gap" },
                   { label: "Ongoing", desc: "Monthly engineering capacity for maintenance and growth" },
-                  { label: "Long-term", desc: "A team invested in your product's success" },
+                  { label: "Long term", desc: "A team invested in your product's success" },
                 ].map((item, i) => (
                   <motion.div
                     key={i}

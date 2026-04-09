@@ -50,7 +50,7 @@ const whatWeBuild = [
     short: "Structure and route the data AI systems need to function properly.",
     bullets: [
       "Intelligent data transformation",
-      "Real-time AI input pipelines",
+      "Real time AI input pipelines",
       "Centralized system monitoring",
     ],
     accent: "from-purple-500/10 to-transparent",

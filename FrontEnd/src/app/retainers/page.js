@@ -107,7 +107,7 @@ const hostingPlans = [
     description: "Production-grade infrastructure for systems under consistent active load.",
     includes: [
       "Advanced performance optimization",
-      "Real-time monitoring & alerting",
+      "Real time monitoring & alerting",
       "Security & automated backups",
       "Initial scaling support",
     ],
@@ -149,7 +149,7 @@ const included = [
   "Monthly performance and system efficiency audits",
   "Dedicated development capacity for new features",
   "Proactive AI model tuning and optimization",
-  "Long-term system reliability and scalability",
+  "Long term system reliability and scalability",
 ];
 
 const whyTwo = [

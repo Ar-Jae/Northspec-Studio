@@ -212,7 +212,7 @@ const sections = [
         </p>
         <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-6 not-italic">
           <p className="text-sm text-white font-times italic leading-relaxed">
-            Our goal is to deliver high-quality systems and long-term value. We address concerns through collaboration and iteration, not refunds.
+            Our goal is to deliver high quality systems and long term value. We address concerns through collaboration and iteration, not refunds.
           </p>
           <p className="mt-3 text-sm text-slate-400 leading-relaxed">
             If something isn&apos;t right, talk to us first. The vast majority of concerns are resolved through honest communication, and we are always willing to engage in good faith.

@@ -81,7 +81,7 @@ function ApproachHead() {
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
-        This is what separates a system builder from a standard developer. We focus on structured planning, AI workflow integration, and long-term scalability from day one.
+        This is what separates a system builder from a standard developer. We focus on structured planning, AI workflow integration, and long term scalability from day one.
       </p>
     </motion.div>
   );
@@ -134,7 +134,7 @@ export default function AboutPage() {
         label="About Northspec"
         headline="Built for Real Business"
         accent="Systems, Not Just Code."
-        subheading="Northspec helps businesses implement AI, automation, and custom systems that improve operations, reduce manual work, and support long-term growth."
+        subheading="Northspec helps businesses implement AI, automation, and custom systems that improve operations, reduce manual work, and support long term growth."
       >
         <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
           Start a Project
@@ -366,7 +366,7 @@ function ImpactSection() {
 function ProcessSection() {
   const steps = [
     { num: "01", title: "Clear Scoping & Planning", desc: "Every project starts with a defined scope document. You know exactly what we're building and what it costs before anything begins." },
-    { num: "02", title: "Structured Development", desc: "Milestone-based delivery with regular check-ins. No disappearing for 6 weeks. You're involved throughout." },
+    { num: "02", title: "Structured Development", desc: "milestone based delivery with regular check-ins. No disappearing for 6 weeks. You're involved throughout." },
     { num: "03", title: "Reliable Delivery", desc: "We don't ship code that isn't production-ready. Every release is tested and documented before handoff." },
     { num: "04", title: "Ongoing Support After Launch", desc: "We offer retainer partnerships for teams that want continued improvement and maintenance after the initial build." },
   ];
@@ -413,7 +413,7 @@ function WhySection() {
     "Systems built for real business ROI",
     "Scalable architecture from day one",
     "AI integrated into existing workflows",
-    "Predictable delivery and long-term support",
+    "Predictable delivery and long term support",
   ];
 
   return (

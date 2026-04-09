@@ -272,7 +272,7 @@ function AllServicesSection() {
         {
           title: "Mobile App Development",
           desc: "Lean, production-ready mobile apps without the $100K+ agency price tag.",
-          bullets: ["Cross-platform iOS & Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend & API integration"],
+          bullets: ["Cross platform iOS & Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend & API integration"],
           href: "/services/mobile-app-development",
           badge: "Popular",
         },
@@ -285,7 +285,7 @@ function AllServicesSection() {
         {
           title: "Built to Spec",
           desc: "For complex systems that require tailored architecture and structured delivery.",
-          bullets: ["Full system design", "Enterprise-grade builds", "Custom integrations", "Starts at $30,000"],
+          bullets: ["Full system design", "Enterprise grade builds", "Custom integrations", "Starts at $30,000"],
           href: "/built-to-spec",
         },
         {
@@ -367,7 +367,7 @@ function PriceSection() {
 
 function EngagementSection() {
   const steps = [
-    { num: "01", title: "Initial Build", sub: "6–12 weeks", desc: "We scope, design, and build the system to agreed specification. Milestone-based delivery." },
+    { num: "01", title: "Initial Build", sub: "6–12 weeks", desc: "We scope, design, and build the system to agreed specification. milestone based delivery." },
     { num: "02", title: "Launch & Stabilize", sub: "2–4 weeks", desc: "Deploy, monitor, and address any post-launch issues within the 30-day warranty window." },
     { num: "03", title: "Ongoing Development", sub: "Monthly retainer", desc: "Most clients continue with a retainer to maintain, improve, and scale their system over time." },
   ];

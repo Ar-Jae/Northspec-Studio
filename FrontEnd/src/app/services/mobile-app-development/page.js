@@ -2,7 +2,7 @@ import MobileAppDevelopmentClient from "./MobileAppDevelopmentClient";
 
 export const metadata = {
   title: "Mobile App Development | iOS & Android Solutions",
-  description: "Custom mobile app development for iOS and Android. We build high-performance, scalable mobile products that integrate seamlessly with your business workflows.",
+  description: "Custom mobile app development for iOS and Android. We build high performance, scalable mobile products that integrate seamlessly with your business workflows.",
   keywords: ["Mobile App Development", "iOS Development", "Android Development", "React Native", "AI Mobile Apps"]
 };
 
@@ -18,7 +18,7 @@ export default function MobileAppDevelopmentPage() {
 const why = [
   "Mobile apps that connect reliably with your business systems",
   "Focus on business use cases and operational efficiency",
-  "Modern cross-platform codebases that scale without bloat",
+  "Modern cross platform codebases that scale without bloat",
   "A structured process that removes the risk from app builds",
 ];
 

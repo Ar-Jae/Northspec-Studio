@@ -2,7 +2,7 @@ const services = [
   {
     title: "AI Automation & Systems",
     short:
-      "Design and implement AI-powered workflows and custom automation.",
+      "Design and implement AI powered workflows and custom automation.",
     description:
       "We replace manual workloads with custom AI systems that run your operations, handling everything from lead qualification to complex system logic.",
     bullets: [
@@ -15,7 +15,7 @@ const services = [
   {
     title: "Software & Platforms",
     short:
-      "Enterprise-grade web apps and SaaS built for scale and AI performance.",
+      "Enterprise grade web apps and SaaS built for scale and AI performance.",
     description:
       "We build robust platforms that support AI-driven operations. Our engineering standards ensure your software is fast, reliable, and capable of growth.",
     bullets: [

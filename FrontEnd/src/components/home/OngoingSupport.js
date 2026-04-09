@@ -65,7 +65,7 @@ export default function OngoingSupport() {
                   className="text-slate-400 text-sm leading-relaxed mb-8 max-w-sm font-times"
                 >
                   AI systems require ongoing optimization to stay competitive. We partner
-                  long-term to evolve your automation.
+                  long term to evolve your automation.
                 </motion.p>
 
                 <ul className="space-y-3">

@@ -49,7 +49,7 @@ export default function AISystemsClient() {
         label="Autonomous Systems"
         headline="AI Systems That Automate"
         accent="And Scale Your Business."
-        subheading="We implement AI-powered workflows, automation systems, and custom applications that reduce manual work and help businesses operate more efficiently."
+        subheading="We implement AI powered workflows, automation systems, and custom applications that reduce manual work and help businesses operate more efficiently."
       >
         <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">Start Automating</Button>
         <Button as="link" href="#solutions" variant="outline" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">View Solutions</Button>
@@ -120,7 +120,7 @@ export default function AISystemsClient() {
                 </svg>
               </div>
               <h3 className="text-2xl font-serif font-bold mb-4">Workflow Automation</h3>
-              <p className="text-slate-400 mb-8 italic">End-to-end business process automation using n8n and custom AI logic.</p>
+              <p className="text-slate-400 mb-8 italic">End to end business process automation using n8n and custom AI logic.</p>
               <ul className="space-y-3 mb-10">
                 <li className="flex items-center gap-3 text-sm text-slate-300">
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
@@ -156,7 +156,7 @@ export default function AISystemsClient() {
                 href: "/ai-systems/workflow-automation",
                 title: "Workflow Automation",
                 desc: "Eliminate manual work and reduce operational overhead with custom n8n automation systems.",
-                bullets: ["Multi-step workflow automation", "AI-assisted processing", "Trigger-based pipelines", "CRM & ops automation"],
+                bullets: ["Multi step workflow automation", "AI assisted processing", "Trigger based pipelines", "CRM & ops automation"],
               },
               {
                 href: "/ai-systems/integrations",

@@ -2,7 +2,7 @@ import SoftwareDevelopmentClient from "./SoftwareDevelopmentClient";
 
 export const metadata = {
   title: "Custom Web Development | Scalable Software Solutions",
-  description: "High-performance web development and scalable software solutions. From React/Next.js platforms to internal admin systems, we build what your business needs to grow.",
+  description: "High performance web development and scalable software solutions. From React/Next.js platforms to internal admin systems, we build what your business needs to grow.",
   keywords: ["Web Development", "Software Engineering", "Next.js", "Full Stack Development", "SaaS Development"]
 };
 

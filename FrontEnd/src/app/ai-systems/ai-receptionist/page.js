@@ -330,7 +330,7 @@ export default function AIReceptionistPage() {
               </p>
               <p className="text-slate-400 leading-relaxed text-sm font-times italic">
                 An AI receptionist doesn&apos;t just answer calls. it runs a consistent,
-                always-on front-line operation that captures every lead and books every opportunity.
+                always on front line operation that captures every lead and books every opportunity.
               </p>
             </motion.div>
 
