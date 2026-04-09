@@ -395,7 +395,7 @@ export default function IntegrationsPage() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={whoIn ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                className="group flex items-center gap-4 py-7 border-b border-white/[0.06] last:border-0
                   hover:border-brand-gold/20 transition-colors duration-300"
               >
                 <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
@@ -633,7 +633,7 @@ export default function IntegrationsPage() {
                 initial={{ opacity: 0, x: -30 }}
                 animate={whyIn ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
+                className="group flex items-center gap-4 py-7 border-b border-white/[0.06] last:border-0
                   hover:border-brand-gold/20 transition-colors duration-300"
               >
                 <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">

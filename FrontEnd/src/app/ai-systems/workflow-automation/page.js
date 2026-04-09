@@ -398,9 +398,6 @@ export default function WorkflowAutomationPage() {
                 className="group flex items-center gap-8 py-7 border-b border-white/[0.06] last:border-0
                   hover:border-brand-gold/20 transition-colors duration-300"
               >
-                <span className="text-[11px] font-bold tracking-[0.3em] text-slate-700 w-8 flex-shrink-0">
-                  0{i + 1}
-                </span>
                 <p className="text-xl font-serif text-slate-300 group-hover:text-white transition-colors duration-300">
                   {item}
                 </p>
@@ -430,9 +427,6 @@ export default function WorkflowAutomationPage() {
                 <div
                   className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${item.accent} rounded-t-3xl`}
                 />
-                <div className="text-[11px] font-bold tracking-[0.3em] text-slate-700 mb-6">
-                  {item.number}
-                </div>
                 <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
                   {item.title}
                 </h3>
@@ -565,15 +559,12 @@ export default function WorkflowAutomationPage() {
                   border-b border-white/[0.06] last:border-0"
               >
                 <div className="lg:col-span-1 flex items-start mb-6 lg:mb-0">
-                  <div className="w-14 h-14 rounded-2xl border border-white/10 bg-brand-dark flex items-center justify-center text-brand-gold
-                    group-hover:border-brand-gold/40 group-hover:bg-brand-gold/10 transition-colors duration-300 flex-shrink-0">
-                    <span className="text-sm font-bold font-mono">{step.number}</span>
-                  </div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 flex-shrink-0" />
                 </div>
-                <div className="lg:col-span-3 lg:pt-3">
+                <div className="lg:col-span-3 lg:pt-0">
                   <div className="text-sm font-bold text-brand-gold tracking-wide">{step.phase}</div>
                 </div>
-                <div className="lg:col-span-5 lg:pt-1">
+                <div className="lg:col-span-5 lg:pt-0">
                   <h3 className="text-xl font-bold font-serif text-white mb-3 group-hover:text-brand-gold transition-colors duration-300">
                     {step.title}
                   </h3>
