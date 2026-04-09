@@ -477,7 +477,7 @@ function FormSection() {
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-4">Support Hours</p>
             <div className="space-y-3">
               {[
-                { day: "Monday – Friday", hours: "9am – 6pm EST" },
+                { day: "Monday. Friday", hours: "9am. 6pm EST" },
                 { day: "Saturday", hours: "Emergency only" },
                 { day: "Sunday", hours: "Closed" },
               ].map((row, i) => (

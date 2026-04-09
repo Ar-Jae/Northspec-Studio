@@ -8,7 +8,7 @@ import Button from "../../../components/Button";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const outcomes = [
-  "Not every workflow belongs on desktop - we build for the field and on-the-go.",
+  "Not every workflow belongs on desktop we build for the field and on-the-go.",
   "Connect your mobile experience directly into your AI and business systems.",
   "Deliver production-ready apps designed for performance, usability, and growth.",
   "Scale your product or operation with reliable mobile tools for teams and customers.",

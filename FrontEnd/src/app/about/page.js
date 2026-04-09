@@ -48,8 +48,8 @@ function TiltCard({ children, className = "" }) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
+    const x = ((e.clientX rect.left) / rect.width 0.5) * 16;
+    const y = ((e.clientY rect.top) / rect.height 0.5) * -16;
     el.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   }
   function handleMouseLeave() {
@@ -204,7 +204,7 @@ function WhatWeDoSection() {
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          We don&apos;t just build software - we design and implement the autonomous systems that businesses rely on to scale.
+          We don&apos;t just build software we design and implement the autonomous systems that businesses rely on to scale.
         </p>
       </motion.div>
 

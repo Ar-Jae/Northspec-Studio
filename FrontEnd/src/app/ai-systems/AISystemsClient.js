@@ -147,7 +147,7 @@ export default function AISystemsClient() {
           <SectionLabel>All AI Services</SectionLabel>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Every Way We Automate.</h2>
           <p className="text-slate-400 italic mb-16 max-w-2xl">
-            From voice AI to full workflow automation  -  every service designed to reduce manual work and scale your operations.
+            From voice AI to full workflow automation. every service designed to reduce manual work and scale your operations.
           </p>
 
           <div className="grid md:grid-cols-3 gap-6">

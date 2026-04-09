@@ -8,8 +8,8 @@ import { AuthProvider } from "../lib/auth-context";
 import VapiWidget from "../components/VapiWidget";
 import site from "../content/site";
 
-const inter    = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
+const inter    = Inter({ subsets: ["latin"], variable: ". font-inter" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: ". font-playfair" });
 
 export const metadata = {
   metadataBase: new URL(site.url),

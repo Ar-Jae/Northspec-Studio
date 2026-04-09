@@ -270,7 +270,7 @@ export default function NdaPolicyPage() {
             Confidentiality Comes Standard
           </h1>
           <p className="mt-6 text-lg text-slate-400 font-medium italic leading-relaxed max-w-2xl">
-            We build and automate proprietary business systems. Confidentiality isn&apos;t a hurdle - it&apos;s our operational baseline. We sign NDAs daily and maintain strict data sovereignty for every AI implementation.
+            We build and automate proprietary business systems. Confidentiality isn&apos;t a hurdle. it&apos;s our operational baseline. We sign NDAs daily and maintain strict data sovereignty for every AI implementation.
           </p>
           <p className="mt-4 text-xs text-slate-600 font-medium uppercase tracking-widest font-times">
             Effective date: {EFFECTIVE_DATE}

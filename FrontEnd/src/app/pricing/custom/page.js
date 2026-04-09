@@ -407,7 +407,7 @@ export default function CustomPlansPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually based on what your system
-                  actually requires. Every quote is custom to your needs  -  no hourly billing,
+                  actually requires. Every quote is custom to your needs no hourly billing,
                   no surprises, no budget overruns.
                 </p>
               </div>
@@ -425,7 +425,7 @@ export default function CustomPlansPage() {
                     $25,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
-                    Most engagements: $30,000 – $80,000+
+                    Most engagements: $30,000 $80,000+
                   </p>
                 </motion.div>
 
@@ -631,7 +631,7 @@ export default function CustomPlansPage() {
                   View Retainer Plans
                 </a>
                 <p className="text-xs text-slate-600 font-medium uppercase tracking-wider self-center">
-                  Ongoing from $5,000 – $12,000/month
+                  Ongoing from $5,000 $12,000/month
                 </p>
               </div>
             </div>
@@ -686,7 +686,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly  -  architecture, timeline, and a custom proposal included, all tailored to your requirements.
+            Tell us what you&apos;re building and we&apos;ll scope it properly architecture, timeline, and a custom proposal included, all tailored to your requirements.
           </motion.p>
 
           <motion.div

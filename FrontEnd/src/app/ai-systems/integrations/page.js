@@ -152,8 +152,8 @@ function TiltCard({ children, index }) {
 
   const onMove = (e) => {
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 18;
-    const y = (e.clientY - rect.top - rect.height / 2) / 18;
+    const x = (e.clientX. rect.left. rect.width / 2) / 18;
+    const y = (e.clientY. rect.top. rect.height / 2) / 18;
     cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
     cardRef.current.style.transition = "transform 0.05s linear";
   };
@@ -495,7 +495,7 @@ export default function IntegrationsPage() {
                     Engagement Range
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $4,000 – $15,000+
+                    $4,000. $15,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
                     Depending on complexity and AI logic
@@ -690,7 +690,7 @@ export default function IntegrationsPage() {
                 ))}
               </ul>
               <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                Ongoing engagements from $1,500 – $4,000/month
+                Ongoing engagements from $1,500. $4,000/month
               </p>
             </div>
           </motion.div>

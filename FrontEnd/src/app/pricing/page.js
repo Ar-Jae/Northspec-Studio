@@ -12,7 +12,7 @@ import { faqs } from "../../lib/data";
 const projectTiers = [
   {
     name: "AI Automation Systems",
-    range: "$5,000 – $20,000+",
+    range: "$5,000 $20,000+",
     delivery: "4–8 weeks",
     for: "For businesses implementing AI into workflows, operations, and internal processes.",
     includes: [
@@ -28,7 +28,7 @@ const projectTiers = [
   },
   {
     name: "AI-Enabled Platforms",
-    range: "$15,000 – $60,000+",
+    range: "$15,000 $60,000+",
     delivery: "8–12 weeks",
     for: "Custom tools, internal systems, dashboards, or products where AI is the core workflow.",
     includes: [
@@ -45,7 +45,7 @@ const projectTiers = [
   },
   {
     name: "Built-to-Spec Systems",
-    range: "$25,000 – $80,000+",
+    range: "$25,000 $80,000+",
     delivery: "12–20+ weeks",
     for: "Advanced business systems, multi-workflow environments, and complex multi-system integrations.",
     includes: [
@@ -78,7 +78,7 @@ const retainerTiers = [
   },
   {
     name: "Continuous Automation",
-    price: "$5,000 – $7,000",
+    price: "$5,000 $7,000",
     period: "/month",
     for: "For businesses expanding automation across new departments and operational workflows.",
     includes: [
@@ -91,7 +91,7 @@ const retainerTiers = [
   },
   {
     name: "AI Scaling Partner",
-    price: "$8,000 – $12,000",
+    price: "$8,000 $12,000",
     period: "/month",
     for: "Dedicated engineering for companies fully automating their entire business operations.",
     includes: [
@@ -207,7 +207,7 @@ export default function PricingPage() {
         label="Pricing"
         headline="AI Systems,"
         accent="Automation & Platforms"
-        subheading="Every engagement is custom-scoped to your requirements. Ranges shown are market-rate estimates  -  your actual investment is determined after a discovery session, not before."
+        subheading="Every engagement is custom-scoped to your requirements. Ranges shown are market-rate estimates your actual investment is determined after a discovery session, not before."
       >
         <div className="flex flex-col items-center">
           <motion.p
@@ -320,7 +320,7 @@ export default function PricingPage() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-6 text-center text-xs text-slate-600 font-medium"
           >
-            Ranges above are market-rate estimates. Every project is custom-scoped  -  your actual investment is determined during discovery based on your specific requirements.
+            Ranges above are market-rate estimates. Every project is custom-scoped your actual investment is determined during discovery based on your specific requirements.
           </motion.p>
         </div>
       </section>
@@ -373,7 +373,7 @@ export default function PricingPage() {
                     Typical investment
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $30,000 – $80,000+
+                    $30,000 $80,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
                     Scoped individually to your requirements
@@ -540,7 +540,7 @@ export default function PricingPage() {
                     Monthly range
                   </p>
                   <div className="text-4xl font-bold font-serif text-white leading-[1.05]">
-                    $750 – $2,500
+                    $750 $2,500
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium mt-1">
                     Per month + usage
@@ -610,7 +610,7 @@ export default function PricingPage() {
                 <p className="text-sm text-slate-400 leading-relaxed font-times">
                   {step.desc}
                 </p>
-                {i < engagementSteps.length - 1 && (
+                {i < engagementSteps.length 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-3 z-10 w-6 h-6 rounded-full border border-brand-gold/30 bg-brand-dark flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-gold/50" />
                   </div>
@@ -651,10 +651,10 @@ export default function PricingPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "n8n Workflow Setup", range: "$3,000 – $8,000" },
-              { title: "Core Automation Systems", range: "$1,000 – $2,500" },
-              { title: "Advanced Workflow Systems", range: "$3,000 – $10,000" },
-              { title: "AI-Driven Automation", range: "$5,000 – $15,000+" },
+              { title: "n8n Workflow Setup", range: "$3,000 $8,000" },
+              { title: "Core Automation Systems", range: "$1,000 $2,500" },
+              { title: "Advanced Workflow Systems", range: "$3,000 $10,000" },
+              { title: "AI-Driven Automation", range: "$5,000 $15,000+" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -833,7 +833,7 @@ export default function PricingPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly  -  custom architecture, timeline, and a clear proposal before any commitment.
+            Tell us what you&apos;re building and we&apos;ll scope it properly custom architecture, timeline, and a clear proposal before any commitment.
           </motion.p>
 
           <motion.div

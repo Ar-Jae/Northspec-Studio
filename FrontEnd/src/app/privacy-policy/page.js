@@ -119,7 +119,7 @@ const sections = [
             },
             {
               label: "No Persistence",
-              desc: "For many automation workflows, we design for zero persistence - processing data in-flight without long-term storage on our infrastructure, unless specifically required for system performance.",
+              desc: "For many automation workflows, we design for zero persistence. processing data in-flight without long-term storage on our infrastructure, unless specifically required for system performance.",
             },
             {
               label: "Audit Trails",

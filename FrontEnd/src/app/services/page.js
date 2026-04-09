@@ -71,8 +71,8 @@ function ServiceCard({ title, desc, bullets, href, badge, i }) {
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
+    const x = ((e.clientX rect.left) / rect.width 0.5) * 14;
+    const y = ((e.clientY rect.top) / rect.height 0.5) * -14;
     el.style.transform = `perspective(800px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   }
   function handleMouseLeave() {
@@ -135,7 +135,7 @@ function ServicesHead() {
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-        From MVPs to full-scale platforms  -  software and mobile products built for real users.
+        From MVPs to full-scale platforms software and mobile products built for real users.
       </p>
     </motion.div>
   );

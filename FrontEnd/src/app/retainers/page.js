@@ -34,7 +34,7 @@ const retainerPlans = [
   },
   {
     name: "Growth",
-    price: "$5,000 – $7,000",
+    price: "$5,000. $7,000",
     period: "/month",
     commitment: "3-month minimum",
     for: "For businesses expanding automation across new departments and operational workflows.",
@@ -51,7 +51,7 @@ const retainerPlans = [
   },
   {
     name: "Product Partner",
-    price: "$8,000 – $12,000",
+    price: "$8,000. $12,000",
     period: "/month",
     commitment: "3-month minimum",
     for: "Dedicated engineering for companies fully automating their entire business operations.",
@@ -68,7 +68,7 @@ const retainerPlans = [
   },
   {
     name: "Dedicated Team",
-    price: "$15,000 – $25,000+",
+    price: "$15,000. $25,000+",
     period: "/month",
     commitment: "6-month minimum",
     for: "High-capacity engineering for complex, multi-system environments requiring scaling.",
@@ -116,7 +116,7 @@ const hostingPlans = [
   },
   {
     name: "Scale",
-    price: "$2,000 – $3,500",
+    price: "$2,000. $3,500",
     period: "/mo + usage",
     description: "Built for intensive AI workloads, high volume, and complex data processing.",
     includes: [
@@ -330,7 +330,7 @@ export default function RetainersPage() {
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times font-medium">
                 Most systems require ongoing development, automation improvements, and optimization after launch.
-                Our retainers ensure your business continues to evolve - not just maintain.
+                Our retainers ensure your business continues to evolve. not just maintain.
               </p>
             </motion.div>
 

@@ -34,7 +34,7 @@ export async function POST(req) {
     const event = await googleApi(`/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all`, {
       method: "POST",
       body: {
-        summary: `Discovery Call - ${name}`,
+        summary: `Discovery Call ${name}`,
         description: notes ? `Notes: ${notes}` : "Booked from website inline scheduler",
         start: { dateTime: new Date(start).toISOString(), timeZone: tz },
         end: { dateTime: new Date(end).toISOString(), timeZone: tz },

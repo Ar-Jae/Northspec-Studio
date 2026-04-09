@@ -61,7 +61,7 @@ const steps = [
     phase: "Discovery & System Planning",
     title: "Mapping goals, workflows, and AI opportunities",
     description:
-      "We begin with a deep audit of your current processes. We don't just ask what you want to build - we map the exact business logic required to automate your operations.",
+      "We begin with a deep audit of your current processes. We don't just ask what you want to build we map the exact business logic required to automate your operations.",
     detail: "System Requirements → Workflow Audit → AI Strategy Mapping",
   },
   {
@@ -216,7 +216,7 @@ export default function BuiltToSpecPage() {
               </p>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
                 We design and develop production-ready software, internal tools, 
-                and scalable platforms - especially where AI, automation, and 
+                and scalable platforms especially where AI, automation, and 
                 business operations need a strong technical foundation.
               </p>
             </motion.div>
@@ -412,7 +412,7 @@ export default function BuiltToSpecPage() {
                     $25,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
-                    Typical Range: $30,000 – $80,000+
+                    Typical Range: $30,000 $80,000+
                   </p>
                 </motion.div>
 
@@ -565,7 +565,7 @@ export default function BuiltToSpecPage() {
                 ))}
               </ul>
               <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                Ongoing engagements from $4,000 – $10,000/month
+                Ongoing engagements from $4,000 $10,000/month
               </p>
             </div>
           </motion.div>

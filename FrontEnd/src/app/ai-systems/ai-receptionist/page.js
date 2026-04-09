@@ -11,7 +11,7 @@ const problems = [
   "Every missed call after hours is a lead going directly to a competitor",
   "Receptionists cost $35,000–$55,000/year before benefits, sick days, or turnover",
   "Manual scheduling, lead logging, and follow-ups create gaps and human error",
-  "Callers expect immediate responses  -  voicemail means lost trust and lost revenue",
+  "Callers expect immediate responses. voicemail means lost trust and lost revenue",
 ];
 
 const whoFor = [
@@ -48,7 +48,7 @@ const capabilities = [
   {
     number: "03",
     title: "Appointment Booking",
-    short: "Books directly into your calendar in real time  -  no back-and-forth, no friction.",
+    short: "Books directly into your calendar in real time. no back-and-forth, no friction.",
     bullets: [
       "Live calendar availability checks",
       "Automated confirmations and reminders",
@@ -91,7 +91,7 @@ const steps = [
     phase: "Integration & Testing",
     title: "Connect to your calendar, CRM, and phone system",
     description:
-      "We integrate your existing tools  -  calendar, CRM, phone number  -  and run extensive testing across call scenarios before going live.",
+      "We integrate your existing tools. calendar, CRM, phone number. and run extensive testing across call scenarios before going live.",
     detail: "System Connections → Scenario Testing → QA Sign-Off",
   },
   {
@@ -105,7 +105,7 @@ const steps = [
 ];
 
 const why = [
-  "Available 24/7  -  no sick days, no holidays, no staffing gaps",
+  "Available 24/7. no sick days, no holidays, no staffing gaps",
   "Handles unlimited concurrent calls without queue wait times",
   "Consistent, on-brand responses on every single call",
   "Instant CRM logging eliminates manual data entry entirely",
@@ -154,8 +154,8 @@ function TiltCard({ children, index }) {
 
   const onMove = (e) => {
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 18;
-    const y = (e.clientY - rect.top - rect.height / 2) / 18;
+    const x = (e.clientX. rect.left. rect.width / 2) / 18;
+    const y = (e.clientY. rect.top. rect.height / 2) / 18;
     cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
     cardRef.current.style.transition = "transform 0.05s linear";
   };
@@ -263,7 +263,7 @@ export default function AIReceptionistPage() {
             className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
             An intelligent AI agent that answers every inbound call, qualifies leads,
-            books appointments, and logs everything to your CRM  -  available 24/7 in your brand&apos;s voice.
+            books appointments, and logs everything to your CRM. available 24/7 in your brand&apos;s voice.
           </motion.p>
 
           <motion.div
@@ -329,7 +329,7 @@ export default function AIReceptionistPage() {
                 business hours, and impossible to scale.
               </p>
               <p className="text-slate-400 leading-relaxed text-sm font-times italic">
-                An AI receptionist doesn&apos;t just answer calls  -  it runs a consistent,
+                An AI receptionist doesn&apos;t just answer calls. it runs a consistent,
                 always-on front-line operation that captures every lead and books every opportunity.
               </p>
             </motion.div>
@@ -500,7 +500,7 @@ export default function AIReceptionistPage() {
                   <em className="not-italic text-brand-gold">business efficiency.</em>
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
-                  Every AI receptionist build is custom-scoped  -  the complexity of your
+                  Every AI receptionist build is custom-scoped. the complexity of your
                   call flows, integrations, and knowledge base determines the investment.
                   Ranges shown are market-rate estimates.
                 </p>
@@ -516,7 +516,7 @@ export default function AIReceptionistPage() {
                     Estimated Build Range
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $3,000 – $10,000+
+                    $3,000. $10,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
                     Depending on call flows, integrations, and AI complexity
@@ -667,7 +667,7 @@ export default function AIReceptionistPage() {
               </h2>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
                 Traditional IVR systems frustrate callers and lose leads. Voicemail
-                means a delayed response  -  often too late. Our AI receptionists hold
+                means a delayed response. often too late. Our AI receptionists hold
                 natural conversations, understand context, and take real action
                 on every call without a human in the loop.
               </p>
@@ -785,7 +785,7 @@ export default function AIReceptionistPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md mx-auto font-times italic"
           >
-            Tell us about your call volume and business  -  we&apos;ll scope the right AI receptionist build for you.
+            Tell us about your call volume and business. we&apos;ll scope the right AI receptionist build for you.
           </motion.p>
 
           <motion.div

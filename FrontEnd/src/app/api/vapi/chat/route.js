@@ -9,20 +9,20 @@ Email: build@northspecstudio.com | Phone: +1 (413) 390-3673 | Location: North Am
 Social: X @NorthspecStudio | IG @northspec_studio | LinkedIn /in/northspec-studio
 
 SERVICES
-1. Web Development - Next.js/React marketing sites and web apps
-2. Software Engineering - APIs, integrations, internal dashboards, auth, background jobs
-3. Mobile App Development - iOS and Android (cross-platform), MVPs to full platforms
-4. Workflow Automation - n8n and AI-driven automation, trigger-based pipelines, CRM automation
-5. Integrations - API integrations, data sync, webhooks, third-party connectors
-6. Maintenance and Support - bug fixes, security updates, performance, incident response
-7. Built to Spec - tailored architecture for complex systems, starts at $30,000
-8. Custom Plans - multi-phase or non-standard projects, from $25,000+
+1. Web Development Next.js/React marketing sites and web apps
+2. Software Engineering APIs, integrations, internal dashboards, auth, background jobs
+3. Mobile App Development iOS and Android (cross-platform), MVPs to full platforms
+4. Workflow Automation n8n and AI-driven automation, trigger-based pipelines, CRM automation
+5. Integrations API integrations, data sync, webhooks, third-party connectors
+6. Maintenance and Support bug fixes, security updates, performance, incident response
+7. Built to Spec tailored architecture for complex systems, starts at $30,000
+8. Custom Plans multi-phase or non-standard projects, from $25,000+
 
-PROJECT PRICING (custom-scoped, not hourly  -  all ranges are market-rate estimates)
+PROJECT PRICING (custom-scoped, not hourly all ranges are market-rate estimates)
 AI Automation Systems: $5,000-$20,000+ | 4-8 weeks
 AI-Enabled Platforms: $15,000-$60,000+ | 8-12 weeks
 Built-to-Spec Systems: $25,000-$80,000+ | 12-20+ weeks
-Every project is individually scoped. Ranges are estimates  -  actual investment depends on requirements.
+Every project is individually scoped. Ranges are estimates actual investment depends on requirements.
 
 RETAINER PLANS (3-month minimum)
 Essential: $3,000/mo | Growth: $5,000-$7,000/mo | Product Partner: $8,000-$12,000/mo | Dedicated Team: $15,000-$25,000+/mo
@@ -196,7 +196,7 @@ export async function POST(req) {
       );
 
       if (toolCallItems.length === 0) {
-        // No tool calls  -  we have our final reply
+        // No tool calls we have our final reply
         reply = directReply || "";
         break;
       }

@@ -152,8 +152,8 @@ function TiltCard({ children, index }) {
 
   const onMove = (e) => {
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / 18;
-    const y = (e.clientY - rect.top - rect.height / 2) / 18;
+    const x = (e.clientX. rect.left. rect.width / 2) / 18;
+    const y = (e.clientY. rect.top. rect.height / 2) / 18;
     cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
     cardRef.current.style.transition = "transform 0.05s linear";
   };
@@ -492,7 +492,7 @@ export default function MaintenanceSupportPage() {
                     Monthly retainer range
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $3,000 – $10,000+
+                    $3,000. $10,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
                     Per month, depending on system complexity
