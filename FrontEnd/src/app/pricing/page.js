@@ -610,7 +610,7 @@ export default function PricingPage() {
                 <p className="text-sm text-slate-400 leading-relaxed font-times">
                   {step.desc}
                 </p>
-                {i < engagementSteps.length 1 && (
+                {i < engagementSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-3 z-10 w-6 h-6 rounded-full border border-brand-gold/30 bg-brand-dark flex items-center justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-brand-gold/50" />
                   </div>
