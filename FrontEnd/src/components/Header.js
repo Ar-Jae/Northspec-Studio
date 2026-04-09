@@ -54,12 +54,12 @@ function NavLink({ item, pathname }) {
               transition={{ duration: 0.2 }}
               className={cn(
                 "absolute left-0 mt-2 rounded-2xl bg-brand-dark/90 backdrop-blur-xl border border-white/10 p-2 shadow-2xl",
-                item.children.length > 3 ? "w-[480px]" : "w-56"
+                item.children.length > 2 ? "w-[480px]" : "w-56"
               )}
             >
               <ul className={cn(
                 "flex flex-col gap-0.5",
-                item.children.length > 3 && "grid grid-cols-2 gap-1"
+                item.children.length > 2 && "grid grid-cols-2 gap-1"
               )}>
                 {item.children.map((child) => (
                   <li key={child.href}>
