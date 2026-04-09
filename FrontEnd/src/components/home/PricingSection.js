@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Button from "../Button";
 
 const plans = [
   {
@@ -262,12 +263,14 @@ export default function PricingSection() {
                 Free technical consultation - clear plan and timeline included.
               </p>
               <div className="relative z-10">
-                <a
-                  href="#contact"
-                  className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                <Button
+                  as="link"
+                  href="/contact"
+                  variant="brand"
+                  className="w-full sm:w-auto"
                 >
                   Start Your Project
-                </a>
+                </Button>
               </div>
             </div>
           </div>
