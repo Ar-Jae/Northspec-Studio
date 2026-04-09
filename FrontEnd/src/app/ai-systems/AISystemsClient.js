@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import HeroSection from "../../components/HeroSection";
 import Button from "../../components/Button";
 import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
@@ -14,28 +13,6 @@ function SectionLabel({ children }) {
         {children}
       </span>
     </div>
-  );
-}
-
-function SplitReveal({ text, className }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-  const words = text.split(" ");
-  return (
-    <h2 ref={ref} className={className} aria-label={text}>
-      {words.map((word, i) => (
-        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.3em]">
-          <motion.span
-            className="inline-block -mb-[0.2em]"
-            initial={{ y: "100%" }}
-            animate={inView ? { y: 0 } : {}}
-            transition={{ duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
-    </h2>
   );
 }
 

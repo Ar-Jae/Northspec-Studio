@@ -59,12 +59,6 @@ export default function BackgroundCanvas() {
       scene.add(particles);
 
       // ── Floating Wireframe Grid System ──────────────────────────────────────
-      const gridMat = new THREE.LineBasicMaterial({
-        color: 0xc6a668,
-        transparent: true,
-        opacity: 0.08,
-      });
-
       // Create a large architectural wireframe grid
       const gridCount = 5;
       for (let i = 0; i < gridCount; i++) {
@@ -82,8 +76,6 @@ export default function BackgroundCanvas() {
       const nodeGeo = new THREE.IcosahedronGeometry(0.15, 1);
       const nodeMat = new THREE.MeshBasicMaterial({ color: 0xc6a668, transparent: true, opacity: 0.4 });
       
-      const lineMat = new THREE.LineBasicMaterial({ color: 0xc6a668, transparent: true, opacity: 0.05 });
-
       for (let i = 0; i < nodeCount; i++) {
         const node = new THREE.Mesh(nodeGeo, nodeMat);
         node.position.set(
