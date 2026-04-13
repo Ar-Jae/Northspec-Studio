@@ -152,8 +152,8 @@ function TiltCard({ children, index }) {
 
   const onMove = (e) => {
     const rect = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX. rect.left. rect.width / 2) / 18;
-    const y = (e.clientY. rect.top. rect.height / 2) / 18;
+    const x = (e.clientX - rect.left - rect.width / 2) / 18;
+    const y = (e.clientY - rect.top - rect.height / 2) / 18;
     cardRef.current.style.transform = `perspective(1000px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.02,1.02,1.02)`;
     cardRef.current.style.transition = "transform 0.05s linear";
   };
