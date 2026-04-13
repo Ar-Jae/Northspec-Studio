@@ -5,7 +5,7 @@ export const metadata = {
   openGraph: {
     title: "Pricing | Northspec Studio",
     description:
-      "Project builds, custom systems, and ongoing support. Fixed-price quotes, no hourly billing.",
+      "Project builds, custom systems, and ongoing support. All pricing is custom-scoped ranges shown are market-rate estimates. No hourly billing.",
     url: "/pricing",
   },
 };

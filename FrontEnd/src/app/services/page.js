@@ -19,6 +19,28 @@ function SectionLabel({ children }) {
   );
 }
 
+// Mount-based SplitReveal for hero (animates immediately on load)
+function HeroSplitReveal({ text, className, delay = 0 }) {
+  const words = text.split(" ");
+  return (
+    <span className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
+          <motion.span
+            className="inline-block -mb-[0.2em]"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1, delay: delay + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+// Scroll-triggered SplitReveal for section headings
 function SplitReveal({ text, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -107,13 +129,13 @@ function ServicesHead() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }} className="text-center max-w-2xl mx-auto mb-16">
-      <SectionLabel>All Services</SectionLabel>
+      <SectionLabel>Software & Mobile</SectionLabel>
       <SplitReveal
-        text="Everything We Build."
+        text="What We Build."
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.1]"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-        Grouped by what you&apos;re trying to achieve, not by what we happen to offer.
+        From MVPs to full-scale platforms software and mobile products built for real users.
       </p>
     </motion.div>
   );
@@ -137,62 +159,82 @@ function EngagementHead() {
 
 export default function ServicesPage() {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY       = useTransform(heroScroll, [0, 1],   ["0%", "30%"]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
 
   return (
     <div className="bg-brand-dark text-white">
       <BackgroundCanvasClient />
 
       {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative min-h-[80vh] flex items-center overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
-        </motion.div>
+      <section
+        ref={heroRef}
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+          }}
+        />
 
-        <div className="relative z-10 px-6 md:px-36 pt-40 pb-24 max-w-[1400px] mx-auto w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <SectionLabel>Services</SectionLabel>
-          </motion.div>
-
-          <SplitReveal
-            text="Software, Systems, and Automation, Built to Scale."
-            className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
-          />
-
-          <motion.p
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-36 pt-24 pb-20"
+        >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
+            className="flex items-center gap-4 mb-8"
           >
-            We design and build custom software, automation workflows, and scalable platforms for startups and growing teams. Most clients invest between{" "}
-            <span className="text-white font-bold not-italic">$12,000 and $50,000+</span>.
+            <div className="h-[1px] w-12 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Services
+            </span>
+            <div className="h-[1px] w-12 bg-brand-gold" />
+          </motion.div>
+
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <HeroSplitReveal
+              text="Custom Software & Mobile Apps"
+              delay={0.6}
+              className="block text-[clamp(2.5rem,6.3vw,5.85rem)]"
+            />
+            <HeroSplitReveal
+              text="Built to Launch."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
+          >
+            We design and build software platforms, SaaS products, and mobile apps
+            that are production-ready, scalable, and built around real business needs.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-12 flex flex-wrap gap-4"
+            transition={{ delay: 2.0, duration: 0.7 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <Button as="link" href="/contact" variant="brand">Start a Project</Button>
-            <a
-              href="https://calendar.app.google/XMN48TcybVjmij4C7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
-            >
-              Book a Call
-            </a>
+            <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">Start a Project</Button>
+            <Button as="link" href="/work" variant="outline-dark" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">See Our Work</Button>
           </motion.div>
-        </div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
       </section>
 
-      {/* ── 2. SELF-IDENTIFICATION ─────────────────────────────────────────── */}
-      <StartHereSection />
-
-      {/* ── 3. GROUPED SERVICES ───────────────────────────────────────────── */}
+      {/* ── 2. GROUPED SERVICES ───────────────────────────────────────────── */}
       <AllServicesSection />
 
       {/* ── 4. PRICE ANCHOR ───────────────────────────────────────────────── */}
@@ -215,64 +257,6 @@ export default function ServicesPage() {
 
 // ─── Sections ─────────────────────────────────────────────────────────────────
 
-function StartHereSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  const paths = [
-    { label: "Launching a new product", action: "MVP & Software Development", href: "/services/software-development", tag: "Product Dev" },
-    { label: "Replacing manual work", action: "Automation & Integrations", href: "/services/workflow-automation", tag: "Automation" },
-    { label: "Building a mobile app", action: "Mobile App Development", href: "/services/mobile-app-development", tag: "Mobile" },
-    { label: "Scaling an existing system", action: "Platforms & Ongoing Support", href: "/services/maintenance-support", tag: "Growth" },
-    { label: "Need something custom", action: "Built-to-Spec or Custom Plan", href: "/pricing/custom", tag: "Custom" },
-  ];
-
-  return (
-    <section className="py-20 px-6 md:px-36 max-w-[1400px] mx-auto border-t border-white/5">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7 }}
-        className="mb-10"
-      >
-        <SectionLabel>Not Sure Where to Start?</SectionLabel>
-        <h2 className="text-3xl md:text-4xl font-bold text-white font-times uppercase tracking-tight leading-[1.1] max-w-xl">
-          Find Where You Fit.
-        </h2>
-        <p className="mt-4 text-slate-400 font-medium italic text-sm max-w-lg">
-          Tell us what you&apos;re trying to accomplish and we&apos;ll point you to the right service.
-        </p>
-      </motion.div>
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {paths.map((p, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.08 }}
-          >
-            <Link
-              href={p.href}
-              className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4 hover:border-brand-gold/30 hover:bg-brand-gold/[0.03] transition-all"
-            >
-              <div>
-                <p className="text-xs text-slate-500 font-medium italic mb-0.5">{p.label}</p>
-                <p className="text-sm font-bold text-white font-times uppercase tracking-wider group-hover:text-brand-gold transition-colors">{p.action}</p>
-              </div>
-              <span className="text-[10px] font-bold text-brand-gold/60 font-times uppercase tracking-widest border border-brand-gold/20 rounded-full px-2 py-0.5 shrink-0 ml-4 group-hover:border-brand-gold/40 transition-colors">
-                {p.tag}
-              </span>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function AllServicesSection() {
   const groups = [
     {
@@ -288,46 +272,9 @@ function AllServicesSection() {
         {
           title: "Mobile App Development",
           desc: "Lean, production-ready mobile apps without the $100K+ agency price tag.",
-          bullets: ["Cross-platform iOS & Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend & API integration"],
+          bullets: ["Cross platform iOS & Android", "MVP builds for fast launch", "Scalable mobile platforms", "Backend & API integration"],
           href: "/services/mobile-app-development",
           badge: "Popular",
-        },
-      ],
-    },
-    {
-      label: "Systems & Automation",
-      tag: "Best for improving operations",
-      services: [
-        {
-          title: "Workflow Automation",
-          desc: "Eliminate manual work and reduce operational overhead with custom automation systems.",
-          bullets: ["Multi-step workflow automation", "AI-assisted processing", "Trigger-based pipelines", "CRM & ops automation"],
-          href: "/services/workflow-automation",
-        },
-        {
-          title: "Integrations",
-          desc: "Connect your tools and eliminate data silos. Make your systems work together.",
-          bullets: ["API integrations", "Data sync between platforms", "Webhook & event systems", "Third-party connector builds"],
-          href: "/services/integrations",
-        },
-      ],
-    },
-    {
-      label: "Growth & Scale",
-      tag: "Best for scaling systems",
-      services: [
-        {
-          title: "Maintenance & Support",
-          desc: "Keep your system running, secure, and continuously improving after launch.",
-          bullets: ["Bug fixes & performance work", "Security updates & monitoring", "Feature additions", "System reliability"],
-          href: "/services/maintenance-support",
-        },
-        {
-          title: "Ongoing Retainers",
-          desc: "Dedicated monthly development capacity for teams that need a long-term partner.",
-          bullets: ["$3,000–$20,000+/month", "Flexible monthly scope", "3–6 month minimum", "Most Popular: Growth Plan"],
-          href: "/retainers",
-          badge: "Recurring",
         },
       ],
     },
@@ -338,7 +285,7 @@ function AllServicesSection() {
         {
           title: "Built to Spec",
           desc: "For complex systems that require tailored architecture and structured delivery.",
-          bullets: ["Full system design", "Enterprise-grade builds", "Custom integrations", "Starts at $30,000"],
+          bullets: ["Full system design", "Enterprise grade builds", "Custom integrations", "Starts at $30,000"],
           href: "/built-to-spec",
         },
         {
@@ -409,7 +356,7 @@ function PriceSection() {
           <Button as="link" href="/pricing" variant="brand">
             View Full Pricing
           </Button>
-          <Button as="link" href="/pricing/custom" variant="outline">
+          <Button as="link" href="/pricing/custom" variant="outline-dark">
             Custom Projects
           </Button>
         </div>
@@ -420,7 +367,7 @@ function PriceSection() {
 
 function EngagementSection() {
   const steps = [
-    { num: "01", title: "Initial Build", sub: "6–12 weeks", desc: "We scope, design, and build the system to agreed specification. Milestone-based delivery." },
+    { num: "01", title: "Initial Build", sub: "6–12 weeks", desc: "We scope, design, and build the system to agreed specification. milestone based delivery." },
     { num: "02", title: "Launch & Stabilize", sub: "2–4 weeks", desc: "Deploy, monitor, and address any post-launch issues within the 30-day warranty window." },
     { num: "03", title: "Ongoing Development", sub: "Monthly retainer", desc: "Most clients continue with a retainer to maintain, improve, and scale their system over time." },
   ];
@@ -524,12 +471,14 @@ function BridgeSection() {
             Retainer plans from $3,000/month give you ongoing development capacity, monitoring, and support.
           </p>
         </div>
-        <Link
+        <Button
+          as="link"
           href="/retainers"
-          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+          variant="outline-dark"
+          className="shrink-0"
         >
-          View Retainer Plans →
-        </Link>
+          View Retainer Plans
+        </Button>
       </motion.div>
     </section>
   );
@@ -550,7 +499,7 @@ function CtaSection() {
       >
         <SectionLabel>Ready to Build</SectionLabel>
         <SplitReveal
-          text="Let's Build the Right System."
+          text="Let's Build Your Product."
           className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-8 text-lg text-slate-400 font-medium italic leading-relaxed max-w-xl mx-auto">
@@ -559,7 +508,7 @@ function CtaSection() {
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button as="link" href="/contact" variant="brand">Start a Project</Button>
-          <Button as="link" href="/pricing" variant="outline">View Pricing</Button>
+          <Button as="link" href="/pricing" variant="outline-dark">View Pricing</Button>
         </div>
       </motion.div>
     </section>

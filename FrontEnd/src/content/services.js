@@ -1,41 +1,41 @@
 const services = [
   {
-    title: "Web Development",
+    title: "AI Automation & Systems",
     short:
-      "Production marketing sites and landing pages built with Next.js/React.",
+      "Design and implement AI powered workflows and custom automation.",
     description:
-      "We build websites that load fast, read clearly, and are easy to maintain. Scope is defined up front, decisions are documented, and the handoff is clean.",
+      "We replace manual workloads with custom AI systems that run your operations, handling everything from lead qualification to complex system logic.",
     bullets: [
-      "Next.js/React builds (App Router)",
-      "Marketing sites + landing pages",
-      "Accessible, responsive components",
-      "Performance and Core Web Vitals",
+      "AI Voice Receptionists",
+      "n8n Workflow Automation",
+      "Custom AI Agents",
+      "LLM/GPT Integrations",
     ],
   },
   {
-    title: "Software Engineering",
+    title: "Software & Platforms",
     short:
-      "APIs, integrations, and internal tools built with clear specs and stable interfaces.",
+      "Enterprise grade web apps and SaaS built for scale and AI performance.",
     description:
-      "We build and fix the systems behind your product. Expect clear requirements, documented tradeoffs, and code that your team can maintain.",
+      "We build robust platforms that support AI-driven operations. Our engineering standards ensure your software is fast, reliable, and capable of growth.",
     bullets: [
-      "APIs + integrations",
-      "Internal dashboards + tools",
-      "Background jobs and workflows",
-      "Auth + permissions",
+      "Custom Web Applications",
+      "Internal Business Dashboards",
+      "Secure API Systems",
+      "AI-Native Architecture",
     ],
   },
   {
-    title: "Product Support",
+    title: "AI Optimization & Support",
     short:
-      "Maintenance, debugging, audits, and performance work to keep systems stable.",
+      "Continuous automation improvements and system-wide reliability.",
     description:
-      "Software is built to last, not just to launch. We reduce incidents, improve performance, and keep delivery predictable with ongoing support.",
+      "Systems should improve over time. We provide ongoing support to refine your AI agents, update automations, and keep your entire infrastructure stable.",
     bullets: [
-      "Ongoing maintenance",
-      "Performance + Core Web Vitals",
-      "Debugging + incident response",
-      "Audits + refactors",
+      "Automation Refinement",
+      "Security & Reliability Audits",
+      "Performance Optimization",
+      "Scale-Readiness Support",
     ],
   },
 ];

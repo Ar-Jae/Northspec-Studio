@@ -130,7 +130,7 @@ export default function ProcessPage() {
                 <Button as="link" href="/contact" variant="brand">
                   Book a Discovery Call
                 </Button>
-                <Button as="link" href="/pricing" variant="secondary">
+                <Button as="link" href="/pricing" variant="brand-dark">
                   View Pricing
                 </Button>
               </div>

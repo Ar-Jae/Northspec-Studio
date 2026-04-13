@@ -45,7 +45,7 @@ export default function StructuredData() {
           "itemOffered": {
             "@type": "Service",
             "name": "Workflow Automation",
-            "description": "Streamlining business processes with AI-powered automation, integrations, and custom workflow systems."
+            "description": "Streamlining business processes with AI powered automation, integrations, and custom workflow systems."
           }
         },
         {

@@ -66,16 +66,15 @@ export default function CaseStudy() {
                   Automation System for Operations Team
                 </h3>
                 <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                  Replaced a fragmented manual process with a unified automation
-                  system that connected their CRM, billing, and fulfillment workflows
-                  into a single reliable pipeline.
+                  Eliminated manual processing across multiple departments by creating a single automated workflow system 
+                  that connected their CRM, billing, and fulfillment pipelines.
                 </p>
 
                 <ul className="space-y-3">
                   {[
-                    "Reduced manual work by 60%",
-                    "Integrated multiple APIs into one workflow",
-                    "Delivered in 6 weeks",
+                    "Eliminated manual work across 3 departments",
+                    "Integrated 4+ APIs into a single operations brain",
+                    "Delivered production-ready in 6 weeks",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm text-slate-300">
                       <svg className="w-4 h-4 text-brand-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">

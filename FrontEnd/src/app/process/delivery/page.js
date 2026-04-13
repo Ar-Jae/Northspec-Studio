@@ -42,7 +42,7 @@ export default function DeliveryPage() {
                 {[
                   {
                     title: "Final QA Audit",
-                    desc: "End-to-end testing of all critical paths and edge cases."
+                    desc: "End to end testing of all critical paths and edge cases."
                   },
                   {
                     title: "Performance Tuning",
@@ -95,7 +95,7 @@ export default function DeliveryPage() {
                 <div className="mt-12 pt-8">
                   <h3 className="text-lg font-semibold text-white font-serif tracking-widest uppercase">Ongoing Support</h3>
                   <p className="mt-2 text-sm text-slate-400">
-                    Need long-term maintenance? We offer retainer plans to keep your system running smoothly.
+                    Need long term maintenance? We offer retainer plans to keep your system running smoothly.
                   </p>
                   <div className="mt-6">
                     <Button as="link" href="/retainers" variant="brand" className="w-full">View Retainer Plans</Button>

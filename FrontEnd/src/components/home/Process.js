@@ -50,7 +50,7 @@ const steps = [
       "Optional ongoing support and maintenance",
     ],
     footer:
-      "You’re not left guessing after launch - we ensure a smooth transition and long-term reliability.",
+      "You’re not left guessing after launch - we ensure a smooth transition and long term reliability.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function Process() {
         <SectionHeading
           eyebrow="Process"
           title="How we work"
-          description="A proven methodology to deliver high-quality software that solves real business problems."
+          description="A proven methodology to deliver high quality software that solves real business problems."
         />
 
         <StaggerContainer className="mt-10 grid gap-6 lg:grid-cols-2">

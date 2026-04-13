@@ -22,14 +22,14 @@ const sections = [
     content: (
       <>
         <p>
-          Northspec Studio operates on fixed-scope, milestone-based billing. Because every project begins with a defined specification and dedicated engineering capacity, our refund and cancellation policy reflects the real costs incurred from the moment work begins.
+          Northspec Studio provides highly specialized, custom engineering services including AI system implementation and automated workflow orchestration. Because our work involves immediate allocation of expert engineering capacity and architectural planning, our refund policy is firm.
         </p>
         <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-5 not-italic">
-          <p className="text-sm text-white font-bold font-times leading-relaxed">
-            Due to the nature of custom software development and digital services, all payments are generally non-refundable once work has begun.
+          <p className="text-sm text-white font-bold font-times leading-relaxed underline">
+            All payments are non-refundable once work has begun.
           </p>
           <p className="mt-3 text-sm text-slate-400 leading-relaxed">
-            Time and expertise are consumed immediately. Engineering capacity is allocated, architecture decisions are made, and real work begins from day one. That work cannot be returned.
+            Due to the nature of custom software, AI models, and automation logic, time and expertise are consumed immediately upon engagement. We do not sell "off-the-shelf" products that can be returned; we provide dedicated systems and expertise that cannot be recaptured.
           </p>
         </div>
       </>
@@ -37,139 +37,64 @@ const sections = [
   },
   {
     id: "deposits",
-    title: "Deposits",
+    title: "Deposits & Milestone Payments",
     content: (
       <>
         <p>
-          A deposit (typically 50% of the project total) is required before any work begins. This deposit is <strong className="text-white">non-refundable</strong> once the discovery and specification phase has commenced.
+          All project engagements require a commitment deposit (typically 50% of the project total) to secure architectural capacity. <strong className="text-white uppercase tracking-tighter">Deposits are strictly non-refundable</strong> once discovery or specification work has commenced.
         </p>
-        <div className="mt-5 rounded-xl border border-white/5 bg-white/[0.02] p-6 not-italic">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Why Non-Refundable</p>
+        <div className="mt-5 space-y-4 not-italic">
+          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-6">
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-3">Work Completed = Billable</p>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Any work completed up to the point of a cancellation request is fully billable. If a project is cancelled mid-milestone, the client is responsible for all hours and resources allocated toward that milestone.
+            </p>
+          </div>
+          <div className="rounded-xl border border-brand-gold/10 bg-brand-gold/[0.02] p-6">
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-3">Retainer Payments</p>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Monthly retainer payments are non-refundable once the billing cycle has started. Retainer capacity is provided on a "use-it-or-lose-it" basis and does not roll over. Cancellation of a retainer requires 30 days written notice.
+            </p>
+          </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "ai-automation-disclaimer",
+    title: "AI & Automation Disclaimer",
+    content: (
+      <>
+        <p>
+          AI systems and automated workflows are dependent on third-party APIs, external data quality, and evolving model behaviors.
+        </p>
+        <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-6 not-italic">
           <p className="text-sm text-slate-400 leading-relaxed">
-            Discovery and specification work represents significant upfront investment, stakeholder interviews, technical architecture decisions, scope documentation, and sprint planning. This work has real value regardless of whether development proceeds. The deposit covers this capacity.
+            Outcomes from AI models (e.g., OpenAI, Anthropic) may vary and are not guaranteed to be error-free or 100% autonomous. <strong className="text-white">Lack of satisfaction with AI-generated outputs or changes in third-party API behavior do not qualify for refunds.</strong> We address system performance through optimization and tuning within the project scope.
           </p>
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "delivery-payment",
-    title: "Delivery & Final Payment",
-    content: (
-      <>
-        <p>
-          Final payment is due on delivery day, at or before the delivery demonstration. Northspec will not hand over deliverables, source code, credentials, or assets until full final payment has been received.
-        </p>
-        <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-6 not-italic">
-          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">No Payment, No Delivery</p>
-          <p className="text-sm text-slate-300 leading-relaxed">
-            If the Client fails to submit final payment on delivery day, the demo will conclude and all project materials will be withheld. The delivery will be rescheduled once payment is confirmed in full.
-          </p>
-        </div>
-      </>
-    ),
-  },
-  {
-    id: "cancellation-client",
-    title: "Cancellation by Client",
-    content: (
-      <>
-        <p>
-          If a Client cancels a project after work has begun, the following applies based on stage:
-        </p>
-        <div className="mt-5 grid gap-4 sm:grid-cols-3 not-italic">
-          {[
-            { stage: "Before Work Starts", policy: "Deposit retained. No further charges." },
-            { stage: "During Development", policy: "Payment due for all completed milestones. Deposit is not applied toward a refund." },
-            { stage: "Near Completion", policy: "Full project value may be invoiced. Deliverables withheld until balance is settled." },
-          ].map((item) => (
-            <div key={item.stage} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-              <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{item.stage}</p>
-              <p className="text-sm text-slate-400 leading-relaxed">{item.policy}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-5 text-sm text-slate-500 not-italic">
-          All cancellation requests must be submitted in writing. Verbal cancellations are not binding.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "cancellation-northspec",
-    title: "Cancellation by Northspec",
-    content: (
-      <>
-        <p>
-          Northspec reserves the right to cancel an engagement under the following circumstances:
-        </p>
-        <div className="mt-5 space-y-3 not-italic">
-          {[
-            ["Client Non-Responsiveness", "If the Client fails to provide required materials, feedback, or approvals within agreed windows, causing the project to stall for more than 21 consecutive business days."],
-            ["Repeated Missed Check-ins", "If the Client misses two or more scheduled milestone reviews or approvals without rescheduling within 5 business days."],
-            ["Breach of Agreement", "If the Client violates the terms of the Service Agreement or engages in conduct that makes continued engagement unreasonable."],
-            ["Non-Payment", "If an invoice remains unpaid beyond 30 days and no payment arrangement has been agreed in writing."],
-          ].map(([title, desc]) => (
-            <div key={title} className="flex gap-4 rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4">
-              <div className="w-1.5 h-1.5 rounded-full bg-red-500/30 mt-2 shrink-0" />
-              <div>
-                <p className="text-sm font-bold text-white font-times uppercase tracking-wide mb-1">{title}</p>
-                <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className="mt-5 text-sm text-slate-500 not-italic">
-          In cases of Northspec-initiated cancellation without cause, work completed to date will be delivered and any prepaid amounts for undelivered work will be refunded.
-        </p>
-      </>
-    ),
-  },
-  {
-    id: "scope-changes",
-    title: "Scope Changes & Refunds",
-    content: (
-      <>
-        <p>
-          Changes in requirements, direction, or expectations that arise after the project scope has been agreed and approved do not qualify for refunds.
-        </p>
-        <div className="mt-5 space-y-3 not-italic">
-          {[
-            ["Evolving Requirements", "If the Client changes their mind about features, design, or direction after approval, this constitutes a change request, not a refund-eligible event. Additional work will be scoped and quoted separately."],
-            ["Expectation Misalignment", "If delivered work meets the agreed specification but the Client&apos;s expectations have changed, this does not qualify for a refund. We address this through revision windows, not reimbursement."],
-            ["Outcomes vs Deliverables", "Northspec delivers against the agreed technical specification. Business outcomes, such as revenue, user acquisition, or market fit, are not within the scope of our deliverables and do not affect refund eligibility."],
-          ].map(([title, desc]) => (
-            <div key={title} className="flex gap-4 rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4">
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 shrink-0" />
-              <div>
-                <p className="text-sm font-bold text-white font-times uppercase tracking-wide mb-1">{title}</p>
-                <p className="text-sm text-slate-500 leading-relaxed" dangerouslySetInnerHTML={{ __html: desc }} />
-              </div>
-            </div>
-          ))}
         </div>
       </>
     ),
   },
   {
     id: "client-responsibility",
-    title: "Client Responsibility",
+    title: "Client Responsibilities",
     content: (
       <>
         <p>
-          Project outcomes depend on active participation from the Client. The following do not qualify for refunds or timeline credits:
+          Successful system implementation requires active client participation. The following circumstances <strong className="text-white">explicitly do not qualify</strong> for refunds:
         </p>
         <div className="mt-5 grid gap-3 sm:grid-cols-2 not-italic">
           {[
-            "Delays caused by lack of client communication or feedback",
-            "Failure to provide required materials, assets, or access credentials",
-            "Slow approval of design, scope, or milestone reviews",
-            "Changing requirements or priorities mid-development",
-            "Third-party service failures outside of Northspec&apos;s control",
-            "Client-side changes made after delivery that cause issues",
+            "Delays caused by lack of communication or feedback",
+            "Failure to provide required data, assets, or credentials",
+            "Changes in business requirements or mindsets mid-project",
+            "Dissatisfaction with outcomes not defined in the SOW",
+            "Third-party system outages beyond Northspec control",
+            "Decisions to pivot or cancel the project internally",
           ].map((item) => (
             <div key={item} className="flex items-start gap-2 rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3">
-              <span className="text-slate-600 mt-0.5 shrink-0 text-xs">✕</span>
+              <span className="text-red-500/40 mt-0.5 shrink-0 text-xs">✕</span>
               <p className="text-sm text-slate-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: item }} />
             </div>
           ))}
@@ -287,7 +212,7 @@ const sections = [
         </p>
         <div className="mt-5 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-6 not-italic">
           <p className="text-sm text-white font-times italic leading-relaxed">
-            Our goal is to deliver high-quality systems and long-term value. We address concerns through collaboration and iteration, not refunds.
+            Our goal is to deliver high quality systems and long term value. We address concerns through collaboration and iteration, not refunds.
           </p>
           <p className="mt-3 text-sm text-slate-400 leading-relaxed">
             If something isn&apos;t right, talk to us first. The vast majority of concerns are resolved through honest communication, and we are always willing to engage in good faith.

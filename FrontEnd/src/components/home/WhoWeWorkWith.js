@@ -6,19 +6,19 @@ import { motion, useInView } from "framer-motion";
 const clients = [
   {
     icon: "→",
-    text: "Startups launching MVPs and validating products",
+    text: "Operational leaders ready to reduce manual overhead with robust AI & n8n orchestration",
   },
   {
     icon: "→",
-    text: "Businesses replacing manual workflows with automation",
+    text: "Scaling B2B companies requiring production-grade AI infrastructure and RAG systems",
   },
   {
     icon: "→",
-    text: "Teams scaling internal tools and operational systems",
+    text: "Professional service firms automating data extraction, analysis, and client delivery",
   },
   {
     icon: "→",
-    text: "Founders building SaaS platforms and revenue products",
+    text: "Founders and CTOs building 'Agentic' business models that scale without headcount",
   },
 ];
 

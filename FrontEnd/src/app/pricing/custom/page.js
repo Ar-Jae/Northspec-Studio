@@ -11,7 +11,7 @@ const whatThisIs = [
   "Custom workflows and business logic that off-the-shelf tools can't handle",
   "Complex integrations across multiple systems, platforms, and data sources",
   "Unique system architecture built around how your business actually operates",
-  "Business-specific platforms that need to scale reliably long-term",
+  "Business specific platforms that need to scale reliably long term",
 ];
 
 const whoFor = [
@@ -41,9 +41,9 @@ const steps = [
   {
     number: "03",
     phase: "Development",
-    title: "Build with performance and long-term reliability in mind",
+    title: "Build with performance and long term reliability in mind",
     description:
-      "Milestone-based delivery with real visibility. You see the system working at every stage, no black-box development, no surprises at the end.",
+      "milestone based delivery with real visibility. You see the system working at every stage, no black box development, no surprises at the end.",
     detail: "Milestone delivery → Staging access → Code review",
   },
   {
@@ -60,7 +60,7 @@ const whyCustom = [
   "Built specifically for your business, not forced into someone else's template",
   "Eliminates inefficiencies across systems by designing exactly what you need",
   "Scalable architecture from day one, built to grow with your operations",
-  "Long-term flexibility and control over your own system and roadmap",
+  "Long term flexibility and control over your own system and roadmap",
 ];
 
 const riskReduction = [
@@ -168,13 +168,12 @@ export default function CustomPlansPage() {
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5.4rem)]">
-            <SplitReveal text="Custom Software," delay={0.6} className="block" />
-            <SplitReveal text="Built Around" delay={1.0} className="block" />
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <SplitReveal text="Custom Software & Systems" delay={0.6} className="block text-[clamp(2.5rem,6.3vw,5.85rem)]" />
             <SplitReveal
-              text="Your Business."
-              delay={1.3}
-              className="block text-brand-gold"
+              text="Built Around Your Business."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
             />
           </h1>
 
@@ -182,7 +181,7 @@ export default function CustomPlansPage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
             For projects that require tailored architecture, complex integrations,
             and systems designed specifically around how your business operates.
@@ -205,7 +204,7 @@ export default function CustomPlansPage() {
             <Button
               as="link"
               href="/contact"
-              variant="outline"
+              variant="outline-dark"
               className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
             >
               Book a Strategy Call
@@ -408,7 +407,7 @@ export default function CustomPlansPage() {
                 </h2>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
                   Custom projects are scoped individually based on what your system
-                  actually requires. Every quote is fixed-price, no hourly billing,
+                  actually requires. Every quote is custom to your needs no hourly billing,
                   no surprises, no budget overruns.
                 </p>
               </div>
@@ -426,7 +425,7 @@ export default function CustomPlansPage() {
                     $25,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
-                    Most engagements: $30,000 – $80,000+
+                    Most engagements: $30,000 $80,000+
                   </p>
                 </motion.div>
 
@@ -439,7 +438,7 @@ export default function CustomPlansPage() {
                   className="text-slate-400 text-sm leading-relaxed"
                 >
                   Scope, architecture, and pricing are defined together during
-                  discovery. You receive a full fixed-price proposal before any
+                  discovery. You receive a full custom proposal tailored to your requirements before any
                   development begins.
                 </motion.p>
 
@@ -449,18 +448,12 @@ export default function CustomPlansPage() {
                   transition={{ duration: 0.6, delay: 0.45 }}
                   className="flex flex-wrap gap-3"
                 >
-                  <a
-                    href="/contact"
-                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                  >
+                  <Button as="link" href="/contact" variant="brand">
                     Start a Custom Project
-                  </a>
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-4"
-                  >
+                  </Button>
+                  <Button as="link" href="/contact" variant="outline-dark">
                     Book a Strategy Call
-                  </a>
+                  </Button>
                 </motion.div>
               </div>
             </div>
@@ -625,14 +618,16 @@ export default function CustomPlansPage() {
                 ))}
               </ul>
               <div className="flex flex-wrap gap-3">
-                <a
+                <Button
+                  as="link"
                   href="/retainers"
-                  className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+                  variant="brand"
+                  className="px-8 py-4 text-xs font-bold uppercase tracking-[0.2em]"
                 >
                   View Retainer Plans
-                </a>
+                </Button>
                 <p className="text-xs text-slate-600 font-medium uppercase tracking-wider self-center">
-                  Ongoing from $5,000 – $12,000/month
+                  Ongoing from $5,000 $12,000/month
                 </p>
               </div>
             </div>
@@ -687,7 +682,7 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll scope it properly, architecture, timeline, and fixed-price quote included.
+            Tell us what you&apos;re building and we&apos;ll scope it properly architecture, timeline, and a custom proposal included, all tailored to your requirements.
           </motion.p>
 
           <motion.div
@@ -696,21 +691,22 @@ export default function CustomPlansPage() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
+            <Button
+              as="link"
               href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+              variant="brand"
+              className="px-10 py-5 text-xs uppercase tracking-[0.2em] font-bold"
             >
               Start a Custom Project
-            </a>
-            <a
+            </Button>
+            <Button
+              as="link"
               href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
+              variant="outline-dark"
+              className="px-8 py-4 text-sm font-bold"
             >
               Book a Strategy Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </div>
       </section>

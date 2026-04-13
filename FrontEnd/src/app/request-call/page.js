@@ -4,6 +4,7 @@ import { useState } from "react";
 import Container from "../../components/Container";
 import SectionHeading from "../../components/SectionHeading";
 import FadeIn from "../../components/animations/FadeIn";
+import Button from "../../components/Button";
 
 const initialForm = {
   fullName: "",
@@ -115,10 +116,10 @@ export default function RequestCallPage() {
                   <select value={form.budgetRange} onChange={(e) => updateField("budgetRange", e.target.value)} className="w-full rounded-lg bg-white/5 border border-white/10 text-white p-3" required>
                     <option value="" className="bg-brand-dark">Select one</option>
                     <option value="Under $8,000" className="bg-brand-dark">Under $8,000</option>
-                    <option value="$8,000 – $15,000" className="bg-brand-dark">$8,000 – $15,000</option>
-                    <option value="$15,000 – $30,000" className="bg-brand-dark">$15,000 – $30,000</option>
-                    <option value="$30,000 – $60,000" className="bg-brand-dark">$30,000 – $60,000</option>
-                    <option value="$60,000 – $100,000" className="bg-brand-dark">$60,000 – $100,000</option>
+                    <option value="$8,000. $15,000" className="bg-brand-dark">$8,000. $15,000</option>
+                    <option value="$15,000. $30,000" className="bg-brand-dark">$15,000. $30,000</option>
+                    <option value="$30,000. $60,000" className="bg-brand-dark">$30,000. $60,000</option>
+                    <option value="$60,000. $100,000" className="bg-brand-dark">$60,000. $100,000</option>
                     <option value="$100,000+" className="bg-brand-dark">$100,000+</option>
                   </select>
                 </div>
@@ -154,7 +155,7 @@ export default function RequestCallPage() {
                   </label>
                   <label className="flex items-start gap-3 text-sm text-slate-300">
                     <input type="checkbox" checked={form.confirmAutomationStartsAt1500} onChange={(e) => updateField("confirmAutomationStartsAt1500", e.target.checked)} className="mt-1" required />
-                    <span>Automation setup starts at $1,500</span>
+                    <span>Automation setup starts at $3,000 (retainer) or as a custom-scoped project</span>
                   </label>
                   <label className="flex items-start gap-3 text-sm text-slate-300">
                     <input type="checkbox" checked={form.confirmEachWorkflowQuotedIndividually} onChange={(e) => updateField("confirmEachWorkflowQuotedIndividually", e.target.checked)} className="mt-1" required />
@@ -193,13 +194,14 @@ export default function RequestCallPage() {
               {status === "success" ? <p className="text-green-400 text-sm">Application submitted successfully.</p> : null}
               {status === "error" ? <p className="text-red-400 text-sm">{error}</p> : null}
 
-              <button
+              <Button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full rounded-lg px-5 py-3 bg-gradient-to-r from-brand-gold to-[#B8860B] text-brand-dark font-semibold disabled:opacity-60"
+                variant="brand"
+                className="w-full"
               >
                 {status === "loading" ? "Submitting..." : "Submit Application"}
-              </button>
+              </Button>
             </form>
           </div>
         </FadeIn>

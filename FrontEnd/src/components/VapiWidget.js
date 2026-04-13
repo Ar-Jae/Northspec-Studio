@@ -206,7 +206,7 @@ export default function VapiWidget() {
     }
   }, [panelOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // ── Inactivity timer — restart session after 1 min of no user input ──────
+  // ── Inactivity timer  -  restart session after 1 min of no user input ──────
   const resetInactivityTimer = useCallback(() => {
     clearTimeout(inactivityRef.current);
     inactivityRef.current = setTimeout(() => {
@@ -303,7 +303,7 @@ export default function VapiWidget() {
       if (data.reply) {
         setMessages((prev) => [...prev, newMsg("assistant", data.reply)]);
       } else {
-        // Backend returned an error or empty reply — show it so the user isn't left hanging
+        // Backend returned an error or empty reply  -  show it so the user isn't left hanging
         const errText = data.error ?? "Something went wrong. Please try again.";
         setMessages((prev) => [...prev, newMsg("assistant", errText)]);
       }

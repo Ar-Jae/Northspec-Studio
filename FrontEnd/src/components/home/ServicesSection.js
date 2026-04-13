@@ -6,29 +6,13 @@ import { motion, useInView } from "framer-motion";
 const services = [
   {
     number: "01",
-    title: "Product Development",
-    short: "Launch fast with a solid foundation built for real growth.",
+    title: "AI Automation Systems",
+    short: "Replace manual operations with autonomous AI automations and n8n workflows.",
     bullets: [
-      "MVPs and early-stage products",
-      "Full-stack web applications",
-      "Scalable architecture built for growth",
-    ],
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    accent: "from-brand-gold/20 to-transparent",
-  },
-  {
-    number: "02",
-    title: "Automation & AI Systems",
-    short: "Reduce manual work and increase efficiency across your operations.",
-    bullets: [
-      "Workflow automation (n8n, APIs)",
-      "AI-powered processes and integrations",
-      "Data pipelines and system connections",
+      "AI Workflow automation (n8n, Custom Agents)",
+      "AI Voice Receptionists (Never miss a call)",
+      "Lead Enrichment & Automated Outreach",
+      "AI Integrations for CRM & Operations",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,24 +20,43 @@ const services = [
           d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
-    accent: "from-purple-500/10 to-transparent",
+    accent: "from-brand-gold/20 to-transparent",
   },
   {
-    number: "03",
-    title: "Platforms & Internal Tools",
-    short: "Build systems your business can rely on at any scale.",
+    number: "02",
+    title: "Web Development",
+    short: "High performance web development and scalable architectures with AI at the core.",
     bullets: [
-      "SaaS platforms",
-      "Internal dashboards and tools",
-      "Role-based systems and integrations",
+      "Custom Web Applications & SaaS",
+      "Next.js & React Native Expertise",
+      "Internal Business Tools & Dashboards",
+      "Secure API Systems & Infrastructure",
     ],
     icon: (
       <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
-          d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
     accent: "from-blue-500/10 to-transparent",
+  },
+  {
+    number: "03",
+    title: "Mobile App Development",
+    short: "Custom mobile app development for iOS and Android, built for speed and scale.",
+    bullets: [
+      "Cross-Platform App Development",
+      "AI-Native Mobile Experiences",
+      "Offline-First Operational Tools",
+      "Seamless Backend & API Syncing",
+    ],
+    icon: (
+      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}
+          d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    ),
+    accent: "from-purple-500/10 to-transparent",
   },
 ];
 
@@ -132,8 +135,8 @@ export default function ServicesSection() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1] tracking-tight"
             >
-              What We{" "}
-              <em className="not-italic text-brand-gold">Build.</em>
+              The AI-First{" "}
+              <em className="not-italic text-brand-gold">Studio.</em>
             </motion.h2>
             <motion.span
               initial={{ opacity: 0 }}
@@ -141,18 +144,19 @@ export default function ServicesSection() {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="font-serif font-bold text-white/10 text-[clamp(5rem,10vw,12rem)] leading-[1] tracking-tight select-none flex-shrink-0"
             >
-              BUILD
+              AI SYSTEMS
             </motion.span>
           </div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-4 max-w-sm text-slate-400 leading-relaxed text-sm font-times"
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="max-w-2xl text-slate-400 text-lg leading-relaxed mt-8"
           >
-            We partner with teams that need more than just code, we build
-            systems that support real business growth.
+            We don't just build software. We implement AI systems that eliminate manual
+            work, automate your daily operations, and allow your business to scale
+            autonomously.
           </motion.p>
 
           {/* Gold divider */}

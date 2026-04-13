@@ -22,8 +22,7 @@ const sections = [
     content: (
       <>
         <p>
-          Northspec Studio (&ldquo;Northspec,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) provides software development, workflow automation, mobile app development, API integration, and ongoing support services. This Privacy Policy explains how we collect, use, store, and protect personal data submitted through our website at{" "}
-          <strong className="text-white">northspecstudio.com</strong> and in the course of delivering our services.
+          Northspec Studio (&ldquo;Northspec,&rdquo; &ldquo;we,&rdquo; &ldquo;us,&rdquo; or &ldquo;our&rdquo;) collects and processes data to deliver software development, AI automation, and system implementation services. This policy explains what data we collect and how it is used as we build the systems our clients rely on to scale their operations.
         </p>
         <div className="mt-6 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-6 py-5">
           <p className="text-white font-bold font-times text-sm">
@@ -101,6 +100,42 @@ const sections = [
     ),
   },
   {
+    id: "ai-data-handling",
+    title: "AI & Automation Data Handling",
+    content: (
+      <>
+        <p className="mb-6">
+          When you engage us for AI automation or system implementation, data handling follows strict protocols to ensure your business data remains secure and isolated.
+        </p>
+        <div className="grid gap-4 sm:grid-cols-2 not-italic">
+          {[
+            {
+              label: "Zero Model Training",
+              desc: "We prioritize Enterprise grade AI APIs (e.g., OpenAI, Anthropic, AWS Bedrock) that do not use client data for model training. Your proprietary data never leaves your system or the specific, isolated environment we create.",
+            },
+            {
+              label: "Encrypted RAG",
+              desc: "For Retrieval-Augmented Generation (RAG) systems, indexing and vector search occur within encrypted environments with strict access controls. Data is transformed into vectors that are meaningless to third parties.",
+            },
+            {
+              label: "No Persistence",
+              desc: "For many automation workflows, we design for zero persistence. processing data in flight without long term storage on our infrastructure, unless specifically required for system performance.",
+            },
+            {
+              label: "Audit Trails",
+              desc: "All AI-driven workflows are configured with activity logging to ensure complete transparency into how data is flowing through your automated systems.",
+            },
+          ].map((block) => (
+            <div key={block.label} className="rounded-xl border border-brand-gold/10 bg-brand-gold/[0.02] p-5">
+              <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{block.label}</p>
+              <p className="text-sm text-slate-400 leading-relaxed">{block.desc}</p>
+            </div>
+          ))}
+        </div>
+      </>
+    ),
+  },
+  {
     id: "third-party-services",
     title: "Third-Party Services",
     content: (
@@ -112,19 +147,19 @@ const sections = [
           {[
             {
               label: "Hosting & Infrastructure",
-              services: ["Vercel (website hosting)", "AWS (application infrastructure)", "Docker (containerized deployments)"],
+              services: ["Vercel (hosting)", "Amazon Web Services (infrastructure)", "Docker (deployment)"],
             },
             {
-              label: "Analytics",
-              services: ["We use privacy-respecting, cookieless analytics only. No advertising pixels or behavioral tracking are deployed on this site."],
+              label: "Automation & Logic",
+              services: ["n8n (workflow automation logic)", "Plaid (encrypted financial data verification)"],
             },
             {
               label: "Communication",
-              services: ["Email services for transactional communication (inquiry responses, support follow-ups)", "Google Calendar for scheduling (appointment links)"],
+              services: ["Resend (transactional email and notifications)", "Google Calendar (appointment scheduling)"],
             },
             {
-              label: "Development & Integrations",
-              services: ["APIs and integrations used during client projects are governed by the applicable service agreements for each engagement, not this policy."],
+              label: "Technical Support",
+              services: ["NocoDB (support ticket management)", "Clerk (secure user authentication)"],
             },
           ].map((block) => (
             <div key={block.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">

@@ -32,58 +32,32 @@ const sections = [
   },
   {
     id: "services",
-    title: "Services",
+    title: "Services Overview",
     content: (
       <>
         <p>
-          Northspec Studio provides software development, workflow automation, API integration, mobile application development, and ongoing technical support services. All work is performed based on an agreed project scope or monthly retainer engagement, as defined in a separate statement of work, proposal, or service agreement provided to the client.
+          Northspec Studio provides specialized AI implementation, automated workflow orchestration, custom systems architecture, and ongoing technical support. Our services are designed to automate business operations and scale efficiency through the strategic deployment of autonomous agents and integrated software solutions.
         </p>
         <p className="mt-4">
-          The specific deliverables, timeline, and pricing for each engagement are defined in writing prior to commencement of work. These Terms of Service apply in addition to any project-specific agreement.
+          All work is performed based on an agreed project scope or monthly retainer engagement. The specific deliverables, timeline, and pricing for each engagement are defined in a separate Statement of Work (SOW), proposal, or service agreement.
         </p>
-      </>
-    ),
-  },
-  {
-    id: "scope-changes",
-    title: "Project Scope & Changes",
-    content: (
-      <>
-        <p>
-          All projects are performed based on an agreed scope of work. Any features, changes, or deliverables outside of that agreed scope constitute a change request and may require additional time and cost.
-        </p>
-        <div className="mt-5 space-y-3 not-italic">
-          {[
-            ["Scope Document", "A written scope is established before any development begins. This document defines what is included and what is not."],
-            ["Change Requests", "Requests for work outside the original scope will be assessed and quoted separately. No out-of-scope work will begin without written client approval."],
-            ["Requirement Changes", "If client-provided requirements change materially after work has begun, Northspec reserves the right to re-scope and re-price the engagement."],
-          ].map(([title, desc]) => (
-            <div key={title} className="flex gap-4 rounded-xl border border-white/5 bg-white/[0.02] px-5 py-4">
-              <div className="w-1.5 h-1.5 rounded-full bg-brand-gold mt-2 shrink-0" />
-              <div>
-                <p className="text-sm font-bold text-white font-times uppercase tracking-wide mb-1">{title}</p>
-                <p className="text-sm text-slate-500 leading-relaxed">{desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </>
     ),
   },
   {
     id: "payment",
-    title: "Payment Terms",
+    title: "Payment Terms & Protection",
     content: (
       <>
         <p>
-          All projects require a deposit prior to the commencement of work. Remaining payments are structured by milestone or delivery phase, as outlined in the project agreement.
+          All project engagements require a non-refundable deposit to secure capacity and initiate architectural planning.
         </p>
         <div className="mt-5 grid gap-4 sm:grid-cols-2 not-italic">
           {[
-            { label: "Deposit", desc: "A non-refundable deposit is required before work begins. The deposit amount is specified in the project proposal." },
-            { label: "Milestone Payments", desc: "Remaining fees are invoiced at agreed milestones or upon delivery of phases. Work on subsequent phases will not begin until prior invoices are paid." },
-            { label: "Late Payments", desc: "Invoices are due within 14 days of issuance. Northspec reserves the right to pause active work on overdue accounts." },
-            { label: "Retainer Billing", desc: "Retainer plans are billed monthly in advance. Non-payment of a retainer invoice may result in suspension of service without liability to Northspec." },
+            { label: "Deposits", desc: "A 50% deposit (or as specified in the SOW) is required before work begins. This fee is non-refundable as it covers initial resource allocation and system design." },
+            { label: "Milestones", desc: "For projects exceeding $20,000, payments are structured by technical milestones. Work on subsequent phases will pause until the prior milestone invoice is settled." },
+            { label: "Late Payments", desc: "Invoices are due within 7 days. A late fee of 1.5% per month applies to overdue balances. Northspec reserves the right to suspend API keys or system access on overdue accounts." },
+            { label: "Retainer Billing", desc: "Retainer plans are billed monthly in advance. Service is provided on a \"use-it-or-lose-it\" basis; unused monthly capacity does not roll over unless explicitly stated." },
           ].map((item) => (
             <div key={item.label} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
               <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">{item.label}</p>
@@ -91,9 +65,51 @@ const sections = [
             </div>
           ))}
         </div>
-        <p className="mt-5 text-sm text-slate-500">
-          All prices are in USD unless otherwise specified. Taxes are the responsibility of the client where applicable.
+      </>
+    ),
+  },
+  {
+    id: "scope-changes",
+    title: "Scope Control & Client Responsibilities",
+    content: (
+      <>
+        <p>
+          To maintain project integrity and timelines, we implement strict scope control. Any deviation from the signed SOW requires a formal change request.
         </p>
+        <div className="mt-5 space-y-4 not-italic">
+          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">Change Requests</p>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              Work outside the agreed scope will be billed at our standard hourly rate or quoted as a separate project phase. This may affect the final delivery date and system architecture.
+            </p>
+          </div>
+          <div className="rounded-xl border border-brand-gold/10 bg-brand-gold/[0.03] p-5">
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">Client Obligations</p>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              Timely delivery depends on client responsiveness. Clients must provide required data, feedback, and system credentials within 48 hours of request. Delays caused by the client may result in project rescheduling and additional administrative fees.
+            </p>
+          </div>
+        </div>
+      </>
+    ),
+  },
+  {
+    id: "ai-disclaimer",
+    title: "AI & Automation Disclaimer",
+    content: (
+      <>
+        <p className="text-brand-gold font-bold mb-4 uppercase text-xs tracking-widest">Crucial for AI Engagements</p>
+        <p>
+          AI systems, Large Language Models (LLMs), and automated workflows are inherently dependent on external variables, third-party APIs (e.g., OpenAI, Anthropic, AWS), and the quality of input data provided.
+        </p>
+        <div className="mt-5 rounded-xl border border-white/10 bg-white/[0.02] p-6 space-y-4">
+          <p className="text-sm text-slate-400">
+            <strong className="text-white">Output Variability:</strong> AI outputs may vary and are not guaranteed to be 100% error-free, factual, or autonomous in every scenario. Northspec is not responsible for hallucinations or unexpected logic paths generated by third-party models.
+          </p>
+          <p className="text-sm text-slate-400">
+            <strong className="text-white">API Dependencies:</strong> We are not liable for business interruptions caused by uptime issues, rate limits, or changes in terms of third-party AI providers or infrastructure partners.
+          </p>
+        </div>
       </>
     ),
   },
@@ -103,25 +119,19 @@ const sections = [
     content: (
       <>
         <p>
-          Intellectual property rights for deliverables are transferred to the client upon receipt of full and final payment.
+          Ownership is structured to give clients full control of their specific business logic while allowing Northspec to maintain its toolkit for future operations.
         </p>
         <div className="mt-5 space-y-4 not-italic">
           <div className="rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-5">
-            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">Client Ownership</p>
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-2">Final Deliverables</p>
             <p className="text-sm text-slate-300 leading-relaxed">
-              Upon full payment, the client owns the final deliverables produced specifically for their project, including custom code, design assets, and documentation created solely for that engagement.
+              Upon receipt of full and final payment, the client owns the final deliverables produced specifically for their project, including custom codebases and system documentation.
             </p>
           </div>
           <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Northspec Retains</p>
+            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Retained Rights</p>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Northspec retains ownership of all underlying frameworks, boilerplate code, libraries, reusable components, tooling, and methodologies that are not created exclusively for the client&apos;s project. These may be reused in other engagements.
-            </p>
-          </div>
-          <div className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-2">Website Content</p>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              All content on northspecstudio.com, including copy, design, branding, and code, is the exclusive property of Northspec Studio. Reproduction, distribution, or commercial use without written permission is prohibited.
+              Northspec retains all rights to reusable components, proprietary automation frameworks, boilerplate code, n8n workflow patterns, and methodologies developed prior to or during the engagement that are not unique to the client&apos;s trade secrets.
             </p>
           </div>
         </div>
@@ -204,10 +214,10 @@ const sections = [
     content: (
       <>
         <p>
-          To the fullest extent permitted by applicable law, Northspec Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to: lost revenue, lost profits, loss of data, business interruption, or system downtime, arising from the use of our services or deliverables, even if advised of the possibility of such damages.
+          To the fullest extent permitted by applicable law, Northspec Studio shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to: lost revenue, lost profits, loss of data, business interruption, or system downtime, even if advised of the possibility of such damages.
         </p>
         <p className="mt-4">
-          Northspec&apos;s total cumulative liability for any claim arising out of a service engagement shall not exceed the total fees paid by the client for the specific engagement giving rise to the claim.
+          In no event shall Northspec&apos;s total cumulative liability for any claim arising out of a service engagement exceed 50% of the total fees paid by the client for the specific phase or milestone giving rise to the claim.
         </p>
       </>
     ),

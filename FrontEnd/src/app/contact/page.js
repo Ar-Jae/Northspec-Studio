@@ -1,7 +1,7 @@
 "use client";
 
+import HeroSection from "../../components/HeroSection";
 import Container from "../../components/Container";
-import SectionHeading from "../../components/SectionHeading";
 import ContactForm from "../../components/contact/ContactForm";
 import site from "../../content/site";
 import FadeIn from "../../components/animations/FadeIn";
@@ -10,24 +10,24 @@ import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 export default function ContactPage() {
   return (
-    <div className="bg-brand-dark min-h-[40vh] relative overflow-hidden">
+    <div className="bg-brand-dark min-h-screen relative overflow-hidden">
       <BackgroundCanvasClient />
       
-      <Container className="pt-24 pb-16 sm:pt-24 sm:pb-20 relative z-10">
+      <HeroSection
+        label="Contact"
+        headline="Start Your Project"
+        accent="Implementation Inquiry."
+        subheading="Tell us about your project, and we’ll help you determine the right approach for implementing AI, automation, or custom systems into your business."
+      >
+        <div className="flex flex-col items-center">
+          <span className="text-brand-gold font-bold uppercase tracking-[0.2em] text-sm font-times italic">
+            Most projects range from $10,000 to $50,000+
+          </span>
+        </div>
+      </HeroSection>
+      
+      <Container className="pb-16 sm:pb-20 relative z-10">
         <FadeIn>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-12 mb-16">
-            <div className="max-w-2xl">
-              <SectionHeading
-                eyebrow="Contact"
-                title="Submit Project Specs"
-                description="Our engineering team will follow up with a technical plan and timeline within 24 hours."
-              />
-            </div>
-            <div className="flex-none">
-              <div className="text-8xl font-bold text-white/5 font-times select-none uppercase">HI</div>
-            </div>
-          </div>
-
           <div className="grid gap-20 lg:grid-cols-12 relative z-10">
             <div id="info" className="lg:col-span-5 scroll-mt-32 space-y-16">
               <section>
@@ -81,16 +81,17 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-7 relative z-10">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 sm:p-16 backdrop-blur-xl relative overflow-hidden group hover:border-brand-gold/20 transition-all duration-700">
-                <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover:text-white/[0.04] transition-all duration-700">SUBMIT</div>
-                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] -mr-48 -mt-48 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+              <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-10 sm:p-16 backdrop-blur-xl relative overflow-hidden group/form hover:border-brand-gold/20 transition-all duration-700">
+                <div className="absolute top-0 right-0 p-8 text-8xl font-black text-white/[0.02] font-times select-none italic tracking-tighter uppercase leading-none pointer-events-none group-hover/form:text-white/[0.04] transition-all duration-700">SUBMIT</div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/5 rounded-full blur-[100px] -mr-48 -mt-48 opacity-0 group-hover/form:opacity-100 transition-opacity duration-1000" />
                 
                 <h2 className="text-3xl font-bold text-white font-times uppercase tracking-[0.2em] relative z-10">
-                  Direct Line
+                  Request A Review
                 </h2>
-                <p className="mt-6 text-slate-400 relative z-10 leading-relaxed font-medium italic mb-12">
-                  Share a bit of context and we’ll respond within <span className="text-brand-gold font-bold">1 business day</span>.
+                <p className="mt-6 text-slate-400 relative z-10 leading-relaxed font-medium italic mb-4">
+                  Share a bit of context and we’ll evaluate your project to see if we&apos;re a fit.
                 </p>
+
                 
                 <div className="relative z-10">
                   <ContactForm />

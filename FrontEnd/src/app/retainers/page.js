@@ -8,42 +8,42 @@ import Button from "../../components/Button";
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const retainerRisks = [
-  "Systems degrade quietly as usage and dependencies change",
-  "Performance drops and bugs accumulate without active engineering",
-  "New business needs require constant updates to stay competitive",
-  "Security vulnerabilities appear in libraries and infrastructure over time",
+  "AI models require ongoing monitoring and tuning to maintain accuracy",
+  "Automation workflows need expansion as business operations evolve",
+  "System efficiency drops without continuous performance optimization",
+  "Security vulnerabilities and dependency updates require active oversight",
 ];
 
 const retainerPlans = [
   {
-    name: "Essential Support",
+    name: "Essential",
     price: "$3,000",
     period: "/month",
     commitment: "3-month minimum",
-    for: "Stable live systems that need ongoing maintenance, bug fixes, and minor improvements.",
+    for: "For stable systems requiring ongoing refinement, bug fixes, and minor automation improvements.",
     includes: [
-      "Bug fixes and minor updates",
-      "Dependency and security patching",
-      "Basic monitoring and alerting",
-      "Email / Slack support",
-      "72-hour response SLA",
+      "Light development capacity",
+      "AI model monitoring & tuning",
+      "Bug fixes & minor improvements",
+      "Security & dependency patching",
+      "Email & Slack technical support",
     ],
     accent: "border-white/[0.08]",
     glow: "from-slate-400/10 to-transparent",
     badge: null,
   },
   {
-    name: "Growth Development",
-    price: "$5,000 – $7,000",
+    name: "Growth",
+    price: "$5,000. $7,000",
     period: "/month",
     commitment: "3-month minimum",
-    for: "Products that need continuous development alongside maintenance, features, integrations, and performance work.",
+    for: "For businesses expanding automation across new departments and operational workflows.",
     includes: [
-      "Everything in Essential",
       "Ongoing feature development",
-      "Integrations and automation work",
-      "Performance improvements",
-      "Priority support, 48-hour SLA",
+      "AI automation expansion",
+      "Workflow & integration improvements",
+      "Performance & efficiency auditing",
+      "Priority engineer availability",
     ],
     accent: "border-brand-gold/30",
     glow: "from-brand-gold/15 to-transparent",
@@ -51,37 +51,37 @@ const retainerPlans = [
   },
   {
     name: "Product Partner",
-    price: "$8,000 – $12,000",
+    price: "$8,000. $12,000",
     period: "/month",
     commitment: "3-month minimum",
-    for: "Active product teams with fast iteration cycles that need dedicated engineering capacity and strategic input.",
+    for: "Dedicated engineering for companies fully automating their entire business operations.",
     includes: [
-      "Everything in Growth",
-      "Dedicated monthly sprint capacity",
-      "Roadmap and architecture reviews",
-      "Fast turnaround and priority queue",
-      "24-hour response SLA",
+      "Continuous system development",
+      "AI system expansion & scaling",
+      "Faster iteration cycles",
+      "Strategic architecture reviews",
+      "Priority monthly sprint capacity",
     ],
     accent: "border-blue-500/20",
     glow: "from-blue-500/10 to-transparent",
-    badge: null,
+    badge: "Scale Tier",
   },
   {
     name: "Dedicated Team",
-    price: "$12,000 – $20,000+",
+    price: "$15,000. $25,000+",
     period: "/month",
     commitment: "6-month minimum",
-    for: "High-growth organizations scaling complex platforms that need near full-time engineering team access.",
+    for: "High-capacity engineering for complex, multi-system environments requiring scaling.",
     includes: [
-      "Dev + QA coverage",
-      "Scaling infrastructure management",
-      "Compliance and security support",
-      "Disaster recovery planning",
-      "12–24 hour SLA",
+      "High-capacity development team",
+      "Complex system infrastructure",
+      "Near full-time support access",
+      "Disaster recovery & scaling",
+      "Direct CTO-level involvement",
     ],
     accent: "border-purple-500/20",
     glow: "from-purple-500/10 to-transparent",
-    badge: null,
+    badge: "Enterprise",
   },
 ];
 
@@ -90,13 +90,12 @@ const hostingPlans = [
     name: "Starter",
     price: "$750",
     period: "/mo + usage",
-    description: "A dedicated deployment environment for early-stage products that need a solid, secure foundation.",
+    description: "Dedicated environment for stable systems with standard operational needs.",
     includes: [
       "Dedicated deployment environment",
       "Performance optimization baseline",
-      "Uptime monitoring",
-      "Security hardening",
-      "Weekly backups",
+      "Uptime monitoring & backups",
+      "Standard security hardening",
     ],
     accent: "border-white/[0.08]",
     badge: null,
@@ -105,43 +104,40 @@ const hostingPlans = [
     name: "Growth",
     price: "$1,200",
     period: "/mo + usage",
-    description: "Production-grade infrastructure for apps under real load with growing operational demands.",
+    description: "Production-grade infrastructure for systems under consistent active load.",
     includes: [
-      "Dedicated deployment environment",
-      "Performance optimization",
-      "Uptime monitoring + alerting",
+      "Advanced performance optimization",
+      "Real time monitoring & alerting",
       "Security & automated backups",
-      "Scaling support",
+      "Initial scaling support",
     ],
     accent: "border-blue-500/20",
     badge: null,
   },
   {
     name: "Scale",
-    price: "$2,000",
+    price: "$2,000. $3,500",
     period: "/mo + usage",
-    description: "Built for platforms running AI workloads, high traffic, and complex infrastructure at scale.",
+    description: "Built for intensive AI workloads, high volume, and complex data processing.",
     includes: [
-      "Dedicated deployment environment",
-      "AI workload scaling",
-      "Advanced performance optimization",
-      "Real-time monitoring & uptime",
-      "Security, backups & recovery",
+      "Dedicated AI workload scaling",
+      "Enterprise performance tuning",
+      "Full monitoring & uptime guarantee",
+      "Recovery & redundancy systems",
     ],
     accent: "border-brand-gold/30",
-    badge: "Most Popular",
+    badge: "Most Common",
   },
   {
     name: "Enterprise",
     price: "Custom",
     period: "",
-    description: "Mission-critical infrastructure for organizations requiring compliance, multi-region, and dedicated capacity.",
+    description: "Mission-critical infrastructure for organizations requiring compliance and massive scale.",
     includes: [
-      "Multi-region deployment",
-      "AI workload scaling",
-      "Advanced performance optimization",
-      "Real-time monitoring & on-call",
-      "Security, compliance & disaster recovery",
+      "Multi-region AI architecture",
+      "Compliance & security protocols",
+      "Dedicated DevOps engineering",
+      "On-call infrastructure support",
     ],
     accent: "border-purple-500/20",
     badge: null,
@@ -149,11 +145,11 @@ const hostingPlans = [
 ];
 
 const included = [
-  "Dedicated engineering capacity every month",
-  "Priority support with defined response SLAs",
-  "Ongoing feature development and improvements",
-  "System monitoring and reliability management",
-  "Long-term product evolution as your business grows",
+  "Continuous expansion of AI and automation workflows",
+  "Monthly performance and system efficiency audits",
+  "Dedicated development capacity for new features",
+  "Proactive AI model tuning and optimization",
+  "Long term system reliability and scalability",
 ];
 
 const whyTwo = [
@@ -256,38 +252,24 @@ export default function RetainersPage() {
           >
             <div className="h-[1px] w-12 bg-brand-gold" />
             <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-              Ongoing Support
+              Development & Optimization
             </span>
             <div className="h-[1px] w-12 bg-brand-gold" />
           </motion.div>
 
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5rem)]">
-            <SplitReveal text="Ongoing Development" delay={0.6} className="block" />
-            <SplitReveal text="& Support for" delay={1.0} className="block" />
-            <SplitReveal
-              text="Growing Systems."
-              delay={1.3}
-              className="block text-brand-gold"
-            />
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <SplitReveal text="Ongoing AI Systems" delay={0.6} className="block text-[clamp(2.5rem,6.3vw,5.85rem)]" />
+            <SplitReveal text="& Development" delay={1.0} className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]" />
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-6 font-times"
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
-            We don&apos;t just build software, we stay involved to ensure it remains
-            stable, scalable, and continuously improving.
-          </motion.p>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.1, duration: 0.7 }}
-            className="text-slate-500 text-sm font-times mb-10"
-          >
-            Most clients continue working with us after launch to maintain and grow their systems.
+            We continue building, optimizing, and expanding your systems so your business
+            becomes more efficient and scalable over time.
           </motion.p>
 
           <motion.div
@@ -296,21 +278,12 @@ export default function RetainersPage() {
             transition={{ delay: 2.3, duration: 0.7 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
-              href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-            >
-              Start Ongoing Support
-            </a>
-            <a
-              href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
-            >
+            <Button as="link" href="/contact" variant="brand">
+              Start Ongoing Development
+            </Button>
+            <Button as="link" href="/contact" variant="outline-dark">
               Book a Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </motion.div>
 
@@ -343,13 +316,12 @@ export default function RetainersPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
-                Software isn&apos;t{" "}
-                <em className="not-italic text-brand-gold">static.</em>
+                Build once.{" "}
+                <em className="not-italic text-brand-gold">Improve continuously.</em>
               </h2>
-              <p className="text-slate-400 leading-relaxed text-sm font-times">
-                Without ongoing engineering support, systems degrade quietly, until
-                they break loudly. We provide continuous support that keeps your
-                system stable, secure, and evolving with your business.
+              <p className="text-slate-400 leading-relaxed text-sm font-times font-medium">
+                Most systems require ongoing development, automation improvements, and optimization after launch.
+                Our retainers ensure your business continues to evolve. not just maintain.
               </p>
             </motion.div>
 
@@ -710,12 +682,9 @@ export default function RetainersPage() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href="/contact"
-                  className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                >
+                <Button as="link" href="/contact" variant="brand">
                   Inquire About Custom Plans
-                </a>
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -805,7 +774,7 @@ export default function RetainersPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Let&apos;s talk about your system and build an ongoing support plan that keeps it stable, growing, and reliable.
+            We continue building, optimizing, and expanding your systems so your business becomes more efficient and scalable over time.
           </motion.p>
 
           <motion.div
@@ -814,21 +783,12 @@ export default function RetainersPage() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
-              href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-            >
-              Start Ongoing Support
-            </a>
-            <a
-              href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
-            >
+            <Button as="link" href="/contact" variant="brand">
+              Start Ongoing Development
+            </Button>
+            <Button as="link" href="/contact" variant="outline-dark">
               Book a Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </div>
       </section>

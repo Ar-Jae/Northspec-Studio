@@ -2,9 +2,10 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
+import HeroSection from "../../components/HeroSection";
 import Button from "../../components/Button";
 import Link from "next/link";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 // ─── Reusable primitives ──────────────────────────────────────────────────────
 
@@ -19,12 +20,12 @@ function SectionLabel({ children }) {
   );
 }
 
-function SplitReveal({ text, className }) {
+function SplitReveal({ text, className, as: Tag = "h2" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const words = text.split(" ");
   return (
-    <h2 ref={ref} className={className} aria-label={text}>
+    <Tag ref={ref} className={className} aria-label={text}>
       {words.map((word, i) => (
         <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.3em]">
           <motion.span
@@ -37,7 +38,7 @@ function SplitReveal({ text, className }) {
           </motion.span>
         </span>
       ))}
-    </h2>
+    </Tag>
   );
 }
 
@@ -74,13 +75,13 @@ function ApproachHead() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div ref={ref} initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7 }}>
-      <SectionLabel>How We Think</SectionLabel>
+      <SectionLabel>Our Approach</SectionLabel>
       <SplitReveal
-        text="A Product-Focused Approach."
+        text="A Systems-First Engineering Standard."
         className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-2xl"
       />
       <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-xl">
-        This is what separates a system builder from a freelancer. Every engagement is structured around long-term outcomes, not just shipping code.
+        This is what separates a system builder from a standard developer. We focus on structured planning, AI workflow integration, and long term scalability from day one.
       </p>
     </motion.div>
   );
@@ -125,58 +126,28 @@ export default function AboutPage() {
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <div className="bg-brand-dark text-white">
+    <div className="bg-brand-dark text-white relative min-h-screen">
       <BackgroundCanvasClient />
 
       {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative min-h-[90vh] flex items-center overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
-        </motion.div>
-
-        <div className="relative z-10 px-6 md:px-36 pt-40 pb-24 max-w-[1400px] mx-auto w-full">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <SectionLabel>About Northspec</SectionLabel>
-          </motion.div>
-
-          <SplitReveal
-            text="Built for Real Systems, Not Just Code."
-            className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
-          />
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
-          >
-            Northspec is a development studio focused on building scalable software, automation, and platforms that support real business operations.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-12 flex flex-wrap gap-4"
-          >
-            <Button as="link" href="/contact" variant="brand">
-              Start a Project
-            </Button>
-            <a
-              href="https://calendar.app.google/XMN48TcybVjmij4C7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
-            >
-              Book a Call
-            </a>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection
+        label="About Northspec"
+        headline="Built for Real Business"
+        accent="Systems, Not Just Code."
+        subheading="Northspec helps businesses implement AI, automation, and custom systems that improve operations, reduce manual work, and support long term growth."
+      >
+        <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
+          Start a Project
+        </Button>
+        <Button
+          as="link"
+          href="https://calendar.app.google/XMN48TcybVjmij4C7"
+          variant="outline-dark"
+          className="rounded-full px-8 py-3 text-sm font-medium font-times uppercase tracking-widest bg-white/[0.03] backdrop-blur-md"
+        >
+          Book a Call
+        </Button>
+      </HeroSection>
 
       {/* ── 2. WHAT WE BUILD FOR ───────────────────────────────────────────── */}
       <WhatWeDoSection />
@@ -212,10 +183,10 @@ function WhatWeDoSection() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   const areas = [
-    { label: "Launching Products", desc: "MVPs and SaaS platforms built for real users, not just demos." },
-    { label: "Improving Operations", desc: "Automation and internal tooling that reduces manual overhead." },
-    { label: "Connecting Systems", desc: "API integrations that eliminate data silos and sync your stack." },
-    { label: "Supporting Long-Term Growth", desc: "Retainer partnerships that keep your system stable and scaling." },
+    { label: "AI Implementation", desc: "Custom AI systems built into your daily operations and workflows." },
+    { label: "Workflow Automation", desc: "Intelligent systems that automate complex, manual business processes." },
+    { label: "Connected Systems", desc: "API integrations that bridge data silos and unify your entire operation." },
+    { label: "System Evolution", desc: "Retainer partnerships that expand your automation and AI capacity over time." },
   ];
 
   return (
@@ -233,7 +204,7 @@ function WhatWeDoSection() {
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          We don&apos;t just build applications, we build systems that businesses rely on.
+          We don&apos;t just build software we design and implement the autonomous systems that businesses rely on to scale.
         </p>
       </motion.div>
 
@@ -260,10 +231,10 @@ function WhatWeDoSection() {
 
 function ApproachSection() {
   const attributes = [
-    { title: "Long-Term Scalability", desc: "We architect for where your business is going, not just where it is today." },
-    { title: "Performance & Reliability", desc: "Systems built to handle real load, not just pass a demo." },
-    { title: "Structured Development", desc: "Clear scoping, milestone-based delivery, no surprises mid-build." },
-    { title: "Clear Communication", desc: "Direct access to the people writing the code. No account managers in between." },
+    { title: "Structured Planning", desc: "Rigorous scoping and architecture before any development begins." },
+    { title: "AI Workflow Integration", desc: "AI agents integrated into your real-world business operations." },
+    { title: "Scalable Architecture", desc: "Systems built for production-grade reliability from day one." },
+    { title: "Systems Performance", desc: "Focused on speed, accuracy, and operational efficiency." },
   ];
 
   return (
@@ -395,7 +366,7 @@ function ImpactSection() {
 function ProcessSection() {
   const steps = [
     { num: "01", title: "Clear Scoping & Planning", desc: "Every project starts with a defined scope document. You know exactly what we're building and what it costs before anything begins." },
-    { num: "02", title: "Structured Development", desc: "Milestone-based delivery with regular check-ins. No disappearing for 6 weeks. You're involved throughout." },
+    { num: "02", title: "Structured Development", desc: "milestone based delivery with regular check-ins. No disappearing for 6 weeks. You're involved throughout." },
     { num: "03", title: "Reliable Delivery", desc: "We don't ship code that isn't production-ready. Every release is tested and documented before handoff." },
     { num: "04", title: "Ongoing Support After Launch", desc: "We offer retainer partnerships for teams that want continued improvement and maintenance after the initial build." },
   ];
@@ -432,17 +403,17 @@ function ProcessSection() {
 
 function WhySection() {
   const failReasons = [
-    "Rushed timelines with no planning phase",
-    "Poorly structured codebases that can't scale",
-    "Built for a demo, not for real-world usage",
-    "No documentation or handoff process",
+    "Lack of structured planning before development",
+    "Prototypes built without real usage in mind",
+    "Generic AI implementations with no ROI",
+    "Poor scalability and system maintenance",
   ];
 
   const howWeBuild = [
-    "Systems that work in real-world conditions",
-    "Architecture that scales with your business",
-    "Code that remains reliable and maintainable over time",
-    "Full ownership and documentation on every project",
+    "Systems built for real business ROI",
+    "Scalable architecture from day one",
+    "AI integrated into existing workflows",
+    "Predictable delivery and long term support",
   ];
 
   return (
@@ -451,11 +422,11 @@ function WhySection() {
         <div>
           <WhyHead />
           <p className="mt-6 text-slate-400 font-medium italic leading-relaxed max-w-lg">
-            Most software projects fail not because of a lack of talent, but because of a lack of structure, clarity, and long-term thinking.
+            Most systems fail because they are built too quickly, without structure, or are disconnected from the actual business workflows they are meant to solve.
           </p>
 
           <div className="mt-10 space-y-3">
-            <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widest font-times mb-4">Common failure points</p>
+            <p className="text-[10px] font-bold text-red-500/60 uppercase tracking-widest font-times mb-4">Why choosing wrong is risky</p>
             {failReasons.map((r, i) => (
               <motion.div
                 key={i}
@@ -474,7 +445,7 @@ function WhySection() {
 
         <div>
           <div className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 p-10">
-            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-6">How we build</p>
+            <p className="text-[10px] font-bold text-brand-gold uppercase tracking-widest font-times mb-6">The Northspec Standard</p>
             <div className="space-y-4">
               {howWeBuild.map((item, i) => (
                 <motion.div
@@ -525,19 +496,19 @@ function BridgeSection() {
         className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-8"
       >
         <div className="max-w-xl">
-          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Partnerships</p>
+          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Systems Evolution</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Most clients continue working with us long-term to maintain and grow their systems.
+            AI isn't a "one-and-done" project. Most clients continue working with us to scale their systems as their business evolves.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
-            We offer dedicated retainer plans starting at $3,000/month for ongoing development and support.
+            Our retainer partnerships ensure your automated workflows stay optimized and competitive.
           </p>
         </div>
         <Link
           href="/retainers"
-          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-4 py-4 whitespace-nowrap"
         >
-          View Retainer Plans →
+          Explore Retainers →
         </Link>
       </motion.div>
     </section>
@@ -557,27 +528,19 @@ function CtaSection() {
         transition={{ duration: 0.7 }}
         className="text-center max-w-3xl mx-auto"
       >
-        <SectionLabel>Ready to Build</SectionLabel>
+        <SectionLabel>Authority + Execution</SectionLabel>
         <SplitReveal
-          text="Let's Build Something That Lasts."
+          text="Build Systems That Actually Work."
           className="text-5xl md:text-6xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-8 text-lg text-slate-400 font-medium italic leading-relaxed max-w-xl mx-auto">
-          Projects typically start at $10,000. We scope every engagement before any commitment is made.
+          AI Transformation projects begin at $25,000. We start with a rigorous discovery phase to ensure your system delivers actual ROI.
         </p>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">
           <Button as="link" href="/contact" variant="brand">
-            Start a Project
+            Request Strategy Call
           </Button>
-          <a
-            href="https://calendar.app.google/XMN48TcybVjmij4C7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
-          >
-            Book a Call
-          </a>
         </div>
       </motion.div>
     </section>

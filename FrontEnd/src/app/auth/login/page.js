@@ -19,7 +19,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    // Mock authentication - in production, this would call your auth API
+    // Mock authentication. in production, this would call your auth API
     if (email && password.length >= 6) {
       // Store auth token in localStorage (mock)
       localStorage.setItem("auth_token", "mock_token_" + Date.now());

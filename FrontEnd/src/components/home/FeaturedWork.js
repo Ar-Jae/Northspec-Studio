@@ -38,7 +38,7 @@ export default function FeaturedWork() {
             description="A snapshot of outcomes: conversion lift, reliability improvements, and faster delivery."
           />
           <div className="flex flex-col sm:flex-row gap-2">
-            <Button as="link" href="/work" variant="secondary">
+            <Button as="link" href="/work" variant="brand-dark">
               View Work
             </Button>
             <Button as="link" href="/contact" variant="brand">

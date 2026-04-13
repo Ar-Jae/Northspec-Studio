@@ -2,142 +2,132 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
+import HeroSection from "../../components/HeroSection";
 import Button from "../../components/Button";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 import { faqs } from "../../lib/data";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const projectTiers = [
   {
-    name: "MVP & Early Products",
-    range: "$12,000 – $30,000",
-    delivery: "6–8 weeks",
-    for: "Validating ideas and launching quickly with a production-ready product.",
+    name: "AI Automation Systems",
+    range: "$5,000 $20,000+",
+    delivery: "4–8 weeks",
+    for: "For businesses implementing AI into workflows, operations, and internal processes.",
     includes: [
-      "Up to 6 screens / core views",
-      "Auth, CRUD, and database",
-      "Secure API foundation",
-      "Launch-ready architecture",
-      "Documentation & handoff",
+      "AI workflow automation",
+      "Custom AI assistants",
+      "Internal process automation",
+      "Connected AI tool ecosystem",
+      "System monitoring & 30-day support",
     ],
     accent: "border-white/[0.08]",
     glow: "from-slate-400/10 to-transparent",
     badge: null,
   },
   {
-    name: "Business Systems & Automation",
-    range: "$20,000 – $50,000",
+    name: "AI-Enabled Platforms",
+    range: "$15,000 $60,000+",
     delivery: "8–12 weeks",
-    for: "Replacing manual workflows and building operational systems that improve efficiency.",
+    for: "Custom tools, internal systems, dashboards, or products where AI is the core workflow.",
     includes: [
-      "8–10 screens / views",
-      "Role-based backend systems",
-      "API + webhook integrations",
-      "CRM / billing integrations",
-      "Reliability + performance testing",
-      "Documentation & training",
-    ],
-    accent: "border-blue-500/20",
-    glow: "from-blue-500/10 to-transparent",
-    badge: null,
-  },
-  {
-    name: "Scalable Platforms & SaaS",
-    range: "$40,000 – $90,000+",
-    delivery: "10–16 weeks",
-    for: "Revenue-generating platforms engineered for growth, performance, and long-term scale.",
-    includes: [
-      "12+ screens / views",
-      "Platform-level backend",
-      "Advanced roles & permissions",
-      "Complex integrations",
-      "Monitoring + system stability",
-      "Full QA + documentation",
+      "AI-native web applications",
+      "Operational dashboards & portals",
+      "Deep AI core implementation",
+      "Advanced API & system logic",
+      "Scale ready architecture",
+      "Full technical handoff",
     ],
     accent: "border-brand-gold/30",
     glow: "from-brand-gold/15 to-transparent",
     badge: "Most Common",
   },
   {
-    name: "Enterprise Systems",
-    range: "$60,000+",
-    delivery: "16–24+ weeks",
-    for: "High-performance, secure systems built for long-term operational demand at scale.",
+    name: "Built-to-Spec Systems",
+    range: "$25,000 $80,000+",
+    delivery: "12–20+ weeks",
+    for: "Advanced business systems, multi-workflow environments, and complex multi-system integrations.",
     includes: [
-      "Multi-system architecture",
-      "Enterprise-grade backend",
-      "Multi-tenant systems",
-      "Security & compliance",
-      "Observability + alerting",
-      "CI/CD pipelines",
+      "Enterprise AI architecture",
+      "Multi-agent autonomous systems",
+      "Custom-trained business intelligence",
+      "Complex legacy system bridging",
+      "Priority engineering bandwidth",
+      "Full infrastructure management",
     ],
     accent: "border-purple-500/20",
     glow: "from-purple-500/10 to-transparent",
-    badge: "Custom Quote",
+    badge: "Premium Path",
   },
 ];
 
 const retainerTiers = [
   {
-    name: "Essential",
+    name: "AI Optimization",
     price: "$3,000",
     period: "/month",
-    for: "Maintenance, bug fixes, and system stability for live applications.",
+    for: "For clients needing continuous refinement of existing AI and automation logic.",
     includes: [
-      "Bug fixes and incident response",
-      "Dependency and security updates",
-      "Monthly system health review",
-      "Async engineering support",
+      "AI model monitoring & tuning",
+      "Automation logic updates",
+      "Monthly efficiency & performance audit",
+      "Email & Slack technical support",
     ],
     badge: null,
   },
   {
-    name: "Growth",
-    price: "$5,000 – $7,000",
+    name: "Continuous Automation",
+    price: "$5,000 $7,000",
     period: "/month",
-    for: "Ongoing development plus maintenance, for products that need to keep improving.",
+    for: "For businesses expanding automation across new departments and operational workflows.",
     includes: [
-      "Everything in Essential",
-      "Feature development (defined scope)",
-      "Performance optimization",
-      "Priority response times",
+      "Everything in Optimization",
+      "New AI agent development",
+      "Workflow expansion & scaling",
+      "Priority engineer availability",
     ],
     badge: "Most Popular",
   },
   {
-    name: "Product Partner",
-    price: "$8,000 – $12,000",
+    name: "AI Scaling Partner",
+    price: "$8,000 $12,000",
     period: "/month",
-    for: "Dedicated engineering capacity for serious products with continuous development needs.",
+    for: "Dedicated engineering for companies fully automating their entire business operations.",
     includes: [
-      "Everything in Growth",
+      "Everything in Continuous",
       "Dedicated monthly sprint capacity",
-      "Architecture and roadmap reviews",
-      "Direct engineering access",
+      "On-call infrastructure support",
+      "Technical strategy & architecture",
     ],
-    badge: null,
+    badge: "Managed Partner",
   },
 ];
 
 const engagementSteps = [
   {
     number: "01",
-    phase: "Initial Build",
-    title: "6–16 weeks",
-    desc: "Scoped, fixed-price project. You know the cost before work begins.",
+    phase: "Strategy & Scope",
+    title: "Deep mapping of goals",
+    desc: "Custom-scoped project definition. You receive a clear proposal tailored to your exact needs before any work begins.",
   },
   {
     number: "02",
-    phase: "Launch & Stabilization",
-    title: "2–4 weeks",
-    desc: "Deploy, monitor, and resolve any post-launch issues.",
+    phase: "Build & Implementation",
+    title: "6–16 weeks",
+    desc: "Production-ready development with regular milestone reviews.",
   },
   {
     number: "03",
+    phase: "Launch & Optimization",
+    title: "2–4 weeks",
+    desc: "Deployment, stabilization, and initial AI refinement loops.",
+  },
+  {
+    number: "04",
     phase: "Ongoing Support",
-    title: "Monthly retainer",
-    desc: "Continuous development, maintenance, and system evolution.",
+    title: "Monthly collaboration",
+    desc: "Continuous automation expansion and operational system support.",
   },
 ];
 
@@ -209,71 +199,27 @@ export default function PricingPage() {
   const ctaIn      = useInView(ctaRef, { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-[40vh]">
+    <div className="relative bg-brand-dark min-h-screen">
       <BackgroundCanvasClient />
-
+      
       {/* ── HERO ────────────────────────────────────────────────────────────── */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      <HeroSection
+        label="Pricing"
+        headline="AI Systems,"
+        accent="Automation & Platforms"
+        subheading="Every engagement is custom-scoped to your requirements. Ranges shown are market-rate estimates your actual investment is determined after a discovery session, not before."
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
-          }}
-        />
-
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-36 pt-24 pb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="flex items-center gap-4 mb-8"
-          >
-            <div className="h-[1px] w-12 bg-brand-gold" />
-            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-              Pricing
-            </span>
-            <div className="h-[1px] w-12 bg-brand-gold" />
-          </motion.div>
-
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.1rem,5.4vw,5rem)]">
-            <SplitReveal text="Clear Pricing for" delay={0.6} className="block" />
-            <SplitReveal
-              text="Serious Projects."
-              delay={1.0}
-              className="block text-brand-gold"
-            />
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-6 font-times"
-          >
-            Most clients invest between{" "}
-            <span className="text-white font-semibold">$12,000 and $50,000+</span>{" "}
-            depending on scope and complexity.
-          </motion.p>
-
+        <div className="flex flex-col items-center">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.9, duration: 0.7 }}
-            className="text-slate-500 text-sm font-times"
+            transition={{ delay: 1.2, duration: 0.7 }}
+            className="text-slate-500 text-sm font-times uppercase tracking-widest italic"
           >
-            Fixed-price quotes. No hourly billing. No surprises.
+            Custom-scoped pricing. No hourly billing. No surprises.
           </motion.p>
-        </motion.div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
-      </section>
+        </div>
+      </HeroSection>
 
       {/* ── PROJECT BUILDS ────────────────────────────────────────────────────── */}
       <section className="relative z-10 py-24">
@@ -314,7 +260,7 @@ export default function PricingPage() {
             </motion.span>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-3">
             {projectTiers.map((tier, i) => (
               <motion.div
                 key={tier.name}
@@ -332,7 +278,7 @@ export default function PricingPage() {
                 {/* Badge */}
                 {tier.badge && (
                   <span className={`absolute -top-3 left-7 rounded-full px-4 py-1 text-[10px] uppercase tracking-widest font-bold z-20 ${
-                    tier.badge === "Most Common"
+                    tier.badge === "Most Common" || tier.badge === "Most Popular"
                       ? "bg-brand-gold text-brand-dark"
                       : "bg-white/10 border border-white/20 text-slate-300"
                   }`}>
@@ -374,7 +320,7 @@ export default function PricingPage() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mt-6 text-center text-xs text-slate-600 font-medium"
           >
-            All pricing is tailored to scope, complexity, integrations, and infrastructure requirements. You receive a fixed quote before any work begins.
+            Ranges above are market-rate estimates. Every project is custom-scoped your actual investment is determined during discovery based on your specific requirements.
           </motion.p>
         </div>
       </section>
@@ -409,15 +355,9 @@ export default function PricingPage() {
                   individually through our Built-to-Spec process.
                 </p>
                 <div className="mt-8">
-                  <a
-                    href="/built-to-spec"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-brand-gold hover:text-white transition-colors"
-                  >
+                  <Button as="link" href="/built-to-spec" variant="outline-dark">
                     Learn about Built-to-Spec
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </a>
+                  </Button>
                 </div>
               </div>
 
@@ -427,7 +367,7 @@ export default function PricingPage() {
                     Typical investment
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $30,000 – $80,000+
+                    $30,000 $80,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
                     Scoped individually to your requirements
@@ -441,7 +381,7 @@ export default function PricingPage() {
                     "Complex multi-system architecture",
                     "Specialized domain requirements",
                     "Custom infrastructure and deployment",
-                    "Long-term platform thinking built in",
+                    "Long term platform thinking built in",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-3 text-sm text-slate-300">
                       <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
@@ -451,12 +391,9 @@ export default function PricingPage() {
                 </ul>
 
                 <div className="flex flex-wrap gap-3 mt-2">
-                  <a
-                    href="/contact"
-                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                  >
+                  <Button as="link" href="/contact" variant="brand">
                     Discuss Your Project
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -594,18 +531,15 @@ export default function PricingPage() {
                     Monthly range
                   </p>
                   <div className="text-4xl font-bold font-serif text-white leading-[1.05]">
-                    $750 – $2,500
+                    $750 $2,500
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium mt-1">
                     Per month + usage
                   </p>
                 </div>
-                <a
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-6 py-3 flex-shrink-0"
-                >
+                <Button as="link" href="/contact" variant="outline-dark">
                   Get Details
-                </a>
+                </Button>
               </div>
             </div>
           </motion.div>
@@ -641,16 +575,16 @@ export default function PricingPage() {
             <em className="not-italic text-brand-gold">simple structure.</em>
           </motion.h2>
 
-          <div className="grid lg:grid-cols-3 gap-0">
+          <div className="grid lg:grid-cols-4 gap-0">
             {engagementSteps.map((step, i) => (
               <motion.div
                 key={step.number}
                 initial={{ opacity: 0, y: 30 }}
                 animate={flowIn ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.7, delay: 0.1 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="relative group p-10 border border-white/[0.06] first:rounded-l-3xl last:rounded-r-3xl
+                className="relative group p-10 border border-white/[0.06] first:border-l lg:first:rounded-l-3xl lg:last:rounded-r-3xl
                   bg-white/[0.02] hover:bg-white/[0.04] transition-colors duration-300
-                  border-r-0 last:border-r"
+                  border-b lg:border-b-0 lg:border-r-0 last:border-r lg:last:border-b-0"
               >
                 <div className="text-[10px] font-bold tracking-[0.3em] text-slate-700 mb-4">
                   {step.number}
@@ -705,10 +639,10 @@ export default function PricingPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { title: "n8n Workflow Setup", range: "$3,000 – $8,000" },
-              { title: "Core Automation Systems", range: "$1,000 – $2,500" },
-              { title: "Advanced Workflow Systems", range: "$3,000 – $10,000" },
-              { title: "AI-Driven Automation", range: "$5,000 – $15,000+" },
+              { title: "n8n Workflow Setup", range: "$3,000 $8,000" },
+              { title: "Core Automation Systems", range: "$1,000 $2,500" },
+              { title: "Advanced Workflow Systems", range: "$3,000 $10,000" },
+              { title: "AI-Driven Automation", range: "$5,000 $15,000+" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -887,7 +821,7 @@ export default function PricingPage() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
-            Tell us what you&apos;re building and we&apos;ll give you a clear, fixed-price quote before any commitment.
+            Tell us what you&apos;re building and we&apos;ll scope it properly custom architecture, timeline, and a clear proposal before any commitment.
           </motion.p>
 
           <motion.div
@@ -896,21 +830,12 @@ export default function PricingPage() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
-              href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-            >
+            <Button as="link" href="/contact" variant="brand">
               Start a Project
-            </a>
-            <a
-              href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
-            >
+            </Button>
+            <Button as="link" href="/contact" variant="outline-dark">
               Book a Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </div>
       </section>

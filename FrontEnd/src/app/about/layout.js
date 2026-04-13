@@ -5,7 +5,7 @@ export const metadata = {
   openGraph: {
     title: "About Northspec Studio | Built for Real Systems",
     description:
-      "We build systems businesses rely on, not just applications. Scalable software, workflow automation, and long-term engineering partnerships.",
+      "We build systems businesses rely on, not just applications. Scalable software, workflow automation, and long term engineering partnerships.",
     url: "/about",
   },
 };

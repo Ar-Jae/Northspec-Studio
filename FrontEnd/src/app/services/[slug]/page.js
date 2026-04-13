@@ -77,7 +77,7 @@ export default async function ServiceDetailPage({ params }) {
                 
                 <div className="mt-10 space-y-4">
                   <Button as="link" href="/contact" variant="brand" className="w-full justify-center">Book a Discovery Call</Button>
-                  <Button as="link" href="/pricing" variant="outline" className="w-full justify-center">View Pricing & Plans</Button>
+                  <Button as="link" href="/pricing" variant="outline-dark" className="w-full justify-center">View Pricing & Plans</Button>
                 </div>
 
                 <div className="mt-12 pt-8">

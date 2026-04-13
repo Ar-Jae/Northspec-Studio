@@ -7,7 +7,9 @@ const nextConfig = {
   // browser-only APIs (WASM, Web Workers) and must stay client-only.
   serverExternalPackages: ['@vapi-ai/web', '@daily-co/daily-js'],
   // Empty turbopack config satisfies Vercel's check when a webpack config is present
-  turbopack: {},
+  turbopack: {
+    root: '.',
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Silence the Krisp WASM unload warning that fires when a Vapi call ends

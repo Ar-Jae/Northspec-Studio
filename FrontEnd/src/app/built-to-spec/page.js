@@ -2,58 +2,99 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
+import HeroSection from "../../components/HeroSection";
 import Button from "../../components/Button";
+import BackgroundCanvasClient from "../../components/3d/BackgroundCanvasClient";
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const whoFor = [
-  "Companies with non-standard requirements",
-  "Teams replacing complex manual processes",
-  "Founders building unique platforms",
-  "Businesses needing deep system integration",
+  "Companies implementing AI into existing operations",
+  "Businesses replacing multiple legacy systems with one centralized platform",
+  "Teams needing custom internal tools, dashboards, or intelligent portals",
+  "Founders launching platforms that require custom logic or AI-enabled functionality",
+  "Organizations where AI, automation, and operations need a high-value technical foundation",
+];
+
+const builtToSpecCategories = [
+  {
+    title: "Custom AI Automation Systems",
+    description: "Tailored AI engines designed to handle complex business logic and operational workflows.",
+    icon: (
+      <svg className="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
+    title: "AI-Powered Internal Tools",
+    description: "Custom dashboards and portals that put intelligent data and automation in your team's hands.",
+    icon: (
+      <svg className="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17V7a2 2 0 012-2h6a2 2 0 012 2v10m-11 0h11" />
+      </svg>
+    ),
+  },
+  {
+    title: "Advanced Workflow Systems",
+    description: "End to end operational platforms that automate manual work and bridge system gaps.",
+    icon: (
+      <svg className="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 7v10c0 1.1.9 2 2 2h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2zM9 5v4m6-4v4" />
+      </svg>
+    ),
+  },
+  {
+    title: "Complex Integrations & Platforms",
+    description: "High-scale applications built for reliability, deep API connectivity, and future AI growth.",
+    icon: (
+      <svg className="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
+  },
 ];
 
 const steps = [
   {
     number: "01",
-    phase: "Discovery & Planning",
-    title: "Break down your system completely",
+    phase: "Discovery & System Planning",
+    title: "Mapping goals, workflows, and AI opportunities",
     description:
-      "We map every requirement, constraint, and workflow before writing a single line of code. This phase produces a clear scope document and eliminates surprises.",
-    detail: "Discovery call → Requirements doc → Scope definition",
+      "We begin with a deep audit of your current processes. We don't just ask what you want to build we map the exact business logic required to automate your operations.",
+    detail: "System Requirements → Workflow Audit → AI Strategy Mapping",
   },
   {
     number: "02",
-    phase: "System Design",
-    title: "Define architecture up front",
+    phase: "Architecture & Design",
+    title: "Defining the logic, data flow, and infrastructure",
     description:
-      "We design the technical architecture, integration points, and data flows specific to your business. No generic templates, every decision is made for your context.",
-    detail: "Technical spec → Architecture diagram → Integration map",
+      "We design the internal architecture and secure data environments required to support your custom AI or automation features long term.",
+    detail: "Technical Architecture → Database Design → Integration Mapping",
   },
   {
     number: "03",
-    phase: "Build & Delivery",
-    title: "Develop, test, and deploy",
+    phase: "Build & Implementation",
+    title: "Engineering the core systems and automation logic",
     description:
-      "We build in milestones with regular check-ins and real visibility. You see progress at every stage, no black-box development, no surprises at the finish line.",
-    detail: "Milestone delivery → Staging access → Production deploy",
+      "Our team develops your system with scalability and performance as the primary focus. You receive regular milestone updates as we implement the production-ready logic.",
+    detail: "Milestone Sprints → AI Training/Integration → Reliability Testing",
   },
   {
     number: "04",
-    phase: "Ongoing Support",
-    title: "Stay involved post-launch",
+    phase: "Launch & Optimization",
+    title: "Deploying and scaling your new business engine",
     description:
-      "Most built-to-spec projects transition into an ongoing support engagement. We continue to maintain, improve, and scale the system as your business grows.",
-    detail: "Feature expansion → Performance tuning → Reliability monitoring",
+      "We handle the deployment and ensure the system integrates perfectly. Most engagements continue into ongoing development to keep expanding your automation capacity.",
+    detail: "System Deployment → Post-Launch Refinement → Ongoing Support",
   },
 ];
 
 const why = [
-  "Designed around your business, not forced into templates",
-  "Built for long-term scalability from day one",
-  "Structured process to reduce risk and delivery delays",
-  "Clear communication and milestone-based expectations",
+  "Software built around how your business actually works",
+  "Infrastructure designed to support AI and automation",
+  "Production-ready applications built for reliability and scale",
+  "Systems that solve operational problems, not just add features",
 ];
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -118,85 +159,25 @@ export default function BuiltToSpecPage() {
   const ctaIn   = useInView(ctaRef,   { once: true, margin: "-100px" });
 
   return (
-    <div className="relative bg-brand-dark min-h-[40vh]">
+    <div className="relative bg-brand-dark min-h-screen">
       <BackgroundCanvasClient />
-
+      
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      <HeroSection
+        label="Engineering Layer"
+        headline="Custom AI Systems &"
+        accent="Advanced System Builds."
+        subheading="For businesses that need tailored AI automation, complex workflows, intelligent internal tools, or platforms built specifically for how they operate."
       >
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
-          }}
-        />
-
-        <motion.div
-          style={{ y: heroY, opacity: heroOpacity }}
-          className="relative z-10 flex flex-col items-center justify-center text-center px-36 pt-24 pb-20"
+        <Button
+          as="link"
+          href="/contact"
+          variant="brand"
+          className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.7 }}
-            className="flex items-center gap-4 mb-8"
-          >
-            <div className="h-[1px] w-12 bg-brand-gold" />
-            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
-              Custom Engagements
-            </span>
-            <div className="h-[1px] w-12 bg-brand-gold" />
-          </motion.div>
-
-          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6 text-[clamp(2.25rem,6.3vw,5.85rem)]">
-            <SplitReveal text="Custom Systems," delay={0.6} className="block" />
-            <SplitReveal
-              text="Built to Spec."
-              delay={1.0}
-              className="block text-brand-gold"
-            />
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6, duration: 0.8, ease: "easeOut" }}
-            className="max-w-xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times"
-          >
-            For teams that need tailored software, automation, or platforms
-            designed around their exact workflows and business needs.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.85, duration: 0.7 }}
-            className="flex flex-col sm:flex-row items-center gap-4"
-          >
-            <Button
-              as="link"
-              href="/contact"
-              variant="brand"
-              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
-            >
-              Start a Custom Project
-            </Button>
-            <Button
-              as="link"
-              href="/contact"
-              variant="outline"
-              className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold"
-            >
-              Book a Strategy Call
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
-      </section>
+          Start a Custom Project
+        </Button>
+      </HeroSection>
 
       {/* ── WHAT THIS IS ──────────────────────────────────────────────────── */}
       <section className="relative z-10 py-32">
@@ -224,33 +205,39 @@ export default function BuiltToSpecPage() {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3.5vw,3.5rem)] leading-[1.05] tracking-tight mb-6">
-                Not every project fits{" "}
-                <em className="not-italic text-brand-gold">a standard package.</em>
+                Software is the infrastructure for{" "}
+                <em className="not-italic text-brand-gold">better operations.</em>
               </h2>
+              <p className="text-slate-400 leading-relaxed text-sm font-times mb-6">
+                Not every business problem is solved with off-the-shelf tools.
+                When you need custom workflows, AI-enabled features, internal systems, 
+                or a platform built around how your business actually operates, 
+                custom software becomes the right solution.
+              </p>
               <p className="text-slate-400 leading-relaxed text-sm font-times">
-                We work with companies that require more than off-the-shelf solutions.
-                This is for teams with specific constraints, complex workflows, and
-                real business requirements that demand a purpose-built system.
+                We design and develop production-ready software, internal tools, 
+                and scalable platforms especially where AI, automation, and 
+                business operations need a strong technical foundation.
               </p>
             </motion.div>
 
-            <div className="space-y-4">
-              {[
-                "Custom architecture designed for your exact workflows",
-                "Complex integrations with existing systems",
-                "Unique business logic that standard tools can't handle",
-                "Business-specific systems built to scale with you",
-              ].map((item, i) => (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {builtToSpecCategories.map((cat, i) => (
                 <motion.div
                   key={i}
                   initial={{ opacity: 0, x: 30 }}
                   animate={whatIn ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.2 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-start gap-4 p-5 rounded-2xl border border-white/[0.06] bg-white/[0.02]
-                    hover:border-brand-gold/20 transition-colors duration-300"
+                  className="group flex flex-col gap-3 p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02]
+                    hover:border-brand-gold/30 transition-all duration-300"
                 >
-                  <span className="text-brand-gold font-bold mt-0.5 flex-shrink-0">→</span>
-                  <p className="text-slate-300 text-sm leading-relaxed">{item}</p>
+                  <div className="flex items-center gap-4">
+                    <div className="p-2 rounded-lg bg-white/[0.03] group-hover:bg-brand-gold/10 transition-colors">
+                      {cat.icon}
+                    </div>
+                    <h3 className="text-slate-200 font-bold font-serif text-lg">{cat.title}</h3>
+                  </div>
+                  <p className="text-slate-400 text-xs leading-relaxed pl-12">{cat.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -398,11 +385,16 @@ export default function BuiltToSpecPage() {
                 <SectionLabel>Investment</SectionLabel>
                 <h2 className="font-serif font-bold text-white text-[clamp(1.8rem,3vw,3.5rem)] leading-[1.05] tracking-tight mb-4">
                   Priced for the{" "}
-                  <em className="not-italic text-brand-gold">scope of the work.</em>
+                  <em className="not-italic text-brand-gold">complexity of the system.</em>
                 </h2>
+                <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm mb-6">
+                  Not every project fits into a predefined scope. We build complex, 
+                  high-value AI systems and advanced business solutions 
+                  tailored to your operations.
+                </p>
                 <p className="text-slate-400 text-sm leading-relaxed font-times max-w-sm">
-                  Custom projects are scoped individually. Pricing reflects the
-                  real complexity of the system being built, not a package tier.
+                  Most custom engagements include discovery, architecture, 
+                  implementation, and continue into ongoing optimization after launch.
                 </p>
               </div>
 
@@ -414,39 +406,49 @@ export default function BuiltToSpecPage() {
                   transition={{ duration: 0.7, delay: 0.2 }}
                 >
                   <p className="text-[10px] font-bold tracking-[0.3em] text-slate-600 uppercase mb-2">
-                    Starting at
+                    Custom Builds Start At
                   </p>
                   <div className="text-5xl font-bold font-serif text-white leading-[1.05] mb-1">
-                    $20,000+
+                    $25,000+
                   </div>
                   <p className="text-slate-500 text-xs uppercase tracking-widest font-medium">
-                    Typical range: $30,000 – $80,000+
+                    Typical Range: $30,000 $80,000+
                   </p>
                 </motion.div>
 
                 <div className="h-[1px] bg-white/[0.06]" />
 
-                <motion.p
+                <motion.ul
                   initial={{ opacity: 0 }}
                   animate={priceIn ? { opacity: 1 } : {}}
                   transition={{ duration: 0.7, delay: 0.35 }}
-                  className="text-slate-400 text-sm leading-relaxed"
+                  className="space-y-3"
                 >
-                  Final pricing is always scoped, never guessed. You receive a
-                  detailed spec and fixed-price quote before any work begins.
-                </motion.p>
+                  {[
+                    "Discovery & System Planning",
+                    "Architecture & Workflow Design",
+                    "Build & Implementation",
+                    "Launch & Ongoing Optimization",
+                  ].map((step) => (
+                    <li key={step} className="flex items-center gap-3 text-sm text-slate-300">
+                      <div className="w-1 h-1 rounded-full bg-brand-gold flex-shrink-0" />
+                      {step}
+                    </li>
+                  ))}
+                </motion.ul>
 
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={priceIn ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: 0.45 }}
+                  className="flex flex-wrap gap-4"
                 >
-                  <a
-                    href="/contact"
-                    className="inline-block bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-white transition-all active:scale-[0.98]"
-                  >
+                  <Button as="link" href="/contact" variant="brand">
                     Start a Custom Project
-                  </a>
+                  </Button>
+                  <Button as="link" href="/contact" variant="outline-dark">
+                    Book a Call
+                  </Button>
                 </motion.div>
               </div>
             </div>
@@ -557,7 +559,7 @@ export default function BuiltToSpecPage() {
                 ))}
               </ul>
               <p className="text-xs text-slate-600 font-medium uppercase tracking-wider">
-                Ongoing engagements from $4,000 – $10,000/month
+                Ongoing engagements from $4,000 $10,000/month
               </p>
             </div>
           </motion.div>
@@ -612,7 +614,7 @@ export default function BuiltToSpecPage() {
             className="text-slate-400 text-lg leading-relaxed mb-12 max-w-md font-times"
           >
             Tell us what you&apos;re building. We&apos;ll come back with a clear
-            scope and fixed-price quote before any work begins.
+            scope and custom proposal tailored to your exact requirements before any work begins.
           </motion.p>
 
           <motion.div
@@ -621,21 +623,22 @@ export default function BuiltToSpecPage() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <a
+            <Button
+              as="link"
               href="/contact"
-              className="bg-brand-gold text-brand-dark font-bold text-xs uppercase tracking-[0.2em] px-10 py-5 rounded-full hover:bg-white transition-all active:scale-[0.98]"
+              variant="brand"
+              className="px-10 py-5 text-sm uppercase tracking-[0.2em] font-bold"
             >
               Start a Custom Project
-            </a>
-            <a
+            </Button>
+            <Button
+              as="link"
               href="/contact"
-              className="group flex items-center gap-2 text-sm font-bold text-slate-400 hover:text-white transition-colors border border-white/10 hover:border-white/30 rounded-full px-8 py-4"
+              variant="outline-dark"
+              className="px-8 py-4 text-sm font-bold"
             >
               Book a Strategy Call
-              <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+            </Button>
           </motion.div>
         </div>
       </section>

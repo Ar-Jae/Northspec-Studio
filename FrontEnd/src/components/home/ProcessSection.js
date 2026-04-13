@@ -23,8 +23,8 @@ const steps = [
     phase: "Build & Iterate",
     title: "Develop with performance and scale in mind",
     description:
-      "We build your system with milestone-based delivery and regular check-ins. No black-box development, you see progress every step of the way.",
-    detail: "Milestone-based delivery → Weekly updates → Code review",
+      "We build your system with milestone based delivery and regular check-ins. No black box development, you see progress every step of the way.",
+    detail: "milestone based delivery → Weekly updates → Code review",
     icon: (
       <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.3}

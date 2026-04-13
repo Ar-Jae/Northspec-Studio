@@ -31,7 +31,7 @@ export default function BackgroundCanvas() {
       mountRef.current.appendChild(renderer.domElement);
 
       // ── Particle field ──────────────────────────────────────────────────────
-      const count = window.innerWidth < 768 ? 800 : 1800;
+      const count = window.innerWidth < 768 ? 400 : 800;
       const positions = new Float32Array(count * 3);
       const sizes = new Float32Array(count);
 
@@ -39,7 +39,7 @@ export default function BackgroundCanvas() {
         positions[i * 3]     = (Math.random() - 0.5) * 60;
         positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
         positions[i * 3 + 2] = (Math.random() - 0.5) * 40;
-        sizes[i] = Math.random() * 0.06 + 0.02;
+        sizes[i] = Math.random() * 0.05 + 0.01;
       }
 
       const pGeo = new THREE.BufferGeometry();
@@ -47,51 +47,66 @@ export default function BackgroundCanvas() {
       pGeo.setAttribute("size", new THREE.BufferAttribute(sizes, 1));
 
       const pMat = new THREE.PointsMaterial({
-        size: 0.06,
+        size: 0.04,
         color: 0xc6a668,
         transparent: true,
-        opacity: 0.45,
+        opacity: 0.25,
         sizeAttenuation: true,
+        blending: THREE.AdditiveBlending
       });
 
       particles = new THREE.Points(pGeo, pMat);
       scene.add(particles);
 
-      // ── Floating wireframe geometries ────────────────────────────────────────
-      const wireMat = (opacity = 0.12) =>
-        new THREE.MeshBasicMaterial({
-          color: 0xc6a668,
-          wireframe: true,
-          transparent: true,
-          opacity,
-        });
+      // ── Floating Wireframe Grid System ──────────────────────────────────────
+      // Create a large architectural wireframe grid
+      const gridCount = 5;
+      for (let i = 0; i < gridCount; i++) {
+        const gridHelper = new THREE.GridHelper(40, 20, 0xc6a668, 0xc6a668);
+        gridHelper.material.transparent = true;
+        gridHelper.material.opacity = 0.05;
+        gridHelper.position.y = (i - gridCount/2) * 15;
+        gridHelper.rotation.x = Math.PI / 2;
+        scene.add(gridHelper);
+        shapes.push(Object.assign(gridHelper, { userData: { rotSpeed: { x: 0.0001, y: 0.0002 }, baseY: gridHelper.position.y } }));
+      }
 
-      const addShape = (geo, pos, rotSpeed) => {
-        const mesh = new THREE.Mesh(geo, wireMat());
-        mesh.position.set(...pos);
-        mesh.userData = { rotSpeed, baseY: pos[1] };
-        scene.add(mesh);
-        shapes.push(mesh);
-      };
+      // ── Neural Network Nodes ────────────────────────────────────────────────
+      const nodeCount = 12;
+      const nodeGeo = new THREE.IcosahedronGeometry(0.15, 1);
+      const nodeMat = new THREE.MeshBasicMaterial({ color: 0xc6a668, transparent: true, opacity: 0.4 });
+      
+      for (let i = 0; i < nodeCount; i++) {
+        const node = new THREE.Mesh(nodeGeo, nodeMat);
+        node.position.set(
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 20,
+          (Math.random() - 0.5) * 10
+        );
+        node.userData = { 
+          velocity: new THREE.Vector3((Math.random() - 0.5) * 0.02, (Math.random() - 0.5) * 0.02, (Math.random() - 0.5) * 0.01),
+          rotSpeed: { x: Math.random() * 0.01, y: Math.random() * 0.01 },
+          baseY: node.position.y
+        };
+        scene.add(node);
+        shapes.push(node);
+      }
 
-      addShape(new THREE.IcosahedronGeometry(2, 0),   [-7, 4, -6],  { x: 0.003, y: 0.002 });
-      addShape(new THREE.OctahedronGeometry(1.6, 0),  [ 8, -3, -7], { x: 0.002, y: 0.005 });
-      addShape(new THREE.TorusGeometry(2, 0.5, 6, 24),[ 1, 6, -10], { x: 0.005, y: 0.001 });
-      addShape(new THREE.TetrahedronGeometry(2.2, 0), [-3, -7, -8], { x: 0.001, y: 0.004 });
-      addShape(new THREE.IcosahedronGeometry(1, 1),   [ 6, 5, -4],  { x: 0.006, y: 0.003 });
-      addShape(new THREE.OctahedronGeometry(0.8, 0),  [-9, -1, -3], { x: 0.004, y: 0.002 });
-
-      // ── Large background ring ────────────────────────────────────────────────
-      const ringGeo = new THREE.TorusGeometry(12, 0.08, 4, 80);
+      // ── Large Data Flow Rings ───────────────────────────────────────────────
+      const ringGeo = new THREE.TorusGeometry(15, 0.02, 16, 100);
       const ringMat = new THREE.MeshBasicMaterial({
         color: 0xc6a668,
         transparent: true,
-        opacity: 0.04,
+        opacity: 0.06,
       });
-      const ring = new THREE.Mesh(ringGeo, ringMat);
-      ring.rotation.x = Math.PI / 3;
-      scene.add(ring);
-      shapes.push(Object.assign(ring, { userData: { rotSpeed: { x: 0.0005, y: 0.001 }, baseY: 0 } }));
+      
+      for (let i = 0; i < 3; i++) {
+        const ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / (2 + i);
+        ring.rotation.z = Math.PI / (4 + i);
+        scene.add(ring);
+        shapes.push(Object.assign(ring, { userData: { rotSpeed: { x: 0.0005, y: 0.0008 * (i+1) }, baseY: 0 } }));
+      }
 
       // ── Scroll & mouse parallax ──────────────────────────────────────────────
       let scrollY = 0;

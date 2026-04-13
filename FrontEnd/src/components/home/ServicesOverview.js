@@ -36,10 +36,10 @@ export default function ServicesOverview() {
           <SectionHeading
             eyebrow="Services"
             title="Build, integrate, and support"
-            description="Three ways we help teams ship and maintain high-quality web products."
+            description="Three ways we help teams ship and maintain high quality web products."
           />
           <div className="flex flex-col sm:flex-row gap-2">
-            <Button as="link" href="/services" variant="secondary">
+            <Button as="link" href="/services" variant="brand-dark">
               Explore services
             </Button>
             <Button as="link" href="/contact" variant="brand">

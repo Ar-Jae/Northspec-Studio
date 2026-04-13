@@ -18,6 +18,28 @@ function SectionLabel({ children }) {
   );
 }
 
+// Mount-based SplitReveal for hero
+function HeroSplitReveal({ text, className, delay = 0 }) {
+  const words = text.split(" ");
+  return (
+    <span className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
+          <motion.span
+            className="inline-block -mb-[0.2em]"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1, delay: delay + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+// Scroll-triggered SplitReveal for section headings
 function SplitReveal({ text, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -123,34 +145,62 @@ function CompareHead() {
 
 export default function WhyNorthspecPage() {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY       = useTransform(heroScroll, [0, 1],   ["0%", "30%"]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
 
   return (
     <div className="bg-brand-dark text-white">
       <BackgroundCanvasClient />
 
       {/* ── 1. HERO ────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative min-h-[85vh] flex items-center overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(212,175,55,0.06),transparent_60%)]" />
-        </motion.div>
+      <section
+        ref={heroRef}
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+          }}
+        />
 
-        <div className="relative z-10 px-6 md:px-36 pt-40 pb-24 max-w-[1400px] mx-auto w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <SectionLabel>Why Northspec</SectionLabel>
-          </motion.div>
-
-          <SplitReveal
-            text="Built for Systems That Actually Need to Work."
-            className="text-[2.7rem] md:text-[4.05rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-4xl mt-2"
-          />
-
-          <motion.p
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-36 pt-24 pb-20"
+        >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.7 }}
-            className="mt-8 text-xl text-slate-400 font-medium italic leading-relaxed max-w-2xl"
+            className="flex items-center gap-4 mb-8"
+          >
+            <div className="h-[1px] w-12 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Why Northspec
+            </span>
+            <div className="h-[1px] w-12 bg-brand-gold" />
+          </motion.div>
+
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <HeroSplitReveal
+              text="Built for Systems That Work."
+              delay={0.6}
+              className="block text-[clamp(2.5rem,6.3vw,5.85rem)]"
+            />
+            <HeroSplitReveal
+              text="At Every Scale."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-12 font-times font-medium italic"
           >
             We focus on building reliable, scalable software that supports real business operations, not just prototypes or quick builds.
           </motion.p>
@@ -158,22 +208,19 @@ export default function WhyNorthspecPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
-            className="mt-12 flex flex-wrap gap-4"
+            transition={{ delay: 2.0, duration: 0.7 }}
+            className="flex flex-col sm:flex-row items-center gap-4"
           >
-            <Button as="link" href="/contact" variant="brand">
+            <Button as="link" href="/contact" variant="brand" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
               Start a Project
             </Button>
-            <a
-              href="https://calendar.app.google/XMN48TcybVjmij4C7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
-            >
+            <Button as="link" href="/contact" variant="outline-dark" className="rounded-full px-8 py-4 text-sm uppercase tracking-[0.2em] font-bold">
               Book a Call
-            </a>
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
       </section>
 
       {/* ── 2. WHY PROJECTS FAIL ───────────────────────────────────────────── */}
@@ -228,7 +275,7 @@ function WhyFailSection() {
           className="text-4xl md:text-5xl font-bold text-white font-times uppercase tracking-tight leading-[1.05]"
         />
         <p className="mt-6 text-slate-400 font-medium italic leading-relaxed">
-          This isn&apos;t about talent. It&apos;s about process, structure, and long-term thinking. Most engagements lack all three.
+          This isn&apos;t about talent. It&apos;s about process, structure, and long term thinking. Most engagements lack all three.
         </p>
       </motion.div>
 
@@ -297,7 +344,7 @@ function OutcomesSection() {
     { title: "Fewer Issues After Launch", desc: "Structured builds with real testing mean fewer surprises in production." },
     { title: "Systems That Scale", desc: "Architecture designed for growth, so you don't need a rebuild in 18 months." },
     { title: "Reduced Need for Rebuilds", desc: "Built right the first time. Maintainable code your team can actually work with." },
-    { title: "Clear Communication Throughout", desc: "Direct access to the engineers. Milestone-based delivery. No guesswork." },
+    { title: "Clear Communication Throughout", desc: "Direct access to the engineers. milestone based delivery. No guesswork." },
   ];
 
   return (
@@ -349,9 +396,9 @@ function RiskSection() {
   ];
 
   const doList = [
-    "Follow a structured, milestone-based process on every project",
+    "Follow a structured, milestone based process on every project",
     "Define clear scope and pricing before work begins",
-    "Stay involved long-term with retainer partnerships",
+    "Stay involved long term with retainer partnerships",
     "Give direct access to the engineers writing the code",
   ];
 
@@ -406,7 +453,7 @@ function RiskSection() {
 
 function ComparisonSection() {
   const rows = [
-    { feature: "Timeline", typical: "Unclear. Shifts mid-project.", northspec: "Milestone-based. Defined at start." },
+    { feature: "Timeline", typical: "Unclear. Shifts mid-project.", northspec: "milestone based. Defined at start." },
     { feature: "Communication", typical: "Account managers and ticket queues.", northspec: "Direct engineer access throughout." },
     { feature: "Pricing", typical: "Hourly or open-ended estimates.", northspec: "Fixed-scope pricing before work begins." },
     { feature: "Architecture", typical: "Built to ship fast, fix later.", northspec: "Built to scale from day one." },
@@ -467,18 +514,20 @@ function BridgeSection() {
         <div className="max-w-xl">
           <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Long-Term Partnerships</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Most clients continue working with us long-term after launch to maintain and grow their systems.
+            Most clients continue working with us long term after launch to maintain and grow their systems.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
             Retainer plans from $3,000/month for ongoing development, support, and infrastructure.
           </p>
         </div>
-        <a
+        <Button
+          as="link"
           href="/retainers"
-          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+          variant="outline-dark"
+          className="shrink-0"
         >
-          View Retainer Plans →
-        </a>
+          View Retainer Plans
+        </Button>
       </motion.div>
     </section>
   );
@@ -510,14 +559,13 @@ function CtaSection() {
           <Button as="link" href="/contact" variant="brand">
             Start a Project
           </Button>
-          <a
+          <Button
+            as="link"
             href="https://calendar.app.google/XMN48TcybVjmij4C7"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 border border-white/10 hover:border-brand-gold/40 text-slate-300 hover:text-white transition-all rounded-xl px-6 py-3 text-sm font-medium font-times uppercase tracking-widest"
+            variant="outline-dark"
           >
             Book a Call
-          </a>
+          </Button>
         </div>
       </motion.div>
     </section>

@@ -18,6 +18,28 @@ function SectionLabel({ children }) {
   );
 }
 
+// Mount-based SplitReveal for hero
+function HeroSplitReveal({ text, className, delay = 0 }) {
+  const words = text.split(" ");
+  return (
+    <span className={className} aria-label={text}>
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden pb-[0.2em] mr-[0.25em] last:mr-0">
+          <motion.span
+            className="inline-block -mb-[0.2em]"
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1, delay: delay + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+// Scroll-triggered SplitReveal for section headings
 function SplitReveal({ text, className }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
@@ -62,7 +84,7 @@ function SupportForm() {
     email: "",
     projectName: "",
     issueType: "",
-    priority: "",
+    priority: "general",
     message: "",
   });
   const [status, setStatus] = useState("idle"); // idle | loading | success | error
@@ -249,44 +271,72 @@ function SupportForm() {
 
 export default function SupportPage() {
   const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const { scrollYProgress: heroScroll } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const heroY       = useTransform(heroScroll, [0, 1],   ["0%", "30%"]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
 
   return (
     <div className="bg-brand-dark text-white">
       <BackgroundCanvasClient />
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section ref={heroRef} className="relative min-h-[55vh] flex items-center overflow-hidden">
-        <motion.div style={{ y: heroY }} className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_40%_50%,rgba(212,175,55,0.05),transparent_60%)]" />
-        </motion.div>
+      <section
+        ref={heroRef}
+        className="relative min-h-[40vh] w-full flex flex-col justify-center overflow-hidden"
+      >
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 50% at 50% 60%, rgba(198,166,104,0.07) 0%, transparent 70%)",
+          }}
+        />
 
-        <div className="relative z-10 px-6 md:px-36 pt-40 pb-20 max-w-[1400px] mx-auto w-full">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <SectionLabel>Client Support</SectionLabel>
-          </motion.div>
-
-          <SplitReveal
-            text="Ongoing Support for Your System."
-            className="text-[2.7rem] md:text-[3.375rem] font-bold text-white font-times uppercase tracking-tight leading-[1.05] max-w-3xl mt-2"
-          />
-
-          <motion.p
+        <motion.div
+          style={{ y: heroY, opacity: heroOpacity }}
+          className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-36 pt-24 pb-20"
+        >
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="mt-6 text-lg text-slate-400 font-medium italic leading-relaxed max-w-xl"
+            transition={{ delay: 0.5, duration: 0.7 }}
+            className="flex items-center gap-4 mb-8"
           >
-            If you&apos;re an existing client, use this page to report issues, request updates, or ask questions about your system.
+            <div className="h-[1px] w-12 bg-brand-gold" />
+            <span className="text-[11px] font-bold tracking-[0.35em] text-brand-gold uppercase">
+              Client Support
+            </span>
+            <div className="h-[1px] w-12 bg-brand-gold" />
+          </motion.div>
+
+          <h1 className="font-serif font-bold leading-[1.05] tracking-tight text-white mb-6">
+            <HeroSplitReveal
+              text="Ongoing Support for Your System."
+              delay={0.6}
+              className="block text-[clamp(2.5rem,6.3vw,5.85rem)]"
+            />
+            <HeroSplitReveal
+              text="For Existing Clients."
+              delay={1.0}
+              className="block text-brand-gold uppercase text-[clamp(1.5rem,4vw,3.5rem)]"
+            />
+          </h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+            className="max-w-2xl text-slate-300 text-lg sm:text-xl leading-relaxed mb-8 font-times font-medium italic"
+          >
+            Use this page to report issues, request updates, or ask questions about your system.
           </motion.p>
 
           {/* Response expectations */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-8 flex flex-wrap gap-4"
+            transition={{ delay: 2.0, duration: 0.7 }}
+            className="flex flex-wrap justify-center gap-4"
           >
             <div className="flex items-center gap-2 rounded-xl border border-brand-gold/20 bg-brand-gold/5 px-5 py-3">
               <div className="w-1.5 h-1.5 rounded-full bg-brand-gold" />
@@ -297,7 +347,9 @@ export default function SupportPage() {
               <span className="text-xs font-medium text-slate-400 font-times uppercase tracking-widest">Urgent issues prioritized</span>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
+
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-b from-transparent to-brand-dark/60 pointer-events-none z-10" />
       </section>
 
       {/* ── WHAT THIS PAGE IS FOR ─────────────────────────────────────────── */}
@@ -425,7 +477,7 @@ function FormSection() {
             <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-times mb-4">Support Hours</p>
             <div className="space-y-3">
               {[
-                { day: "Monday – Friday", hours: "9am – 6pm EST" },
+                { day: "Monday. Friday", hours: "9am. 6pm EST" },
                 { day: "Saturday", hours: "Emergency only" },
                 { day: "Sunday", hours: "Closed" },
               ].map((row, i) => (
@@ -456,20 +508,22 @@ function BridgeSection() {
         className="rounded-2xl border border-brand-gold/20 bg-brand-gold/5 px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-8"
       >
         <div className="max-w-xl">
-          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Active Support Plans</p>
+          <p className="text-[10px] font-bold text-brand-gold uppercase tracking-[0.3em] font-times mb-3">Priority Support Retainers</p>
           <p className="text-lg text-white font-times italic leading-relaxed">
-            Priority response times and ongoing improvements are included in active support plans.
+            Priority response times, proactive monitoring, and architectural optimization are included in active retainer plans.
           </p>
           <p className="mt-2 text-sm text-slate-400 font-medium">
-            Retainer clients receive proactive monitoring, faster response SLAs, and included maintenance hours.
+            Ensure your business-critical systems are always running at peak performance with a dedicated support plan.
           </p>
         </div>
-        <a
+        <Button
+          as="link"
           href="/retainers"
-          className="shrink-0 text-xs font-bold text-brand-gold font-times uppercase tracking-widest border border-brand-gold/30 hover:border-brand-gold hover:bg-brand-gold/5 transition-all rounded-xl px-6 py-4 whitespace-nowrap"
+          variant="outline-dark"
+          className="shrink-0"
         >
-          View Support Plans →
-        </a>
+          View Retainer Plans
+        </Button>
       </motion.div>
     </section>
   );
